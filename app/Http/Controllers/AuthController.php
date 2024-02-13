@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Http;
@@ -13,8 +14,9 @@ class AuthController extends Controller
 {
     public function home()
     {
-        $data['title'] = 'Dashboard';
-        return view("index", $data);
+        $title = 'Dashboard';
+        $profile = profile::getUser();
+        return view("index", compact('title', 'profile'));
     }
 
     public function loginPage()
@@ -24,11 +26,13 @@ class AuthController extends Controller
             return view('errors.500');
         }
 
-        $data['title'] = 'Login';
         if (Session::has('user')) {
             return redirect()->route('dashboard');
         }
-        return view('auth.login', $data);
+
+        $title = 'Login';
+        // $profile = profile::getUser();
+        return view('auth.login', compact('title'));
     }
 
     public function login(Request $request)
@@ -43,18 +47,28 @@ class AuthController extends Controller
             'ip_address' => $request->ip(),
             'mobile' => $agent->device(),
         ]);
+
+        if ($res->status() == 500) {
+            Alert::error('Error', 'Server sedang bermasalah');
+            return view('errors.500');
+        }
+
         if (!$res->successful()) {
             Alert::error('Gagal', 'Login gagal');
             return back();
         }
 
+        if ($res->json()['status'] == false) {
+            Alert::warning('Akun nonaktif', $res->json()['message']);
+            return back();
+        }
+
         $data = $res->json();
-        Session::put('user', $data);
+        Session::put('user', $data['data']);
 
         if ($request->remember == 1) {
             Cookie::make('token', $data['token'], 60 * 60 * 24);
         }
-
         return redirect()->route('dashboard');
     }
 

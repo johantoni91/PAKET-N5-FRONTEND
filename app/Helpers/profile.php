@@ -8,11 +8,19 @@ class profile
 {
     public static function getUser()
     {
-        return Session::get('user')['data']['user'];
+        $sesi = Session::get('user')['user'];
+        if (!$sesi) {
+            return redirect()->route('logout');
+        }
+        return $sesi;
     }
 
     public static function getToken()
     {
-        return Session::get('user')['data']['token']['token'];
+        $sesi = Session::get('user')['token']['token'];
+        if (!$sesi) {
+            return redirect()->route('logout');
+        }
+        return $sesi;
     }
 }

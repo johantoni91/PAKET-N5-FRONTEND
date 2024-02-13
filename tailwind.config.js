@@ -47,6 +47,10 @@ module.exports = {
             },
         },
         extend: {
+            dropShadow: {
+                green: "0 0 5px rgb(0 190 130)",
+                red: "0 0 5px rgb(255 60 120)",
+            },
             screens: {
                 lg_992: "992px",
             },

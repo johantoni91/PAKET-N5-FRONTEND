@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\API\UserApi;
+use App\Helpers\profile;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;

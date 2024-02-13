@@ -11,12 +11,13 @@ class log
     {
         $agent = new Agent();
         return [
-            'users_id' => profile::getUser()['id'],
-            'browser' => $agent->browser(),
-            'browser_version' => $agent->version($agent->browser()),
-            'os' => $agent->platform(),
-            'ip_address' => Request::ip(),
-            'mobile' => $agent->device(),
+            'users_id'          => profile::getUser()['id'],
+            'username'          => profile::getUser()['users']['username'],
+            'browser'           => $agent->browser(),
+            'browser_version'   => $agent->version($agent->browser()),
+            'os'                => $agent->platform(),
+            'ip_address'        => Request::ip(),
+            'mobile'            => $agent->device(),
         ];
     }
 }

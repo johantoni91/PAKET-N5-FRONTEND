@@ -81,7 +81,15 @@
                                                         </th>
                                                         <th scope="col"
                                                             class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
+                                                            Role
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
                                                             Aksi
+                                                        </th>
+                                                        <th scope="col"
+                                                            class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
+                                                            Status <small>(Klik icon untuk mengubah status)</small>
                                                         </th>
                                                     </tr>
                                                 </thead>
@@ -90,45 +98,79 @@
                                                         <tr
                                                             class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700">
                                                             <td
-                                                                class="p-3 text-sm font-medium whitespace-nowrap dark:text-white">
-                                                                @if ($item['photo'])
-                                                                    <img src="{{ env('API_IMG', '') . $item['photo'] }}"
+                                                                class="align-baseline p-3 text-sm font-medium whitespace-nowrap dark:text-white">
+                                                                @if ($item['users']['photo'])
+                                                                    <img src="{{ env('API_IMG', '') . $item['users']['photo'] }}"
                                                                         alt=""
-                                                                        class="mr-2 h-8 rounded-full inline-block">{{ $item['name'] }}
+                                                                        class="mr-2 h-6 rounded-full inline-block">{{ $item['users']['name'] }}
                                                                 @else
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                         viewBox="0 0 24 24" stroke-width="1.5"
                                                                         stroke="currentColor"
-                                                                        class="w-6 h-6 mr-2 h-8 rounded-full inline-block">
+                                                                        class="w-6 h-6 mr-2 rounded-full inline-block">
                                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                                             d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                                                    </svg> {{ $item['name'] }}
+                                                                    </svg> {{ $item['users']['name'] }}
                                                                 @endif
                                                             </td>
                                                             <td
-                                                                class="p-3 text-sm font-medium whitespace-nowrap dark:text-white">
-                                                                {{ $item['username'] }}
+                                                                class="align-baseline p-3 text-sm font-medium whitespace-nowrap dark:text-white">
+                                                                {{ $item['users']['username'] }}
                                                             </td>
                                                             <td
-                                                                class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                                {{ $item['email'] }}
+                                                                class="align-baseline p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                                {{ $item['users']['email'] }}
                                                             </td>
                                                             <td
-                                                                class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                                                {{ $item['phone'] }}
+                                                                class="align-baseline p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                                {{ $item['users']['phone'] }}
+                                                            </td>
+                                                            <td
+                                                                class="align-baseline p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                                {{ $item['roles'] }}
                                                             </td>
                                                             <td
                                                                 class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                                                                 <button type="button"
-                                                                    data-modal-target="update{{ $item['id'] }}"
-                                                                    data-modal-toggle="update{{ $item['id'] }}"><i
-                                                                        class="icofont-edit text-lg text-gray-500 dark:text-gray-400"></i></button>
-                                                                <button type="button"
-                                                                    data-modal-target="delete{{ $item['id'] }}"
-                                                                    data-modal-toggle="delete{{ $item['id'] }}"><i
-                                                                        class="icofont-ui-delete text-lg text-red-500 dark:text-red-400"
-                                                                        data-confirm-delete="true"></i></button>
+                                                                    data-modal-target="update{{ $item['users_id'] }}"
+                                                                    data-modal-toggle="update{{ $item['users_id'] }}"><i
+                                                                        class="align-baseline icofont-edit text-lg text-gray-500 dark:text-gray-400"></i></button>
+                                                                @if ($item['users_id'] != $profile['users_id'])
+                                                                    <button type="button"
+                                                                        data-modal-target="delete{{ $item['users_id'] }}"
+                                                                        data-modal-toggle="delete{{ $item['users_id'] }}"><i
+                                                                            class="align-baseline icofont-ui-delete text-lg text-red-500 dark:text-red-400"
+                                                                            data-confirm-delete="true"></i></button>
+                                                                @endif
                                                                 @include('partials.modals.users')
+                                                            </td>
+                                                            <td>
+                                                                <a href="{{ route('user.status', [$item['users_id'], $item['status']]) }}"
+                                                                    class="align-baseline flex flex-row {{ $item['status'] == '1' ? 'hover:drop-shadow-green' : 'hover:drop-shadow-red' }}">
+                                                                    @if ($item['status'] == '1')
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                            fill="none" viewBox="0 0 24 24"
+                                                                            stroke-width="1.5" stroke="currentColor"
+                                                                            class="w-6 h-6 text-green-500">
+                                                                            <path stroke-linecap="round"
+                                                                                stroke-linejoin="round"
+                                                                                d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                                                        </svg>
+                                                                        <span class="text-sm text-green-500 ms-2 mt-0.5">
+                                                                            Aktif</span>
+                                                                    @else
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                            fill="none" viewBox="0 0 24 24"
+                                                                            stroke-width="1.5" stroke="currentColor"
+                                                                            class="w-6 h-6 text-red-500">
+                                                                            <path stroke-linecap="round"
+                                                                                stroke-linejoin="round"
+                                                                                d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                                                        </svg>
+                                                                        <span class="text-sm text-red-500 ms-2 mt-0.5">
+                                                                            Nonaktif</span>
+                                                                    @endif
+                                                                </a>
                                                             </td>
                                                         </tr>
                                                     @endforeach
