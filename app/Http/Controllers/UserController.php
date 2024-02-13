@@ -97,6 +97,11 @@ class UserController extends Controller
                 Alert::error('Kesalahan', $res->json()['message'] . " Dengan username " . '"' . $res->json()['data']['username'] . '"');
                 return back();
             }
+
+            if (profile::getUser()['users_id'] == $id) {
+                Session::flush();
+                Session::put('user', $res->json()['data']);
+            }
             Alert::success('Berhasil', 'User berhasil diubah');
             session()->flash('status', 'Mengubah data user ' . $request->username);
             session()->flash('route', route('user.index'));
