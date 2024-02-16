@@ -34,7 +34,6 @@
 <script src="{{ asset('assets/js/pages/analytics-index.init.js') }}"></script>
 <script src="{{ asset('assets/js/app.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-<!-- JAVASCRIPTS -->
 </body>
 
 </html>

@@ -193,15 +193,14 @@
                     <div class="flex flex-row lg:flex-nowrap xl:flex-nowrap flex-wrap items-center justify-evenly">
                         <div class="flex flex-col">
                             <img src="{{ $item['users']['photo'] != null ? env('API_IMG', '') . $item['users']['photo'] : 'https://placehold.co/400' }}"
-                                id="photos{{ $item['id'] }}" alt="photos"
+                                id="photo{{ $item['users']['id'] }}" alt="photos"
                                 class="mx-auto h-56 w-56 rounded-full inline-block justify-center my-3">
                             <input type="file" name="photo" id="photo" accept="image/*"
                                 class="bg-gray-50 mx-auto text-sm block w-auto border border-gray-300 rounded-lg dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                onchange="loadFile(event)">
+                                onchange="loadFile{{ $item['users']['id'] }}(event)">
                             <script>
-                                console.log("photos{{ $item['id'] }}");
-                                var loadFile = function(event) {
-                                    var photo = document.getElementById("photos{{ $item['id'] }}");
+                                var loadFile{{ $item['users']['id'] }} = function(event) {
+                                    var photo = document.getElementById("photo{{ $item['users']['id'] }}");
                                     photo.src = URL.createObjectURL(event.target.files[0]);
                                     photo.onload = function() {
                                         URL.revokeObjectURL(photo.src)

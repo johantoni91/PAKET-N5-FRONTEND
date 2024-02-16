@@ -1,7 +1,6 @@
 <div
     class="min-h-full dark:bg-slate-100 z-[99]  fixed print:hidden bg-gradient-to-t from-[#6f3dc3] from-10% via-[#603dc3] via-40% to-[#5c3dc3] to-100% dark:bg-[#603dc3] main-sidebar duration-300 group-data-[sidebar=dark]:bg-[#603dc3] group-data-[sidebar=brand]:bg-brand group-[.dark]:group-data-[sidebar=brand]:bg-[#603dc3]">
-    <div
-        class="text-center border-b bg-[#603dc3] border-r h-[64px] flex justify-center items-center brand-logo dark:bg-[#603dc3] dark:border-slate-700/40 group-data-[sidebar=dark]:bg-[#603dc3] group-data-[sidebar=dark]:border-slate-700/40 group-data-[sidebar=brand]:bg-brand group-[.dark]:group-data-[sidebar=brand]:bg-[#603dc3] group-data-[sidebar=brand]:border-slate-700/40">
+    <div class="text-center h-[64px] flex justify-center items-center dark:bg-slate-800">
         <a href="{{ route('dashboard') }}" class="logo">
             <span>
                 <img src="{{ asset('assets/images/kejaksaan-logo.png') }}" alt="logo-small"
@@ -15,7 +14,7 @@
             </span>
         </a>
     </div>
-    <div class="border-r pb-14 h-[100vh] dark:bg-[#603dc3] dark:border-slate-700/40 group-data-[sidebar=dark]:border-slate-700/40 group-data-[sidebar=brand]:border-slate-700/40"
+    <div class="border-r pb-14 h-[100vh] dark:bg-slate-800 dark:text-white group-data-[sidebar=dark]:border-slate-700/40 group-data-[sidebar=brand]:border-slate-700/40"
         data-simplebar>
         <div class="p-4 block">
             <ul class="navbar-nav">
@@ -41,7 +40,7 @@
                             <ul class="nav flex-col flex flex-wrap ps-0 mb-0 ms-2">
                                 <li class="nav-item relative block">
                                     <a href="{{ route('dashboard') }}"
-                                        class="nav-link  hover:text-primary-500  rounded-md dark:hover:text-primary-500 relative   flex items-center decoration-0 px-3 py-3 group-data-[sidebar=brand]:hover:text-slate-200">
+                                        class="nav-link  hover:text-primary-500  rounded-md dark:hover:text-primary-500 relative flex items-center decoration-0 px-3 py-3 group-data-[sidebar=brand]:hover:text-slate-200">
                                         <i
                                             class="icofont-dotted-right me-2 text-slate-600 text-[8px] group-data-[sidebar=brand]:text-slate-400 "></i>
                                         Dashboard
@@ -50,7 +49,7 @@
                                 @if ($profile['roles'] == 'superadmin')
                                     <li class="nav-item relative block">
                                         <a href="{{ route('user.index') }}"
-                                            class="nav-link  hover:text-primary-500  rounded-md dark:hover:text-primary-500 relative   flex items-center decoration-0 px-3 py-3 group-data-[sidebar=brand]:hover:text-slate-200">
+                                            class="nav-link  hover:text-primary-500  rounded-md dark:hover:text-primary-500 relative flex items-center decoration-0 px-3 py-3 group-data-[sidebar=brand]:hover:text-slate-200">
                                             <i
                                                 class="icofont-dotted-right me-2 text-slate-600 text-[8px] group-data-[sidebar=brand]:text-slate-400 "></i>
                                             Manajemen User
@@ -58,7 +57,7 @@
                                     </li>
                                     <li class="nav-item relative block">
                                         <a href="{{ route('log') }}"
-                                            class="nav-link  hover:text-primary-500  rounded-md dark:hover:text-primary-500 relative   flex items-center decoration-0 px-3 py-3 group-data-[sidebar=brand]:hover:text-slate-200">
+                                            class="nav-link hover:text-primary-500  rounded-md dark:hover:text-primary-500 relative flex items-center decoration-0 px-3 py-3 group-data-[sidebar=brand]:hover:text-slate-200">
                                             <i
                                                 class="icofont-dotted-right me-2 text-slate-600 text-[8px] group-data-[sidebar=brand]:text-slate-400"></i>
                                             Log Aktivitas
