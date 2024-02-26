@@ -616,4 +616,8 @@
             </div><!--end container-->
         </div>
     </div>
+    @push('scripts')
+        <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
+        <script src="{{ asset('assets/js/pages/analytics-index.init.js') }}"></script>
+    @endpush
 @endsection

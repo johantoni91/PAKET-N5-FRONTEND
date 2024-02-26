@@ -21,18 +21,22 @@ class AuthController extends Controller
 
     public function loginPage()
     {
-        if (Http::get(env('SET_API', ''))->status() == 500) {
-            Alert::error('Error', 'Server sedang bermasalah');
+        try {
+            if (Http::get(env('SET_API', ''))->status() == 500) {
+                Alert::error('Error', 'Server sedang bermasalah');
+                return view('errors.500');
+            }
+
+            if (Session::has('user')) {
+                return redirect()->route('dashboard');
+            }
+
+            $title = 'Login';
+            return view('auth.login', compact('title'));
+        } catch (\Throwable $th) {
+            Alert::error('Server bermasalah', $th->getMessage());
             return view('errors.500');
         }
-
-        if (Session::has('user')) {
-            return redirect()->route('dashboard');
-        }
-
-        $title = 'Login';
-        // $profile = profile::getUser();
-        return view('auth.login', compact('title'));
     }
 
     public function login(Request $request)

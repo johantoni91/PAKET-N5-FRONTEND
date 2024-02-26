@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SatkerController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,18 +30,20 @@ Route::middleware(['auth'])->group(function () {
 
     // MANAGEMENT USERS
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
+    Route::get('/user/search', [UserController::class, 'search'])->name('user.search');
+    Route::get('/user/{id}/updateView', [UserController::class, 'updateView'])->name('user.update.view');
     Route::post('/user/{id}/update', [UserController::class, 'update'])->name('user.update');
-    Route::get('/user/{id}/delete', [UserController::class, 'destroy'])->name('user.destroy');
+    Route::post('/user/delete', [UserController::class, 'destroy'])->name('user.destroy');
     Route::post('/user/create', [UserController::class, 'store'])->name('user.store');
     Route::get('/user/{id}/status/{status}', [UserController::class, 'status'])->name('user.status');
+    Route::get('/user/report/excel', [UserController::class, 'excel'])->name('excel.users'); //Report Excel
+    Route::get('/user/report/pdf', [UserController::class, 'pdf'])->name('pdf.users'); // Report PDF
 
     // LOG ACTIVITY
     Route::get('/log', [LogController::class, 'index'])->name('log');
-    Route::get('/log/{id}/delete', [LogController::class, 'destroy'])->name('log.delete');
+    Route::get('/log/search', [LogController::class, 'search'])->name('log.search');
 
-    //Report Excel
-    Route::get('/user/report/excel', [UserController::class, 'excel'])->name('excel.users');
-
-    // Report PDF
-    Route::get('/user/report/pdf', [UserController::class, 'pdf'])->name('pdf.users');
+    // SATUAN KERJA
+    Route::get('/satker', [SatkerController::class, 'index'])->name('satker');
+    Route::get('/satker/search', [SatkerController::class, 'index'])->name('satker.search');
 });

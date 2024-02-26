@@ -1,5 +1,5 @@
 <div
-    class="min-h-full dark:bg-slate-100 z-[99]  fixed print:hidden bg-gradient-to-t from-[#6f3dc3] from-10% via-[#603dc3] via-40% to-[#5c3dc3] to-100% dark:bg-[#603dc3] main-sidebar duration-300 group-data-[sidebar=dark]:bg-[#603dc3] group-data-[sidebar=brand]:bg-brand group-[.dark]:group-data-[sidebar=brand]:bg-[#603dc3]">
+    class="min-h-full dark:bg-slate-100 z-40 fixed print:hidden bg-gradient-to-t from-[#6f3dc3] from-10% via-[#603dc3] via-40% to-[#5c3dc3] to-100% dark:bg-[#603dc3] main-sidebar duration-300 group-data-[sidebar=dark]:bg-[#603dc3] group-data-[sidebar=brand]:bg-brand group-[.dark]:group-data-[sidebar=brand]:bg-[#603dc3]">
     <div class="text-center h-[64px] flex justify-center items-center dark:bg-slate-800">
         <a href="{{ route('dashboard') }}" class="logo">
             <span>
@@ -63,10 +63,50 @@
                                             Log Aktivitas
                                         </a>
                                     </li>
+                                    <li class="nav-item relative block">
+                                        <a href="{{ route('satker') }}"
+                                            class="nav-link hover:text-primary-500  rounded-md dark:hover:text-primary-500 relative flex items-center decoration-0 px-3 py-3 group-data-[sidebar=brand]:hover:text-slate-200">
+                                            <i
+                                                class="icofont-dotted-right me-2 text-slate-600 text-[8px] group-data-[sidebar=brand]:text-slate-400"></i>
+                                            Satuan Kerja
+                                        </a>
+                                    </li>
+                                    <li class="nav-item relative block">
+                                        <a href="{{ route('satker') }}"
+                                            class="nav-link hover:text-primary-500  rounded-md dark:hover:text-primary-500 relative flex items-center decoration-0 px-3 py-3 group-data-[sidebar=brand]:hover:text-slate-200">
+                                            <i
+                                                class="icofont-dotted-right me-2 text-slate-600 text-[8px] group-data-[sidebar=brand]:text-slate-400"></i>
+                                            Pegawai
+                                        </a>
+                                    </li>
+                                    <li class="nav-item relative block">
+                                        <a href="{{ route('satker') }}"
+                                            class="nav-link hover:text-primary-500  rounded-md dark:hover:text-primary-500 relative flex items-center decoration-0 px-3 py-3 group-data-[sidebar=brand]:hover:text-slate-200">
+                                            <i
+                                                class="icofont-dotted-right me-2 text-slate-600 text-[8px] group-data-[sidebar=brand]:text-slate-400"></i>
+                                            Layout Kartu
+                                        </a>
+                                    </li>
+                                    <li class="nav-item relative block">
+                                        <a href="{{ route('satker') }}"
+                                            class="nav-link hover:text-primary-500  rounded-md dark:hover:text-primary-500 relative flex items-center decoration-0 px-3 py-3 group-data-[sidebar=brand]:hover:text-slate-200">
+                                            <i
+                                                class="icofont-dotted-right me-2 text-slate-600 text-[8px] group-data-[sidebar=brand]:text-slate-400"></i>
+                                            Pengajuan
+                                        </a>
+                                    </li>
+                                    <li class="nav-item relative block">
+                                        <a href="{{ route('satker') }}"
+                                            class="nav-link hover:text-primary-500  rounded-md dark:hover:text-primary-500 relative flex items-center decoration-0 px-3 py-3 group-data-[sidebar=brand]:hover:text-slate-200">
+                                            <i
+                                                class="icofont-dotted-right me-2 text-slate-600 text-[8px] group-data-[sidebar=brand]:text-slate-400"></i>
+                                            Monitoring Kartu
+                                        </a>
+                                    </li>
                                 @endif
                             </ul>
                         </div>
-                        {{-- <div
+                        <div
                             class="border-b border-dashed dark:border-slate-700/40 my-3 group-data-[sidebar=dark]:border-slate-700/40 group-data-[sidebar=brand]:border-slate-700/40">
                         </div>
                         <div
@@ -113,7 +153,7 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div> --}}
+                        </div>
                     </div>
                 </li>
             </ul>

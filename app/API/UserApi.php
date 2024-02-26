@@ -22,6 +22,19 @@ class UserApi
         }
     }
 
+    public static function search($category, $search)
+    {
+        try {
+            $response = Http::withToken(profile::getToken())->get(env('API_URL', 'http://localhost:8001/api') . '/user/search', [
+                'category'  => $category,
+                'search'    => $search
+            ]);
+            return $response->json();
+        } catch (\Throwable $th) {
+            return  ['error' => $th];
+        }
+    }
+
     public static function find($id)
     {
         try {

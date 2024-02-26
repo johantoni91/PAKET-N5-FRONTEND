@@ -18,4 +18,17 @@ class LogApi
             return redirect()->route('logout');
         }
     }
+
+    public static function search($category, $search)
+    {
+        try {
+            $response = Http::withToken(profile::getToken())->get(env('API_URL', 'http://localhost:8001/api') . '/log/search', [
+                'category'  => $category,
+                'search'    => $search
+            ]);
+            return $response;
+        } catch (\Throwable $th) {
+            return  ['error' => $th];
+        }
+    }
 }

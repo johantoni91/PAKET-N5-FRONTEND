@@ -20,11 +20,13 @@ class UserController extends Controller
     public function index()
     {
         try {
+            $route1 = 'user';
+            $route2 = 'search';
             $title = 'Manajemen User';
             $profile = profile::getUser();
             if ($profile['roles'] == 'superadmin') {
                 $data = UserApi::get();
-                return view('user.index', compact('title', 'data', 'profile'));
+                return view('user.index', compact('title', 'data', 'profile', 'route1', 'route2'));
             }
             return redirect()->route('dashboard');
         } catch (\Throwable $th) {
@@ -33,13 +35,16 @@ class UserController extends Controller
         }
     }
 
+    public function search(Request $req)
+    {
+        $title = 'Manajemen User';
+        $profile = profile::getUser();
+        $data = UserApi::search($req->category, $req->search)['data'];
+        return view('user.search', compact('title', 'data', 'profile'))->render();
+    }
+
     public function store(UserRequest $request)
     {
-        if ($request->nip == null && $request->nrp == null) {
-            Alert::error('Terjadi kesalahan', 'Mohon isi salah satu NIP / NRP atau dua-duanya');
-            return back();
-        }
-        $photo = $request->file('photo');
         $data = [
             'nip'       => $request->nip,
             'nrp'       => $request->nrp,
@@ -50,17 +55,61 @@ class UserController extends Controller
             'phone'     => $request->phone,
             'password'  => $request->password,
         ];
+        if ($request->nip == null && $request->nrp == null) {
+            Alert::error('Terjadi kesalahan', 'Mohon isi salah satu NIP / NRP atau dua-duanya');
+            session()->flash('error', $data);
+            return back();
+        } else {
+            $photo = $request->file('photo');
 
-        $res = UserApi::insert($photo, $data);
-        if ($res->failed()) {
-            Alert::error('Gagal', $res->json()['message']);
+            $res = UserApi::insert($photo, $data);
+            if ($res->failed()) {
+                Alert::error('Gagal', $res->json()['message']);
+                return redirect()->route('user.index');
+            }
+
+            Alert::success('Berhasil', 'Berhasil menambah user');
+            session()->flash('status', 'Menambahkan user ' . $request->username);
+            session()->flash('route', route('user.index'));
             return redirect()->route('user.index');
         }
+    }
 
-        Alert::success('Berhasil', 'Berhasil menambah user');
-        session()->flash('status', 'Menambahkan user ' . $request->username);
-        session()->flash('route', route('user.index'));
-        return redirect()->route('user.index');
+    public function redirect($id)
+    {
+        try {
+            $title = 'Manajemen User';
+            $profile = profile::getUser();
+            $item = UserApi::find($id);
+            if ($item->successful()) {
+                return view('user.update', compact('title', 'item', 'profile'));
+            } else {
+                Alert::error('Error', $item->json()['message']);
+                return redirect()->to('user.index');
+            }
+        } catch (\Throwable $th) {
+            Alert::error('Error', $th->getMessage());
+            return redirect()->to('user.index');
+        }
+    }
+
+    public function updateView($id)
+    {
+        try {
+            $data = UserApi::find($id)->json();
+            if ($data['status'] == true) {
+                $item = $data['data'];
+                $title = 'Ubah User ' . $item['users']['name'];
+                $profile = profile::getUser();
+                return view('user.update', compact('title', 'item', 'profile'));
+            } else {
+                Alert::error('Error', $data->json()['message']);
+                return redirect()->to('user.index');
+            }
+        } catch (\Throwable $th) {
+            Alert::error('Error', $th->getMessage());
+            return redirect()->to('user.index');
+        }
     }
 
     public function update(Request $request, $id)
@@ -123,22 +172,35 @@ class UserController extends Controller
         return redirect()->route('user.index');
     }
 
-    public function destroy($id)
+    public function destroy(Request $req)
     {
         try {
-            $del = UserApi::delete($id);
+            $user = UserApi::find($req->id)->json();
+            $del = UserApi::delete($req->id);
             if (!$del->failed()) {
                 Alert::success('Berhasil', 'User berhasil dihapus');
-                session()->flash('status', 'Menghapus user ' . $id);
+                session()->flash('status', 'Menghapus user ' . $user['data']['users']['name']);
                 session()->flash('route', route('user.index'));
-                return redirect()->route('user.index');
+                return response($del->json()['message'], 200);
+            } else {
+                Alert::error('Terjadi kesalahan', $del->json()['error']);
+                return response($del->json()['message'], 200);
             }
-            Alert::error('Terjadi kesalahan', $del->json()['error']);
-            return back();
         } catch (\Throwable $th) {
             Alert::error('Terjadi kesalahan', $th->getMessage());
-            return back();
+            return response($th->getMessage(), 400);
         }
+    }
+
+    public function delete($id)
+    {
+        $del = UserApi::delete($id);
+        return response($del, 200);
+        // try {
+
+        // } catch (\Throwable $th) {
+        //     return response($th->getMessage(), 400);
+        // }
     }
 
     function excel()
