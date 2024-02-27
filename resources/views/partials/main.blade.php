@@ -27,6 +27,13 @@
 <body data-layout-mode="light" data-sidebar-size="default" data-theme-layout="vertical"
     class="bg-[#EEF0FC] dark:bg-gray-900">
     @include('sweetalert::alert')
+    @if (session('welcome'))
+        <div
+            class=" flex flex-row items-center fixed z-50 p-3 px-8 bottom-10 right-10 rounded-lg bg-purple-600 text-white dark:bg-slate-700 dark:text-white shadow-lg shadow-purple-600 dark:shadow-white">
+            <span data-lucide="hand-metal" class="w-5 h-5"></span>
+            <small>&nbsp; {{ session('welcome') }}</small>
+        </div>
+    @endif
     @yield('content')
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
@@ -46,9 +53,6 @@
     <script>
         let table = new DataTable("#datatable_1", {
             responsive: true,
-            fixedColumns: true,
-            autoWidth: true,
-            autoFill: true,
             language: {
                 url: "//cdn.datatables.net/plug-ins/1.13.7/i18n/id.json",
             },

@@ -26,17 +26,17 @@
                 </li>
                 <li>
                     <div id="parent-accordion" data-fc-type="accordion">
-                        <a href="#"
-                            class="nav-link hover:bg-transparent hover:text-black  rounded-md dark:hover:text-slate-200   flex items-center  decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200 group-data-[sidebar=brand]:hover:text-slate-200 "
+                        {{-- <a href="#"
+                            class="nav-link hover:bg-transparent hover:text-black  rounded-md dark:hover:text-slate-200   flex items-center  decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200 group-data-[sidebar=brand]:hover:text-slate-200"
                             data-fc-type="collapse" data-fc-parent="parent-accordion">
                             <span data-lucide="home"
                                 class="w-5 h-5 text-center text-slate-800 dark:text-slate-400 me-2 group-data-[sidebar=dark]:text-slate-400 group-data-[sidebar=brand]:text-slate-400"></span>
-                            <span>Admin</span>
+                            <span>Dashboard</span>
                             <i
-                                class="icofont-thin-down ms-auto inline-block text-[14px] transform transition-transform duration-300 text-slate-800 dark:text-slate-400 group-data-[sidebar=dark]:text-slate-400 group-data-[sidebar=brand]:text-slate-400 fc-collapse-open:rotate-180 "></i>
+                                class="icofont-thin-down ms-auto inline-block text-[14px] transform transition-transform duration-300 text-slate-800 dark:text-slate-400 group-data-[sidebar=dark]:text-slate-400 group-data-[sidebar=brand]:text-slate-400 fc-collapse-open:rotate-180"></i>
                         </a>
 
-                        <div id="Admin-flush" class="hidden  overflow-hidden">
+                        <div id="Admin-flush" class="hidden overflow-hidden">
                             <ul class="nav flex-col flex flex-wrap ps-0 mb-0 ms-2">
                                 <li class="nav-item relative block">
                                     <a href="{{ route('dashboard') }}"
@@ -63,57 +63,82 @@
                                             Log Aktivitas
                                         </a>
                                     </li>
-                                    <li class="nav-item relative block">
-                                        <a href="{{ route('satker') }}"
-                                            class="nav-link hover:text-primary-500  rounded-md dark:hover:text-primary-500 relative flex items-center decoration-0 px-3 py-3 group-data-[sidebar=brand]:hover:text-slate-200">
-                                            <i
-                                                class="icofont-dotted-right me-2 text-slate-600 text-[8px] group-data-[sidebar=brand]:text-slate-400"></i>
-                                            Satuan Kerja
-                                        </a>
-                                    </li>
-                                    <li class="nav-item relative block">
-                                        <a href="{{ route('satker') }}"
-                                            class="nav-link hover:text-primary-500  rounded-md dark:hover:text-primary-500 relative flex items-center decoration-0 px-3 py-3 group-data-[sidebar=brand]:hover:text-slate-200">
-                                            <i
-                                                class="icofont-dotted-right me-2 text-slate-600 text-[8px] group-data-[sidebar=brand]:text-slate-400"></i>
-                                            Pegawai
-                                        </a>
-                                    </li>
-                                    <li class="nav-item relative block">
-                                        <a href="{{ route('satker') }}"
-                                            class="nav-link hover:text-primary-500  rounded-md dark:hover:text-primary-500 relative flex items-center decoration-0 px-3 py-3 group-data-[sidebar=brand]:hover:text-slate-200">
-                                            <i
-                                                class="icofont-dotted-right me-2 text-slate-600 text-[8px] group-data-[sidebar=brand]:text-slate-400"></i>
-                                            Layout Kartu
-                                        </a>
-                                    </li>
-                                    <li class="nav-item relative block">
-                                        <a href="{{ route('satker') }}"
-                                            class="nav-link hover:text-primary-500  rounded-md dark:hover:text-primary-500 relative flex items-center decoration-0 px-3 py-3 group-data-[sidebar=brand]:hover:text-slate-200">
-                                            <i
-                                                class="icofont-dotted-right me-2 text-slate-600 text-[8px] group-data-[sidebar=brand]:text-slate-400"></i>
-                                            Pengajuan
-                                        </a>
-                                    </li>
-                                    <li class="nav-item relative block">
-                                        <a href="{{ route('satker') }}"
-                                            class="nav-link hover:text-primary-500  rounded-md dark:hover:text-primary-500 relative flex items-center decoration-0 px-3 py-3 group-data-[sidebar=brand]:hover:text-slate-200">
-                                            <i
-                                                class="icofont-dotted-right me-2 text-slate-600 text-[8px] group-data-[sidebar=brand]:text-slate-400"></i>
-                                            Monitoring Kartu
-                                        </a>
-                                    </li>
                                 @endif
                             </ul>
+                        </div> --}}
+
+                        <a href="{{ route('dashboard') }}"
+                            class="nav-link hover:bg-transparent hover:text-black rounded-md dark:hover:text-slate-200 flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200 group-data-[sidebar=brand]:hover:text-slate-200">
+                            <span data-lucide="home"
+                                class="w-5 h-5 text-center text-slate-800 dark:text-slate-400 me-2 group-data-[sidebar=dark]:text-slate-400 group-data-[sidebar=brand]:text-slate-400"></span>
+                            <span>Dashboard</span>
+                        </a>
+
+                        <a href="{{ route('user.index') }}"
+                            class="nav-link hover:bg-transparent hover:text-black rounded-md dark:hover:text-slate-200 flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200 group-data-[sidebar=brand]:hover:text-slate-200">
+                            <span data-lucide="user"
+                                class="w-5 h-5 text-center text-slate-800 dark:text-slate-400 me-2 group-data-[sidebar=dark]:text-slate-400 group-data-[sidebar=brand]:text-slate-400"></span>
+                            <span>Manajemen Users</span>
+                        </a>
+                        <a href="{{ route('satker') }}"
+                            class="nav-link hover:bg-transparent hover:text-black rounded-md dark:hover:text-slate-200 flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200 group-data-[sidebar=brand]:hover:text-slate-200">
+                            <span data-lucide="book-open"
+                                class="w-5 h-5 text-center text-slate-800 dark:text-slate-400 me-2 group-data-[sidebar=dark]:text-slate-400 group-data-[sidebar=brand]:text-slate-400"></span>
+                            <i data-lucide="book-user"></i>
+                            <span>Satuan Kerja</span>
+                        </a>
+                        <a href="{{ route('pegawai') }}"
+                            class="nav-link hover:bg-transparent hover:text-black rounded-md dark:hover:text-slate-200 flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200 group-data-[sidebar=brand]:hover:text-slate-200">
+                            <span data-lucide="laugh"
+                                class="w-5 h-5 text-center text-slate-800 dark:text-slate-400 me-2 group-data-[sidebar=dark]:text-slate-400 group-data-[sidebar=brand]:text-slate-400"></span>
+                            <span>Pegawai</span>
+                        </a>
+                        <a href="#"
+                            class="nav-link hover:bg-transparent hover:text-black rounded-md dark:hover:text-slate-200 flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200 group-data-[sidebar=brand]:hover:text-slate-200">
+                            <span data-lucide="pen"
+                                class="w-5 h-5 text-center text-slate-800 dark:text-slate-400 me-2 group-data-[sidebar=dark]:text-slate-400 group-data-[sidebar=brand]:text-slate-400"></span>
+                            <span>Pengajuan</span>
+                        </a>
+
+                        <a href="#"
+                            class="nav-link hover:bg-transparent hover:text-black  rounded-md dark:hover:text-slate-200   flex items-center  decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200 group-data-[sidebar=brand]:hover:text-slate-200"
+                            data-fc-type="collapse" data-fc-parent="parent-accordion">
+                            <span data-lucide="credit-card"
+                                class="w-5 h-5 text-center text-slate-800 dark:text-slate-400 me-2 group-data-[sidebar=dark]:text-slate-400 group-data-[sidebar=brand]:text-slate-400"></span>
+                            <span>Kartu</span>
+                            <i
+                                class="icofont-thin-down ms-auto inline-block text-[14px] transform transition-transform duration-300 text-slate-800 dark:text-slate-400 group-data-[sidebar=dark]:text-slate-400 group-data-[sidebar=brand]:text-slate-400 fc-collapse-open:rotate-180"></i>
+                        </a>
+
+                        <div id="Admin-flush" class="hidden overflow-hidden">
+                            <ul class="nav flex-col flex flex-wrap ps-0 mb-0 ms-2">
+                                <li class="nav-item relative block">
+                                    <a href="{{ route('satker') }}"
+                                        class="nav-link hover:text-primary-500  rounded-md dark:hover:text-primary-500 relative flex items-center decoration-0 px-3 py-3 group-data-[sidebar=brand]:hover:text-slate-200">
+                                        <i
+                                            class="icofont-dotted-right me-2 text-slate-600 text-[8px] group-data-[sidebar=brand]:text-slate-400"></i>
+                                        Layout Kartu
+                                    </a>
+                                </li>
+                                <li class="nav-item relative block">
+                                    <a href="{{ route('satker') }}"
+                                        class="nav-link hover:text-primary-500  rounded-md dark:hover:text-primary-500 relative flex items-center decoration-0 px-3 py-3 group-data-[sidebar=brand]:hover:text-slate-200">
+                                        <i
+                                            class="icofont-dotted-right me-2 text-slate-600 text-[8px] group-data-[sidebar=brand]:text-slate-400"></i>
+                                        Monitoring Kartu
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
+
                         <div
                             class="border-b border-dashed dark:border-slate-700/40 my-3 group-data-[sidebar=dark]:border-slate-700/40 group-data-[sidebar=brand]:border-slate-700/40">
                         </div>
                         <div
                             class="text-[9px] text-slate-600 dark:text-slate-500 group-data-[sidebar=dark]:text-slate-500 group-data-[sidebar=brand]:text-slate-400">
-                            Pengaturan
+                            ALAT
                         </div>
-                        <div data-fc-type="collapse" data-fc-parent="parent-accordion">
+                        {{-- <div data-fc-type="collapse" data-fc-parent="parent-accordion">
                             <a href="#"
                                 class="nav-link hover:bg-transparent hover:text-black  rounded-md dark:hover:text-slate-200   flex items-center  decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200 group-data-[sidebar=brand]:hover:text-slate-200">
                                 <span data-lucide="box"
@@ -153,24 +178,22 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                        </div> --}}
                     </div>
+                    <a href="#"
+                        class="nav-link hover:bg-transparent hover:text-black rounded-md dark:hover:text-slate-200 flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200 group-data-[sidebar=brand]:hover:text-slate-200">
+                        <span data-lucide="key-square"
+                            class="w-5 h-5 text-center text-slate-800 dark:text-slate-400 me-2 group-data-[sidebar=dark]:text-slate-400 group-data-[sidebar=brand]:text-slate-400"></span>
+                        <span>Hak Akses</span>
+                    </a>
+                    <a href="{{ route('log') }}"
+                        class="nav-link hover:bg-transparent hover:text-black rounded-md dark:hover:text-slate-200 flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200 group-data-[sidebar=brand]:hover:text-slate-200">
+                        <span data-lucide="history"
+                            class="w-5 h-5 text-center text-slate-800 dark:text-slate-400 me-2 group-data-[sidebar=dark]:text-slate-400 group-data-[sidebar=brand]:text-slate-400"></span>
+                        <span>Log Aktivitas</span>
+                    </a>
                 </li>
             </ul>
-            {{-- <div class="rounded-md py-4 px-3 mt-12  mb-4 relative bg-primary-300/10 text-center">
-                <a href="javascript: void(0);" class="float-right close-btn text-slate-400">
-                    <i class="mdi mdi-close"></i>
-                </a>
-                <h5
-                    class="my-3 text-lg font-medium text-slate-700 dark:text-slate-300 group-data-[sidebar=dark]:text-slate-300 group-data-[sidebar=brand]:text-slate-300">
-                    Sistem Informasi Otentikasi Kartu Identitas Personil</h5>
-                <p class="mb-3 text-sm text-slate-400">We Design and Develop Clean and High Quality Web Applications
-                </p>
-                <button
-                    class="px-2 py-1 mb-2 text-orange-400 hover:text-white border border-orange-300 hover:bg-orange-300 focus:outline-none  rounded text-sm  text-center dark:border-orange-300 dark:text-orange-300 dark:hover:text-white dark:hover:bg-orange-300 ">Upgrade
-                    your plan</button>
-
-            </div> --}}
         </div>
     </div>
 </div>

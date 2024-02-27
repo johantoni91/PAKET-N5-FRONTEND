@@ -11,6 +11,24 @@
                             <div class="flex flex-wrap justify-between">
                                 <div class="items-center ">
                                     <h1 class="font-medium text-3xl block dark:text-slate-100">{{ $title }}</h1>
+                                    <ol class="list-reset flex text-sm">
+                                        {{-- <li><a href="{{ route('user.index') }}"
+                                                class="text-blue-500 dark:text-slate-400">Users</a>
+                                        </li> --}}
+                                        <li>
+                                            <a href="{{ route('user.index') }}" data-tooltip-target="tooltip-bottom"
+                                                data-tooltip-placement="bottom"
+                                                class="text-blue-500 dark:text-slate-400">Users</a>
+
+                                            <div id="tooltip-bottom" role="tooltip"
+                                                class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                Kembali ke users
+                                                <div class="tooltip-arrow" data-popper-arrow></div>
+                                            </div>
+                                        </li>
+                                        <li><span class="text-gray-500 dark:text-slate-400 mx-2">/</span></li>
+                                        <li class="text-gray-500 dark:text-slate-400">Ubah {{ $item['users']['name'] }}</li>
+                                    </ol>
                                 </div>
                             </div>
                         </div>

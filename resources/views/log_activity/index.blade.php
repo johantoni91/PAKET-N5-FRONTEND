@@ -20,10 +20,13 @@
                                     </li>
                                 </ol> --}}
                                 </div>
-                                <div>
-                                    <input type="date" name="date" id="date" value="{{ now()->format('Y-m-d') }}"
-                                        class="rounded border-slate-200 dark:border-slate-700 dark:text-white dark:bg-slate-700">
-                                </div>
+                                {{-- <div class="flex flex-row gap-5">
+                                    <div>
+                                        <input type="date" name="date" id="date"
+                                            value="{{ now()->format('Y-m-d') }}" max="{{ now()->format('Y-m-d') }}"
+                                            class="rounded-lg bg-blue-300 z-10 border-0 focus:border-0 dark:border-slate-700 dark:text-white dark:bg-slate-700">
+                                    </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -121,7 +124,7 @@
                                                                                 {{ $item['username'] }}
                                                                             </td>
                                                                             <td
-                                                                                class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                                                class="p-3 text-sm text-start text-gray-500 whitespace-nowrap dark:text-gray-400">
                                                                                 {{ $item['ip_address'] }}
                                                                             </td>
                                                                             <td
@@ -129,7 +132,7 @@
                                                                                 {{ $item['browser'] }}
                                                                             </td>
                                                                             <td
-                                                                                class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                                                                class="p-3 text-sm text-start text-gray-500 whitespace-nowrap dark:text-gray-400">
                                                                                 {{ $item['browser_version'] }}
                                                                             </td>
                                                                             <td
@@ -140,7 +143,7 @@
                                                                                 class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                                                                                 {{ $item['log_detail'] }}
                                                                             </td>
-                                                                            <td>
+                                                                            <td class="text-center">
                                                                                 {{ date('d/m/Y', strtotime($item['created_at'])) }}
                                                                                 <br>
                                                                                 {{ date('H:i:s', strtotime($item['created_at'])) }}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\API\LogApi;
 use App\Helpers\profile;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
@@ -34,7 +35,11 @@ class LogController extends Controller
     {
         $title = 'Log Aktivitas';
         $profile = profile::getUser();
-        $data = LogApi::search($req->category, $req->search)['data'];
+        $res = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/log/search', [
+            'category' => $req->category,
+            'search' => $req->search
+        ])->json();
+        $data = $res['data'];
         return view('log_activity.search', compact('title', 'data', 'profile'))->render();
     }
 }

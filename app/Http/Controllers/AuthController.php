@@ -69,10 +69,10 @@ class AuthController extends Controller
 
         $data = $res->json();
         Session::put('user', $data['data']);
-
         if ($request->remember == 1) {
             Cookie::make('token', $data['token'], 60 * 60 * 24);
         }
+        session()->flash('welcome', 'Selamat datang ' . $data['data']['user']['users']['username'] . '!');
         return redirect()->route('dashboard');
     }
 

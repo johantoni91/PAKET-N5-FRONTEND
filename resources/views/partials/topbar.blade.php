@@ -74,7 +74,7 @@
                                             {{ ucfirst($profile['users']['username']) }}
                                             @if (session('status'))
                                                 <small class="text-gray-400">
-                                                    ({{ now()->format('D M Y h:i:s') }})</small>
+                                                    ({{ now()->diffForHumans() }})</small>
                                             @endif
                                         </p>
                                         <p class="text-gray-500 mb-0 text-xs text-pretty truncate dark:text-gray-400">

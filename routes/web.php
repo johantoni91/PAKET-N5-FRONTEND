@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KepegawaianController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SatkerController;
@@ -46,4 +47,9 @@ Route::middleware(['auth'])->group(function () {
     // SATUAN KERJA
     Route::get('/satker', [SatkerController::class, 'index'])->name('satker');
     Route::get('/satker/search', [SatkerController::class, 'index'])->name('satker.search');
+    Route::post('/satker/create', [SatkerController::class, 'store'])->name('satker.store');
+
+    // PEGAWAI
+    Route::get('/pegawai', [KepegawaianController::class, 'index'])->name('pegawai');
+    Route::get('/pegawai/search', [SatkerController::class, 'index'])->name('pegawai.search');
 });

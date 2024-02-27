@@ -26,13 +26,40 @@
                                     </li>
                                 </ol> --}}
                                 </div><!--end /div-->
-                                <div class="flex items-center">
-                                    <div
-                                        class="today-date leading-5 mt-2 lg:mt-0 form-input w-auto rounded-md border inline-block border-primary-500/60 dark:border-primary-500/60 text-primary-500 bg-transparent px-3 py-1 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-primary-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
-                                        <input type="text" class="dash_date border-0 focus:border-0 focus:outline-none"
-                                            readonly>
-                                    </div>
-                                </div><!--end /div-->
+                                {{-- <div>
+                                    <input type="date" name="date" id="date" value="{{ now()->format('Y-m-d') }}"
+                                        class="rounded-lg bg-blue-300 z-10 border-0 text-transparent focus:border-0 dark:border-slate-700 dark:text-white dark:bg-slate-700">
+                                    <span
+                                        class="absolute right-[3.3rem] top-[5.1rem] bg-blue-300 p-2 dark:text-white dark:bg-slate-700"
+                                        id="now"></span>
+                                </div>
+                                <script>
+                                    var dateString = $("#date").val();
+                                    var date = new Date(dateString);
+
+                                    var options = {
+                                        year: 'numeric',
+                                        month: 'long',
+                                        day: 'numeric'
+                                    };
+                                    var humanDate = date.toLocaleDateString('id-ID', options);
+                                    $("#now").text(humanDate);
+                                    $(document).ready(function() {
+                                        $("#date").on('change', function(e) {
+                                            e.preventDefault()
+                                            var dateString = $("#date").val();
+                                            var date = new Date(dateString);
+
+                                            var options = {
+                                                year: 'numeric',
+                                                month: 'long',
+                                                day: 'numeric'
+                                            };
+                                            var humanDate = date.toLocaleDateString('id-ID', options);
+                                            $("#now").text(humanDate);
+                                        })
+                                    })
+                                </script> --}}
                             </div><!--end /div-->
                         </div><!--end /div-->
                     </div><!--end /div-->
@@ -90,16 +117,13 @@
                                             </div>
                                             <div class="flex flex-col gap-5">
                                                 <div class="datatable_1">
-                                                    <table class="w-full border-collapse" width="100%" id="datatable_1">
+                                                    <table class="table w-full border-collapse" width="100%"
+                                                        id="datatable_1">
                                                         <thead class="bg-slate-100 dark:bg-slate-700/20">
                                                             <tr>
                                                                 <th scope="col"
                                                                     class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
                                                                     Nama
-                                                                </th>
-                                                                <th scope="col"
-                                                                    class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
-                                                                    Username
                                                                 </th>
                                                                 <th scope="col"
                                                                     class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
@@ -143,10 +167,6 @@
                                                                                     d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                                                             </svg> {{ $item['users']['name'] }}
                                                                         @endif
-                                                                    </td>
-                                                                    <td
-                                                                        class="align-baseline whitespace-nowrap p-3 text-sm font-medium dark:text-white">
-                                                                        {{ $item['users']['username'] }}
                                                                     </td>
                                                                     <td
                                                                         class="align-baseline whitespace-nowrap p-3 text-sm text-gray-500 dark:text-gray-400">
@@ -219,8 +239,7 @@
                                                                             @if ($item['status'] == '1')
                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                     fill="none" viewBox="0 0 24 24"
-                                                                                    stroke-width="1.5"
-                                                                                    stroke="currentColor"
+                                                                                    stroke-width="1.5" stroke="currentColor"
                                                                                     class="w-6 h-6 text-green-500">
                                                                                     <path stroke-linecap="round"
                                                                                         stroke-linejoin="round"

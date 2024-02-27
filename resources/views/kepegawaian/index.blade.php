@@ -26,13 +26,41 @@
                                     </li>
                                 </ol> --}}
                                 </div><!--end /div-->
-                                <div class="flex items-center">
-                                    <div
-                                        class="today-date leading-5 mt-2 lg:mt-0 form-input w-auto rounded-md border inline-block border-primary-500/60 dark:border-primary-500/60 text-primary-500 bg-transparent px-3 py-1 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-primary-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700">
-                                        <input type="text" class="dash_date border-0 focus:border-0 focus:outline-none"
-                                            readonly>
-                                    </div>
-                                </div><!--end /div-->
+                                {{-- <div>
+                                    <input type="date" name="date" id="date" value="{{ now()->format('Y-m-d') }}"
+                                        max="{{ now()->format('Y-m-d') }}"
+                                        class="rounded-lg bg-blue-300 z-10 border-0 text-transparent focus:border-0 dark:border-slate-700 dark:text-white dark:bg-slate-700">
+                                    <span
+                                        class="absolute right-[2.8rem] px-5 rounded-lg top-[5.1rem] bg-blue-300 p-2 dark:text-white dark:bg-slate-700"
+                                        id="now"></span>
+                                </div>
+                                <script>
+                                    var dateString = $("#date").val();
+                                    var date = new Date(dateString);
+
+                                    var options = {
+                                        year: 'numeric',
+                                        month: 'short',
+                                        day: 'numeric'
+                                    };
+                                    var humanDate = date.toLocaleDateString('id-ID', options);
+                                    $("#now").text(humanDate);
+                                    $(document).ready(function() {
+                                        $("#date").on('change', function(e) {
+                                            e.preventDefault()
+                                            var dateString = $("#date").val();
+                                            var date = new Date(dateString);
+
+                                            var options = {
+                                                year: 'numeric',
+                                                month: 'short',
+                                                day: 'numeric'
+                                            };
+                                            var humanDate = date.toLocaleDateString('id-ID', options);
+                                            $("#now").text(humanDate);
+                                        })
+                                    })
+                                </script> --}}
                             </div><!--end /div-->
                         </div><!--end /div-->
                     </div><!--end /div-->
@@ -48,7 +76,7 @@
                                 <div
                                     class="border-b border-slate-200 dark:border-slate-700/40 py-3 px-4 dark:text-slate-300/70">
                                     <div class="flex-none md:flex">
-                                        <h4 class="font-medium text-lg flex-1 self-center mb-2 md:mb-0">Data Users</h4>
+                                        <h4 class="font-medium text-lg flex-1 self-center mb-2 md:mb-0">Data Pegawai</h4>
                                         <div class="gap-5">
                                             <a href="{{ route('excel.users') }}"
                                                 class="inline-block focus:outline-none text-green-500 hover:bg-green-500 hover:text-white bg-transparent border border-green-500 dark:bg-transparent dark:text-green-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-green-500 text-sm font-medium py-1 px-3 rounded mb-1 lg:mb-0 csv">Export
@@ -66,7 +94,7 @@
                                                 <button type="button" data-modal-target="create" data-modal-toggle="create"
                                                     style="margin-left: 9px"
                                                     class="focus:outline-none ms-2.5 text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium py-1 px-3 rounded mb-1 w-24">+
-                                                    User</button>
+                                                    Pegawai</button>
                                                 @include('partials.modals.createUser')
                                                 <div class="flex flex-row md:gap-x-5 flex-wrap md:flex-nowrap">
                                                     <div>
@@ -99,116 +127,128 @@
                                                                 </th>
                                                                 <th scope="col"
                                                                     class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
-                                                                    Username
+                                                                    Jabatan
                                                                 </th>
                                                                 <th scope="col"
                                                                     class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
-                                                                    Email
+                                                                    Golongan
                                                                 </th>
                                                                 <th scope="col"
                                                                     class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
-                                                                    Phone
+                                                                    Agama
                                                                 </th>
                                                                 <th scope="col"
                                                                     class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
-                                                                    Role
+                                                                    Satker
+                                                                </th>
+                                                                <th scope="col"
+                                                                    class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
+                                                                    Status
                                                                 </th>
                                                                 <th scope="col"
                                                                     class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
                                                                     Aksi
                                                                 </th>
-                                                                <th scope="col"
-                                                                    class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
-                                                                    Status <small>(Klik icon untuk mengubah status)</small>
-                                                                </th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach ($data as $item)
-                                                                <tr
-                                                                    class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700">
-                                                                    <td
-                                                                        class="align-baseline whitespace-nowrap p-3 text-sm font-medium dark:text-white">
-                                                                        @if ($item['users']['photo'])
-                                                                            <img src="{{ env('API_IMG', '') . $item['users']['photo'] }}"
-                                                                                alt=""
-                                                                                class="mr-2 h-6 rounded-full inline-block">{{ $item['users']['name'] }}
-                                                                        @else
-                                                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                fill="none" viewBox="0 0 24 24"
-                                                                                stroke-width="1.5" stroke="currentColor"
-                                                                                class="w-6 h-6 mr-2 rounded-full inline-block">
-                                                                                <path stroke-linecap="round"
-                                                                                    stroke-linejoin="round"
-                                                                                    d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                                                            </svg> {{ $item['users']['name'] }}
-                                                                        @endif
-                                                                    </td>
-                                                                    <td
-                                                                        class="align-baseline whitespace-nowrap p-3 text-sm font-medium dark:text-white">
-                                                                        {{ $item['users']['username'] }}
-                                                                    </td>
-                                                                    <td
-                                                                        class="align-baseline whitespace-nowrap p-3 text-sm text-gray-500 dark:text-gray-400">
-                                                                        {{ $item['users']['email'] }}
-                                                                    </td>
-                                                                    <td
-                                                                        class="text-start align-baseline whitespace-nowrap p-3 text-sm text-gray-500 dark:text-gray-400">
-                                                                        {{ $item['users']['phone'] }}
-                                                                    </td>
-                                                                    <td
-                                                                        class="align-baseline whitespace-nowrap p-3 text-sm text-gray-500 dark:text-gray-400">
-                                                                        {{ $item['roles'] }}
-                                                                    </td>
-                                                                    <td
-                                                                        class="p-3 text-sm text-gray-500 dark:text-gray-400">
-                                                                        <button type="button"
-                                                                            data-modal-target="update{{ $item['id'] }}"
-                                                                            data-modal-toggle="update{{ $item['id'] }}"><i
-                                                                                class="align-baseline icofont-edit text-lg text-gray-500 dark:text-gray-400"></i></button>
-                                                                        @if ($item['users_id'] != $profile['users_id'])
-                                                                            <button type="button"
-                                                                                data-modal-target="delete{{ $item['id'] }}"
-                                                                                data-modal-toggle="delete{{ $item['id'] }}"><i
-                                                                                    class="align-baseline icofont-ui-delete text-lg text-red-500 dark:text-red-400"
-                                                                                    data-confirm-delete="true"></i></button>
-                                                                        @endif
-                                                                        @include('partials.modals.users')
-                                                                    </td>
-                                                                    <td>
-                                                                        <a href="{{ route('user.status', [$item['users_id'], $item['status']]) }}"
-                                                                            class="align-baseline flex flex-row {{ $item['status'] == '1' ? 'hover:drop-shadow-green' : 'hover:drop-shadow-red' }}">
-                                                                            @if ($item['status'] == '1')
-                                                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                    fill="none" viewBox="0 0 24 24"
-                                                                                    stroke-width="1.5"
-                                                                                    stroke="currentColor"
-                                                                                    class="w-6 h-6 text-green-500">
-                                                                                    <path stroke-linecap="round"
-                                                                                        stroke-linejoin="round"
-                                                                                        d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                                                                </svg>
-                                                                                <span
-                                                                                    class="text-sm text-green-500 ms-2 mt-0.5">
-                                                                                    Aktif</span>
-                                                                            @else
-                                                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                    fill="none" viewBox="0 0 24 24"
-                                                                                    stroke-width="1.5"
-                                                                                    stroke="currentColor"
-                                                                                    class="w-6 h-6 text-red-500">
-                                                                                    <path stroke-linecap="round"
-                                                                                        stroke-linejoin="round"
-                                                                                        d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                                                                </svg>
-                                                                                <span
-                                                                                    class="text-sm text-red-500 ms-2 mt-0.5">
-                                                                                    Nonaktif</span>
-                                                                            @endif
-                                                                        </a>
-                                                                    </td>
+                                                            @if ($data == null)
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td><small class="text-red-600 italic"> -- Belum ada
+                                                                            pegawai --
+                                                                        </small></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
-                                                            @endforeach
+                                                            @else
+                                                                @foreach ($data as $item)
+                                                                    <tr
+                                                                        class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700">
+                                                                        <td
+                                                                            class="align-baseline whitespace-nowrap p-3 text-sm font-medium dark:text-white">
+                                                                            <img src="{{ $item['foto_pegawai'] }}"
+                                                                                alt=""
+                                                                                class="mr-2 h-6 rounded-full inline-block">{{ $item['nama'] }}
+                                                                        </td>
+                                                                        <td
+                                                                            class="align-baseline whitespace-nowrap p-3 text-sm text-gray-500 dark:text-gray-400">
+                                                                            {{ $item['jabatan'] }}
+                                                                        </td>
+                                                                        <td
+                                                                            class="align-baseline whitespace-nowrap p-3 text-sm text-gray-500 dark:text-gray-400">
+                                                                            {{ $item['golpang'] }}
+                                                                        </td>
+                                                                        <td
+                                                                            class="align-baseline whitespace-nowrap p-3 text-sm text-gray-500 dark:text-gray-400">
+                                                                            {{ $item['agama'] }}
+                                                                        </td>
+                                                                        <td
+                                                                            class="align-baseline whitespace-nowrap p-3 text-sm text-gray-500 dark:text-gray-400">
+                                                                            {{ $item['nama_satker'] }}
+                                                                        </td>
+                                                                        <td
+                                                                            class="align-baseline whitespace-nowrap p-3 text-sm text-gray-500 dark:text-gray-400">
+                                                                            {{ $item['status_pegawai'] }}
+                                                                        </td>
+                                                                        <td
+                                                                            class="p-3 text-sm text-gray-500 dark:text-gray-400">
+                                                                            <button type="button"
+                                                                                data-modal-target="update{{ $item['nip'] }}"
+                                                                                data-modal-toggle="update{{ $item['nip'] }}"><i
+                                                                                    class="align-baseline icofont-edit text-lg text-gray-500 dark:text-gray-400"></i></button>
+
+                                                                            <input type="hidden"
+                                                                                value="{{ $item['nip'] }}"
+                                                                                id="del{{ $item['nip'] }}">
+                                                                            <button type="button"
+                                                                                id="delete{{ $item['nip'] }}"><i
+                                                                                    class="align-baseline icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i></button>
+                                                                            <script>
+                                                                                $(document).ready(function() {
+                                                                                    $("#delete{{ $item['nip'] }}").on('click', function(e) {
+                                                                                        e.preventDefault()
+                                                                                        var id = $("#del{{ $item['nip'] }}").val()
+                                                                                        Swal.fire({
+                                                                                            title: "PERINGATAN",
+                                                                                            text: "Apakah anda yakin menghapus user {{ $item['nama'] }} ?",
+                                                                                            icon: "warning",
+                                                                                            showCancelButton: true,
+                                                                                            confirmButtonColor: "#3085d6",
+                                                                                            cancelButtonColor: "#d33",
+                                                                                            confirmButtonText: "Hapus"
+                                                                                        }).then((result) => {
+                                                                                            if (result.isConfirmed) {
+                                                                                                $.ajax({
+                                                                                                    url: "{{ route('user.destroy') }}",
+                                                                                                    type: "POST",
+                                                                                                    headers: {
+                                                                                                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                                                                                                    },
+                                                                                                    data: {
+                                                                                                        id: id
+                                                                                                    },
+                                                                                                    success: function(data) {
+                                                                                                        location.reload();
+                                                                                                    },
+                                                                                                    error: function(xhr) {
+
+                                                                                                    }
+                                                                                                })
+                                                                                            }
+                                                                                        });
+
+                                                                                    })
+                                                                                })
+                                                                            </script>
+                                                                            {{-- @include('partials.modals.users') --}}
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                            @endif
                                                         </tbody>
                                                     </table>
                                                 </div>

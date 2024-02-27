@@ -75,31 +75,13 @@ class UserController extends Controller
         }
     }
 
-    public function redirect($id)
-    {
-        try {
-            $title = 'Manajemen User';
-            $profile = profile::getUser();
-            $item = UserApi::find($id);
-            if ($item->successful()) {
-                return view('user.update', compact('title', 'item', 'profile'));
-            } else {
-                Alert::error('Error', $item->json()['message']);
-                return redirect()->to('user.index');
-            }
-        } catch (\Throwable $th) {
-            Alert::error('Error', $th->getMessage());
-            return redirect()->to('user.index');
-        }
-    }
-
     public function updateView($id)
     {
         try {
             $data = UserApi::find($id)->json();
             if ($data['status'] == true) {
                 $item = $data['data'];
-                $title = 'Ubah User ' . $item['users']['name'];
+                $title = 'Ubah User';
                 $profile = profile::getUser();
                 return view('user.update', compact('title', 'item', 'profile'));
             } else {
@@ -152,8 +134,13 @@ class UserController extends Controller
                 Session::put('user', $res->json()['data']);
             }
             Alert::success('Berhasil', 'User berhasil diubah');
+
             session()->flash('status', 'Mengubah data user ' . $request->username);
             session()->flash('route', route('user.index'));
+            if (request()->routeIs('profile')) {
+                Alert::success('Berhasil', 'Mengubah data profil');
+                return back();
+            }
             return redirect()->route('user.index');
         }
     }

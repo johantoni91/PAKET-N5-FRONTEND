@@ -17,13 +17,35 @@ class SatkerController extends Controller
         try {
             $route1 = 'satker';
             $route2 = 'search';
-            $title = 'Data Satuan Kerja';
+            $title = 'Satuan Kerja';
             $profile = profile::getUser();
             if ($profile['roles'] == 'superadmin') {
-                $data = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker')->json()['data'];
+                $data = SatkerApi::get();
                 return view('satker.index', compact('title', 'data', 'profile', 'route1', 'route2'));
             }
             return redirect()->route('dashboard');
+        } catch (\Throwable $th) {
+            Alert::error('Kesalahan', $th->getMessage());
+            Session::forget('user');
+            return redirect()->route('logout');
+        }
+    }
+
+    public function store(Request $request)
+    {
+        try {
+            $data = [
+                'satker'  => $request->satker,
+                'type'    => $request->type,
+                'phone'   => $request->phone,
+                'email'   => $request->email,
+                'address' => $request->address,
+            ];
+            SatkerApi::store($data);
+            Alert::success('Berhasil', 'Berhasil menambahkan satker');
+            session()->flash('status', 'Menambahkan satker ' . $request->satker);
+            session()->flash('route', route('satker'));
+            return redirect()->route('satker');
         } catch (\Throwable $th) {
             Alert::error('Kesalahan', $th->getMessage());
             Session::forget('user');
