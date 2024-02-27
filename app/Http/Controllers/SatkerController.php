@@ -31,6 +31,20 @@ class SatkerController extends Controller
         }
     }
 
+    public function status($id, $status)
+    {
+        $res = SatkerApi::status($id, $status);
+        if ($res->failed()) {
+            Alert::error('Gagal', 'Gagal ubah status');
+            return back();
+        }
+        $satker = SatkerApi::find($id);
+        Alert::success('Berhasil', 'Status telah diubah');
+        session()->flash('status', 'Mengubah status satker ' . $satker->json()['data']['satker_name']);
+        session()->flash('route', route('satker'));
+        return redirect()->route('satker');
+    }
+
     public function store(Request $request)
     {
         try {
@@ -50,6 +64,26 @@ class SatkerController extends Controller
             Alert::error('Kesalahan', $th->getMessage());
             Session::forget('user');
             return redirect()->route('logout');
+        }
+    }
+
+    public function destroy(Request $req)
+    {
+        try {
+            $user = SatkerApi::find($req->id)->json();
+            $del = SatkerApi::delete($req->id);
+            if (!$del->failed()) {
+                Alert::success('Berhasil', 'Satker berhasil dihapus');
+                session()->flash('status', 'Menghapus satker ' . $user['data']['satker_name']);
+                session()->flash('route', route('satker'));
+                return response($del->json()['message'], 200);
+            } else {
+                Alert::error('Terjadi kesalahan', $del->json()['error']);
+                return response($del->json()['message'], 200);
+            }
+        } catch (\Throwable $th) {
+            Alert::error('Terjadi kesalahan', $th->getMessage());
+            return response($th->getMessage(), 400);
         }
     }
 }

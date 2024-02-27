@@ -121,7 +121,7 @@
                                                                         <td>{{ $item['satker_email'] }}</td>
                                                                         <td>{{ $item['satker_address'] }}</td>
                                                                         <td class="align-baseline">
-                                                                            <a href="{{ route('user.status', [$item['id'], $item['satker_status']]) }}"
+                                                                            <a href="{{ route('satker.status', [$item['id'], $item['satker_status']]) }}"
                                                                                 class="align-baseline flex flex-row {{ $item['satker_status'] == '1' ? 'hover:drop-shadow-green' : 'hover:drop-shadow-red' }}">
                                                                                 @if ($item['satker_status'] == '1')
                                                                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -171,7 +171,7 @@
                                                                                         var id = $("#del{{ $item['id'] }}").val()
                                                                                         Swal.fire({
                                                                                             title: "PERINGATAN",
-                                                                                            text: "Apakah anda yakin menghapus user {{ $item['satker_name'] }} ?",
+                                                                                            text: "Apakah anda yakin menghapus satker {{ $item['satker_name'] }} ?",
                                                                                             icon: "warning",
                                                                                             showCancelButton: true,
                                                                                             confirmButtonColor: "#3085d6",
@@ -180,7 +180,7 @@
                                                                                         }).then((result) => {
                                                                                             if (result.isConfirmed) {
                                                                                                 $.ajax({
-                                                                                                    url: "{{ route('user.destroy') }}",
+                                                                                                    url: "{{ route('satker.destroy') }}",
                                                                                                     type: "POST",
                                                                                                     headers: {
                                                                                                         'X-CSRF-TOKEN': "{{ csrf_token() }}"
@@ -212,9 +212,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div><!--end card-body-->
-                                </div> <!--end card-->
-                            </div><!--end col-->
+                                    </div>
+                                    <small class="text-red-400 ms-3">Klik icon status untuk mengubah
+                                        status</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     @include('partials.footer')

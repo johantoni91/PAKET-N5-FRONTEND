@@ -63,11 +63,15 @@
                                                             <option value="browser_version">Browser Version</option>
                                                             <option value="os">OS</option>
                                                             <option value="log_detail">Log Details</option>
-                                                            <option value="created_at">Time Activity</option>
+                                                            {{-- <option value="created_at">Time Activity</option> --}}
                                                         </select>
                                                     </div>
                                                     <input type="text" id="search" placeholder="Cari ..."
                                                         class="w-1/2 me-2.5 md:ms-0 ms-2.5 mt-3 md:mt-0 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                    {{-- <input type="date" name="date" id="date"
+                                                        value="{{ now()->format('Y-m-d') }}"
+                                                        max="{{ now()->format('Y-m-d') }}"
+                                                        class="rounded-lg bg-blue-300 z-10 border-0 text-transparent focus:border-0 dark:border-slate-700 dark:text-white dark:bg-slate-700"> --}}
                                                 </div>
                                                 <div class="flex flex-col gap-5">
                                                     <div class="datatable_1">

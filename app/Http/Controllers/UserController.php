@@ -179,17 +179,6 @@ class UserController extends Controller
         }
     }
 
-    public function delete($id)
-    {
-        $del = UserApi::delete($id);
-        return response($del, 200);
-        // try {
-
-        // } catch (\Throwable $th) {
-        //     return response($th->getMessage(), 400);
-        // }
-    }
-
     function excel()
     {
         return Excel::download(new UserExport, Carbon::now()->format('d_m_Y') . '.' . 'xlsx');

@@ -143,7 +143,7 @@
                                                                 </th>
                                                                 <th scope="col"
                                                                     class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
-                                                                    Status <small>(Klik icon untuk mengubah status)</small>
+                                                                    Status
                                                                 </th>
                                                             </tr>
                                                         </thead>
@@ -274,6 +274,8 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <small class="text-red-400">Klik icon status untuk mengubah
+                                        status</small>
                                 </div><!--end card-body-->
                             </div> <!--end card-->
                         </div><!--end col-->

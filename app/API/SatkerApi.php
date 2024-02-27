@@ -22,6 +22,27 @@ class SatkerApi
         }
     }
 
+    public static function find($id)
+    {
+        try {
+            $data = Http::withToken(profile::getToken())->post(env('API_URL', '') . '/satker/' . $id, log::insert());
+            return $data;
+        } catch (\Throwable $th) {
+            Session::forget('user');
+            return redirect()->route('logout');
+        }
+    }
+
+    public static function status($id, $status)
+    {
+        return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . $id . '/status' . '/' . $status);
+    }
+
+    public static function delete($id)
+    {
+        return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . $id . '/delete', log::insert());
+    }
+
     public static function store($data)
     {
         $agent = new Agent();
