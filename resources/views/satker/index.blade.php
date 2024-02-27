@@ -69,11 +69,10 @@
                                                                     berdasarkan
                                                                     kategori &nbsp; &nbsp;
                                                                 </option>
-                                                                <option value="name">Nama</option>
-                                                                <option value="phone">Telepon</option>
-                                                                <option value="email">Email</option>
-                                                                <option value="address">Alamat</option>
-                                                                <option value="status">Status</option>
+                                                                <option value="satker_name">Nama</option>
+                                                                <option value="satker_phone">Telepon</option>
+                                                                <option value="satker_email">Email</option>
+                                                                <option value="satker_address">Alamat</option>
                                                             </select>
                                                         </div>
                                                         <input type="text" id="search" placeholder="Cari ..."
@@ -157,7 +156,7 @@
                                                                                 data-modal-target="update{{ $item['id'] }}"
                                                                                 data-modal-toggle="update{{ $item['id'] }}"><i
                                                                                     class="align-baseline icofont-edit text-lg text-gray-500 dark:text-gray-400"></i></button>
-
+                                                                            @include('partials.modals.satker.update')
                                                                             <input type="hidden"
                                                                                 value="{{ $item['id'] }}"
                                                                                 id="del{{ $item['id'] }}">

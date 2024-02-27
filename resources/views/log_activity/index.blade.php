@@ -79,8 +79,8 @@
                                                             <thead class="bg-slate-100 dark:bg-slate-700/20">
                                                                 <tr>
                                                                     <th scope="col"
-                                                                        class="text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
-                                                                        No. &nbsp; &nbsp; &nbsp;
+                                                                        class="text-xs text-center font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
+                                                                        No.
                                                                     </th>
                                                                     <th scope="col"
                                                                         class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">

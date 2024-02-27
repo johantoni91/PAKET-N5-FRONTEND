@@ -46,9 +46,10 @@ Route::middleware(['auth'])->group(function () {
 
     // SATUAN KERJA
     Route::get('/satker', [SatkerController::class, 'index'])->name('satker');
-    Route::post('/satker/delete', [SatkerController::class, 'destroy'])->name('satker.destroy');
     Route::post('/satker/create', [SatkerController::class, 'store'])->name('satker.store');
-    Route::get('/satker/search', [SatkerController::class, 'index'])->name('satker.search');
+    Route::get('/satker/search', [SatkerController::class, 'search'])->name('satker.search');
+    Route::post('/satker/{id}/update', [SatkerController::class, 'update'])->name('satker.update');
+    Route::post('/satker/delete', [SatkerController::class, 'destroy'])->name('satker.destroy');
     Route::get('/satker/{id}/status/{status}', [SatkerController::class, 'status'])->name('satker.status');
 
     // PEGAWAI

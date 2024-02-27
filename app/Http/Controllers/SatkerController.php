@@ -7,7 +7,9 @@ use App\Helpers\profile;
 use helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Session;
+use Jenssegers\Agent\Agent;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class SatkerController extends Controller
@@ -43,6 +45,47 @@ class SatkerController extends Controller
         session()->flash('status', 'Mengubah status satker ' . $satker->json()['data']['satker_name']);
         session()->flash('route', route('satker'));
         return redirect()->route('satker');
+    }
+
+    public function search(Request $req)
+    {
+        $title = 'Satuan Kerja';
+        $profile = profile::getUser();
+        $data = SatkerApi::search($req->category, $req->search)['data'];
+        return view('satker.search', compact('title', 'data', 'profile'))->render();
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = [
+            'satker'            => $request->satker,
+            'type'              => $request->type,
+            'phone'             => $request->phone,
+            'email'             => $request->email,
+            'address'           => $request->address,
+        ];
+
+        $res = SatkerApi::update($id, $data);
+
+        if ($res->failed()) {
+            Alert::error('Gagal', 'satker gagal diubah');
+            return back();
+        } else {
+            if ($res->json()['status'] == false) {
+                Alert::error('Kesalahan', $res->json()['message'] . " Dengan satker " . '"' . $res->json()['data']['satker_name'] . '"');
+                return back();
+            }
+
+            Alert::success('Berhasil', 'Satker berhasil diubah');
+
+            session()->flash('status', 'Mengubah data satker ' . $request->satker);
+            session()->flash('route', route('satker'));
+            if (request()->routeIs('profile')) {
+                Alert::success('Berhasil', 'Mengubah data satker');
+                return back();
+            }
+            return redirect()->route('satker');
+        }
     }
 
     public function store(Request $request)
