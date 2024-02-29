@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\AccessController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KartuController;
 use App\Http\Controllers\KepegawaianController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\PaginationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SatkerController;
 use App\Http\Controllers\UserController;
@@ -29,6 +32,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('/profile/{id}/update', [ProfileController::class, 'update'])->name('profile.update');
 
+    //PAGINATION
+    Route::get('/pagination/{view}/{link}/{title}', [PaginationController::class, 'pagination'])->name('pagination');
+    Route::get('/pagination/search', [PaginationController::class, 'paginationSearch'])->name('pagination.search');
+
     // MANAGEMENT USERS
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::get('/user/report/pdf', [UserController::class, 'pdf'])->name('pdf.users'); // Report PDF
@@ -54,5 +61,12 @@ Route::middleware(['auth'])->group(function () {
 
     // PEGAWAI
     Route::get('/pegawai', [KepegawaianController::class, 'index'])->name('pegawai');
-    Route::get('/pegawai/search', [SatkerController::class, 'index'])->name('pegawai.search');
+    Route::post('/pegawai/search', [KepegawaianController::class, 'search'])->name('pegawai.search');
+    Route::get('/pegawai/search/view', [KepegawaianController::class, 'searchView'])->name('pegawai.view');
+
+    // HAK AKSES
+    Route::get('/akses', [AccessController::class, 'index'])->name('akses');
+
+    // KARTU
+    Route::get('/kartu', [KartuController::class, 'index'])->name('kartu');
 });

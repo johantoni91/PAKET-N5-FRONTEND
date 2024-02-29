@@ -43,8 +43,8 @@
                 </div>
             </form>
             <!-- <p class="mb-5 text-sm font-medium text-center text-slate-500"> Don't have an account? <a href="auth-register.html"
-                    class="font-medium text-brand-500 hover:underline">Sign up</a>
-                </p> -->
+                                                class="font-medium text-brand-500 hover:underline">Sign up</a>
+                                            </p> -->
         </div>
     </div>
 @endsection

@@ -25,7 +25,7 @@ class UserController extends Controller
             $title = 'Manajemen User';
             $profile = profile::getUser();
             if ($profile['roles'] == 'superadmin') {
-                $data = UserApi::get();
+                $data = UserApi::get()['data'];
                 return view('user.index', compact('title', 'data', 'profile', 'route1', 'route2'));
             }
             return redirect()->route('dashboard');

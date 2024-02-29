@@ -17,55 +17,12 @@
                             <div class="flex flex-wrap justify-between">
                                 <div class="items-center ">
                                     <h1 class="font-medium text-3xl block dark:text-slate-100">{{ $title }}</h1>
-                                    {{-- <ol class="list-reset flex text-sm">
-                                    <li><button type="button" class="text-gray-500 dark:text-slate-400">Robotech</button></li>
-                                    <li><span class="text-gray-500 dark:text-slate-400 mx-2">/</span></li>
-                                    <li class="text-gray-500 dark:text-slate-400">Tables</li>
-                                    <li><span class="text-gray-500 dark:text-slate-400 mx-2">/</span></li>
-                                    <li class="text-primary-500 hover:text-primary-600 dark:text-primary-400">Datatable
-                                    </li>
-                                </ol> --}}
-                                </div><!--end /div-->
-                                {{-- <div>
-                                    <input type="date" name="date" id="date" value="{{ now()->format('Y-m-d') }}"
-                                        max="{{ now()->format('Y-m-d') }}"
-                                        class="rounded-lg bg-blue-300 z-10 border-0 text-transparent focus:border-0 dark:border-slate-700 dark:text-white dark:bg-slate-700">
-                                    <span
-                                        class="absolute right-[2.8rem] px-5 rounded-lg top-[5.1rem] bg-blue-300 p-2 dark:text-white dark:bg-slate-700"
-                                        id="now"></span>
                                 </div>
-                                <script>
-                                    var dateString = $("#date").val();
-                                    var date = new Date(dateString);
-
-                                    var options = {
-                                        year: 'numeric',
-                                        month: 'short',
-                                        day: 'numeric'
-                                    };
-                                    var humanDate = date.toLocaleDateString('id-ID', options);
-                                    $("#now").text(humanDate);
-                                    $(document).ready(function() {
-                                        $("#date").on('change', function(e) {
-                                            e.preventDefault()
-                                            var dateString = $("#date").val();
-                                            var date = new Date(dateString);
-
-                                            var options = {
-                                                year: 'numeric',
-                                                month: 'short',
-                                                day: 'numeric'
-                                            };
-                                            var humanDate = date.toLocaleDateString('id-ID', options);
-                                            $("#now").text(humanDate);
-                                        })
-                                    })
-                                </script> --}}
-                            </div><!--end /div-->
-                        </div><!--end /div-->
-                    </div><!--end /div-->
-                </div><!--end /div-->
-            </div><!--end container-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="xl:w-full  min-h-[calc(100vh-138px)] relative pb-14">
                 <div class="xl:w-full  min-h-[calc(100vh-138px)] relative pb-14">
                     <div class="grid md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4 mb-4">
@@ -89,209 +46,246 @@
                                 </div><!--end header-title-->
                                 <div class="grid grid-cols-1 p-4 overflow-scroll">
                                     <div class="sm:-mx-6 lg:-mx-8">
-                                        <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-8">
-                                            <div class="flex flex-col gap-3 mb-5">
+                                        <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-10">
+                                            <div class="flex flex-row justify-between px-5">
                                                 <button type="button" data-modal-target="create" data-modal-toggle="create"
-                                                    style="margin-left: 9px"
-                                                    class="focus:outline-none ms-2.5 text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium py-1 px-3 rounded mb-1 w-24">+
+                                                    class="focus:outline-none bg-primary-500 text-white border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium py-1 px-3 rounded w-24">+
                                                     Pegawai</button>
-                                                @include('partials.modals.createUser')
-                                                <div class="flex flex-row md:gap-x-5 flex-wrap md:flex-nowrap">
-                                                    <div>
-                                                        <select id="category"
-                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm font-medium ms-2.5 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                            <option value="0" disabled selected>Cari
-                                                                berdasarkan
-                                                                kategori &nbsp; &nbsp;
-                                                            </option>
-                                                            <option value="username">Username</option>
-                                                            <option value="name">Nama</option>
-                                                            <option value="email">Email</option>
-                                                            <option value="phone">Telepon</option>
-                                                            <option value="role">Role</option>
-                                                            <option value="status">Status</option>
-                                                        </select>
-                                                    </div>
-                                                    <input type="text" id="search" placeholder="Cari ..."
-                                                        class="w-1/2 me-2.5 md:ms-0 ms-2.5 mt-3 md:mt-0 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                </div>
+                                                @include('partials.modals.pegawai.create')
+                                                <button type="button" data-modal-target="search" data-modal-toggle="search"
+                                                    class="flex flex-row focus:outline-none text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium rounded w-32 justify-between px-2 align-bottom items-center">
+                                                    Cari Pegawai <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                        class="w-4 h-4">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                                    </svg>
+                                                </button>
+                                                @include('partials.modals.pegawai.search')
                                             </div>
-                                            <div class="flex flex-col gap-5">
+                                            <div class="flex flex-col gap-5 p-5">
                                                 <div class="datatable_1">
-                                                    <table class="w-full border-collapse" width="100%" id="datatable_1">
-                                                        <thead class="bg-slate-100 dark:bg-slate-700/20">
-                                                            <tr>
-                                                                <th scope="col"
-                                                                    class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
-                                                                    Nama
-                                                                </th>
-                                                                <th scope="col"
-                                                                    class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
-                                                                    Jabatan
-                                                                </th>
-                                                                <th scope="col"
-                                                                    class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
-                                                                    Golongan
-                                                                </th>
-                                                                <th scope="col"
-                                                                    class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
-                                                                    Agama
-                                                                </th>
-                                                                <th scope="col"
-                                                                    class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
-                                                                    Satker
-                                                                </th>
-                                                                <th scope="col"
-                                                                    class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
-                                                                    Status
-                                                                </th>
-                                                                <th scope="col"
-                                                                    class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
-                                                                    Aksi
-                                                                </th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @if ($data == null)
-                                                                <tr>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td><small class="text-red-600 italic"> -- Belum ada
-                                                                            pegawai --
-                                                                        </small></td>
-                                                                    <td></td>
-                                                                    <td></td>
-                                                                    <td></td>
+                                                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                                                        <table
+                                                            class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                                            <thead
+                                                                class="text-xs text-gray-700 uppercase dark:text-gray-400 border-b-2 border-slate-500">
+                                                                <tr class="text-center">
+                                                                    <th scope="col"
+                                                                        class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                                                        Nama
+                                                                    </th>
+                                                                    <th scope="col" class="px-6 py-3">
+                                                                        Jabatan
+                                                                    </th>
+                                                                    <th scope="col"
+                                                                        class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                                                        Jenis Kelamin
+                                                                    </th>
+                                                                    <th scope="col" class="px-6 py-3">
+                                                                        Golongan
+                                                                    </th>
+                                                                    <th scope="col"
+                                                                        class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                                                        Satker
+                                                                    </th>
+                                                                    <th scope="col" class="px-6 py-3">
+                                                                        Status Pegawai
+                                                                    </th>
+                                                                    <th scope="col"
+                                                                        class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                                                        Aksi
+                                                                    </th>
                                                                 </tr>
-                                                            @else
-                                                                @foreach ($data as $item)
-                                                                    <tr
-                                                                        class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700">
-                                                                        <td
-                                                                            class="align-baseline whitespace-nowrap p-3 text-sm font-medium dark:text-white">
-                                                                            <img src="{{ $item['foto_pegawai'] }}"
-                                                                                alt=""
-                                                                                class="mr-2 h-6 rounded-full inline-block">{{ $item['nama'] }}
-                                                                        </td>
-                                                                        <td
-                                                                            class="align-baseline whitespace-nowrap p-3 text-sm text-gray-500 dark:text-gray-400">
-                                                                            {{ $item['jabatan'] }}
-                                                                        </td>
-                                                                        <td
-                                                                            class="align-baseline whitespace-nowrap p-3 text-sm text-gray-500 dark:text-gray-400">
-                                                                            {{ $item['golpang'] }}
-                                                                        </td>
-                                                                        <td
-                                                                            class="align-baseline whitespace-nowrap p-3 text-sm text-gray-500 dark:text-gray-400">
-                                                                            {{ $item['agama'] }}
-                                                                        </td>
-                                                                        <td
-                                                                            class="align-baseline whitespace-nowrap p-3 text-sm text-gray-500 dark:text-gray-400">
-                                                                            {{ $item['nama_satker'] }}
-                                                                        </td>
-                                                                        <td
-                                                                            class="align-baseline whitespace-nowrap p-3 text-sm text-gray-500 dark:text-gray-400">
-                                                                            {{ $item['status_pegawai'] }}
-                                                                        </td>
-                                                                        <td
-                                                                            class="p-3 text-sm text-gray-500 dark:text-gray-400">
-                                                                            <button type="button"
-                                                                                data-modal-target="update{{ $item['nip'] }}"
-                                                                                data-modal-toggle="update{{ $item['nip'] }}"><i
-                                                                                    class="align-baseline icofont-edit text-lg text-gray-500 dark:text-gray-400"></i></button>
-
-                                                                            <input type="hidden"
-                                                                                value="{{ $item['nip'] }}"
-                                                                                id="del{{ $item['nip'] }}">
-                                                                            <button type="button"
-                                                                                id="delete{{ $item['nip'] }}"><i
-                                                                                    class="align-baseline icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i></button>
-                                                                            <script>
-                                                                                $(document).ready(function() {
-                                                                                    $("#delete{{ $item['nip'] }}").on('click', function(e) {
-                                                                                        e.preventDefault()
-                                                                                        var id = $("#del{{ $item['nip'] }}").val()
-                                                                                        Swal.fire({
-                                                                                            title: "PERINGATAN",
-                                                                                            text: "Apakah anda yakin menghapus user {{ $item['nama'] }} ?",
-                                                                                            icon: "warning",
-                                                                                            showCancelButton: true,
-                                                                                            confirmButtonColor: "#3085d6",
-                                                                                            cancelButtonColor: "#d33",
-                                                                                            confirmButtonText: "Hapus"
-                                                                                        }).then((result) => {
-                                                                                            if (result.isConfirmed) {
-                                                                                                $.ajax({
-                                                                                                    url: "{{ route('user.destroy') }}",
-                                                                                                    type: "POST",
-                                                                                                    headers: {
-                                                                                                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                                                                                                    },
-                                                                                                    data: {
-                                                                                                        id: id
-                                                                                                    },
-                                                                                                    success: function(data) {
-                                                                                                        location.reload();
-                                                                                                    },
-                                                                                                    error: function(xhr) {
-
-                                                                                                    }
-                                                                                                })
-                                                                                            }
-                                                                                        });
-
-                                                                                    })
-                                                                                })
-                                                                            </script>
-                                                                            {{-- @include('partials.modals.users') --}}
-                                                                        </td>
+                                                            </thead>
+                                                            <tbody>
+                                                                @if (reset($data['links'])['url'] == null && end($data['links'])['url'] == null)
+                                                                    <tr>
+                                                                        <small class="text-blue-500">Tidak ada data
+                                                                            pegawai</small>
                                                                     </tr>
-                                                                @endforeach
-                                                            @endif
-                                                        </tbody>
-                                                    </table>
+                                                                @else
+                                                                    @foreach ($data['data'] as $item)
+                                                                        <tr
+                                                                            class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                                                            <th scope="row"
+                                                                                class="px-6 py-4 text-black whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                                                <img src="{{ $item['foto_pegawai'] }}"
+                                                                                    class="w-6 h-6 rounded-full shadow me-1 inline-block">
+                                                                                {{ $item['nama'] }}
+                                                                            </th>
+                                                                            <td class="px-6 py-4 dark:text-white">
+                                                                                {{ $item['jabatan'] }}
+                                                                            </td>
+                                                                            <td
+                                                                                class="px-6 py-4 dark:text-white bg-gray-50 dark:bg-gray-800 text-center">
+                                                                                {{ $item['jenis_kelamin'] }}
+                                                                            </td>
+                                                                            <td class="px-6 py-4 dark:text-white">
+                                                                                {{ $item['golpang'] }}
+                                                                            </td>
+                                                                            <td
+                                                                                class="px-6 py-4 dark:text-white bg-gray-50 dark:bg-gray-800 font-bold">
+                                                                                {{ $item['nama_satker'] }}
+                                                                            </td>
+                                                                            <td class="px-6 py-4 dark:text-white">
+                                                                                {{ $item['status_pegawai'] }}
+                                                                            </td>
+                                                                            <td
+                                                                                class="px-10 py-4 dark:text-white bg-gray-50 dark:bg-gray-800">
+                                                                                <div class="flex flex-row">
+                                                                                    <button
+                                                                                        data-modal-target="update{{ $item['nip'] ?? $item['nrp'] }}"
+                                                                                        data-modal-toggle="update{{ $item['nip'] ?? $item['nrp'] }}"
+                                                                                        class="text-blue-600 hover:text-blue-400">
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                            fill="none"
+                                                                                            viewBox="0 0 24 24"
+                                                                                            stroke-width="1.5"
+                                                                                            stroke="currentColor"
+                                                                                            class="w-6 h-6">
+                                                                                            <path stroke-linecap="round"
+                                                                                                stroke-linejoin="round"
+                                                                                                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                                                                        </svg>
+                                                                                    </button>
+                                                                                    @include('partials.modals.pegawai.update')
+                                                                                    <button
+                                                                                        data-modal-target="delete{{ $item['nip'] ?? $item['nrp'] }}"
+                                                                                        data-modal-toggle="delete{{ $item['nip'] ?? $item['nrp'] }}"
+                                                                                        class="text-red-600 hover:text-red-400">
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                            fill="none"
+                                                                                            viewBox="0 0 24 24"
+                                                                                            stroke-width="1.5"
+                                                                                            stroke="currentColor"
+                                                                                            class="w-6 h-6">
+                                                                                            <path stroke-linecap="round"
+                                                                                                stroke-linejoin="round"
+                                                                                                d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                                                                        </svg>
+                                                                                    </button>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
+                                                                @endif
+                                                            </tbody>
+                                                            <tfoot class="text-lg">
+                                                                <tr>
+                                                                    @if (!request()->routeIs('pegawai.search'))
+                                                                        <th class="text-center">
+                                                                            Halaman {{ $data['current_page'] }}
+                                                                        </th>
+                                                                        <th colspan="3" class="text-center">
+                                                                            @if (reset($data['links'])['url'] == null && end($data['links'])['url'] == null)
+                                                                                <small class="text-blue-500">Hanya ada 1
+                                                                                    halaman</small>
+                                                                            @else
+                                                                                <div class="flex flex-row justify-evenly">
+                                                                                    @if (reset($data['links'])['url'] != null)
+                                                                                        <a class="hover:text-blue-500 flex flex-row"
+                                                                                            href="{{ route('pagination', ['kepegawaian.index', encrypt($data['first_page_url']), $title]) }}">
+                                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                                fill="none"
+                                                                                                viewBox="0 0 24 24"
+                                                                                                stroke-width="1.5"
+                                                                                                stroke="currentColor"
+                                                                                                class="w-6 h-6">
+                                                                                                <path
+                                                                                                    stroke-linecap="round"
+                                                                                                    stroke-linejoin="round"
+                                                                                                    d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
+                                                                                            </svg>
+                                                                                            1
+                                                                                        </a>
+                                                                                    @endif
+                                                                                    @if (reset($data['links'])['url'] != null)
+                                                                                        <a class="hover:text-blue-500"
+                                                                                            href="{{ route('pagination', ['kepegawaian.index', encrypt(reset($data['links'])['url'] ?? $data['first_page_url']), $title]) }}">
+                                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                                fill="none"
+                                                                                                viewBox="0 0 24 24"
+                                                                                                stroke-width="1.5"
+                                                                                                stroke="currentColor"
+                                                                                                class="w-6 h-6">
+                                                                                                <path
+                                                                                                    stroke-linecap="round"
+                                                                                                    stroke-linejoin="round"
+                                                                                                    d="M15.75 19.5 8.25 12l7.5-7.5" />
+                                                                                            </svg>
+                                                                                        </a>
+                                                                                    @endif
+                                                                                    <a class="hover:text-blue-500"
+                                                                                        href="{{ route('pagination', ['kepegawaian.index', encrypt(end($data['links'])['url'] ?? $data['last_page_url']), $title]) }}">
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                            fill="none"
+                                                                                            viewBox="0 0 24 24"
+                                                                                            stroke-width="1.5"
+                                                                                            stroke="currentColor"
+                                                                                            class="w-6 h-6">
+                                                                                            <path stroke-linecap="round"
+                                                                                                stroke-linejoin="round"
+                                                                                                d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                                                                        </svg>
+                                                                                    </a>
+                                                                                    @if (end($data['links'])['url'] != null)
+                                                                                        <a class="flex flex-row hover:text-blue-600"
+                                                                                            href="{{ route('pagination', ['kepegawaian.index', encrypt($data['last_page_url']), $title]) }}">
+                                                                                            {{ $data['last_page'] }}
+                                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                                fill="none"
+                                                                                                viewBox="0 0 24 24"
+                                                                                                stroke-width="1.5"
+                                                                                                stroke="currentColor"
+                                                                                                class="w-6 h-6">
+                                                                                                <path
+                                                                                                    stroke-linecap="round"
+                                                                                                    stroke-linejoin="round"
+                                                                                                    d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                                                                                            </svg>
+                                                                                        </a>
+                                                                                    @endif
+                                                                                </div>
+                                                                            @endif
+                                                                        </th>
+                                                                    @endif
+                                                                    <th colspan="3"
+                                                                        class="text-sm text-end font-normal">
+                                                                        Berhasil
+                                                                        mendapatkan
+                                                                        <span
+                                                                            class="text-green-500">{{ $data['total'] }}</span>
+                                                                        data.
+                                                                    </th>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
                                                 </div>
-                                                <div class="datatable_2">
-                                                </div>
+                                                @if (request()->routeIs('pegawai.search'))
+                                                    <div class="flex flex-row justify-end">
+                                                        <a href="{{ route('pegawai') }}"
+                                                            class="p-2 rounded-lg flex flex-row justify-between text-blue-500 dark:text-blue-500 dark:text-blue-500 dark:hover:text-white dark:border-blue-500 dark:hover:bg-blue-500 dark:hover:shadow dark:hover:shadow-white hover:bg-blue-500 hover:text-white border border-blue-500"><svg
+                                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                                stroke="currentColor" class="w-6 h-6">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
+                                                            </svg> Kembali
+                                                        </a>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
-                                </div><!--end card-body-->
-                            </div> <!--end card-->
-                        </div><!--end col-->
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 @include('partials.footer')
-            </div><!--end page-wrapper-->
-        </div><!--end /div-->
+            </div>
+        </div>
     </div>
-    <script>
-        $(document).ready(function() {
-            $('#search').addClass('hidden')
-            $('#category').on('change', function() {
-                if ($(this).val() != '0') {
-                    $('#search').removeClass('hidden')
-                }
-            })
-
-            $('#search').keyup(function() {
-                var search = $(this).val();
-                var category = $('#category').val();
-                $.get("{{ route('user.search') }}", {
-                    category: category,
-                    search: search
-                }, function(data) {
-                    if ($('#search').val() != '') {
-                        $('.datatable_1').addClass('hidden')
-                        $('.datatable_2').removeClass('hidden')
-                        $('.datatable_2').html(data)
-                    } else {
-                        $('.datatable_1').removeClass('hidden')
-                        $('.datatable_2').addClass('hidden')
-                    }
-                });
-            });
-        })
-    </script>
 @endsection
