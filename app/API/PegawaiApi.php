@@ -25,7 +25,7 @@ class PegawaiApi
     public static function search($input)
     {
         try {
-            $response = Http::withToken(profile::getToken())->post(env('API_URL', '') . '/pegawai/search', $input);
+            $response = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/pegawai/search', $input);
             return $response->json();
         } catch (\Throwable $th) {
             return  ['error' => $th];
@@ -43,50 +43,46 @@ class PegawaiApi
         }
     }
 
-    public static function insert($photo, $data)
+    public static function destroy($nip)
     {
-        $agent = new Agent();
-        if (!$photo == null) {
-            return Http::attach('photo', file_get_contents($photo), mt_rand() . '.' . $photo->getClientOriginalExtension())
-                ->post(env('API_URL', '') . '/register', [
-                    'nip'               => $data['nip'],
-                    'nrp'               => $data['nrp'],
-                    'name'              => $data['name'],
-                    'jabatan'           => $data['jabatan'],
-                    'tgl_lahir'         => $data['tgl_lahir'],
-                    'eselon'            => $data['eselon'],
-                    'jenis_kelamin'     => $data['jenis_kelamin'],
-                    'foto_pegawai'      => $photo,
-                    'nama_satker'       => $data['nama_satker'],
-                    'agama'             => $data['agama'],
-                    'status_pegawai'    => $data['status_pegawai'],
-                    'jaksa_tu'          => $data['jaksa_tu'],
-                    'struktural_non'    => $data['struktural_non'],
-                    'users_id'          => profile::getUser()['id'],
-                    'browser'           => $agent->browser(),
-                    'browser_version'   => $agent->version($agent->browser()),
-                    'os'                => $agent->platform(),
-                    'ip_address'        => Request::ip(),
-                    'mobile'            => $agent->device(),
-                ]);
+        try {
+            return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/pegawai/' . $nip . '/destroy')->json();
+        } catch (\Throwable $th) {
+            return $th->getMessage();
         }
-        return Http::post(env('API_URL', '') . '/register', [
-            'nip'               => $data['nip'],
-            'nrp'               => $data['nrp'],
-            'username'          => $data['username'],
-            'name'              => $data['name'],
-            'roles'             => $data['roles'],
-            'email'             => $data['email'],
-            'phone'             => $data['phone'],
-            'password'          => $data['password'],
-            'photo'             => $photo,
-            'users_id'          => profile::getUser()['id'],
-            'browser'           => $agent->browser(),
-            'browser_version'   => $agent->version($agent->browser()),
-            'os'                => $agent->platform(),
-            'ip_address'        => Request::ip(),
-            'mobile'            => $agent->device(),
-        ]);
+    }
+
+    public static function insert($foto, $gambar, $input)
+    {
+        try {
+            $agent = new Agent();
+            return Http::withToken(profile::getToken())->attach('photo', file_get_contents($foto), $gambar)
+                ->post(env('API_URL', '') . '/pegawai/store', [
+                    'nip'               => $input['nip'],
+                    'nrp'               => $input['nrp'],
+                    'nama'              => $input['nama'],
+                    'jabatan'           => $input['jabatan'],
+                    'tgl_lahir'         => $input['tgl_lahir'],
+                    'eselon'            => $input['eselon'],
+                    'GOL_KD'            => $input['GOL_KD'],
+                    'golpang'           => $input['golpang'],
+                    'jenis_kelamin'     => $input['jenis_kelamin'],
+                    'nama_satker'       => $input['nama_satker'],
+                    'agama'             => $input['agama'],
+                    'status_pegawai'    => $input['status_pegawai'],
+                    'jaksa_tu'          => $input['jaksa_tu'],
+                    'struktural_non'    => $input['struktural_non'],
+                    'users_id'        => profile::getUser()['id'],
+                    'username'        => profile::getUser()['users']['username'],
+                    'browser'         => $agent->browser(),
+                    'browser_version' => $agent->version($agent->browser()),
+                    'os'              => $agent->platform(),
+                    'ip_address'      => Request::ip(),
+                    'mobile'          => $agent->device(),
+                ]);
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
     }
 
     public static function update($photo, $id, $data)

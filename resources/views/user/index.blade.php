@@ -89,33 +89,21 @@
                                 <div class="grid grid-cols-1 p-4 overflow-scroll">
                                     <div class="sm:-mx-6 lg:-mx-8">
                                         <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-8">
-                                            <div class="flex flex-col gap-3 mb-5">
+                                            <div class="flex flex-row justify-between px-5 mb-5">
                                                 <button type="button" data-modal-target="create" data-modal-toggle="create"
-                                                    style="margin-left: 9px"
-                                                    class="focus:outline-none ms-2.5 text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium py-1 px-3 rounded mb-1 w-24">+
+                                                    class="focus:outline-none bg-primary-500 text-white border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium py-1 px-3 rounded w-24">+
                                                     User</button>
                                                 @include('partials.modals.user.createUser')
-                                                <div class="flex flex-row flex-wrap md:flex-nowrap gap-5">
-                                                    <div>
-                                                        <select id="category"
-                                                            class="w-[14.3rem] bg-gray-50 border border-gray-300 text-gray-900 text-sm font-medium ms-2.5 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                            <option value="0" disabled selected>Cari
-                                                                berdasarkan
-                                                                kategori &nbsp; &nbsp;
-                                                            </option>
-                                                            <option value="username">Username</option>
-                                                            <option value="name">Nama</option>
-                                                            <option value="email">Email</option>
-                                                            <option value="phone">Telepon</option>
-                                                            <option value="role">Role</option>
-                                                            <option value="status">Status</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="md:m-0 w-full">
-                                                        <input type="text" id="search" placeholder="Cari ..."
-                                                            class="w-1/2 me-2.5 md:ms-0 ms-2.5 mt-3 md:mt-0 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                    </div>
-                                                </div>
+                                                <button type="button" data-modal-target="search" data-modal-toggle="search"
+                                                    class="flex flex-row focus:outline-none text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium rounded w-32 justify-around px-2 align-bottom items-center">
+                                                    Cari User <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                        class="w-4 h-4">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                                    </svg>
+                                                </button>
+                                                @include('partials.modals.pegawai.search')
                                             </div>
                                             <div class="flex flex-col gap-5">
                                                 <div class="datatable_1">
@@ -150,7 +138,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach ($data as $item)
+                                                            @foreach ($data['data'] as $item)
                                                                 <tr
                                                                     class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700">
                                                                     <td

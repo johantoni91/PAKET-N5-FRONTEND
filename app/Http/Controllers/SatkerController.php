@@ -4,32 +4,71 @@ namespace App\Http\Controllers;
 
 use App\API\SatkerApi;
 use App\Helpers\profile;
-use helper;
+use Hamcrest\Core\Every;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Session;
-use Jenssegers\Agent\Agent;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class SatkerController extends Controller
 {
+    private $view  = 'satker.index';
+    private $title = 'Satuan Kerja';
+
     function index()
     {
         try {
-            $route1 = 'satker';
-            $route2 = 'search';
-            $title = 'Satuan Kerja';
             $profile = profile::getUser();
             if ($profile['roles'] == 'superadmin') {
                 $data = SatkerApi::get();
-                return view('satker.index', compact('title', 'data', 'profile', 'route1', 'route2'));
+                return view($this->view, [
+                    'view'    => $this->view,
+                    'title'   => $this->title,
+                    'data'    => $data,
+                    'profile' => $profile
+                ]);
             }
             return redirect()->route('dashboard');
         } catch (\Throwable $th) {
             Alert::error('Kesalahan', $th->getMessage());
             Session::forget('user');
             return redirect()->route('logout');
+        }
+    }
+
+    function search()
+    {
+        try {
+            $profile = profile::getUser();
+            $input = [
+                'satker_name'    => request('satker'),
+                'satker_type'    => request('type'),
+                'satker_phone'   => request('phone'),
+                'satker_email'   => request('email'),
+                'satker_address' => request('address'),
+            ];
+            if (
+                $input['satker_name'] == null &&
+                $input['satker_type'] == null &&
+                $input['satker_phone'] == null &&
+                $input['satker_email'] == null &&
+                $input['satker_address'] == null
+            ) {
+                Alert::warning('Peringatan', 'Mohon isi salah satu!');
+                return back();
+            }
+            $data = SatkerApi::search($input);
+            return view(
+                $this->view,
+                [
+                    'view'    => $this->view,
+                    'title'   => $this->title,
+                    'data'    => $data,
+                    'input'   => $input,
+                    'profile' => $profile
+                ]
+            );
+        } catch (\Throwable $th) {
+            return $th->getMessage();
         }
     }
 
@@ -45,14 +84,6 @@ class SatkerController extends Controller
         session()->flash('status', 'Mengubah status satker ' . $satker->json()['data']['satker_name']);
         session()->flash('route', route('satker'));
         return redirect()->route('satker');
-    }
-
-    public function search(Request $req)
-    {
-        $title = 'Satuan Kerja';
-        $profile = profile::getUser();
-        $data = SatkerApi::search($req->category, $req->search)['data'];
-        return view('satker.search', compact('title', 'data', 'profile'))->render();
     }
 
     public function update(Request $request, $id)
@@ -92,7 +123,7 @@ class SatkerController extends Controller
     {
         try {
             $data = [
-                'satker'  => $request->satker,
+                'satker'  => strtoupper($request->satker),
                 'type'    => $request->type,
                 'phone'   => $request->phone,
                 'email'   => $request->email,

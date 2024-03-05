@@ -16,20 +16,12 @@
                         <div class="w-full">
                             <div class="flex flex-wrap justify-between">
                                 <div class="items-center ">
-                                    <h1 class="font-medium text-3xl block dark:text-slate-100">{{ $title }}</h1>
-                                    {{-- <ol class="list-reset flex text-sm">
-                                    <li><button type="button" class="text-gray-500 dark:text-slate-400">Robotech</button></li>
-                                    <li><span class="text-gray-500 dark:text-slate-400 mx-2">/</span></li>
-                                    <li class="text-gray-500 dark:text-slate-400">Tables</li>
-                                    <li><span class="text-gray-500 dark:text-slate-400 mx-2">/</span></li>
-                                    <li class="text-primary-500 hover:text-primary-600 dark:text-primary-400">Datatable
-                                    </li>
-                                </ol> --}}
+                                    <h1 class="font-medium text-3xl block dark:text-slate-100">Satker</h1>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div><!--end container-->
+                </div>
                 <div class="xl:w-full  min-h-[calc(100vh-138px)] relative pb-14">
                     <div class="xl:w-full  min-h-[calc(100vh-138px)] relative pb-14">
                         <div class="grid md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4 mb-4">
@@ -42,184 +34,166 @@
                                         <div class="flex-none md:flex">
                                             <h4 class="font-medium text-lg flex-1 self-center mb-2 md:mb-0">Data Satuan
                                                 Kerja</h4>
-                                            <button type="button" data-modal-target="create" data-modal-toggle="create"
-                                                style="margin-left: 9px"
-                                                class="focus:outline-none ms-2.5 text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium py-1 px-3 rounded mb-1 w-32">+
-                                                Satuan Kerja</button>
-                                            @include('partials.modals.satker.create')
-                                            {{-- <div class="gap-5">
-                                                <a href="{{ route('excel.users') }}"
-                                                    class="inline-block focus:outline-none text-green-500 hover:bg-green-500 hover:text-white bg-transparent border border-green-500 dark:bg-transparent dark:text-green-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-green-500 text-sm font-medium py-1 px-3 rounded mb-1 lg:mb-0 csv">Export
-                                                    Excel</a>
-                                                <a href="{{ route('pdf.users') }}"
-                                                    class="inline-block focus:outline-none text-red-400 hover:bg-red-500 hover:text-white bg-transparent border border-red-400 dark:bg-transparent dark:text-red-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-red-500 text-sm font-medium py-1 px-3 rounded mb-1 lg:mb-0 sql">Export
-                                                    PDF</a>
-                                            </div> --}}
+                                            @if (request()->routeIs('satker.search'))
+                                                <a href="{{ route('satker') }}"
+                                                    class="flex flex-row justify-between p-1 focus:outline-none text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium rounded w-32 justify-between px-2 align-bottom items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                        class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                                    </svg>
+                                                    pencarian</a>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-1 p-4 overflow-scroll">
                                         <div class="sm:-mx-6 lg:-mx-8">
                                             <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-8">
                                                 <div class="flex flex-col gap-3 mb-5">
-                                                    <div class="flex flex-row md:gap-x-5 flex-wrap md:flex-nowrap">
-                                                        <div>
-                                                            <select id="category"
-                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm font-medium ms-2.5 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                                <option value="0" disabled selected>Cari
-                                                                    berdasarkan
-                                                                    kategori &nbsp; &nbsp;
-                                                                </option>
-                                                                <option value="satker_name">Nama</option>
-                                                                <option value="satker_phone">Telepon</option>
-                                                                <option value="satker_email">Email</option>
-                                                                <option value="satker_address">Alamat</option>
-                                                            </select>
+                                                    <div class="flex flex-row justify-between px-5">
+                                                        <button type="button" data-modal-target="create"
+                                                            data-modal-toggle="create"
+                                                            class="focus:outline-none bg-primary-500 text-white border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium py-1 px-3 rounded w-24">+
+                                                            Satker</button>
+                                                        @include('partials.modals.satker.create')
+                                                        <div class="justify-end">
+                                                            <button type="button" data-modal-target="search"
+                                                                data-modal-toggle="search"
+                                                                class="flex flex-row focus:outline-none text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium rounded w-32 justify-between py-1 px-2 align-bottom items-center">
+                                                                Cari Satker <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                                                    stroke="currentColor" class="w-4 h-4">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                                                </svg>
+                                                            </button>
+                                                            @include('partials.modals.satker.search')
                                                         </div>
-                                                        <input type="text" id="search" placeholder="Cari ..."
-                                                            class="w-1/2 me-2.5 md:ms-0 ms-2.5 mt-3 md:mt-0 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                     </div>
-                                                </div>
-                                                <div class="flex flex-col gap-5">
-                                                    <div class="datatable_1">
-                                                        <table class="w-full border-collapse" width="100%"
-                                                            id="datatable_1">
-                                                            <thead class="bg-slate-100 dark:bg-slate-700/20">
-                                                                <tr>
-                                                                    <th scope="col"
-                                                                        class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
-                                                                        Satuan Kerja
-                                                                    </th>
-                                                                    <th scope="col"
-                                                                        class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
-                                                                        Telepon
-                                                                    </th>
-                                                                    <th scope="col"
-                                                                        class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
-                                                                        Email
-                                                                    </th>
-                                                                    <th scope="col"
-                                                                        class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
-                                                                        Alamat
-                                                                    </th>
-                                                                    <th scope="col"
-                                                                        class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
-                                                                        Status
-                                                                    </th>
-                                                                    <th scope="col"
-                                                                        class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
-                                                                        Aksi
-                                                                    </th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                @foreach ($data as $item)
-                                                                    <tr>
-                                                                        <td>{{ $item['satker_name'] }}</td>
-                                                                        <td class="text-start">{{ $item['satker_phone'] }}
-                                                                        </td>
-                                                                        <td>{{ $item['satker_email'] }}</td>
-                                                                        <td>{{ $item['satker_address'] }}</td>
-                                                                        <td class="align-baseline">
-                                                                            <a href="{{ route('satker.status', [$item['id'], $item['satker_status']]) }}"
-                                                                                class="align-baseline flex flex-row {{ $item['satker_status'] == '1' ? 'hover:drop-shadow-green' : 'hover:drop-shadow-red' }}">
-                                                                                @if ($item['satker_status'] == '1')
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                        fill="none" viewBox="0 0 24 24"
-                                                                                        stroke-width="1.5"
-                                                                                        stroke="currentColor"
-                                                                                        class="w-6 h-6 text-green-500">
-                                                                                        <path stroke-linecap="round"
-                                                                                            stroke-linejoin="round"
-                                                                                            d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                                                                    </svg>
-                                                                                    <span
-                                                                                        class="text-sm text-green-500 ms-2 mt-0.5">
-                                                                                        Aktif</span>
-                                                                                @else
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                        fill="none" viewBox="0 0 24 24"
-                                                                                        stroke-width="1.5"
-                                                                                        stroke="currentColor"
-                                                                                        class="w-6 h-6 text-red-500">
-                                                                                        <path stroke-linecap="round"
-                                                                                            stroke-linejoin="round"
-                                                                                            d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                                                                    </svg>
-                                                                                    <span
-                                                                                        class="text-sm text-red-500 ms-2 mt-0.5">
-                                                                                        Nonaktif</span>
-                                                                                @endif
-                                                                            </a>
-                                                                        </td>
-                                                                        <td>
-                                                                            <button type="button"
-                                                                                data-modal-target="update{{ $item['id'] }}"
-                                                                                data-modal-toggle="update{{ $item['id'] }}"><i
-                                                                                    class="align-baseline icofont-edit text-lg text-gray-500 dark:text-gray-400"></i></button>
-                                                                            @include('partials.modals.satker.update')
-                                                                            <input type="hidden"
-                                                                                value="{{ $item['id'] }}"
-                                                                                id="del{{ $item['id'] }}">
-                                                                            <button type="button"
-                                                                                id="delete{{ $item['id'] }}"><i
-                                                                                    class="align-baseline icofont-ui-delete text-lg text-red-500 dark:text-red-400"></i></button>
-                                                                            <script>
-                                                                                $(document).ready(function() {
-                                                                                    $("#delete{{ $item['id'] }}").on('click', function(e) {
-                                                                                        e.preventDefault()
-                                                                                        var id = $("#del{{ $item['id'] }}").val()
-                                                                                        Swal.fire({
-                                                                                            title: "PERINGATAN",
-                                                                                            text: "Apakah anda yakin menghapus satker {{ $item['satker_name'] }} ?",
-                                                                                            icon: "warning",
-                                                                                            showCancelButton: true,
-                                                                                            confirmButtonColor: "#3085d6",
-                                                                                            cancelButtonColor: "#d33",
-                                                                                            confirmButtonText: "Hapus"
-                                                                                        }).then((result) => {
-                                                                                            if (result.isConfirmed) {
-                                                                                                $.ajax({
-                                                                                                    url: "{{ route('satker.destroy') }}",
-                                                                                                    type: "POST",
-                                                                                                    headers: {
-                                                                                                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                                                                                                    },
-                                                                                                    data: {
-                                                                                                        id: id
-                                                                                                    },
-                                                                                                    success: function(data) {
-                                                                                                        location.reload();
-                                                                                                    },
-                                                                                                    error: function(xhr) {
+                                                    <div class="flex flex-col gap-5">
+                                                        <div class="datatable_1">
+                                                            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                                                                <table
+                                                                    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                                                    <thead
+                                                                        class="text-xs border-b-2 border-slate-500 text-center text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                                                        <tr>
+                                                                            <th scope="col" class="px-6 py-3">
+                                                                                Satker
+                                                                            </th>
+                                                                            <th scope="col" class="px-6 py-3">
+                                                                                Telepon
+                                                                            </th>
+                                                                            <th scope="col" class="px-6 py-3">
+                                                                                Email
+                                                                            </th>
+                                                                            <th scope="col" class="px-6 py-3">
+                                                                                Alamat
+                                                                            </th>
+                                                                            <th scope="col" class="px-6 py-3">
+                                                                                Aksi
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @foreach ($data['data'] as $item)
+                                                                            <tr
+                                                                                class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                                                                <th scope="row"
+                                                                                    class="text-start px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                                    {{ $item['satker_name'] }}
+                                                                                </th>
+                                                                                <td class="text-center px-6 py-4">
+                                                                                    {{ $item['satker_phone'] }}
+                                                                                </td>
+                                                                                <td class="text-center px-6 py-4">
+                                                                                    {{ $item['satker_email'] }}
+                                                                                </td>
+                                                                                <td class="text-center px-6 py-4">
+                                                                                    {{ $item['satker_address'] }}
+                                                                                </td>
+                                                                                <td class="text-center px-6 py-4">
+                                                                                    <div
+                                                                                        class="flex flex-row justify-evenly gap-2">
+                                                                                        <button type="button"
+                                                                                            data-modal-target="update{{ $item['id'] }}"
+                                                                                            data-modal-toggle="update{{ $item['id'] }}"><i
+                                                                                                class="align-baseline icofont-edit text-lg hover:text-black dark:text-gray-400 text-blue-500"></i></button>
+                                                                                        @include('partials.modals.satker.update')
+                                                                                        <input type="hidden"
+                                                                                            value="{{ $item['id'] }}"
+                                                                                            id="del{{ $item['id'] }}">
+                                                                                        <button type="button"
+                                                                                            id="delete{{ $item['id'] }}"><i
+                                                                                                class="align-baseline icofont-ui-delete text-lg text-red-500 dark:text-red-400 hover:text-black"></i></button>
+                                                                                        <script>
+                                                                                            $(document).ready(function() {
+                                                                                                $("#delete{{ $item['id'] }}").on('click', function(e) {
+                                                                                                    e.preventDefault()
+                                                                                                    var id = $("#del{{ $item['id'] }}").val()
+                                                                                                    Swal.fire({
+                                                                                                        title: "PERINGATAN",
+                                                                                                        text: "Apakah anda yakin menghapus satker ?",
+                                                                                                        icon: "warning",
+                                                                                                        showCancelButton: true,
+                                                                                                        confirmButtonColor: "#3085d6",
+                                                                                                        cancelButtonColor: "#d33",
+                                                                                                        confirmButtonText: "Hapus"
+                                                                                                    }).then((result) => {
+                                                                                                        if (result.isConfirmed) {
+                                                                                                            $.ajax({
+                                                                                                                url: "{{ route('satker.destroy') }}",
+                                                                                                                type: "POST",
+                                                                                                                headers: {
+                                                                                                                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                                                                                                                },
+                                                                                                                data: {
+                                                                                                                    id: id
+                                                                                                                },
+                                                                                                                success: function(data) {
+                                                                                                                    location.reload();
+                                                                                                                },
+                                                                                                                error: function(xhr) {
 
-                                                                                                    }
+                                                                                                                }
+                                                                                                            })
+                                                                                                        }
+                                                                                                    });
+
                                                                                                 })
-                                                                                            }
-                                                                                        });
-
-                                                                                    })
-                                                                                })
-                                                                            </script>
-                                                                        </td>
-                                                                    </tr>
-                                                                @endforeach
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    <div class="datatable_2">
+                                                                                            })
+                                                                                        </script>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        @endforeach
+                                                                    </tbody>
+                                                                </table>
+                                                                @if ($data['data'])
+                                                                    @include('partials.pagination')
+                                                                @else
+                                                                    <div
+                                                                        class="flex flex-row justify-center text-center py-3">
+                                                                        <small class="text-xs text-red-500 italic">Data
+                                                                            kosong /
+                                                                            tidak ditemukan</small>
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <small class="text-red-400 ms-3">Klik icon status untuk mengubah
+                                            status</small>
                                     </div>
-                                    <small class="text-red-400 ms-3">Klik icon status untuk mengubah
-                                        status</small>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    @include('partials.footer')
-                </div><!--end page-wrapper-->
+                        @include('partials.footer')
+                    </div><!--end page-wrapper-->
+                </div>
             </div>
-        </div>
-    @endsection
+        @endsection

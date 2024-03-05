@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\API\SatkerApi;
 use App\Helpers\profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -16,7 +17,13 @@ class PaginationController extends Controller
             $profile = profile::getUser();
             if ($profile['roles'] == 'superadmin') {
                 $data = Http::withToken(profile::getToken())->get(decrypt($link))->json()['data'];
-                return view($view, compact('title', 'data', 'profile'));
+                return view($view, [
+                    'view' => $view,
+                    'data' => $data,
+                    'profile' => $profile,
+                    'title' => $title,
+                    'satker' => SatkerApi::getSatkerName()['data']
+                ]);
             }
             return redirect()->route('dashboard');
         } catch (\Throwable $th) {
@@ -24,28 +31,4 @@ class PaginationController extends Controller
             return back();
         }
     }
-
-    // function paginationSearch($view, $link, $title, $nama, $jabatan, $nip, $nrp, $jenis_kelamin, $nama_satker, $agama, $status_pegawai)
-    // {
-    //     try {
-    //         $profile = profile::getUser();
-    //         if ($profile['roles'] == 'superadmin') {
-    //             $data = Http::withToken(profile::getToken())->post(decrypt($link), [
-    //                 'nama'              => $nama,
-    //                 'jabatan'           => $jabatan,
-    //                 'nip'               => $nip,
-    //                 'nrp'               => $nrp,
-    //                 'jenis_kelamin'     => $jenis_kelamin,
-    //                 'nama_satker'       => $nama_satker,
-    //                 'agama'             => $agama,
-    //                 'status_pegawai'    => $status_pegawai
-    //             ])->json()['data'];
-    //             return view($view, compact('title', 'data', 'profile'));
-    //         }
-    //         return redirect()->route('dashboard');
-    //     } catch (\Throwable $th) {
-    //         Alert::error('Error', $th->getMessage());
-    //         return back();
-    //     }
-    // }
 }

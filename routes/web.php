@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccessController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\KartuController;
 use App\Http\Controllers\KepegawaianController;
 use App\Http\Controllers\LogController;
@@ -34,7 +35,6 @@ Route::middleware(['auth'])->group(function () {
 
     //PAGINATION
     Route::get('/pagination/{view}/{link}/{title}', [PaginationController::class, 'pagination'])->name('pagination');
-    Route::get('/pagination/search', [PaginationController::class, 'paginationSearch'])->name('pagination.search');
 
     // MANAGEMENT USERS
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
@@ -61,12 +61,16 @@ Route::middleware(['auth'])->group(function () {
 
     // PEGAWAI
     Route::get('/pegawai', [KepegawaianController::class, 'index'])->name('pegawai');
-    Route::post('/pegawai/search', [KepegawaianController::class, 'search'])->name('pegawai.search');
-    Route::get('/pegawai/search/view', [KepegawaianController::class, 'searchView'])->name('pegawai.view');
+    Route::get('/pegawai/search', [KepegawaianController::class, 'search'])->name('pegawai.search');
+    Route::post('/pegawai/store', [KepegawaianController::class, 'store'])->name('pegawai.store');
+    Route::get('/pegawai/{nip}/destroy', [KepegawaianController::class, 'destroy'])->name('pegawai.destroy');
 
     // HAK AKSES
     Route::get('/akses', [AccessController::class, 'index'])->name('akses');
 
     // KARTU
     Route::get('/kartu', [KartuController::class, 'index'])->name('kartu');
+
+    // FAQ
+    Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 });

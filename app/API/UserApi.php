@@ -15,7 +15,7 @@ class UserApi
     {
         try {
             $data = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/users', log::insert());
-            return $data->json()['data'];
+            return $data->json();
         } catch (\Throwable $th) {
             Session::forget('user');
             return redirect()->route('logout');

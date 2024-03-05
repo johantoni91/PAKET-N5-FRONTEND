@@ -65,7 +65,6 @@
                                         inputField1.value = keepOnlyNumbers(inputField1.value);
                                     });
                                 </script>
-                                @yield('error_nip')
                             </div>
                             <div class="flex flex-row gap-5">
                                 <label for="nrp" class="my-auto w-24">NRP</label>
@@ -81,7 +80,6 @@
                                         inputField2.value = keepOnlyNumbers(inputField2.value);
                                     });
                                 </script>
-                                @yield('error_nrp')
                             </div>
                             <div class="flex flex-row gap-5">
                                 <label for="username" class="my-auto w-24">Username</label>
@@ -95,8 +93,6 @@
                                 <input type="text" id="name" name="name"
                                     value="{{ session('name') ?? old('name') }}"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-
-                                @yield('error_name')
                             </div>
                             <div class="flex flex-row gap-5">
                                 <label for="roles" class="my-auto w-24">Pilih roles</label>
@@ -107,16 +103,12 @@
                                     <option value="admin">Admin</option>
                                     <option value="pegawai">Pegawai</option>
                                 </select>
-
-                                @yield('error_roles')
                             </div>
                             <div class="flex flex-row gap-5">
                                 <label class="my-auto w-24">Email</label>
                                 <input type="email" id="email" name="email"
                                     value="{{ session('email') ?? old('email') }}"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-
-                                @yield('error_email')
                             </div>
                             <div class="flex flex-row gap-5">
                                 <label class="my-auto w-24">Telepon</label>
@@ -132,7 +124,6 @@
                                         inputField3.value = keepOnlyNumbers(inputField3.value);
                                     });
                                 </script>
-                                @yield('error_phone')
                             </div>
                             <div class="flex flex-row gap-5">
                                 <label class="my-auto w-24">Password</label>
@@ -172,7 +163,6 @@
                                         });
                                     });
                                 </script>
-                                @yield('error_password')
                             </div>
                         </div>
                     </div>

@@ -1,3 +1,4 @@
+{{-- {{ dd($data) }} --}}
 @extends('partials.main')
 @section('content')
     @include('partials.sidebar')
@@ -16,7 +17,7 @@
                         <div class="w-full">
                             <div class="flex flex-wrap justify-between">
                                 <div class="items-center ">
-                                    <h1 class="font-medium text-3xl block dark:text-slate-100">{{ $title }}</h1>
+                                    <h1 class="font-medium text-3xl block dark:text-slate-100">Manajemen Data Pegawai</h1>
                                 </div>
                             </div>
                         </div>
@@ -99,20 +100,36 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @if (reset($data['links'])['url'] == null && end($data['links'])['url'] == null)
+                                                                @if (!$data['data'])
                                                                     <tr>
-                                                                        <small class="text-blue-500">Tidak ada data
-                                                                            pegawai</small>
+                                                                        <th colspan="7">
+                                                                            <p
+                                                                                class="text-red-500 mt-3 text-center text-xs italic">
+                                                                                Tidak
+                                                                                ada data
+                                                                                pegawai</p>
+                                                                        </th>
                                                                     </tr>
                                                                 @else
                                                                     @foreach ($data['data'] as $item)
                                                                         <tr
                                                                             class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                                                             <th scope="row"
-                                                                                class="px-6 py-4 text-black whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
-                                                                                <img src="{{ $item['foto_pegawai'] }}"
-                                                                                    class="w-6 h-6 rounded-full shadow me-1 inline-block">
-                                                                                {{ $item['nama'] }}
+                                                                                class="px-4 py-2 text-black whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                                                <div class="flex flex-row">
+                                                                                    <div class="p-5">
+                                                                                        <img src="{{ $item['foto_pegawai'] }}"
+                                                                                            class="w-10 h-10 items-center rounded-full shadow me-1 inline-block">
+                                                                                    </div>
+                                                                                    <div
+                                                                                        class="flex flex-col justify-center text-wrap">
+                                                                                        {{ $item['nama'] }}
+                                                                                        <div class="text-start text-nowrap">
+                                                                                            NIP :
+                                                                                            {{ $item['nip'] ?? $item['nrp'] }}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                             </th>
                                                                             <td class="px-6 py-4 dark:text-white">
                                                                                 {{ $item['jabatan'] }}
@@ -165,102 +182,15 @@
                                                                                                 d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
                                                                                         </svg>
                                                                                     </button>
+                                                                                    @include('partials.modals.pegawai.delete')
                                                                                 </div>
                                                                             </td>
                                                                         </tr>
                                                                     @endforeach
                                                                 @endif
                                                             </tbody>
-                                                            <tfoot class="text-lg">
-                                                                <tr>
-                                                                    @if (!request()->routeIs('pegawai.search'))
-                                                                        <th class="text-center">
-                                                                            Halaman {{ $data['current_page'] }}
-                                                                        </th>
-                                                                        <th colspan="3" class="text-center">
-                                                                            @if (reset($data['links'])['url'] == null && end($data['links'])['url'] == null)
-                                                                                <small class="text-blue-500">Hanya ada 1
-                                                                                    halaman</small>
-                                                                            @else
-                                                                                <div class="flex flex-row justify-evenly">
-                                                                                    @if (reset($data['links'])['url'] != null)
-                                                                                        <a class="hover:text-blue-500 flex flex-row"
-                                                                                            href="{{ route('pagination', ['kepegawaian.index', encrypt($data['first_page_url']), $title]) }}">
-                                                                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                                fill="none"
-                                                                                                viewBox="0 0 24 24"
-                                                                                                stroke-width="1.5"
-                                                                                                stroke="currentColor"
-                                                                                                class="w-6 h-6">
-                                                                                                <path
-                                                                                                    stroke-linecap="round"
-                                                                                                    stroke-linejoin="round"
-                                                                                                    d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
-                                                                                            </svg>
-                                                                                            1
-                                                                                        </a>
-                                                                                    @endif
-                                                                                    @if (reset($data['links'])['url'] != null)
-                                                                                        <a class="hover:text-blue-500"
-                                                                                            href="{{ route('pagination', ['kepegawaian.index', encrypt(reset($data['links'])['url'] ?? $data['first_page_url']), $title]) }}">
-                                                                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                                fill="none"
-                                                                                                viewBox="0 0 24 24"
-                                                                                                stroke-width="1.5"
-                                                                                                stroke="currentColor"
-                                                                                                class="w-6 h-6">
-                                                                                                <path
-                                                                                                    stroke-linecap="round"
-                                                                                                    stroke-linejoin="round"
-                                                                                                    d="M15.75 19.5 8.25 12l7.5-7.5" />
-                                                                                            </svg>
-                                                                                        </a>
-                                                                                    @endif
-                                                                                    <a class="hover:text-blue-500"
-                                                                                        href="{{ route('pagination', ['kepegawaian.index', encrypt(end($data['links'])['url'] ?? $data['last_page_url']), $title]) }}">
-                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                            fill="none"
-                                                                                            viewBox="0 0 24 24"
-                                                                                            stroke-width="1.5"
-                                                                                            stroke="currentColor"
-                                                                                            class="w-6 h-6">
-                                                                                            <path stroke-linecap="round"
-                                                                                                stroke-linejoin="round"
-                                                                                                d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                                                                                        </svg>
-                                                                                    </a>
-                                                                                    @if (end($data['links'])['url'] != null)
-                                                                                        <a class="flex flex-row hover:text-blue-600"
-                                                                                            href="{{ route('pagination', ['kepegawaian.index', encrypt($data['last_page_url']), $title]) }}">
-                                                                                            {{ $data['last_page'] }}
-                                                                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                                fill="none"
-                                                                                                viewBox="0 0 24 24"
-                                                                                                stroke-width="1.5"
-                                                                                                stroke="currentColor"
-                                                                                                class="w-6 h-6">
-                                                                                                <path
-                                                                                                    stroke-linecap="round"
-                                                                                                    stroke-linejoin="round"
-                                                                                                    d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
-                                                                                            </svg>
-                                                                                        </a>
-                                                                                    @endif
-                                                                                </div>
-                                                                            @endif
-                                                                        </th>
-                                                                    @endif
-                                                                    <th colspan="3"
-                                                                        class="text-sm text-end font-normal">
-                                                                        Berhasil
-                                                                        mendapatkan
-                                                                        <span
-                                                                            class="text-green-500">{{ $data['total'] }}</span>
-                                                                        data.
-                                                                    </th>
-                                                                </tr>
-                                                            </tfoot>
                                                         </table>
+                                                        @include('partials.pagination')
                                                     </div>
                                                 </div>
                                                 @if (request()->routeIs('pegawai.search'))

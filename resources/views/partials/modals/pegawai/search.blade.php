@@ -22,14 +22,12 @@
             </div>
             <!-- Modal body -->
             <div class="p-4 md:p-5">
-                <form class="space-y-4" action="{{ route('pegawai.search') }}" method="post"
-                    enctype="multipart/form-data">
-                    @csrf
+                <form class="space-y-4" action="{{ route('pegawai.search') }}" enctype="multipart/form-data">
                     <div class="flex flex-row lg:flex-nowrap xl:flex-nowrap flex-wrap items-center justify-evenly">
                         <div class="flex flex-col w-full justify-between p-4 leading-normal gap-3">
                             <div class="flex flex-row gap-5">
                                 <label for="nip" class="my-auto w-24">NIP</label>
-                                <input type="text" id="nip" name="nip" value="{{ $input['nip'] ?? '' }}"
+                                <input type="text" id="nip" name="nip" value="{{ request('nip') ?? '' }}"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <script>
                                     function keepOnlyNumbers(input) {
@@ -44,7 +42,7 @@
                             </div>
                             <div class="flex flex-row gap-5">
                                 <label for="nrp" class="my-auto w-24">NRP</label>
-                                <input type="text" id="nrp" name="nrp" value="{{ $input['nrp'] ?? '' }}"
+                                <input type="text" id="nrp" name="nrp" value="{{ request('nrp') ?? '' }}"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <script>
                                     function keepOnlyNumbers(input) {
@@ -59,18 +57,18 @@
                             </div>
                             <div class="flex flex-row gap-5">
                                 <label for="nama" class="my-auto w-24">Nama</label>
-                                <input type="text" id="nama" name="nama" value="{{ $input['nama'] ?? '' }}"
+                                <input type="text" id="nama" name="nama" value="{{ request('nama') ?? '' }}"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                             <div class="flex flex-row gap-5">
                                 <label for="agama" class="my-auto w-24">Agama</label>
-                                <input type="text" id="agama" name="agama" value="{{ $input['agama'] ?? '' }}"
+                                <input type="text" id="agama" name="agama" value="{{ request('agama') ?? '' }}"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                             <div class="flex flex-row gap-5">
                                 <label for="jabatan" class="my-auto w-24">Jabatan</label>
                                 <input type="jabatan" id="jabatan" name="jabatan"
-                                    value="{{ $input['jabatan'] ?? '' }}"
+                                    value="{{ request('jabatan') ?? '' }}"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                             <div class="flex flex-row gap-5">
@@ -79,11 +77,11 @@
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     @if (request()->routeIs('pegawai.search'))
                                         <option
-                                            {{ $input['jenis_kelamin'] == '' || $input['jenis_kelamin'] == null ? 'selected' : '' }}
+                                            {{ request('jenis_kelamin') == '' || request('jenis_kelamin') == null ? 'selected' : '' }}
                                             disabled>-- Jenis Kelamin --</option>
-                                        <option {{ $input['jenis_kelamin'] == 'L' ? 'selected' : '' }} value="L">
+                                        <option {{ request('jenis_kelamin') == 'L' ? 'selected' : '' }} value="L">
                                             Laki-laki</option>
-                                        <option {{ $input['jenis_kelamin'] == 'P' ? 'selected' : '' }} value="P">
+                                        <option {{ request('jenis_kelamin') == 'P' ? 'selected' : '' }} value="P">
                                             Perempuan</option>
                                     @else
                                         <option selected disabled>-- Jenis Kelamin --</option>
@@ -95,13 +93,13 @@
                             <div class="flex flex-row gap-5">
                                 <label for="satker" class="my-auto w-24">Satker</label>
                                 <input type="satker" id="satker" name="satker"
-                                    value="{{ $input['nama_satker'] ?? '' }}"
+                                    value="{{ request('nama_satker') ?? '' }}"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                             <div class="flex flex-row gap-5">
                                 <label for="status" class="my-auto w-24">Status Pegawai</label>
                                 <input type="status" id="status" name="status"
-                                    value="{{ $input['status_pegawai'] ?? '' }}"
+                                    value="{{ request('status_pegawai') ?? '' }}"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                         </div>

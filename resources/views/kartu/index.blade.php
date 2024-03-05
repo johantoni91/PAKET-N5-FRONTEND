@@ -68,90 +68,31 @@
                                                             };
                                                         </script>
                                                     </div>
-                                                    <div class="grid gap-6 mb-6 md:grid-cols-2">
-                                                        <div>
-                                                            <label for="nip"
-                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
-                                                            <input type="text" id="nip"
-                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                                                        </div>
-                                                        <div>
-                                                            <label for="nrp"
-                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NRP</label>
-                                                            <input type="text" id="nrp"
-                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                                                        </div>
-                                                        <div>
-                                                            <label for="agama"
-                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Agama</label>
-                                                            <input type="text" id="agama"
-                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                                                        </div>
-                                                        <div>
-                                                            <label for="tgl_lahir"
-                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
-                                                                Lahir</label>
-                                                            <input type="date" id="tgl_lahir"
-                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                                                        </div>
-                                                        <div>
-                                                            <label for="gol_kd"
-                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">GOL
-                                                                KD</label>
-                                                            <input type="tel" id="gol_kd"
-                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                                                        </div>
-                                                        <div>
-                                                            <label for="jabatan"
-                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jabatan</label>
-                                                            <input type="url" id="jabatan"
-                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                                                        </div>
-                                                        <div>
-                                                            <label for="eselon"
-                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Eselon</label>
-                                                            <input type="number" id="eselon"
-                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                                                        </div>
-                                                        <div>
-                                                            <label for="jenis Kelamin"
-                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
-                                                                Kelamin</label>
-                                                            <select id="jenis_kelamin" name="jenis_kelamin" required
-                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                                <option selected disabled>-- Jenis Kelamin --</option>
-                                                                <option value="L">Laki-laki</option>
-                                                                <option value="P">Perempuan</option>
-                                                            </select>
-                                                        </div>
-                                                        <div>
-                                                            <label for="golongan"
-                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Golongan</label>
-                                                            <input type="number" id="golongan"
-                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                                                        </div>
-                                                        <div>
-                                                            <label for="nama_satker"
-                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Satker</label>
-                                                            <input type="url" id="nama_satker"
-                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                                                        </div>
-                                                        <div>
-                                                            <label for="status_Pegawai"
-                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status
-                                                                Pegawai</label>
-                                                            <input type="number" id="status_Pegawai"
-                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                                                        </div>
-                                                        <div>
-                                                            <label for="jaksa_tu"
-                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jaksa
-                                                                TU</label>
-                                                            <input type="url" id="jaksa_tu"
-                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                                                        </div>
+                                                    <div class="mb-3">
+                                                        <label for="nip"
+                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
+                                                        <input type="text" id="nip"
+                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                                                     </div>
-                                                    <div>
+                                                    <div class="mb-3">
+                                                        <label for="nama_satker"
+                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Satker</label>
+                                                        <input type="url" id="nama_satker"
+                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="jabatan"
+                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jabatan</label>
+                                                        <input type="url" id="jabatan"
+                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="gol_kd"
+                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Golongan</label>
+                                                        <input type="tel" id="gol_kd"
+                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                                    </div>
+                                                    <div class="mb-3">
                                                         <label for="struktural_non"
                                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Struktural</label>
                                                         <select id="struktural_non" name="struktural_non" required

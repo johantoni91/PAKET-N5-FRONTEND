@@ -9,16 +9,20 @@ use Illuminate\Support\Facades\Session;
 
 class AccessController extends Controller
 {
+    private $view = 'hak_akses.index';
+    private $title = 'Manajemen Akses';
     public function index()
     {
         try {
-            $route1 = 'user';
-            $route2 = 'search';
-            $title = 'Manajemen Akses';
             $profile = profile::getUser();
             if ($profile['roles'] == 'superadmin') {
                 $data = UserApi::get()['data'];
-                return view('hak_akses.index', compact('title', 'data', 'profile', 'route1', 'route2'));
+                return view($this->view, [
+                    'view'      => $this->view,
+                    'title'     => $this->title,
+                    'data'      => $data,
+                    'profile'   => $profile,
+                ]);
             }
             return redirect()->route('dashboard');
         } catch (\Throwable $th) {

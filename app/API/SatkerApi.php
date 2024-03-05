@@ -22,6 +22,15 @@ class SatkerApi
         }
     }
 
+    public static function getSatkerName()
+    {
+        try {
+            return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker_name')->json();
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    }
+
     public static function find($id)
     {
         try {
@@ -43,14 +52,10 @@ class SatkerApi
         return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . $id . '/delete', log::insert());
     }
 
-    public static function search($category, $search)
+    public static function search($input)
     {
         try {
-            $response = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker/search', [
-                'category'  => $category,
-                'search'    => $search
-            ]);
-            return $response->json();
+            return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker/search', $input)->json()['data'];
         } catch (\Throwable $th) {
             return  ['error' => $th];
         }

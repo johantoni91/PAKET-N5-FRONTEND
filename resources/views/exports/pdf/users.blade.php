@@ -54,10 +54,10 @@
             @foreach ($list as $key => $data)
                 <tr>
                     <td>{{ $key + 1 }}</td>
-                    <td>{{ $data['name'] }}</td>
-                    <td>{{ $data['username'] }}</td>
-                    <td>{{ $data['email'] }}
-                    <td>{{ $data['phone'] }}
+                    <td>{{ $data['users']['name'] }}</td>
+                    <td>{{ $data['users']['username'] }}</td>
+                    <td>{{ $data['users']['email'] }}
+                    <td>{{ $data['users']['phone'] }}
                     </td>
                 </tr>
             @endforeach

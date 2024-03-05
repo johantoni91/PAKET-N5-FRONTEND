@@ -20,13 +20,11 @@ class UserController extends Controller
     public function index()
     {
         try {
-            $route1 = 'user';
-            $route2 = 'search';
             $title = 'Manajemen User';
             $profile = profile::getUser();
             if ($profile['roles'] == 'superadmin') {
                 $data = UserApi::get()['data'];
-                return view('user.index', compact('title', 'data', 'profile', 'route1', 'route2'));
+                return view('user.index', compact('title', 'data', 'profile'));
             }
             return redirect()->route('dashboard');
         } catch (\Throwable $th) {
@@ -186,7 +184,7 @@ class UserController extends Controller
 
     function pdf()
     {
-        $data['list'] = UserApi::get();
+        $data['list'] = UserApi::get()['data']['data'];
         $pdf = Pdf::loadView('exports.pdf.users', $data);
         return $pdf->download('test.pdf');
     }

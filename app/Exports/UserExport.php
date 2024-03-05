@@ -14,7 +14,7 @@ class UserExport implements FromCollection, WithHeadings, WithMapping
      */
     public function collection()
     {
-        return collect(UserApi::get());
+        return collect(UserApi::get()['data']['data']);
     }
 
     public function headings(): array
@@ -27,11 +27,11 @@ class UserExport implements FromCollection, WithHeadings, WithMapping
     public function map($loguser): array
     {
         return [
-            $loguser['id'],
-            $loguser['username'],
-            $loguser['name'],
-            $loguser['email'],
-            $loguser['phone']
+            $loguser['users']['id'],
+            $loguser['users']['username'],
+            $loguser['users']['name'],
+            $loguser['users']['email'],
+            $loguser['users']['phone']
         ];
     }
 }

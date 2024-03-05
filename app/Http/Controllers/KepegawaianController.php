@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\API\PegawaiApi;
+use App\API\SatkerApi;
 use App\Helpers\profile;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
@@ -12,16 +14,18 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class KepegawaianController extends Controller
 {
+    private $view = 'kepegawaian.index';
     private $title = 'Manajemen Pegawai';
-
     public function index()
     {
         try {
             if (profile::getUser()['roles'] == 'superadmin') {
                 $data = PegawaiApi::get()['data'];
-                return view('kepegawaian.index', [
-                    'title'     => $this->title,
+                return view($this->view, [
+                    'view'      => $this->view,
                     'profile'   => profile::getUser(),
+                    'title'     => $this->title,
+                    'satker'    => SatkerApi::getSatkerName()['data'],
                     'data'      => $data
                 ]);
             }
@@ -32,36 +36,35 @@ class KepegawaianController extends Controller
         }
     }
 
-    public function search(Request $req)
+    public function search()
     {
         try {
             $input = [
-                'nama'              => $req->nama,
-                'jabatan'           => $req->jabatan,
-                'nip'               => $req->nip,
-                'nrp'               => $req->nrp,
-                'jenis_kelamin'     => $req->jenis_kelamin,
-                'nama_satker'       => $req->satker,
-                'agama'             => $req->agama,
-                'status_pegawai'    => $req->status
+                'nama'              => request('nama'),
+                'jabatan'           => request('jabatan'),
+                'nip'               => request('nip'),
+                'nrp'               => request('nrp'),
+                'jenis_kelamin'     => request('jenis_kelamin'),
+                'nama_satker'       => request('satker'),
+                'agama'             => request('agama'),
+                'status_pegawai'    => request('status')
             ];
-            if ($req->nama == null && $req->jabatan == null && $req->nip == null && $req->nrp == null && $req->jenis_kelamin == null && $req->nama_satker == null && $req->agama == null && $req->status_pegawai == null) {
+            if (request('nama') == null && request('jabatan') == null && request('nip') == null && request('nrp') == null && request('jenis_kelamin') == null && request('satker') == null && request('agama') == null && request('status_pegawai') == null) {
                 Alert::warning('Peringatan', 'Mohon isi salah satu!');
                 return back();
-            } elseif ($req->nama == null || $req->jabatan == null || $req->nip == null || $req->nrp == null || $req->jenis_kelamin == null || $req->nama_satker == null || $req->agama == null || $req->status_pegawai == null) {
+            } elseif (request('nama') == null || request('jabatan') == null || request('nip') == null || request('nrp') == null || request('jenis_kelamin') == null || request('satker') == null || request('agama') == null || request('status_pegawai') == null) {
                 $res = PegawaiApi::search($input);
                 if ($res['status'] = false) {
                     Alert::error('error', $res['message']);
                     return back();
                 }
-                $data = $res['data'];
-
                 if (profile::getUser()['roles'] == 'superadmin') {
-                    return view('kepegawaian.index', [
-                        'title'     => $this->title,
+                    return view($this->view, [
+                        'view'      => $this->view,
                         'profile'   => profile::getUser(),
-                        'data'      => $data,
-                        'input'     => $input
+                        'title'     => $this->title,
+                        'satker'    => SatkerApi::getSatkerName()['data'],
+                        'data'      => $res['data']
                     ]);
                 }
                 return redirect()->route('dashboard');
@@ -72,23 +75,55 @@ class KepegawaianController extends Controller
         }
     }
 
-    // public function destroy(Request $req)
-    // {
-    //     try {
-    //         $user = PegawaiApi::find($req->id)->json();
-    //         $del = PegawaiApi::delete($req->id);
-    //         if (!$del->failed()) {
-    //             Alert::success('Berhasil', 'User berhasil dihapus');
-    //             session()->flash('status', 'Menghapus user ' . $user['data']['users']['name']);
-    //             session()->flash('route', route('user.index'));
-    //             return response($del->json()['message'], 200);
-    //         } else {
-    //             Alert::error('Terjadi kesalahan', $del->json()['error']);
-    //             return response($del->json()['message'], 200);
-    //         }
-    //     } catch (\Throwable $th) {
-    //         Alert::error('Terjadi kesalahan', $th->getMessage());
-    //         return response($th->getMessage(), 400);
-    //     }
-    // }
+    function store(Request $req)
+    {
+        try {
+            $img = $req->file('foto_pegawai');
+            $gambar = mt_rand() . '.' . $img->getClientOriginalExtension();
+            $input = [
+                'nama'           =>  $req->nama,
+                'jabatan'        =>  $req->jabatan,
+                'nip'            =>  $req->nip,
+                'nrp'            =>  $req->nrp,
+                'tgl_lahir'      =>  $req->tgl_lahir,
+                'eselon'         =>  $req->eselon,
+                'GOL_KD'         =>  $req->gol_kd,
+                'golpang'        =>  $req->golongan,
+                'jaksa_tu'       =>  $req->jaksa_tu,
+                'struktural_non' =>  $req->struktural_non,
+                'jenis_kelamin'  =>  $req->jenis_kelamin,
+                'nama_satker'    =>  $req->nama_satker,
+                'agama'          =>  $req->agama,
+                'status_pegawai' =>  $req->status_pegawai,
+            ];
+
+            if ($req->nip == null && $req->nrp == null) {
+                Alert::warning('Perhatian', 'Harap isi NRP / NIP !');
+                return back();
+            }
+            $pegawai = PegawaiApi::insert($img, $gambar, $input)->json();
+            if ($pegawai['status'] == true) {
+                Alert::success('Berhasil', 'Berhasil menambahkan pegawai');
+                session()->flash('status', 'Menambahkan satker ' . $req->nama);
+                session()->flash('route', route('pegawai'));
+                return back();
+            }
+            Alert::warning('Gagal menambahkan pegawai', $pegawai['message']);
+            return back();
+        } catch (\Throwable $th) {
+            Alert::error('Terjadi Kesalahan', $th->getMessage());
+            return back();
+        }
+    }
+
+    public function destroy($nip)
+    {
+        $res = PegawaiApi::destroy($nip);
+        if ($res['status'] == false) {
+            Alert::error('Error', 'Gagal menghapus pegawai');
+            return back();
+        }
+        Alert::success('Berhasil', 'Pegawai telah dihapus');
+        return back();
+    }
 }
