@@ -72,7 +72,7 @@ class SatkerController extends Controller
         }
     }
 
-    public function status($id, $status)
+    function status($id, $status)
     {
         $res = SatkerApi::status($id, $status);
         if ($res->failed()) {
@@ -86,7 +86,7 @@ class SatkerController extends Controller
         return redirect()->route('satker');
     }
 
-    public function update(Request $request, $id)
+    function update(Request $request, $id)
     {
         $data = [
             'satker'            => $request->satker,
@@ -119,7 +119,7 @@ class SatkerController extends Controller
         }
     }
 
-    public function store(Request $request)
+    function store(Request $request)
     {
         try {
             $data = [
@@ -141,7 +141,7 @@ class SatkerController extends Controller
         }
     }
 
-    public function destroy(Request $req)
+    function destroy(Request $req)
     {
         try {
             $user = SatkerApi::find($req->id)->json();

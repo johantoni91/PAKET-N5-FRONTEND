@@ -116,6 +116,47 @@ class KepegawaianController extends Controller
         }
     }
 
+    function update(Request $req, $id)
+    {
+        try {
+            $img = $req->file('foto_pegawai');
+            $gambar = mt_rand() . '.' . $img->getClientOriginalExtension();
+            $input = [
+                'nama'           =>  $req->nama,
+                'jabatan'        =>  $req->jabatan,
+                'nip'            =>  $req->nip,
+                'nrp'            =>  $req->nrp,
+                'tgl_lahir'      =>  $req->tgl_lahir,
+                'eselon'         =>  $req->eselon,
+                'GOL_KD'         =>  $req->gol_kd,
+                'golpang'        =>  $req->golongan,
+                'jaksa_tu'       =>  $req->jaksa_tu,
+                'struktural_non' =>  $req->struktural_non,
+                'jenis_kelamin'  =>  $req->jenis_kelamin,
+                'nama_satker'    =>  $req->nama_satker,
+                'agama'          =>  $req->agama,
+                'status_pegawai' =>  $req->status_pegawai,
+            ];
+
+            if ($req->nip == null && $req->nrp == null) {
+                Alert::warning('Perhatian', 'Harap isi NRP / NIP !');
+                return back();
+            }
+            $pegawai = PegawaiApi::insert($img, $gambar, $input)->json();
+            if ($pegawai['status'] == true) {
+                Alert::success('Berhasil', 'Berhasil menambahkan pegawai');
+                session()->flash('status', 'Menambahkan satker ' . $req->nama);
+                session()->flash('route', route('pegawai'));
+                return back();
+            }
+            Alert::warning('Gagal menambahkan pegawai', $pegawai['message']);
+            return back();
+        } catch (\Throwable $th) {
+            Alert::error('Terjadi Kesalahan', $th->getMessage());
+            return back();
+        }
+    }
+
     public function destroy($nip)
     {
         $res = PegawaiApi::destroy($nip);

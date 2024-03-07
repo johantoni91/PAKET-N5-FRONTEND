@@ -1,14 +1,7 @@
-{{-- {{ dd($data) }} --}}
 @extends('partials.main')
 @section('content')
     @include('partials.sidebar')
     @include('partials.topbar')
-    <style>
-        .datatable-input {
-            border: 1px solid rgb(203 213 225 / .6);
-            border-radius: 0.25rem;
-        }
-    </style>
     <div class="ltr:flex flex-1 rtl:flex-row-reverse">
         <div class="page-wrapper relative ltr:ml-auto rtl:mr-auto rtl:ml-0 w-[calc(100%-260px)] px-4 pt-[64px] duration-300">
             <div class="xl:w-full">
@@ -35,14 +28,14 @@
                                     class="border-b border-slate-200 dark:border-slate-700/40 py-3 px-4 dark:text-slate-300/70">
                                     <div class="flex-none md:flex">
                                         <h4 class="font-medium text-lg flex-1 self-center mb-2 md:mb-0">Data Pegawai</h4>
-                                        <div class="gap-5">
-                                            <a href="{{ route('excel.users') }}"
-                                                class="inline-block focus:outline-none text-green-500 hover:bg-green-500 hover:text-white bg-transparent border border-green-500 dark:bg-transparent dark:text-green-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-green-500 text-sm font-medium py-1 px-3 rounded mb-1 lg:mb-0 csv">Export
-                                                Excel</a>
-                                            <a href="{{ route('pdf.users') }}"
-                                                class="inline-block focus:outline-none text-red-400 hover:bg-red-500 hover:text-white bg-transparent border border-red-400 dark:bg-transparent dark:text-red-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-red-500 text-sm font-medium py-1 px-3 rounded mb-1 lg:mb-0 sql">Export
-                                                PDF</a>
-                                        </div>
+                                        @if (!request()->routeIs('pegawai'))
+                                            <div class="flex flex-row justify-end">
+                                                <a href="{{ route('pegawai') }}"
+                                                    class="py-1 px-2 rounded-lg flex flex-row items-center justify-center gap-2 text-blue-500 dark:text-blue-500 dark:text-blue-500 dark:hover:text-white dark:border-blue-500 dark:hover:bg-blue-500 dark:hover:shadow dark:hover:shadow-white hover:bg-blue-500 hover:text-white border border-blue-500">
+                                                    Filter <i data-lucide="search-x"></i>
+                                                </a>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div><!--end header-title-->
                                 <div class="grid grid-cols-1 p-4 overflow-scroll">
@@ -193,19 +186,6 @@
                                                         @include('partials.pagination')
                                                     </div>
                                                 </div>
-                                                @if (request()->routeIs('pegawai.search'))
-                                                    <div class="flex flex-row justify-end">
-                                                        <a href="{{ route('pegawai') }}"
-                                                            class="p-2 rounded-lg flex flex-row justify-between text-blue-500 dark:text-blue-500 dark:text-blue-500 dark:hover:text-white dark:border-blue-500 dark:hover:bg-blue-500 dark:hover:shadow dark:hover:shadow-white hover:bg-blue-500 hover:text-white border border-blue-500"><svg
-                                                                xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                                viewBox="0 0 24 24" stroke-width="1.5"
-                                                                stroke="currentColor" class="w-6 h-6">
-                                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                                    d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
-                                                            </svg> Kembali
-                                                        </a>
-                                                    </div>
-                                                @endif
                                             </div>
                                         </div>
                                     </div>

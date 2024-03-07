@@ -7,7 +7,9 @@ use App\Http\Controllers\KartuController;
 use App\Http\Controllers\KepegawaianController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\PaginationController;
+use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RateController;
 use App\Http\Controllers\SatkerController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -55,22 +57,34 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/satker', [SatkerController::class, 'index'])->name('satker');
     Route::post('/satker/create', [SatkerController::class, 'store'])->name('satker.store');
     Route::get('/satker/search', [SatkerController::class, 'search'])->name('satker.search');
-    Route::post('/satker/{id}/update', [SatkerController::class, 'update'])->name('satker.update');
     Route::post('/satker/delete', [SatkerController::class, 'destroy'])->name('satker.destroy');
+    Route::post('/satker/{id}/update', [SatkerController::class, 'update'])->name('satker.update');
     Route::get('/satker/{id}/status/{status}', [SatkerController::class, 'status'])->name('satker.status');
 
     // PEGAWAI
     Route::get('/pegawai', [KepegawaianController::class, 'index'])->name('pegawai');
-    Route::get('/pegawai/search', [KepegawaianController::class, 'search'])->name('pegawai.search');
     Route::post('/pegawai/store', [KepegawaianController::class, 'store'])->name('pegawai.store');
+    Route::get('/pegawai/search', [KepegawaianController::class, 'search'])->name('pegawai.search');
     Route::get('/pegawai/{nip}/destroy', [KepegawaianController::class, 'destroy'])->name('pegawai.destroy');
 
     // HAK AKSES
     Route::get('/akses', [AccessController::class, 'index'])->name('akses');
 
+    // PENGAJUAN
+    Route::get('/pengajuan', [PengajuanController::class, 'index'])->name('pengajuan');
+
     // KARTU
     Route::get('/kartu', [KartuController::class, 'index'])->name('kartu');
 
+    //MONITORING KARTU
+    Route::get('/monitor/kartu', [KartuController::class, 'monitor'])->name('monitor.kartu');
+
     // FAQ
     Route::get('/faq', [FaqController::class, 'index'])->name('faq');
+    Route::post('/faq/store', [FaqController::class, 'store'])->name('faq.store');
+    Route::post('/faq/destroy', [FaqController::class, 'destroy'])->name('faq.destroy');
+    Route::post('/faq/{id}/update', [FaqController::class, 'update'])->name('faq.update');
+
+    //RATING
+    Route::get('/rating', [RateController::class, 'index'])->name('rating');
 });

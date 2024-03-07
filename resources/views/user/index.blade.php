@@ -2,12 +2,6 @@
 @section('content')
     @include('partials.sidebar')
     @include('partials.topbar')
-    <style>
-        .datatable-input {
-            border: 1px solid rgb(203 213 225 / .6);
-            border-radius: 0.25rem;
-        }
-    </style>
     <div class="ltr:flex flex-1 rtl:flex-row-reverse">
         <div class="page-wrapper relative ltr:ml-auto rtl:mr-auto rtl:ml-0 w-[calc(100%-260px)] px-4 pt-[64px] duration-300">
             <div class="xl:w-full">
@@ -93,46 +87,52 @@
                                                 <button type="button" data-modal-target="create" data-modal-toggle="create"
                                                     class="focus:outline-none bg-primary-500 text-white border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium py-1 px-3 rounded w-24">+
                                                     User</button>
-                                                @include('partials.modals.user.createUser')
-                                                <button type="button" data-modal-target="search" data-modal-toggle="search"
-                                                    class="flex flex-row focus:outline-none text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium rounded w-32 justify-around px-2 align-bottom items-center">
-                                                    Cari User <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                                        class="w-4 h-4">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                                                    </svg>
-                                                </button>
-                                                @include('partials.modals.pegawai.search')
+                                                @include('partials.modals.user.create')
+                                                <div class="justify-center gap-2">
+                                                    <button type="button" data-modal-target="search"
+                                                        data-modal-toggle="search"
+                                                        class="flex flex-row focus:outline-none text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium rounded w-32 justify-around px-2 align-bottom items-center">
+                                                        Cari User <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                            class="w-4 h-4">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                                        </svg>
+                                                    </button>
+                                                    @include('partials.modals.user.search')
+                                                    @if (!request()->routeIs('user.index'))
+                                                        <div class="flex flex-row justify-end">
+                                                            <a href="{{ route('user.index') }}"
+                                                                class="py-1 px-2 rounded-lg flex flex-row items-center justify-center gap-2 text-blue-500 dark:text-blue-500 dark:text-blue-500 dark:hover:text-white dark:border-blue-500 dark:hover:bg-blue-500 dark:hover:shadow dark:hover:shadow-white hover:bg-blue-500 hover:text-white border border-blue-500">
+                                                                Filter <i data-lucide="search-x"></i>
+                                                            </a>
+                                                        </div>
+                                                    @endif
+                                                </div>
                                             </div>
                                             <div class="flex flex-col gap-5">
                                                 <div class="datatable_1">
-                                                    <table class="table w-full border-collapse" width="100%"
-                                                        id="datatable_1">
-                                                        <thead class="bg-slate-100 dark:bg-slate-700/20">
+                                                    <table
+                                                        class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                                        <thead
+                                                            class="text-xs border-b-2 border-slate-500 text-center text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                                             <tr>
-                                                                <th scope="col"
-                                                                    class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
+                                                                <th scope="col" class="px-6 py-3">
                                                                     Nama
                                                                 </th>
-                                                                <th scope="col"
-                                                                    class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
+                                                                <th scope="col" class="px-6 py-3">
                                                                     Email
                                                                 </th>
-                                                                <th scope="col"
-                                                                    class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
+                                                                <th scope="col" class="px-6 py-3">
                                                                     Phone
                                                                 </th>
-                                                                <th scope="col"
-                                                                    class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
+                                                                <th scope="col" class="px-6 py-3">
                                                                     Role
                                                                 </th>
-                                                                <th scope="col"
-                                                                    class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
+                                                                <th scope="col" class="px-6 py-3">
                                                                     Aksi
                                                                 </th>
-                                                                <th scope="col"
-                                                                    class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 dark:text-gray-400 uppercase">
+                                                                <th scope="col" class="px-6 py-3">
                                                                     Status
                                                                 </th>
                                                             </tr>
@@ -140,9 +140,9 @@
                                                         <tbody>
                                                             @foreach ($data['data'] as $item)
                                                                 <tr
-                                                                    class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700">
-                                                                    <td
-                                                                        class="align-baseline whitespace-nowrap p-3 text-sm font-medium dark:text-white">
+                                                                    class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                                                    <th
+                                                                        class="text-start px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                                         @if ($item['users']['photo'])
                                                                             <img src="{{ env('API_IMG', '') . $item['users']['photo'] }}"
                                                                                 alt=""
@@ -157,25 +157,22 @@
                                                                                     d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                                                             </svg> {{ $item['users']['name'] }}
                                                                         @endif
-                                                                    </td>
-                                                                    <td
-                                                                        class="align-baseline whitespace-nowrap p-3 text-sm text-gray-500 dark:text-gray-400">
+                                                                    </th>
+                                                                    <td class="text-center px-6 py-4">
                                                                         {{ $item['users']['email'] }}
                                                                     </td>
-                                                                    <td
-                                                                        class="text-start align-baseline whitespace-nowrap p-3 text-sm text-gray-500 dark:text-gray-400">
+                                                                    <td class="text-center px-6 py-4">
                                                                         {{ $item['users']['phone'] }}
                                                                     </td>
-                                                                    <td
-                                                                        class="align-baseline whitespace-nowrap p-3 text-sm text-gray-500 dark:text-gray-400">
+                                                                    <td class="text-center px-6 py-4">
                                                                         {{ $item['roles'] }}
                                                                     </td>
-                                                                    <td
-                                                                        class="p-3 text-sm text-gray-500 dark:text-gray-400">
+                                                                    <td class="text-center px-6 py-4">
                                                                         <button type="button"
                                                                             data-modal-target="update{{ $item['id'] }}"
                                                                             data-modal-toggle="update{{ $item['id'] }}"><i
                                                                                 class="align-baseline icofont-edit text-lg text-gray-500 dark:text-gray-400"></i></button>
+                                                                        @include('partials.modals.user.update')
                                                                         @if ($item['users_id'] != $profile['users_id'])
                                                                             <input type="hidden"
                                                                                 value="{{ $item['users_id'] }}"
@@ -221,7 +218,6 @@
                                                                                 })
                                                                             </script>
                                                                         @endif
-                                                                        @include('partials.modals.user.users')
                                                                     </td>
                                                                     <td>
                                                                         <a href="{{ route('user.status', [$item['users_id'], $item['status']]) }}"
@@ -254,12 +250,12 @@
                                                                             @endif
                                                                         </a>
                                                                     </td>
+
                                                                 </tr>
                                                             @endforeach
                                                         </tbody>
                                                     </table>
-                                                </div>
-                                                <div class="datatable_2">
+                                                    @include('partials.pagination')
                                                 </div>
                                             </div>
                                         </div>

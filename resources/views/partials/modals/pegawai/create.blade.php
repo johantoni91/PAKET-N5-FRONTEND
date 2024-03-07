@@ -29,6 +29,7 @@
                         <input type="file" name="foto_pegawai" id="photo" accept="image/*"
                             class="bg-gray-50 mx-auto text-sm block w-auto border border-gray-300 rounded-lg dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                             onchange="update(event)">
+                        <small class="text-red-500 italic text-center mt-1">Harus sertakan foto!</small>
                         <script>
                             var update = function(event) {
                                 var new_photo = document.getElementById("new_photo");

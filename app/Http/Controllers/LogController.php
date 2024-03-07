@@ -60,8 +60,8 @@ class LogController extends Controller
             'os'              => request('os'),
             'mobile'          => request('mobile'),
             'log_detail'      => request('log_detail'),
-            'start'           => Carbon::createFromFormat('Y-m-d\TH:i', request('start'))->toDateTimeString() ?? Carbon::yesterday(),
-            'end'             => Carbon::createFromFormat('Y-m-d\TH:i', request('end'))->toDateTimeString()
+            'start'           => request('start'),
+            'end'             => request('end')
         ];
         if (request('username') == null && request('ip_address') == null && request('browser') == null && request('browser_version') == null && request('os') == null && request('mobile') == null && request('log_detail') == null && request('start') == null && request('end') == null) {
             Alert::warning('Peringatan', 'Mohon isi salah satu!');

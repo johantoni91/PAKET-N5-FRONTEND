@@ -17,14 +17,20 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
+    private $title = 'Manajemen User';
+    private $view  = 'user.index';
     public function index()
     {
         try {
-            $title = 'Manajemen User';
             $profile = profile::getUser();
             if ($profile['roles'] == 'superadmin') {
                 $data = UserApi::get()['data'];
-                return view('user.index', compact('title', 'data', 'profile'));
+                return view($this->view, [
+                    'view'      => $this->view,
+                    'title'     => $this->title,
+                    'profile'   => $profile,
+                    'data'      => $data
+                ]);
             }
             return redirect()->route('dashboard');
         } catch (\Throwable $th) {
@@ -33,12 +39,48 @@ class UserController extends Controller
         }
     }
 
-    public function search(Request $req)
+    public function search()
     {
-        $title = 'Manajemen User';
-        $profile = profile::getUser();
-        $data = UserApi::search($req->category, $req->search)['data'];
-        return view('user.search', compact('title', 'data', 'profile'))->render();
+        try {
+            $profile = profile::getUser();
+            $input = [
+                'nip'       => request('nip'),
+                'nrp'       => request('nrp'),
+                'username'  => request('username'),
+                'name'      => request('name'),
+                'email'     => request('email'),
+                'phone'     => request('phone'),
+                'role'      => request('role'),
+                'status'    => request('status'),
+            ];
+            if (
+                $input['nip'] == null &&
+                $input['nrp'] == null &&
+                $input['username'] == null &&
+                $input['name'] == null &&
+                $input['email'] == null &&
+                $input['phone'] == null &&
+                $input['role'] == null &&
+                $input['status'] == null
+            ) {
+                Alert::warning('Peringatan', 'Mohon isi salah satu!');
+                return back();
+            }
+            $data = UserApi::search($input)['data'];
+            return view(
+                $this->view,
+                [
+                    'view'    => $this->view,
+                    'title'   => $this->title,
+                    'data'    => $data,
+                    'input'   => $input,
+                    'profile' => $profile
+                ]
+            );
+        } catch (\Throwable $th) {
+            Alert::warning('Kesalahan', $th->getMessage());
+            return back();
+        }
     }
 
     public function store(UserRequest $request)
@@ -70,25 +112,6 @@ class UserController extends Controller
             session()->flash('status', 'Menambahkan user ' . $request->username);
             session()->flash('route', route('user.index'));
             return redirect()->route('user.index');
-        }
-    }
-
-    public function updateView($id)
-    {
-        try {
-            $data = UserApi::find($id)->json();
-            if ($data['status'] == true) {
-                $item = $data['data'];
-                $title = 'Ubah User';
-                $profile = profile::getUser();
-                return view('user.update', compact('title', 'item', 'profile'));
-            } else {
-                Alert::error('Error', $data->json()['message']);
-                return redirect()->to('user.index');
-            }
-        } catch (\Throwable $th) {
-            Alert::error('Error', $th->getMessage());
-            return redirect()->to('user.index');
         }
     }
 
