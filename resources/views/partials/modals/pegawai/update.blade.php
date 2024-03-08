@@ -98,7 +98,7 @@
                                     value="Berkepercayaan kepada Tuhan Yang Maha Esa (lain-lain)">Berkepercayaan kepada
                                     Tuhan Yang Maha Esa (lain-lain)
                                 </option>
-                                <option {{ $item['agama'] == null ? 'selected' : '' }} value="Konghucu">Konghucu
+                                <option {{ $item['agama'] == null ? 'selected' : '' }}>Ateis
                                 </option>
                             </select>
                         </div>

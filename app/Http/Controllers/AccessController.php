@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\API\UserApi;
+use App\API\RoleApi;
 use App\Helpers\profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -16,7 +16,7 @@ class AccessController extends Controller
         try {
             $profile = profile::getUser();
             if ($profile['roles'] == 'superadmin') {
-                $data = UserApi::get()['data'];
+                $data = RoleApi::get()['data'];
                 return view($this->view, [
                     'view'      => $this->view,
                     'title'     => $this->title,

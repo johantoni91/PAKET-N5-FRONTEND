@@ -24,18 +24,19 @@
                 <form method="post" action="{{ route('pegawai.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="flex flex-col mb-6">
-                        <img src="https://placehold.co/400x400" id="new_photo" alt="new-photo"
+                        <img src="https://placehold.co/400x400" id="photo" alt="new-photo"
                             class="mx-auto h-56 w-56 rounded-full inline-block justify-center my-3">
-                        <input type="file" name="foto_pegawai" id="photo" accept="image/*"
+                        <input type="file" name="foto_pegawai" id="photo" accept="image/*" required
+                            oninvalid="this.setCustomValidity('Gausah so misterius jadi orang, isi POTONYA!')"
                             class="bg-gray-50 mx-auto text-sm block w-auto border border-gray-300 rounded-lg dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                            onchange="update(event)">
+                            onchange="newPhoto(event)">
                         <small class="text-red-500 italic text-center mt-1">Harus sertakan foto!</small>
                         <script>
-                            var update = function(event) {
-                                var new_photo = document.getElementById("new_photo");
-                                new_photo.src = URL.createObjectURL(event.target.files[0]);
-                                new_photo.onload = function() {
-                                    URL.revokeObjectURL(new_photo.src)
+                            var newPhoto = function(event) {
+                                var photo = document.getElementById("photo");
+                                photo.src = URL.createObjectURL(event.target.files[0]);
+                                photo.onload = function() {
+                                    URL.revokeObjectURL(photo.src)
                                 }
                             };
                         </script>
@@ -80,14 +81,26 @@
                         <div>
                             <label for="agama"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Agama</label>
-                            <input type="text" id="agama" name="agama"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                            <select id="agama" name="agama" required
+                                oninvalid="this.setCustomValidity('Ga terima Atheis!')"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option value="Budha">Buddha</option>
+                                <option value="Hindu">Hindu</option>
+                                <option value="Islam">Islam</option>
+                                <option value="Katolik">Katolik</option>
+                                <option value="Kristen">Kristen</option>
+                                <option value="Kristen_Ortodox">Kristen Ortodox</option>
+                                <option value="Konghucu">Konghucu</option>
+                                <option value="Shinto">Shinto</option>
+                                <option value="lain_lain">Sesat</option>
+                            </select>
                         </div>
                         <div>
                             <label for="tgl_lahir"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
                                 Lahir</label>
                             <input type="date" id="tgl_lahir" name="tgl_lahir" max="{{ now()->format('Y-m-d') }}"
+                                required oninvalid="this.setCustomValidity('Lu lahir dari batu ?')"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
                         <div>
@@ -112,7 +125,8 @@
                             <label for="jenis Kelamin"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
                                 Kelamin</label>
-                            <select id="jenis_kelamin" name="jenis_kelamin"
+                            <select id="jenis_kelamin" name="jenis_kelamin" required
+                                oninvalid="this.setCustomValidity('Cuma cowo cewe, ga terima LaGiBaTuk!')"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option selected disabled>-- Jenis Kelamin --</option>
                                 <option value="L">Laki-laki</option>
@@ -129,7 +143,8 @@
                             <label for="nama_satker"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                                 Satker</label>
-                            <select id="nama_satker" name="nama_satker"
+                            <select id="nama_satker" name="nama_satker" required
+                                oninvalid="this.setCustomValidity('Penyusup kah !?')"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option selected disabled>-- Satker --</option>
                                 @foreach ($satker as $item)
@@ -142,14 +157,21 @@
                             <label for="status_Pegawai"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status
                                 Pegawai</label>
-                            <input type="text" id="status_Pegawai" name="status_pegawai"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                            <select id="status_pegawai" name="status_pegawai"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option selected value="CPNS / PNS">CPNS / PNS</option>
+                                <option value="CPNS">CPNS</option>
+                                <option value="PNS">PNS</option>
+                            </select>
                         </div>
                         <div>
                             <label for="jaksa_tu"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jaksa TU</label>
-                            <input type="text" id="jaksa_tu" name="jaksa_tu"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                            <select id="jaksa_tu" name="jaksa_tu"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option selected value="Jaksa">Jaksa</option>
+                                <option value="Tu">TU</option>
+                            </select>
                         </div>
                     </div>
                     <div>
