@@ -30,11 +30,35 @@
                         <div class="sm:col-span-12  md:col-span-12 lg:col-span-12 xl:col-span-12 xl:col-start-0 ">
                             <div
                                 class="bg-white dark:bg-gray-900 border border-slate-200 dark:border-slate-700/40  rounded-md w-full relative mb-4">
-                                <div
-                                    class="border-b border-slate-200 dark:border-slate-700/40 py-3 px-4 dark:text-slate-300/70">
+                                <div class="border-b border-slate-200 dark:border-slate-700/40 dark:text-slate-300/70">
                                     <div class="flex-none md:flex">
-                                        <h4 class="font-medium text-lg flex-1 self-center mb-2 md:mb-0">Layout Kartu</h4>
-                                        <button type="button" data-modal-target="create" data-modal-toggle="create"
+                                        <h4 class="font-medium py-3 px-4 text-lg flex-1 self-center mb-2 md:mb-0">Layout
+                                            Kartu</h4>
+                                        <ul
+                                            class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
+                                            <li class="me-2">
+                                                <a href="#" aria-current="page"
+                                                    class="inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500">Kartu
+                                                    1</a>
+                                            </li>
+                                            <li class="me-2">
+                                                <a href="#"
+                                                    class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Kartu
+                                                    2</a>
+                                            </li>
+                                            <li class="me-2">
+                                                <a href="#"
+                                                    class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Kartu
+                                                    3</a>
+                                            </li>
+                                            <li class="me-2">
+                                                <a href="#"
+                                                    class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300">Kartu
+                                                    4</a>
+                                            </li>
+                                        </ul>
+
+                                        {{-- <button type="button" data-modal-target="create" data-modal-toggle="create"
                                             class="focus:outline-none text-black hover:text-blue-500 dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium py-1 px-3 rounded-lg">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -43,17 +67,19 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                     d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                             </svg>
-                                        </button>
+                                        </button> --}}
                                     </div>
-                                </div><!--end header-title-->
+                                </div>
                                 <div class="grid grid-cols-2 p-4 overflow-scroll">
                                     <div class="sm:-mx-6 lg:-mx-8">
                                         <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-10">
                                             <div class="p-4 md:p-5 space-y-4">
-                                                <form>
+                                                <h2 class="text-center font-bold dark:text-white">DEPAN</h2>
+                                                <div class="rounded-lg border p-4">
                                                     <div class="flex flex-col mb-5">
-                                                        <img src="" id="new_photo" alt="new-photo"
-                                                            class="mx-auto h-56 w-56 rounded-full inline-block justify-center my-3 hidden">
+                                                        <img src="{{ asset('/assets/images/kejaksaan-logo.png') }}"
+                                                            id="new_photo" alt="new-photo"
+                                                            class="mx-auto h-56 w-56 rounded-full inline-block justify-center my-3">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                             class="mx-auto h-56 w-56 rounded-full inline-block justify-center my-3 dark:text-white"
@@ -61,59 +87,30 @@
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                 d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                                         </svg>
-                                                        <input type="file" name="foto_pegawai" id="photo"
-                                                            accept="image/*"
-                                                            class="bg-gray-50 mx-auto text-sm block w-auto border border-gray-300 rounded-lg dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                                            onchange="update(event)">
-                                                        <script>
-                                                            var update = function(event) {
-                                                                var new_photo = document.getElementById("new_photo");
-                                                                var avatar1 = document.getElementById("avatar1");
-                                                                new_photo.src = URL.createObjectURL(event.target.files[0]);
-                                                                new_photo.onload = function() {
-                                                                    URL.revokeObjectURL(new_photo.src)
-                                                                    avatar1.classList.add("hidden");
-                                                                    new_photo.classList.remove("hidden");
-                                                                }
-                                                            };
-                                                        </script>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="nip"
                                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
-                                                        <input type="text" id="nip"
-                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                                        <input type="text" id="nip" value="1810631170189"
+                                                            class="bg-transparent border-0 border-b-2 text-center w-full border-gray-300 p-2 dark:text-white" />
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="nama_satker"
-                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Satker</label>
-                                                        <input type="url" id="nama_satker"
-                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                                        <label for="nama"
+                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
+                                                        <input type="text" id="nama" value="Johan Toni Wijaya"
+                                                            class="bg-transparent border-0 text-center border-b-2 w-full border-gray-300 p-2 dark:text-white" />
                                                     </div>
-                                                    <div class="mb-3">
-                                                        <label for="jabatan"
-                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jabatan</label>
-                                                        <input type="url" id="jabatan"
-                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="gol_kd"
-                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Golongan</label>
-                                                        <input type="tel" id="gol_kd"
-                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="struktural_non"
-                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Struktural</label>
-                                                        <select id="struktural_non" name="struktural_non" required
-                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                            <option selected disabled>--Struktural --</option>
-                                                            <option value="STRUKTURAL">STRUKTURAL</option>
-                                                            <option value="NON">NON STRUKTURAL</option>
-                                                        </select>
-                                                    </div>
-                                                </form>
+                                                </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:p-5 space-y-4">
+                                        <h2 class="text-center font-bold dark:text-white">BELAKANG</h2>
+                                        <div
+                                            class="flex flex-col m-5 h-[95%] bg-red-700 justify-center items-center rounded-lg">
+                                            <img src="{{ asset('/assets/images/qrcode.png') }}" id="new_photo"
+                                                alt="new-photo"
+                                                class="mx-auto h-56 w-56 rounded-full inline-block justify-center my-3">
                                         </div>
                                     </div>
                                 </div>

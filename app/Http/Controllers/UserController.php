@@ -209,6 +209,6 @@ class UserController extends Controller
     {
         $data['list'] = UserApi::get()['data']['data'];
         $pdf = Pdf::loadView('exports.pdf.users', $data);
-        return $pdf->download('test.pdf');
+        return $pdf->download('Users' . Carbon::now()->format('dmY') . '.pdf');
     }
 }

@@ -11,54 +11,12 @@
                             <div class="flex flex-wrap justify-between">
                                 <div class="items-center ">
                                     <h1 class="font-medium text-3xl block dark:text-slate-100">{{ $title }}</h1>
-                                    {{-- <ol class="list-reset flex text-sm">
-                                    <li><button type="button" class="text-gray-500 dark:text-slate-400">Robotech</button></li>
-                                    <li><span class="text-gray-500 dark:text-slate-400 mx-2">/</span></li>
-                                    <li class="text-gray-500 dark:text-slate-400">Tables</li>
-                                    <li><span class="text-gray-500 dark:text-slate-400 mx-2">/</span></li>
-                                    <li class="text-primary-500 hover:text-primary-600 dark:text-primary-400">Datatable
-                                    </li>
-                                </ol> --}}
-                                </div><!--end /div-->
-                                {{-- <div>
-                                    <input type="date" name="date" id="date" value="{{ now()->format('Y-m-d') }}"
-                                        class="rounded-lg bg-blue-300 z-10 border-0 text-transparent focus:border-0 dark:border-slate-700 dark:text-white dark:bg-slate-700">
-                                    <span
-                                        class="absolute right-[3.3rem] top-[5.1rem] bg-blue-300 p-2 dark:text-white dark:bg-slate-700"
-                                        id="now"></span>
                                 </div>
-                                <script>
-                                    var dateString = $("#date").val();
-                                    var date = new Date(dateString);
-
-                                    var options = {
-                                        year: 'numeric',
-                                        month: 'long',
-                                        day: 'numeric'
-                                    };
-                                    var humanDate = date.toLocaleDateString('id-ID', options);
-                                    $("#now").text(humanDate);
-                                    $(document).ready(function() {
-                                        $("#date").on('change', function(e) {
-                                            e.preventDefault()
-                                            var dateString = $("#date").val();
-                                            var date = new Date(dateString);
-
-                                            var options = {
-                                                year: 'numeric',
-                                                month: 'long',
-                                                day: 'numeric'
-                                            };
-                                            var humanDate = date.toLocaleDateString('id-ID', options);
-                                            $("#now").text(humanDate);
-                                        })
-                                    })
-                                </script> --}}
-                            </div><!--end /div-->
-                        </div><!--end /div-->
-                    </div><!--end /div-->
-                </div><!--end /div-->
-            </div><!--end container-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="xl:w-full  min-h-[calc(100vh-138px)] relative pb-14">
                 <div class="xl:w-full  min-h-[calc(100vh-138px)] relative pb-14">
                     <div class="grid md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4 mb-4">
@@ -79,7 +37,7 @@
                                                 PDF</a>
                                         </div>
                                     </div>
-                                </div><!--end header-title-->
+                                </div>
                                 <div class="grid grid-cols-1 p-4 overflow-scroll">
                                     <div class="sm:-mx-6 lg:-mx-8">
                                         <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-8">
@@ -91,7 +49,7 @@
                                                 <div class="justify-center gap-2">
                                                     <button type="button" data-modal-target="search"
                                                         data-modal-toggle="search"
-                                                        class="flex flex-row focus:outline-none text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium rounded w-32 justify-around px-2 align-bottom items-center">
+                                                        class="flex flex-row gap-2 focus:outline-none text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium rounded justify-around py-1 px-2 align-bottom items-center">
                                                         Cari User <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                                             class="w-4 h-4">
@@ -262,13 +220,13 @@
                                     </div>
                                     <small class="text-red-400">Klik icon status untuk mengubah
                                         status</small>
-                                </div><!--end card-body-->
-                            </div> <!--end card-->
-                        </div><!--end col-->
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 @include('partials.footer')
-            </div><!--end page-wrapper-->
-        </div><!--end /div-->
+            </div>
+        </div>
     </div>
 @endsection

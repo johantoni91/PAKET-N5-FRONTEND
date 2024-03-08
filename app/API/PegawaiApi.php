@@ -85,13 +85,63 @@ class PegawaiApi
         }
     }
 
-    public static function update($photo, $id, $data)
+    public static function update($id, $img, $gambar, $input)
     {
-        if (!$photo == null) {
-            return Http::withToken(profile::getToken())->attach('photo', file_get_contents($photo), mt_rand() . '.' . $photo->getClientOriginalExtension())
-                ->post(env('API_URL', '') . '/user' . '/' . $id . '/update', $data);
-        } else {
-            return Http::withToken(profile::getToken())->post(env('API_URL', '') . '/user' . '/' . $id . '/update', $data);
+        try {
+            $agent = new Agent();
+            if ($img) {
+                return Http::withToken(profile::getToken())->attach('photo', file_get_contents($img), $gambar)
+                    ->post(env('API_URL', '') . '/pegawai/' . $id . '/update', [
+                        'nip'             => $input['nip'],
+                        'nrp'             => $input['nrp'],
+                        'nama'            => $input['nama'],
+                        'jabatan'         => $input['jabatan'],
+                        'tgl_lahir'       => $input['tgl_lahir'],
+                        'eselon'          => $input['eselon'],
+                        'GOL_KD'          => $input['GOL_KD'],
+                        'golpang'         => $input['golpang'],
+                        'jenis_kelamin'   => $input['jenis_kelamin'],
+                        'nama_satker'     => $input['nama_satker'],
+                        'agama'           => $input['agama'],
+                        'status_pegawai'  => $input['status_pegawai'],
+                        'jaksa_tu'        => $input['jaksa_tu'],
+                        'struktural_non'  => $input['struktural_non'],
+                        'users_id'        => profile::getUser()['id'],
+                        'username'        => profile::getUser()['users']['username'],
+                        'browser'         => $agent->browser(),
+                        'browser_version' => $agent->version($agent->browser()),
+                        'os'              => $agent->platform(),
+                        'ip_address'      => Request::ip(),
+                        'mobile'          => $agent->device(),
+                    ]);
+            } else {
+                return Http::withToken(profile::getToken())->post(env('API_URL', '') . '/pegawai/' . $id . '/update', [
+                    'nip'             => $input['nip'],
+                    'nrp'             => $input['nrp'],
+                    'nama'            => $input['nama'],
+                    'jabatan'         => $input['jabatan'],
+                    'tgl_lahir'       => $input['tgl_lahir'],
+                    'eselon'          => $input['eselon'],
+                    'GOL_KD'          => $input['GOL_KD'],
+                    'golpang'         => $input['golpang'],
+                    'jenis_kelamin'   => $input['jenis_kelamin'],
+                    'nama_satker'     => $input['nama_satker'],
+                    'photo'           => $img,
+                    'agama'           => $input['agama'],
+                    'status_pegawai'  => $input['status_pegawai'],
+                    'jaksa_tu'        => $input['jaksa_tu'],
+                    'struktural_non'  => $input['struktural_non'],
+                    'users_id'        => profile::getUser()['id'],
+                    'username'        => profile::getUser()['users']['username'],
+                    'browser'         => $agent->browser(),
+                    'browser_version' => $agent->version($agent->browser()),
+                    'os'              => $agent->platform(),
+                    'ip_address'      => Request::ip(),
+                    'mobile'          => $agent->device(),
+                ]);
+            }
+        } catch (\Throwable $th) {
+            return $th->getMessage();
         }
     }
 }

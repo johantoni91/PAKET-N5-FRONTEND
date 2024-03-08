@@ -64,6 +64,7 @@ Route::middleware(['auth'])->group(function () {
     // PEGAWAI
     Route::get('/pegawai', [KepegawaianController::class, 'index'])->name('pegawai');
     Route::post('/pegawai/store', [KepegawaianController::class, 'store'])->name('pegawai.store');
+    Route::post('/pegawai/{id}/update', [KepegawaianController::class, 'update'])->name('pegawai.update');
     Route::get('/pegawai/search', [KepegawaianController::class, 'search'])->name('pegawai.search');
     Route::get('/pegawai/{nip}/destroy', [KepegawaianController::class, 'destroy'])->name('pegawai.destroy');
 

@@ -79,7 +79,7 @@ class KepegawaianController extends Controller
     {
         try {
             $img = $req->file('foto_pegawai');
-            $gambar = mt_rand() . '.' . $img->getClientOriginalExtension();
+            $gambar = $req->nip ?? $req->nrp . '_' . Carbon::now()->format('dmY') . '.' . $img->getClientOriginalExtension();
             $input = [
                 'nama'           =>  $req->nama,
                 'jabatan'        =>  $req->jabatan,
@@ -119,8 +119,8 @@ class KepegawaianController extends Controller
     function update(Request $req, $id)
     {
         try {
-            $img = $req->file('foto_pegawai');
-            $gambar = mt_rand() . '.' . $img->getClientOriginalExtension();
+            $img    = '';
+            $gambar = '';
             $input = [
                 'nama'           =>  $req->nama,
                 'jabatan'        =>  $req->jabatan,
@@ -128,8 +128,8 @@ class KepegawaianController extends Controller
                 'nrp'            =>  $req->nrp,
                 'tgl_lahir'      =>  $req->tgl_lahir,
                 'eselon'         =>  $req->eselon,
-                'GOL_KD'         =>  $req->gol_kd,
-                'golpang'        =>  $req->golongan,
+                'GOL_KD'         =>  $req->GOL_KD,
+                'golpang'        =>  $req->golpang,
                 'jaksa_tu'       =>  $req->jaksa_tu,
                 'struktural_non' =>  $req->struktural_non,
                 'jenis_kelamin'  =>  $req->jenis_kelamin,
@@ -142,14 +142,20 @@ class KepegawaianController extends Controller
                 Alert::warning('Perhatian', 'Harap isi NRP / NIP !');
                 return back();
             }
-            $pegawai = PegawaiApi::insert($img, $gambar, $input)->json();
+
+            if ($req->hasFile('foto_pegawai')) {
+                $img = $req->file('foto_pegawai');
+                $gambar = $req->nip ?? $req->nrp . '_' . Carbon::now()->format('dmY') . '.' . $img->getClientOriginalExtension();
+            }
+
+            $pegawai = PegawaiApi::update($id, $img, $gambar, $input)->json();
             if ($pegawai['status'] == true) {
-                Alert::success('Berhasil', 'Berhasil menambahkan pegawai');
-                session()->flash('status', 'Menambahkan satker ' . $req->nama);
+                Alert::success('Berhasil', 'Berhasil mengubah pegawai');
+                session()->flash('status', 'mengubah pegawai ' . $req->nama);
                 session()->flash('route', route('pegawai'));
                 return back();
             }
-            Alert::warning('Gagal menambahkan pegawai', $pegawai['message']);
+            Alert::warning('Gagal mengubah pegawai', $pegawai['message']);
             return back();
         } catch (\Throwable $th) {
             Alert::error('Terjadi Kesalahan', $th->getMessage());

@@ -13,19 +13,11 @@
 <link rel="stylesheet" href="{{ asset('assets/css/tailwind.min.css') }}">
 <link href="{{ asset('assets/libs/prismjs/themes/prism-twilight.min.css') }}" type="text/css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
-<link rel="stylesheet" href="{{ asset('assets/css/table.css') }}">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<style>
-    #dt-length-0 {
-        width: 4.5rem;
-    }
-</style>
 @vite('resources/css/app.css')
 
-<body data-layout-mode="light" data-sidebar-size="default" data-theme-layout="vertical"
-    class="bg-[#EEF0FC] dark:bg-gray-900">
+<body data-sidebar-size="default" data-theme-layout="vertical" class="bg-[#EEF0FC] dark:bg-gray-900">
     @include('sweetalert::alert')
     @if (session('welcome'))
         <div
@@ -41,9 +33,7 @@
 <script src="https://cdn.datatables.net/2.0.0/js/dataTables.tailwindcss.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="
-https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js
-"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
 <script src="{{ asset('assets/libs/lucide/umd/lucide.min.js') }}"></script>
 <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
 <script src="{{ asset('assets/libs/flatpickr/flatpickr.min.js') }}"></script>

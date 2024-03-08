@@ -2,35 +2,47 @@
 /*   App Js     */
 /*********************/
 
-class App {
-    init() {
-        const html = document.querySelector("html");
-        const toggletheme = document.querySelector("#toggle-theme");
-        const lightBtn = toggletheme?.querySelector(".light");
-        const darkBtn = toggletheme?.querySelector(".dark");
-        toggletheme?.addEventListener("click", () => {
-            if (html.getAttribute("class") === "dark") {
-                document.body.setAttribute("data-layout-mode", "light");
-            } else {
-                document.body.setAttribute("data-layout-mode", "dark");
-            }
-
-            html.classList.toggle("dark");
-            const isDark = html.classList.contains("dark");
-            (!isDark ? darkBtn : lightBtn)?.classList.add("hidden");
-            (isDark ? darkBtn : lightBtn)?.classList.remove("hidden");
-
-            // togglethemeicon.className = "ti ti-" + `${themeIcon}` + "  top-icon";
-        });
-    }
-}
-
 window.addEventListener("DOMContentLoaded", function (e) {
-    new App().init();
+    e.preventDefault();
+    const html = document.querySelector("html");
+    const lightBtn = document.querySelector(".light");
+    const darkBtn = document.querySelector(".dark");
+    let theme = localStorage.getItem("theme");
+    html.classList.add(theme);
+    if (html.classList.contains("dark")) {
+        lightBtn.classList.remove("hidden");
+        darkBtn.classList.add("hidden");
+    } else {
+        lightBtn.classList.add("hidden");
+        darkBtn.classList.remove("hidden");
+    }
+
+    lightBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        localStorage.removeItem("theme");
+        this.classList.add("hidden");
+        darkBtn.classList.remove("hidden");
+        if (localStorage.getItem("theme") == null) {
+            html.classList.remove("dark");
+        } else {
+            html.classList.add("dark");
+        }
+    });
+
+    darkBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        localStorage.setItem("theme", "dark");
+        this.classList.add("hidden");
+        lightBtn.classList.remove("hidden");
+        if (localStorage.getItem("theme") == null) {
+            html.classList.remove("dark");
+        } else {
+            html.classList.add("dark");
+        }
+    });
 });
 
 try {
-    // Icon
     lucide.createIcons();
 } catch (err) {}
 /*********************/
