@@ -38,8 +38,9 @@ Route::middleware(['auth'])->group(function () {
     //PAGINATION
     Route::get('/pagination/{view}/{link}/{title}', [PaginationController::class, 'pagination'])->name('pagination');
 
+    // Route::middleware(['role'])->group(function () {
     // MANAGEMENT USERS
-    Route::get('/user', [UserController::class, 'index'])->name('user.index');
+    Route::get('/user', [UserController::class, 'index'])->name('user');
     Route::get('/user/report/pdf', [UserController::class, 'pdf'])->name('pdf.users'); // Report PDF
     Route::post('/user/create', [UserController::class, 'store'])->name('user.store');
     Route::get('/user/search', [UserController::class, 'search'])->name('user.search');
@@ -70,6 +71,7 @@ Route::middleware(['auth'])->group(function () {
 
     // HAK AKSES
     Route::get('/akses', [AccessController::class, 'index'])->name('akses');
+    Route::post('/akses/{id}/update', [AccessController::class, 'update'])->name('akses.update');
 
     // PENGAJUAN
     Route::get('/pengajuan', [PengajuanController::class, 'index'])->name('pengajuan');
@@ -88,4 +90,5 @@ Route::middleware(['auth'])->group(function () {
 
     //RATING
     Route::get('/rating', [RateController::class, 'index'])->name('rating');
+    // });
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\API\RoleApi;
 use App\Helpers\profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -15,8 +16,7 @@ class AuthController extends Controller
     public function home()
     {
         $title = 'Dashboard';
-        $profile = profile::getUser();
-        return view("index", compact('title', 'profile'));
+        return view("index", compact('title'));
     }
 
     public function loginPage()

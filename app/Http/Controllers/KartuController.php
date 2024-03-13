@@ -16,14 +16,10 @@ class KartuController extends Controller
     public function index()
     {
         try {
-            $profile = profile::getUser();
-            if ($profile['roles'] == 'superadmin') {
-                return view($this->view, [
-                    'view'      => $this->view,
-                    'title'     => $this->title,
-                    'profile'   => $profile
-                ]);
-            }
+            return view($this->view, [
+                'view'      => $this->view,
+                'title'     => $this->title
+            ]);
             return redirect()->route('dashboard');
         } catch (\Throwable $th) {
             Session::forget('user');
@@ -34,14 +30,10 @@ class KartuController extends Controller
     public function monitor()
     {
         try {
-            $profile = profile::getUser();
-            if ($profile['roles'] == 'superadmin') {
-                return view($this->monitor_view, [
-                    'view'      => $this->monitor_view,
-                    'title'     => $this->monitor_title,
-                    'profile'   => $profile
-                ]);
-            }
+            return view($this->monitor_view, [
+                'view'      => $this->monitor_view,
+                'title'     => $this->monitor_title
+            ]);
             return redirect()->route('dashboard');
         } catch (\Throwable $th) {
             Session::forget('user');

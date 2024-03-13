@@ -14,12 +14,10 @@ class FaqController extends Controller
 
     function index()
     {
-        $profile = profile::getUser();
         $data = FaqApi::get()['data'];
         return view($this->view, [
             'view'      => $this->view,
             'title'     => $this->title,
-            'profile'   => $profile,
             'data'      => $data
         ]);
     }

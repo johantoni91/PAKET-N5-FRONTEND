@@ -17,24 +17,19 @@ class LogController extends Controller
     function index()
     {
         try {
-
-            $profile = profile::getUser();
             $kolom = [
                 'browser'           => LogApi::getColumn('browser'),
                 'browser_version'   => LogApi::getColumn('browser_version'),
                 'os'                => LogApi::getColumn('os'),
                 'mobile'            => LogApi::getColumn('mobile')
             ];
-            if ($profile['roles'] == 'superadmin') {
-                $data = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/log')->json()['data'];
-                return view($this->view, [
-                    'view'     => $this->view,
-                    'title'    => $this->title,
-                    'data'     => $data,
-                    'profile'  => $profile,
-                    'kolom'    => $kolom
-                ]);
-            }
+            $data = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/log')->json()['data'];
+            return view($this->view, [
+                'view'     => $this->view,
+                'title'    => $this->title,
+                'data'     => $data,
+                'kolom'    => $kolom
+            ]);
             return redirect()->route('dashboard');
         } catch (\Throwable $th) {
             Alert::error('Kesalahan', $th->getMessage());
@@ -45,7 +40,6 @@ class LogController extends Controller
 
     public function search()
     {
-        $profile = profile::getUser();
         $kolom = [
             'browser'           => LogApi::getColumn('browser'),
             'browser_version'   => LogApi::getColumn('browser_version'),
@@ -73,7 +67,6 @@ class LogController extends Controller
                 'view'     => $this->view,
                 'title'    => $this->title,
                 'data'     => $data,
-                'profile'  => $profile,
                 'kolom'    => $kolom
             ]);
         }

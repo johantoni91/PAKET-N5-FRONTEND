@@ -2,12 +2,6 @@
 @section('content')
     @include('partials.sidebar')
     @include('partials.topbar')
-    <style>
-        .datatable-input {
-            border: 1px solid rgb(203 213 225 / .6);
-            border-radius: 0.25rem;
-        }
-    </style>
     <div class="ltr:flex flex-1 rtl:flex-row-reverse">
         <div class="page-wrapper relative ltr:ml-auto rtl:mr-auto rtl:ml-0 w-[calc(100%-260px)] px-4 pt-[64px] duration-300">
             <div class="xl:w-full">
@@ -18,6 +12,12 @@
                                 <div class="items-center ">
                                     <h1 class="font-medium text-3xl block dark:text-slate-100">{{ $title }}</h1>
                                 </div>
+                                <a href="{{ route('monitor.kartu') }}"
+                                    class="text-decoration-none text-nowrap bg-transparent dark:text-white flex flex-row gap-2 rounded-lg items-center px-1 hover:border-b-4 hover:border-blue-500">
+                                    <span data-lucide="monitor"
+                                        class="w-5 h-5 text-center text-slate-800 dark:text-slate-400"></span>
+                                    <span>Monitoring Kartu</span>
+                                </a>
                             </div>
                         </div>
                     </div>

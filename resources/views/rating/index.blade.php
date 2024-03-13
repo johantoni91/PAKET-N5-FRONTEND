@@ -221,7 +221,7 @@
                                                                             <p
                                                                                 class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
                                                                                 <img class="mr-2 w-6 h-6 rounded-full"
-                                                                                    src="{{ env('API_IMG', '') . $profile['users']['photo'] }}"
+                                                                                    src="{{ env('API_IMG', '') . $profile['profile']['users']['photo'] }}"
                                                                                     alt="Yan">Yan
                                                                             </p>
                                                                             <p

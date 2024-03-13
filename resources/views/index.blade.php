@@ -22,41 +22,6 @@
                                             Ecommerce</li>
                                     </ol> --}}
                                     </div>
-                                    <div>
-                                        <input type="date" name="date" id="date"
-                                            value="{{ now()->format('Y-m-d') }}" max="{{ now()->format('Y-m-d') }}"
-                                            class="rounded-lg bg-blue-300 z-10 border-0 text-transparent focus:border-0 dark:border-slate-700 dark:text-white dark:bg-slate-700">
-                                        <span
-                                            class="absolute right-[2.8rem] px-5 rounded-lg top-[5.1rem] bg-blue-300 p-2 dark:text-white dark:bg-slate-700"
-                                            id="now"></span>
-                                    </div>
-                                    <script>
-                                        var dateString = $("#date").val();
-                                        var date = new Date(dateString);
-
-                                        var options = {
-                                            year: 'numeric',
-                                            month: 'short',
-                                            day: 'numeric'
-                                        };
-                                        var humanDate = date.toLocaleDateString('id-ID', options);
-                                        $("#now").text(humanDate);
-                                        $(document).ready(function() {
-                                            $("#date").on('change', function(e) {
-                                                e.preventDefault()
-                                                var dateString = $("#date").val();
-                                                var date = new Date(dateString);
-
-                                                var options = {
-                                                    year: 'numeric',
-                                                    month: 'short',
-                                                    day: 'numeric'
-                                                };
-                                                var humanDate = date.toLocaleDateString('id-ID', options);
-                                                $("#now").text(humanDate);
-                                            })
-                                        })
-                                    </script>
                                 </div>
                             </div>
                         </div>

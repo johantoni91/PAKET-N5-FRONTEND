@@ -47,7 +47,7 @@
                                     <div class="sm:-mx-6 lg:-mx-8">
                                         <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-10">
                                             <div class="flex flex-row justify-between">
-                                                <button data-modal-target="info" data-modal-toggle="info"
+                                                {{-- <button data-modal-target="info" data-modal-toggle="info"
                                                     class="ms-5 inline-flex justify-evenly text-blue-500 items-center align-middle hover:border hover:border-blue-500 font-medium rounded-lg text-sm py-1 px-2 text-center dark:hover:border-blue-500"
                                                     type="button">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -58,12 +58,12 @@
                                                     </svg> &nbsp;
                                                     Info
                                                 </button>
-                                                @include('partials.modals.access.info')
-                                                <form action="" class="flex flex-row gap-2 items-center">
+                                                @include('partials.modals.access.info') --}}
+                                                {{-- <form action="" class="flex flex-row gap-2 items-center">
                                                     <button title="Tambah Peran" id="tambah_peran"
                                                         class="p-2 rounded-lg hover:border hover:border-blue-500 dark:hover:border dark:hover:border-blue-500 text-blue-500 dark:text-white">Tambah
                                                         Peran</button>
-                                                    <label for="peran" id="label_peran"
+                                                    <label for="peran" id="label_peran" style="text-wrap: nowrap;"
                                                         class="self-end text-nowrap hidden mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                                                         Peran :</label>
                                                     <input type="text" name="peran" id="peran"
@@ -82,7 +82,7 @@
                                                             })
                                                         })
                                                     </script>
-                                                </form>
+                                                </form> --}}
                                             </div>
                                             <div class="flex flex-col gap-5 p-5">
                                                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -105,10 +105,17 @@
                                                         </thead>
                                                         <tbody>
                                                             @foreach ($data as $item)
-                                                                <form action="" method="post">
+                                                                <form action="{{ route('akses.update', $item['id']) }}"
+                                                                    method="post">
                                                                     @csrf
                                                                     @php
-                                                                        $akses = json_decode($item['access'], true);
+                                                                        $val = $item['route'];
+                                                                        $route = null;
+                                                                        if ($val) {
+                                                                            $route = json_decode($item['route'], true);
+                                                                        } else {
+                                                                            $route = null;
+                                                                        }
                                                                     @endphp
                                                                     <tr
                                                                         class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -121,86 +128,95 @@
                                                                                 class="flex flex-row gap-3 justify-center items-center align-middle">
                                                                                 <div
                                                                                     class="flex flex-row gap-1 items-center">
-                                                                                    <input type="checkbox" name="users"
-                                                                                        id="users"
-                                                                                        {{ in_array('users', $akses) ? 'checked' : '' }}
+                                                                                    <input type="checkbox" name="roles[]"
+                                                                                        id="user{{ $item['id'] }}"
+                                                                                        value="user"
+                                                                                        {{ $route == null ? '' : (in_array('user', $route) ? 'checked' : '') }}
                                                                                         class="bg-slate-500 rounded border-0">
-                                                                                    <label for="users"
+                                                                                    <label for="user{{ $item['id'] }}"
                                                                                         class="text-xs font-normal">Users</label>
                                                                                 </div>
                                                                                 <div
                                                                                     class="flex flex-row gap-1 items-center">
-                                                                                    <input type="checkbox" name="satker"
-                                                                                        id="satker"
-                                                                                        {{ in_array('satker', $akses) ? 'checked' : '' }}
+                                                                                    <input type="checkbox" name="roles[]"
+                                                                                        id="satker{{ $item['id'] }}"
+                                                                                        value="satker"
+                                                                                        {{ $route == null ? '' : (in_array('satker', $route) ? 'checked' : '') }}
                                                                                         class="bg-slate-500 rounded border-0">
                                                                                     <label class="text-xs font-normal"
-                                                                                        for="satker">Satker</label>
+                                                                                        for="satker{{ $item['id'] }}">Satker</label>
                                                                                 </div>
                                                                                 <div
                                                                                     class="flex flex-row gap-1 items-center">
-                                                                                    <input type="checkbox" name="pegawai"
-                                                                                        id="pegawai"
-                                                                                        {{ in_array('pegawai', $akses) ? 'checked' : '' }}
+                                                                                    <input type="checkbox" name="roles[]"
+                                                                                        id="pegawai{{ $item['id'] }}"
+                                                                                        value="pegawai"
+                                                                                        {{ $route == null ? '' : (in_array('pegawai', $route) ? 'checked' : '') }}
                                                                                         class="bg-slate-500 rounded border-0">
                                                                                     <label class="text-xs font-normal"
-                                                                                        for="pegawai">Pegawai</label>
+                                                                                        for="pegawai{{ $item['id'] }}">Pegawai</label>
                                                                                 </div>
                                                                                 <div
                                                                                     class="flex flex-row gap-1 items-center">
-                                                                                    <input type="checkbox" name="pengajuan"
-                                                                                        id="pengajuan"
-                                                                                        {{ in_array('pengajuan', $akses) ? 'checked' : '' }}
+                                                                                    <input type="checkbox" name="roles[]"
+                                                                                        id="pengajuan{{ $item['id'] }}"
+                                                                                        value="pengajuan"
+                                                                                        {{ $route == null ? '' : (in_array('pengajuan', $route) ? 'checked' : '') }}
                                                                                         class="bg-slate-500 rounded border-0">
                                                                                     <label class="text-xs font-normal"
-                                                                                        for="pengajuan">Pengajuan</label>
+                                                                                        for="pengajuan{{ $item['id'] }}">Pengajuan</label>
                                                                                 </div>
                                                                                 <div
                                                                                     class="flex flex-row gap-1 items-center">
-                                                                                    <input type="checkbox" name="kartu"
-                                                                                        id="kartu"
-                                                                                        {{ in_array('kartu', $akses) ? 'checked' : '' }}
+                                                                                    <input type="checkbox" name="roles[]"
+                                                                                        id="kartu{{ $item['id'] }}"
+                                                                                        value="kartu"
+                                                                                        {{ $route == null ? '' : (in_array('kartu', $route) ? 'checked' : '') }}
                                                                                         class="bg-slate-500 rounded border-0">
                                                                                     <label class="text-xs font-normal"
-                                                                                        for="kartu">Kartu</label>
+                                                                                        for="kartu{{ $item['id'] }}">Kartu</label>
                                                                                 </div>
                                                                                 <div
                                                                                     class="flex flex-row gap-1 items-center">
-                                                                                    <input type="checkbox"
-                                                                                        name="hak_akses" id="hak_akses"
-                                                                                        {{ in_array('hak_akses', $akses) ? 'checked' : '' }}
+                                                                                    <input type="checkbox" name="roles[]"
+                                                                                        id="hak_akses{{ $item['id'] }}"
+                                                                                        value="akses"
+                                                                                        {{ $route == null ? '' : (in_array('akses', $route) ? 'checked' : '') }}
                                                                                         class="bg-slate-500 rounded border-0">
                                                                                     <label class="text-xs font-normal"
-                                                                                        for="hak_akses">Hak akses</label>
+                                                                                        for="hak_akses{{ $item['id'] }}">Hak
+                                                                                        akses</label>
                                                                                 </div>
                                                                                 <div
                                                                                     class="flex flex-row gap-1 items-center">
-                                                                                    <input type="checkbox"
-                                                                                        name="log_aktivitas"
-                                                                                        id="log_aktivitas"
-                                                                                        {{ in_array('log_aktivitas', $akses) ? 'checked' : '' }}
+                                                                                    <input type="checkbox" name="roles[]"
+                                                                                        id="log_aktivitas{{ $item['id'] }}"
+                                                                                        value="log"
+                                                                                        {{ $route == null ? '' : (in_array('log', $route) ? 'checked' : '') }}
                                                                                         class="bg-slate-500 rounded border-0">
                                                                                     <label class="text-xs font-normal"
-                                                                                        for="hak_akses">Log
+                                                                                        for="log_aktivitas{{ $item['id'] }}">Log
                                                                                         Aktivitas</label>
                                                                                 </div>
                                                                                 <div
                                                                                     class="flex flex-row gap-1 items-center">
-                                                                                    <input type="checkbox" name="faq"
-                                                                                        id="faq"
-                                                                                        {{ in_array('faq', $akses) ? 'checked' : '' }}
+                                                                                    <input type="checkbox" name="roles[]"
+                                                                                        id="faq{{ $item['id'] }}"
+                                                                                        value="faq"
+                                                                                        {{ $route == null ? '' : (in_array('faq', $route) ? 'checked' : '') }}
                                                                                         class="bg-slate-500 rounded border-0">
                                                                                     <label class="text-xs font-normal"
-                                                                                        for="hak_akses">FAQ</label>
+                                                                                        for="faq{{ $item['id'] }}">FAQ</label>
                                                                                 </div>
                                                                                 <div
                                                                                     class="flex flex-row gap-1 items-center">
-                                                                                    <input type="checkbox" name="ulasan"
-                                                                                        id="ulasan"
-                                                                                        {{ in_array('ulasan', $akses) ? 'checked' : '' }}
+                                                                                    <input type="checkbox" name="roles[]"
+                                                                                        id="ulasan{{ $item['id'] }}"
+                                                                                        value="rating"
+                                                                                        {{ $route == null ? '' : (in_array('rating', $route) ? 'checked' : '') }}
                                                                                         class="bg-slate-500 rounded border-0">
                                                                                     <label class="text-xs font-normal"
-                                                                                        for="hak_akses">Ulasan</label>
+                                                                                        for="ulasan{{ $item['id'] }}">Ulasan</label>
                                                                                 </div>
                                                                             </div>
                                                                         </th>
@@ -212,10 +228,10 @@
                                                                                     <i class="text-center text-blue-500"
                                                                                         data-lucide="save"></i>
                                                                                 </button>
-                                                                                <a href="#" title="Hapus Peran">
-                                                                                    <i class="text-center text-red-500"
-                                                                                        data-lucide="trash-2"></i>
-                                                                                </a>
+                                                                                {{-- <a href="#" title="Hapus Peran">
+                                                                                <i class="text-center text-red-500"
+                                                                                    data-lucide="trash-2"></i>
+                                                                            </a> --}}
                                                                             </div>
                                                                         </td>
                                                                     </tr>

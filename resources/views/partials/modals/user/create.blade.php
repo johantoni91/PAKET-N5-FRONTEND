@@ -99,9 +99,9 @@
                                 <select id="roles" name="roles" required
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option selected disabled>-- Pilih Roles --</option>
-                                    <option value="superadmin">Superadmin</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="pegawai">Pegawai</option>
+                                    @foreach ($roles as $item)
+                                        <option value="{{ $item['role'] }}">{{ $item['role'] }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="flex flex-row gap-5">

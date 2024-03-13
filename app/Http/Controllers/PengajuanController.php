@@ -14,15 +14,12 @@ class PengajuanController extends Controller
     public function index()
     {
         try {
-            if (profile::getUser()['roles'] == 'superadmin') {
-                $data = PegawaiApi::get()['data'];
-                return view($this->view, [
-                    'view'      => $this->view,
-                    'profile'   => profile::getUser(),
-                    'title'     => $this->title,
-                    'data'      => $data
-                ]);
-            }
+            $data = PegawaiApi::get()['data'];
+            return view($this->view, [
+                'view'      => $this->view,
+                'title'     => $this->title,
+                'data'      => $data
+            ]);
             return redirect()->route('dashboard');
         } catch (\Throwable $th) {
             Session::forget('user');

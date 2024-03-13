@@ -17,16 +17,12 @@ class SatkerController extends Controller
     function index()
     {
         try {
-            $profile = profile::getUser();
-            if ($profile['roles'] == 'superadmin') {
-                $data = SatkerApi::get();
-                return view($this->view, [
-                    'view'    => $this->view,
-                    'title'   => $this->title,
-                    'data'    => $data,
-                    'profile' => $profile
-                ]);
-            }
+            $data = SatkerApi::get();
+            return view($this->view, [
+                'view'    => $this->view,
+                'title'   => $this->title,
+                'data'    => $data
+            ]);
             return redirect()->route('dashboard');
         } catch (\Throwable $th) {
             Alert::error('Kesalahan', $th->getMessage());
@@ -38,7 +34,6 @@ class SatkerController extends Controller
     function search()
     {
         try {
-            $profile = profile::getUser();
             $input = [
                 'satker_name'    => request('satker'),
                 'satker_type'    => request('type'),
@@ -64,7 +59,6 @@ class SatkerController extends Controller
                     'title'   => $this->title,
                     'data'    => $data,
                     'input'   => $input,
-                    'profile' => $profile
                 ]
             );
         } catch (\Throwable $th) {

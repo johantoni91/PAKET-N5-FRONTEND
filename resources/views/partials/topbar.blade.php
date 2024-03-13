@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="flex-grow flex-1 ms-0.5">
                                         <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300">
-                                            {{ ucfirst($profile['users']['username']) }}
+                                            {{ ucfirst($profile['profile']['users']['username']) }}
                                             @if (session('status'))
                                                 <small class="text-gray-400">
                                                     ({{ now()->diffForHumans() }})</small>
@@ -67,7 +67,7 @@
                     class="dropdown-toggle flex items-center rounded-full text-sm
             focus:bg-none focus:ring-0 dark:focus:ring-0 md:me-0"
                     id="user-profile" aria-expanded="false" data-fc-autoclose="both" data-fc-type="dropdown">
-                    @if ($profile['users']['photo'])
+                    @if ($profile['profile']['users']['photo'])
                         <img src="{{ env('API_IMG', '') . $profile['users']['photo'] }}" alt=""
                             class="h-8 w-8 rounded-full">
                     @else
@@ -80,7 +80,7 @@
 
                     <span class="ltr:ms-2 rtl:ms-0 rtl:me-2 hidden text-left xl:block">
                         <span
-                            class="block font-medium text-slate-600 dark:text-gray-300">{{ ucfirst($profile['users']['username']) }}</span>
+                            class="block font-medium text-slate-600 dark:text-gray-300">{{ ucfirst($profile['profile']['users']['username']) }}</span>
                     </span>
                 </button>
 

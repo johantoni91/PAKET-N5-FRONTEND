@@ -10,7 +10,7 @@
 
 <link rel="stylesheet" href="{{ asset('assets/libs/icofont/icofont.min.css') }}">
 <link href="{{ asset('assets/libs/flatpickr/flatpickr.min.css') }}" type="text/css" rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('assets/css/tailwind.min.css') }}">
+<link rel="stylesheet" href="../assets/css/tailwind.min.css">
 <link href="{{ asset('assets/libs/prismjs/themes/prism-twilight.min.css') }}" type="text/css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
@@ -20,8 +20,8 @@
 <body data-sidebar-size="default" data-theme-layout="vertical" class="bg-[#EEF0FC] dark:bg-gray-900">
     @include('sweetalert::alert')
     @if (session('welcome'))
-        <div
-            class=" flex flex-row items-center fixed z-50 p-3 px-8 bottom-10 right-10 rounded-lg bg-purple-600 text-white dark:bg-slate-700 dark:text-white shadow-lg shadow-purple-600 dark:shadow-white">
+        <div style="bottom: 2.5rem; right: 2.5rem;"
+            class=" flex flex-row items-center fixed z-50 p-3 px-8 rounded-lg bg-purple-600 text-white dark:bg-slate-700 dark:text-white shadow-lg shadow-purple-600 dark:shadow-white">
             <span data-lucide="hand-metal" class="w-5 h-5"></span>
             <small>&nbsp; {{ session('welcome') }}</small>
         </div>
@@ -29,8 +29,6 @@
     @yield('content')
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-<script src="https://cdn.datatables.net/2.0.0/js/dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/2.0.0/js/dataTables.tailwindcss.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
@@ -40,7 +38,6 @@
 <script src="{{ asset('assets/libs/@frostui/tailwindcss/frostui.js') }}"></script>
 <script src="{{ asset('assets/libs/prismjs/prism.js') }}"></script>
 <script src="{{ asset('assets/js/app.js') }}"></script>
-<script src="{{ asset('assets/js/pages/datatables.init.js') }}"></script>
 @stack('scripts')
 </body>
 

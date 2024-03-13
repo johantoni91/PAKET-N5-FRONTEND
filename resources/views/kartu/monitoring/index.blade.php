@@ -12,7 +12,22 @@
                             <div class="flex flex-wrap justify-between">
                                 <div class="items-center ">
                                     <h1 class="font-medium text-3xl block dark:text-slate-100">{{ $title }}</h1>
+                                    <ol class="list-reset flex text-sm">
+                                        <li><a href="{{ route('kartu') }}" class="text-gray-500 dark:text-slate-400">Layout
+                                                Kartu</a>
+                                        </li>
+                                        <li><span class="text-gray-500 dark:text-slate-400 mx-2">/</span></li>
+                                        <li><a href="{{ route('monitor.kartu') }}"
+                                                class="text-primary-500 dark:text-blue-500">Monitor Kartu</a>
+                                        </li>
+                                    </ol>
                                 </div>
+                                <a href="{{ route('kartu') }}"
+                                    class="text-decoration-none text-nowrap bg-transparent dark:text-white flex flex-row gap-2 rounded-lg items-center px-1 hover:border-b-4 hover:border-blue-500">
+                                    <span data-lucide="monitor"
+                                        class="w-5 h-5 text-center text-slate-800 dark:text-slate-400"></span>
+                                    <span>Kembali</span>
+                                </a>
                             </div>
                         </div>
                     </div>

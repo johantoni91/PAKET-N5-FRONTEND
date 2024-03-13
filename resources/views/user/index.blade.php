@@ -58,9 +58,9 @@
                                                         </svg>
                                                     </button>
                                                     @include('partials.modals.user.search')
-                                                    @if (!request()->routeIs('user.index'))
+                                                    @if (!request()->routeIs('user'))
                                                         <div class="flex flex-row justify-end">
-                                                            <a href="{{ route('user.index') }}"
+                                                            <a href="{{ route('user') }}"
                                                                 class="py-1 px-2 rounded-lg flex flex-row items-center justify-center gap-2 text-blue-500 dark:text-blue-500 dark:text-blue-500 dark:hover:text-white dark:border-blue-500 dark:hover:bg-blue-500 dark:hover:shadow dark:hover:shadow-white hover:bg-blue-500 hover:text-white border border-blue-500">
                                                                 Filter <i data-lucide="search-x"></i>
                                                             </a>
@@ -131,7 +131,7 @@
                                                                             data-modal-toggle="update{{ $item['id'] }}"><i
                                                                                 class="align-baseline icofont-edit text-lg text-gray-500 dark:text-gray-400"></i></button>
                                                                         @include('partials.modals.user.update')
-                                                                        @if ($item['users_id'] != $profile['users_id'])
+                                                                        @if ($item['users_id'] != $profile['profile']['users_id'])
                                                                             <input type="hidden"
                                                                                 value="{{ $item['users_id'] }}"
                                                                                 id="del{{ $item['id'] }}">
@@ -179,7 +179,7 @@
                                                                     </td>
                                                                     <td>
                                                                         <a href="{{ route('user.status', [$item['users_id'], $item['status']]) }}"
-                                                                            class="align-baseline flex flex-row {{ $item['status'] == '1' ? 'hover:drop-shadow-green' : 'hover:drop-shadow-red' }}">
+                                                                            class="align-baseline justify-center flex flex-row {{ $item['status'] == '1' ? 'hover:drop-shadow-green' : 'hover:drop-shadow-red' }}">
                                                                             @if ($item['status'] == '1')
                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                     fill="none" viewBox="0 0 24 24"

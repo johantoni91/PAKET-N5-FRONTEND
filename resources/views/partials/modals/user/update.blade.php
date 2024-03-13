@@ -95,16 +95,12 @@
                                 <label for="roles{{ $item['id'] }}" class="my-auto w-24">Pilih roles</label>
                                 <select id="roles{{ $item['id'] }}" name="roles" required
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option {{ $item['roles'] == 'superadmin' ? 'selected' : '' }} value="superadmin">
-                                        Superadmin</option>
-                                    <option {{ $item['roles'] == 'admin' ? 'selected' : '' }} value="admin">Admin
-                                    </option>
-                                    <option {{ $item['roles'] == 'pegawai' ? 'selected' : '' }} value="pegawai">
-                                        Pegawai
-                                    </option>
+                                    @foreach ($roles as $role)
+                                        <option {{ $item['roles'] == $role['role'] ? 'selected' : '' }}
+                                            value="{{ $role['role'] }}">
+                                            {{ $role['role'] }}</option>
+                                    @endforeach
                                 </select>
-
-                                @yield('error_roles')
                             </div>
                             <div class="flex flex-row gap-5">
                                 <label for="email{{ $item['id'] }}" class="my-auto w-24">Email</label>

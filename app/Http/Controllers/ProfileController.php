@@ -15,9 +15,8 @@ class ProfileController extends Controller
     function index()
     {
         try {
-            $profile = profile::getUser();
             $title = 'Profil User';
-            return view('profile.index', compact('profile', 'title'));
+            return view('profile.index', compact('title'));
         } catch (\Throwable $th) {
             Session::forget('user');
             return redirect()->route('logout');

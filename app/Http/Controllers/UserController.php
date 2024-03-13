@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\API\RoleApi;
 use App\API\UserApi;
 use App\Exports\UserExport;
 use App\Helpers\profile;
@@ -19,20 +20,17 @@ class UserController extends Controller
 {
     private $title = 'Manajemen User';
     private $view  = 'user.index';
+
     public function index()
     {
         try {
-            $profile = profile::getUser();
-            if ($profile['roles'] == 'superadmin') {
-                $data = UserApi::get()['data'];
-                return view($this->view, [
-                    'view'      => $this->view,
-                    'title'     => $this->title,
-                    'profile'   => $profile,
-                    'data'      => $data
-                ]);
-            }
-            return redirect()->route('dashboard');
+            $data = UserApi::get()['data'];
+            return view($this->view, [
+                'view'      => $this->view,
+                'title'     => $this->title,
+                'data'      => $data,
+                'roles'     => RoleApi::get()['data']
+            ]);
         } catch (\Throwable $th) {
             Session::forget('user');
             return redirect()->route('logout');
@@ -42,7 +40,6 @@ class UserController extends Controller
     public function search()
     {
         try {
-            $profile = profile::getUser();
             $input = [
                 'nip'       => request('nip'),
                 'nrp'       => request('nrp'),
@@ -73,8 +70,7 @@ class UserController extends Controller
                     'view'    => $this->view,
                     'title'   => $this->title,
                     'data'    => $data,
-                    'input'   => $input,
-                    'profile' => $profile
+                    'input'   => $input
                 ]
             );
         } catch (\Throwable $th) {
@@ -105,13 +101,13 @@ class UserController extends Controller
             $res = UserApi::insert($photo, $data);
             if ($res->failed()) {
                 Alert::error('Gagal', $res->json()['message']);
-                return redirect()->route('user.index');
+                return redirect()->route('user');
             }
 
             Alert::success('Berhasil', 'Berhasil menambah user');
             session()->flash('status', 'Menambahkan user ' . $request->username);
-            session()->flash('route', route('user.index'));
-            return redirect()->route('user.index');
+            session()->flash('route', route('user'));
+            return redirect()->route('user');
         }
     }
 
@@ -157,12 +153,12 @@ class UserController extends Controller
             Alert::success('Berhasil', 'User berhasil diubah');
 
             session()->flash('status', 'Mengubah data user ' . $request->username);
-            session()->flash('route', route('user.index'));
+            session()->flash('route', route('user'));
             if (request()->routeIs('profile')) {
                 Alert::success('Berhasil', 'Mengubah data profil');
                 return back();
             }
-            return redirect()->route('user.index');
+            return redirect()->route('user');
         }
     }
 
@@ -176,8 +172,8 @@ class UserController extends Controller
         $user = UserApi::find($id);
         Alert::success('Berhasil', 'Status telah diubah');
         session()->flash('status', 'Mengubah status user ' . $user->json()['data']['users']["username"]);
-        session()->flash('route', route('user.index'));
-        return redirect()->route('user.index');
+        session()->flash('route', route('user'));
+        return redirect()->route('user');
     }
 
     public function destroy(Request $req)
@@ -188,7 +184,7 @@ class UserController extends Controller
             if (!$del->failed()) {
                 Alert::success('Berhasil', 'User berhasil dihapus');
                 session()->flash('status', 'Menghapus user ' . $user['data']['users']['name']);
-                session()->flash('route', route('user.index'));
+                session()->flash('route', route('user'));
                 return response($del->json()['message'], 200);
             } else {
                 Alert::error('Terjadi kesalahan', $del->json()['error']);

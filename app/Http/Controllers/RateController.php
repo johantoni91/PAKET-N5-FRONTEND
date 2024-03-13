@@ -14,8 +14,7 @@ class RateController extends Controller
     {
         return view($this->view, [
             'view'      => $this->view,
-            'title'     => $this->title,
-            'profile'   => profile::getUser()
+            'title'     => $this->title
         ]);
     }
 }

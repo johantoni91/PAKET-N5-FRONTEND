@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\API\PegawaiApi;
 use App\API\SatkerApi;
+use App\API\Simkari;
 use App\Helpers\profile;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -19,20 +20,20 @@ class KepegawaianController extends Controller
     public function index()
     {
         try {
-            if (profile::getUser()['roles'] == 'superadmin') {
-                $data = PegawaiApi::get()['data'];
-                return view($this->view, [
-                    'view'      => $this->view,
-                    'profile'   => profile::getUser(),
-                    'title'     => $this->title,
-                    'satker'    => SatkerApi::getSatkerName()['data'],
-                    'data'      => $data
-                ]);
-            }
-            return redirect()->route('dashboard');
+            $data = PegawaiApi::get()['data'];
+            return view($this->view, [
+                'view'      => $this->view,
+                'title'     => $this->title,
+                'satker'    => SatkerApi::getSatkerName()['data'],
+                'data'      => $data
+            ]);
         } catch (\Throwable $th) {
-            Session::forget('user');
-            return redirect()->route('logout');
+            return view($this->view, [
+                'view'      => $this->view,
+                'title'     => $this->title,
+                'satker'    => SatkerApi::getSatkerName()['data'],
+                'data'      => null
+            ]);
         }
     }
 
@@ -58,15 +59,12 @@ class KepegawaianController extends Controller
                     Alert::error('error', $res['message']);
                     return back();
                 }
-                if (profile::getUser()['roles'] == 'superadmin') {
-                    return view($this->view, [
-                        'view'      => $this->view,
-                        'profile'   => profile::getUser(),
-                        'title'     => $this->title,
-                        'satker'    => SatkerApi::getSatkerName()['data'],
-                        'data'      => $res['data']
-                    ]);
-                }
+                return view($this->view, [
+                    'view'      => $this->view,
+                    'title'     => $this->title,
+                    'satker'    => SatkerApi::getSatkerName()['data'],
+                    'data'      => $res['data']
+                ]);
                 return redirect()->route('dashboard');
             }
         } catch (\Throwable $th) {
@@ -167,5 +165,19 @@ class KepegawaianController extends Controller
         }
         Alert::success('Berhasil', 'Pegawai telah dihapus');
         return back();
+    }
+
+    public function import()
+    {
+        try {
+            $res = Simkari::getPegawai();
+            if ($res) {
+            }
+            Alert::warning('Notifikasi', 'Terjadi kesalahan');
+            return back();
+        } catch (\Throwable $th) {
+            Alert::error('Error', 'Terjadi kesalahan');
+            return back();
+        }
     }
 }
