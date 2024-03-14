@@ -21,8 +21,8 @@
 <body data-sidebar-size="default" data-theme-layout="vertical" class="bg-[#EEF0FC] dark:bg-gray-900">
     @include('sweetalert::alert')
     @if (session('welcome'))
-        <div style="bottom: 2.5rem; right: 2.5rem;"
-            class=" flex flex-row items-center fixed z-50 p-3 px-8 rounded-lg bg-purple-600 text-white dark:bg-slate-700 dark:text-white shadow-lg shadow-purple-600 dark:shadow-white">
+        <div style="position:fixed; z-index: 99; bottom: 2.5rem; right: 2.5rem;"
+            class=" flex flex-row items-center p-3 px-8 rounded-lg bg-purple-600 text-white dark:bg-slate-700 dark:text-white shadow-lg shadow-purple-600 dark:shadow-white">
             <span data-lucide="hand-metal" class="w-5 h-5"></span>
             <small>&nbsp; {{ session('welcome') }}</small>
         </div>
