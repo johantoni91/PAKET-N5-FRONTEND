@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="{{ asset('assets/libs/icofont/icofont.min.css') }}">
 <link href="{{ asset('assets/libs/flatpickr/flatpickr.min.css') }}" type="text/css" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/tailwind.min.css">
+<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 <link href="{{ asset('assets/libs/prismjs/themes/prism-twilight.min.css') }}" type="text/css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />

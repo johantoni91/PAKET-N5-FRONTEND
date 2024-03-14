@@ -178,7 +178,8 @@
                                                                                 </div>
                                                                                 <div
                                                                                     class="flex flex-row gap-1 items-center">
-                                                                                    <input type="checkbox" name="roles[]"
+                                                                                    <input type="checkbox" @readonly(true)
+                                                                                        name="roles[]"
                                                                                         id="hak_akses{{ $item['id'] }}"
                                                                                         value="akses"
                                                                                         {{ $route == null ? '' : (in_array('akses', $route) ? 'checked' : '') }}

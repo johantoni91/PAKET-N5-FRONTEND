@@ -2,12 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use App\API\UserApi;
+use App\API\RoleApi;
 use App\Helpers\profile;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 
 class Auth
@@ -21,13 +20,11 @@ class Auth
      */
     public function handle(Request $request, Closure $next)
     {
-        // Checking login by session
         if (!(Session::has('user'))) {
             Session::flush();
             Cookie::forget('token');
             return redirect()->route('login');
         }
-
         return $next($request);
     }
 }

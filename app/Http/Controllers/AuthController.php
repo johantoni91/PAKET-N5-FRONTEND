@@ -41,39 +41,44 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $agent = new Agent();
-        $res = Http::post(env('API_URL', '') . '/login', [
-            'username' => $request->input('username'),
-            'password' => $request->input('password'),
-            'browser' => $agent->browser(),
-            'browser_version' => $agent->version($agent->browser()),
-            'os' => $agent->platform(),
-            'ip_address' => $request->ip(),
-            'mobile' => $agent->device(),
-        ]);
+        try {
+            $agent = new Agent();
+            $res = Http::post(env('API_URL', '') . '/login', [
+                'username' => $request->input('username'),
+                'password' => $request->input('password'),
+                'browser' => $agent->browser(),
+                'browser_version' => $agent->version($agent->browser()),
+                'os' => $agent->platform(),
+                'ip_address' => $request->ip(),
+                'mobile' => $agent->device(),
+            ]);
 
-        if ($res->status() == 500) {
+            if ($res->status() == 500) {
+                Alert::error('Error', 'Server sedang bermasalah');
+                return view('errors.500');
+            }
+
+            if (!$res->successful()) {
+                Alert::error('Gagal', 'Login gagal');
+                return back();
+            }
+
+            if ($res->json()['status'] == false) {
+                Alert::warning('Akun nonaktif', $res->json()['message']);
+                return back();
+            }
+
+            $data = $res->json();
+            Session::put('user', $data['data']);
+            if ($request->remember == 1) {
+                Cookie::make('token', $data['token'], 60 * 60 * 24);
+            }
+            session()->flash('welcome', 'Selamat datang ' . $data['data']['user']['users']['username'] . '!');
+            return redirect()->route('dashboard');
+        } catch (\Throwable $th) {
             Alert::error('Error', 'Server sedang bermasalah');
             return view('errors.500');
         }
-
-        if (!$res->successful()) {
-            Alert::error('Gagal', 'Login gagal');
-            return back();
-        }
-
-        if ($res->json()['status'] == false) {
-            Alert::warning('Akun nonaktif', $res->json()['message']);
-            return back();
-        }
-
-        $data = $res->json();
-        Session::put('user', $data['data']);
-        if ($request->remember == 1) {
-            Cookie::make('token', $data['token'], 60 * 60 * 24);
-        }
-        session()->flash('welcome', 'Selamat datang ' . $data['data']['user']['users']['username'] . '!');
-        return redirect()->route('dashboard');
     }
 
     public function logout()
