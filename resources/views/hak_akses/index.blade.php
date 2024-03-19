@@ -134,7 +134,7 @@
                                                                                         {{ $route == null ? '' : (in_array('user', $route) ? 'checked' : '') }}
                                                                                         class="bg-slate-500 rounded border-0">
                                                                                     <label for="user{{ $item['id'] }}"
-                                                                                        class="text-xs font-normal">Users</label>
+                                                                                        class="text-xs font-normal">Pengguna</label>
                                                                                 </div>
                                                                                 <div
                                                                                     class="flex flex-row gap-1 items-center">
@@ -169,12 +169,34 @@
                                                                                 <div
                                                                                     class="flex flex-row gap-1 items-center">
                                                                                     <input type="checkbox" name="roles[]"
-                                                                                        id="kartu{{ $item['id'] }}"
-                                                                                        value="kartu"
-                                                                                        {{ $route == null ? '' : (in_array('kartu', $route) ? 'checked' : '') }}
+                                                                                        id="monitor_kartu{{ $item['id'] }}"
+                                                                                        value="monitor.kartu"
+                                                                                        {{ $route == null ? '' : (in_array('monitor.kartu', $route) ? 'checked' : '') }}
                                                                                         class="bg-slate-500 rounded border-0">
                                                                                     <label class="text-xs font-normal"
-                                                                                        for="kartu{{ $item['id'] }}">Kartu</label>
+                                                                                        for="monitor_kartu{{ $item['id'] }}">Monitoring
+                                                                                        Kartu</label>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="flex flex-row gap-1 items-center">
+                                                                                    <input type="checkbox" name="roles[]"
+                                                                                        id="layout_kartu{{ $item['id'] }}"
+                                                                                        value="layout.kartu"
+                                                                                        {{ $route == null ? '' : (in_array('layout.kartu', $route) ? 'checked' : '') }}
+                                                                                        class="bg-slate-500 rounded border-0">
+                                                                                    <label class="text-xs font-normal"
+                                                                                        for="layout_kartu{{ $item['id'] }}">Tampilan
+                                                                                        Kartu</label>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="flex flex-row gap-1 items-center">
+                                                                                    <input type="checkbox" name="roles[]"
+                                                                                        id="perangkat{{ $item['id'] }}"
+                                                                                        value="perangkat"
+                                                                                        {{ $route == null ? '' : (in_array('perangkat', $route) ? 'checked' : '') }}
+                                                                                        class="bg-slate-500 rounded border-0">
+                                                                                    <label class="text-xs font-normal"
+                                                                                        for="perangkat{{ $item['id'] }}">Perangkat</label>
                                                                                 </div>
                                                                                 <div
                                                                                     class="flex flex-row gap-1 items-center">

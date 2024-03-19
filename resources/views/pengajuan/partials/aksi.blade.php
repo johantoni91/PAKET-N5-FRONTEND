@@ -37,7 +37,27 @@
                                     id: id
                                 },
                                 success: function(data) {
-                                    location.reload();
+                                    Swal.fire({
+                                        title: "Token pencetakan",
+                                        text: data['token'],
+                                        icon: "success",
+                                        confirmButtonText: "Save",
+                                        footer: 'Harap simpan token di atas untuk melakukan pencetakan!',
+                                        showClass: {
+                                            popup: `animate__animated
+                                                    animate__fadeInUp
+                                                    animate__faster`
+                                        },
+                                        hideClass: {
+                                            popup: `animate__animated
+                                                    animate__fadeOutDown
+                                                    animate__faster`
+                                        }
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            location.reload()
+                                        }
+                                    });
                                 },
                                 error: function(xhr) {
 
@@ -101,7 +121,26 @@
         </script>
     </div>
 @elseif($item['status'] == 2)
-    <a href="{{ route('kartu') }}" class="text-blue-500 font-bold hover:animate-ping">Cetak</a>
+    <div class="flex flex-row justify-center gap-2 items-center">
+        <h1 class="font-bold dark:text-green-500 text-green-500">Telah disetujui</h1>
+        |
+        <button class="font-bold" id="token{{ $item['id'] }}">
+            Token
+        </button>
+        <script>
+            $(document).ready(function() {
+                $("#token{{ $item['id'] }}").click(function(e) {
+                    Swal.fire({
+                        title: "Token pencetakan",
+                        text: "{{ $item['token'] }}",
+                        icon: "success"
+                    })
+                })
+            })
+        </script>
+    </div>
 @elseif($item['status'] == 3)
     <small>Selesai</small>
+@else
+    <h1 class="text-red-500 font-bold text-center">ditolak</h1>
 @endif

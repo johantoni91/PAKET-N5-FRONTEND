@@ -25,6 +25,7 @@ class Auth
             Cookie::forget('token');
             return redirect()->route('login');
         }
+
         return $next($request);
     }
 }

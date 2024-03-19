@@ -6,9 +6,7 @@ use App\API\LogApi;
 use App\API\RoleApi;
 use App\API\SatkerApi;
 use App\Helpers\profile;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PaginationController extends Controller
@@ -34,7 +32,7 @@ class PaginationController extends Controller
                 'roles'     => RoleApi::get()
             ]);
         } catch (\Throwable $th) {
-            Alert::error('Error', $th->getMessage());
+            Alert::warning('Peringatan', 'Sudah awal / akhir halaman!');
             return back();
         }
     }

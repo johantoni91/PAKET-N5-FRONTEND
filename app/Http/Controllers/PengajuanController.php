@@ -12,7 +12,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 class PengajuanController extends Controller
 {
     private $view = 'pengajuan.index';
-    private $title = 'Manajemen Pengajuan Kartu';
+    private $title = 'Manajemen Pengajuan';
 
     function index()
     {
@@ -61,7 +61,10 @@ class PengajuanController extends Controller
     {
         $res = PengajuanApi::approve($req->id);
         if ($res['status'] == true) {
-            return response('Berhasil menyetujui pengajuan', 200);
+            return response()->json([
+                'message' => 'Berhasil menyetujui pengajuan',
+                'token'   => $res['data']['token']
+            ], 200);
         }
         return response('Gagal menyetujui pengajuan', 400);
     }

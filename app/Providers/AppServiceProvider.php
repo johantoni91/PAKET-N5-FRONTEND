@@ -28,18 +28,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        try {
-            View::composer('*', function ($view) {
-                $view->with('profile', [
-                    'profile' => request()->routeIs('login') ? '' : profile::getUser(),
-                    'routes'  => request()->routeIs('login') ? '' : json_decode(RoleApi::find(profile::getUser()['roles'])['route'], true),
-                    'icons'   => request()->routeIs('login') ? '' : json_decode(RoleApi::find(profile::getUser()['roles'])['icon'], true),
-                    'titles'  => request()->routeIs('login') ? '' : json_decode(RoleApi::find(profile::getUser()['roles'])['title'], true)
-                ]);
-            });
-        } catch (\Throwable $th) {
-            Alert::error('Error', 'Server sedang bermasalah');
-            return view('errors.500');
-        }
+        View::composer('*', function ($view) {
+            try {
+                if (!request()->routeIs('login')) {
+                    profile::access();
+                    $view->with('profile', [
+                        'profile' => profile::getUser(),
+                        'routes'  => json_decode(RoleApi::find(profile::getUser()['roles'])['route'], true),
+                        'icons'   => json_decode(RoleApi::find(profile::getUser()['roles'])['icon'], true),
+                        'titles'  => json_decode(RoleApi::find(profile::getUser()['roles'])['title'], true)
+                    ]);
+                }
+            } catch (\Throwable $th) {
+                return view('errors.500');
+            }
+        });
     }
 }

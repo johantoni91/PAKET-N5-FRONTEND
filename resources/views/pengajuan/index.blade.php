@@ -41,7 +41,7 @@
                                             @include('partials.modals.pengajuan.search')
                                         @endif
                                     </div>
-                                </div><!--end header-title-->
+                                </div>
                                 <div class="grid grid-cols-1 p-4 overflow-scroll">
                                     <div class="sm:-mx-6 lg:-mx-8">
                                         <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-10">
@@ -58,18 +58,18 @@
                                                                         Nama
                                                                     </th>
                                                                     <th scope="col" class="px-6 py-3">
-                                                                        Status Pengajuan
+                                                                        Pengajuan
                                                                     </th>
                                                                     <th scope="col"
                                                                         class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                                                                        Aksi
+                                                                        Persetujuan
                                                                     </th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 @if (!$data['data'])
                                                                     <tr>
-                                                                        <th colspan="7">
+                                                                        <th colspan="3">
                                                                             <p
                                                                                 class="text-red-500 mt-3 text-center text-xs italic">
                                                                                 Tidak ada pengajuan</p>
@@ -91,8 +91,8 @@
                                                                                 </div>
                                                                             </th>
                                                                             <td
-                                                                                class="px-6 py-4 dark:text-white text-center">
-                                                                                @include('pengajuan.partials.status')
+                                                                                class="px-6 py-4 dark:text-white text-center font-bold">
+                                                                                {{ $item['kartu'] }}
                                                                             </td>
                                                                             <td
                                                                                 class="px-10 py-4 text-center dark:text-white bg-gray-50 dark:bg-gray-800">
@@ -103,7 +103,9 @@
                                                                 @endif
                                                             </tbody>
                                                         </table>
-                                                        @include('partials.pagination')
+                                                        @if (!$data['data'])
+                                                            @include('partials.pagination')
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 @if (!request()->routeIs('pengajuan'))

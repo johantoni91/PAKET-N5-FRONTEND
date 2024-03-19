@@ -23,6 +23,7 @@
         "datatables.net-searchbuilder-bs5": "^1.7.0",
         "datatables.net-searchpanes-bs5": "^2.3.0",
         "flowbite": "^2.2.1",
+        "grapesjs": "^0.21.9",
         "sweetalert2": "^11.10.5"
     }
 }

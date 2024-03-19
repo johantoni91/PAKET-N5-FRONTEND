@@ -10,11 +10,13 @@
 
 <link rel="stylesheet" href="{{ asset('assets/libs/icofont/icofont.min.css') }}">
 <link href="{{ asset('assets/libs/flatpickr/flatpickr.min.css') }}" type="text/css" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/tailwind.min.css">
+<link rel="stylesheet" href="{{ asset('assets/css/tailwind.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 <link href="{{ asset('assets/libs/prismjs/themes/prism-twilight.min.css') }}" type="text/css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+<link rel="stylesheet" href="https://unpkg.com/grapesjs@0.21.9/dist/css/grapes.min.css">
+<script src="https://unpkg.com/grapesjs@0.21.9/dist/grapes.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 @vite('resources/css/app.css')
 

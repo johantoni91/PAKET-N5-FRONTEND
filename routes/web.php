@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\AccessController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\KartuController;
 use App\Http\Controllers\KepegawaianController;
+use App\Http\Controllers\LayoutKartuController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\MonitorKartuController;
 use App\Http\Controllers\PaginationController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\ProfileController;
@@ -78,11 +81,14 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/pengajuan/approve', [PengajuanController::class, 'approve'])->name('pengajuan.approve');
     Route::post('/pengajuan/reject', [PengajuanController::class, 'reject'])->name('pengajuan.reject');
 
-    // KARTU
-    Route::get('/kartu', [KartuController::class, 'index'])->name('kartu');
+    // LAYOUT KARTU
+    Route::get('/layout/kartu', [LayoutKartuController::class, 'index'])->name('layout.kartu');
 
     //MONITORING KARTU
-    Route::get('/monitor/kartu', [KartuController::class, 'monitor'])->name('monitor.kartu');
+    Route::get('/monitor/kartu', [MonitorKartuController::class, 'index'])->name('monitor.kartu');
+
+    // PERANGKAT
+    Route::get('/devices', [DeviceController::class, 'index'])->name('perangkat');
 
     // FAQ
     Route::get('/faq', [FaqController::class, 'index'])->name('faq');
@@ -92,4 +98,6 @@ Route::middleware(['auth'])->group(function () {
 
     //RATING
     Route::get('/rating', [RateController::class, 'index'])->name('rating');
+
+    Route::get('kartu/layout', [LayoutKartuController::class, 'grape'])->name('grape');
 });

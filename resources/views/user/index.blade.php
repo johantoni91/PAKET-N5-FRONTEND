@@ -73,21 +73,24 @@
                                                     <table
                                                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                         <thead
-                                                            class="text-xs border-b-2 border-slate-500 text-center text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                                            class="text-xs border-b-2 border-slate-500 text-center text-gray-700 uppercase dark:text-gray-400">
                                                             <tr>
-                                                                <th scope="col" class="px-6 py-3">
+                                                                <th scope="col"
+                                                                    class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
                                                                     Nama
                                                                 </th>
                                                                 <th scope="col" class="px-6 py-3">
                                                                     Email
                                                                 </th>
-                                                                <th scope="col" class="px-6 py-3">
+                                                                <th scope="col"
+                                                                    class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
                                                                     Phone
                                                                 </th>
                                                                 <th scope="col" class="px-6 py-3">
                                                                     Role
                                                                 </th>
-                                                                <th scope="col" class="px-6 py-3">
+                                                                <th scope="col"
+                                                                    class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
                                                                     Aksi
                                                                 </th>
                                                                 <th scope="col" class="px-6 py-3">
@@ -98,9 +101,9 @@
                                                         <tbody>
                                                             @foreach ($data['data'] as $item)
                                                                 <tr
-                                                                    class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                                                    class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                                                     <th
-                                                                        class="text-start px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                        class="px-4 py-2 text-black whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
                                                                         @if ($item['users']['photo'])
                                                                             <img src="{{ env('API_IMG', '') . $item['users']['photo'] }}"
                                                                                 alt=""
@@ -116,16 +119,18 @@
                                                                             </svg> {{ $item['users']['name'] }}
                                                                         @endif
                                                                     </th>
-                                                                    <td class="text-center px-6 py-4">
+                                                                    <td class="text-center px-6 py-4 dark:text-white">
                                                                         {{ $item['users']['email'] }}
                                                                     </td>
-                                                                    <td class="text-center px-6 py-4">
+                                                                    <td
+                                                                        class="text-center px-6 py-4 dark:text-white bg-gray-50 dark:bg-gray-800 text-center">
                                                                         {{ $item['users']['phone'] }}
                                                                     </td>
-                                                                    <td class="text-center px-6 py-4">
+                                                                    <td class="text-center px-6 py-4 dark:text-white">
                                                                         {{ $item['roles'] }}
                                                                     </td>
-                                                                    <td class="text-center px-6 py-4">
+                                                                    <td
+                                                                        class="text-center px-6 py-4 dark:text-white bg-gray-50 dark:bg-gray-800 text-center">
                                                                         <button type="button"
                                                                             data-modal-target="update{{ $item['id'] }}"
                                                                             data-modal-toggle="update{{ $item['id'] }}"><i
