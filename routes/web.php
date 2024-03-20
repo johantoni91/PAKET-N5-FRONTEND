@@ -83,6 +83,12 @@ Route::middleware(['auth'])->group(function () {
 
     // LAYOUT KARTU
     Route::get('/layout/kartu', [LayoutKartuController::class, 'index'])->name('layout.kartu');
+    Route::post('/layout/kartu/store', [LayoutKartuController::class, 'store'])->name('layout.kartu.store');
+    Route::post('/layout/kartu/update/{id}', [LayoutKartuController::class, 'update'])->name('layout.kartu.update');
+    Route::post('/layout/kartu/destroy', [LayoutKartuController::class, 'destroy'])->name('layout.kartu.destroy');
+    Route::get('/kartu/{id}/load-kartu', [LayoutKartuController::class, 'loadKartu']);
+    Route::patch('/kartu/{id}/store-kartu', [LayoutKartuController::class, 'storeKartu']);
+    Route::get('/test/{id}', [LayoutKartuController::class, 'test'])->name('test');
 
     //MONITORING KARTU
     Route::get('/monitor/kartu', [MonitorKartuController::class, 'index'])->name('monitor.kartu');
@@ -98,6 +104,4 @@ Route::middleware(['auth'])->group(function () {
 
     //RATING
     Route::get('/rating', [RateController::class, 'index'])->name('rating');
-
-    Route::get('kartu/layout', [LayoutKartuController::class, 'grape'])->name('grape');
 });

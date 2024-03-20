@@ -91,10 +91,12 @@
                                                                         </td>
                                                                         <td class="px-6 py-4 dark:text-white text-center">
                                                                             @if ($item['status'] == 2 || $item['status'] == 3)
-                                                                                <button
+                                                                                <button data-modal-target="create"
+                                                                                    data-modal-toggle="create"
                                                                                     class="text-blue-500 dark:text-blue-500 font-bold hover:animate-pulse">
                                                                                     Cetak
                                                                                 </button>
+                                                                                @include('monitor_kartu.tampilan_kartu')
                                                                             @else
                                                                                 <h1 class="text-red-500 font-bold">-</h1>
                                                                             @endif
