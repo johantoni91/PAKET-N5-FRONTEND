@@ -26,7 +26,7 @@
                     <div class="flex flex-row lg:flex-nowrap xl:flex-nowrap flex-wrap items-center justify-evenly">
                         <div class="flex flex-col w-full justify-between p-4 leading-normal gap-3">
                             <div class="flex flex-row gap-5">
-                                <label for="nip" class="my-auto w-24">NIP</label>
+                                <label for="nip" class="my-auto w-24 dark:text-white">NIP</label>
                                 <input type="text" id="nip" name="nip" value="{{ request('nip') ?? '' }}"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <script>
@@ -41,7 +41,7 @@
                                 @yield('error_nip')
                             </div>
                             <div class="flex flex-row gap-5">
-                                <label for="nrp" class="my-auto w-24">NRP</label>
+                                <label for="nrp" class="my-auto w-24 dark:text-white">NRP</label>
                                 <input type="text" id="nrp" name="nrp" value="{{ request('nrp') ?? '' }}"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <script>
@@ -56,23 +56,23 @@
                                 @yield('error_nrp')
                             </div>
                             <div class="flex flex-row gap-5">
-                                <label for="nama" class="my-auto w-24">Nama</label>
+                                <label for="nama" class="my-auto w-24 dark:text-white">Nama</label>
                                 <input type="text" id="nama" name="nama" value="{{ request('nama') ?? '' }}"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                             <div class="flex flex-row gap-5">
-                                <label for="agama" class="my-auto w-24">Agama</label>
+                                <label for="agama" class="my-auto w-24 dark:text-white">Agama</label>
                                 <input type="text" id="agama" name="agama" value="{{ request('agama') ?? '' }}"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                             <div class="flex flex-row gap-5">
-                                <label for="jabatan" class="my-auto w-24">Jabatan</label>
+                                <label for="jabatan" class="my-auto w-24 dark:text-white">Jabatan</label>
                                 <input type="jabatan" id="jabatan" name="jabatan"
                                     value="{{ request('jabatan') ?? '' }}"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                             <div class="flex flex-row gap-5">
-                                <label for="jenis_kelamin" class="my-auto w-24">Jenis Kelamin</label>
+                                <label for="jenis_kelamin" class="my-auto w-24 dark:text-white">Jenis Kelamin</label>
                                 <select id="jenis_kelamin" name="jenis_kelamin"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     @if (!request()->routeIs('pegawai'))
@@ -91,13 +91,13 @@
                                 </select>
                             </div>
                             <div class="flex flex-row gap-5">
-                                <label for="satker" class="my-auto w-24">Satker</label>
+                                <label for="satker" class="my-auto w-24 dark:text-white">Satker</label>
                                 <input type="satker" id="satker" name="satker"
                                     value="{{ request('nama_satker') ?? '' }}"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                             <div class="flex flex-row gap-5">
-                                <label for="status" class="my-auto w-24">Status Pegawai</label>
+                                <label for="status" class="my-auto w-24 dark:text-white">Status Pegawai</label>
                                 <input type="status" id="status" name="status"
                                     value="{{ request('status_pegawai') ?? '' }}"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">

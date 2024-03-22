@@ -92,6 +92,7 @@ Route::middleware(['auth'])->group(function () {
 
     //MONITORING KARTU
     Route::get('/monitor/kartu', [MonitorKartuController::class, 'index'])->name('monitor.kartu');
+    Route::post('/monitor/kartu/pdf/{id}', [MonitorKartuController::class, 'pdf'])->name('monitor.kartu.pdf');
 
     // PERANGKAT
     Route::get('/devices', [DeviceController::class, 'index'])->name('perangkat');

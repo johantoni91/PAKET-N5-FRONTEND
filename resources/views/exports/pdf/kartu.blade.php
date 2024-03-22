@@ -24,6 +24,7 @@
     <script src="{{ asset('grapesjs/js/grapesjs-style-bg.js') }}"></script>
     <script src="{{ asset('grapesjs/js/grapesjs-blocks-flexbox.js') }}"></script>
     <script src="{{ asset('grapesjs/js/grapesjs-blocks-basic.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     @vite('resources/css/app.css')
     <style>
         body,
@@ -31,18 +32,14 @@
             height: 100%;
             margin: 0;
         }
+
+        .hide {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
-    <a href="{{ route('layout.kartu') }}"
-        class="flex flex-row gap-2 items-center text-white-500 z-50 hover:animate-pulse bg-pink-300 rounded-lg p-2 shadow shadow-white"
-        style="position: fixed; bottom: 3dvh; right: 3dvw;"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
-            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
-        </svg>
-        Kembali</a>
     <div id="gjs" style="height:0px; overflow:hidden">
         {!! $kartu !!}
     </div>

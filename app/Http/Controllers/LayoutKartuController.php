@@ -6,7 +6,6 @@ use App\API\KartuApi;
 use App\Helpers\profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class LayoutKartuController extends Controller
@@ -35,16 +34,6 @@ class LayoutKartuController extends Controller
             Alert::error('Gagal', 'Kartu aggal ditambahkan');
             return back();
         }
-    }
-
-    public function loadKartu($id)
-    {
-        return Http::get(env('API_URL', '') . '/kartu/' . $id . '/load-kartu')->json();
-    }
-
-    public function storeKartu(Request $req, $id)
-    {
-        return Http::patch(env('API_URL', '') . '/kartu/' . $id . '/store-kartu', $req->data)->json();
     }
 
     public function update(Request $req, $id)
@@ -78,10 +67,16 @@ class LayoutKartuController extends Controller
 
     public function test($id)
     {
-        $kartu = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/kartu/' . $id)->json();
-        return view('test', [
-            'id'    => $id,
-            'kartu' => $kartu
-        ]);
+        try {
+            $kartu = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/kartu/' . $id)->json()['data'];
+            return view('test', [
+                'id'    => $id,
+                'title' => $kartu['title'],
+                'kartu' => Http::get(env('API_URL', '') . '/kartu/' . $id . '/load-kartu')->json()['data']
+            ]);
+        } catch (\Throwable $th) {
+            Alert::error('Terjadi kesalahan', $th->getMessage());
+            return back();
+        }
     }
 }

@@ -29,7 +29,7 @@
                             alt="new-photo"
                             class="{{ $item['foto_pegawai'] ? 'dark:shadow dark:shadow-blue-300' : '' }} mx-auto h-56 w-56 rounded-full inline-block justify-center my-3">
                         <input type="file" name="foto_pegawai" id="photo" accept="image/*"
-                            class="{{ $item['foto_pegawai'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50 dark:text-black' }} mx-auto text-sm block w-auto border border-gray-300 rounded-lg dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400"
+                            class="{{ $item['foto_pegawai'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50 dark:text-black' }} mx-auto text-sm block w-auto border border-gray-300 rounded-lg dark:border-gray-500"
                             onchange="update(event)">
                         <script>
                             var update = function(event) {
@@ -45,14 +45,14 @@
                         <label for="nama"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
                         <input type="text" name="nama" id="nama" value="{{ $item['nama'] }}"
-                            class="{{ $item['nama'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50 dark:text-white' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                            class="{{ $item['nama'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                     </div>
                     <div class="grid gap-6 mb-6 md:grid-cols-2">
                         <div>
                             <label for="nip"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
                             <input type="text" name="nip" id="nip" value="{{ $item['nip'] }}"
-                                class="{{ $item['nip'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50 dark:text-white' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                class="{{ $item['nip'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                             <script>
                                 function keepOnlyNumbers(input) {
                                     return input.replace(/\D/g, "");
@@ -67,7 +67,7 @@
                             <label for="nrp"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NRP</label>
                             <input type="text" name="nrp" id="nrp" value="{{ $item['nrp'] }}"
-                                class="{{ $item['nrp'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50 dark:text-white' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                class="{{ $item['nrp'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                             <script>
                                 function keepOnlyNumbers(input) {
                                     return input.replace(/\D/g, "");
@@ -82,7 +82,7 @@
                             <label for="agama"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Agama</label>
                             <select id="agama" name="agama"
-                                class="{{ $item['agama'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50 dark:text-white' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="{{ $item['agama'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option {{ $item['agama'] == 'Islam' ? 'selected' : '' }} value="Islam">Islam
                                 </option>
                                 <option {{ $item['agama'] == 'Kristen' ? 'selected' : '' }} value="Kristen">Kristen
@@ -107,32 +107,32 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
                                 Lahir</label>
                             <input type="date" name="tgl_lahir" id="tgl_lahir" value="{{ $item['tgl_lahir'] }}"
-                                class="{{ $item['tgl_lahir'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50 dark:text-white' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                class="{{ $item['tgl_lahir'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
                         <div>
                             <label for="GOL_KD"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">GOL KD</label>
                             <input type="text" name="GOL_KD" id="GOL_KD" value="{{ $item['GOL_KD'] }}"
-                                class="{{ $item['GOL_KD'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50 dark:text-white' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                class="{{ $item['GOL_KD'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
                         <div>
                             <label for="jabatan"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jabatan</label>
                             <input type="text" name="jabatan" id="jabatan" value="{{ $item['jabatan'] }}"
-                                class="{{ $item['jabatan'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50 dark:text-white' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                class="{{ $item['jabatan'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
                         <div>
                             <label for="eselon"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Eselon</label>
                             <input type="text" name="eselon" id="eselon" value="{{ $item['eselon'] }}"
-                                class="{{ $item['eselon'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50 dark:text-white' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                class="{{ $item['eselon'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
                         <div>
                             <label for="jenis Kelamin"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
                                 Kelamin</label>
                             <select id="jenis_kelamin" name="jenis_kelamin"
-                                class="{{ $item['jenis_kelamin'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50 dark:text-white' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="{{ $item['jenis_kelamin'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option {{ $item['jenis_kelamin'] == 'L' ? 'selected' : '' }} value="L">Laki-laki
                                 </option>
                                 <option {{ $item['jenis_kelamin'] == 'P' ? 'selected' : '' }} value="P">Perempuan
@@ -143,14 +143,14 @@
                             <label for="golpang"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Golongan</label>
                             <input type="text" name="golpang" id="golpang" value="{{ $item['golpang'] }}"
-                                class="{{ $item['golpang'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50 dark:text-white' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                class="{{ $item['golpang'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
                         <div>
                             <label for="nama_satker"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Satker</label>
                             <input type="text" name="nama_satker" id="nama_satker"
                                 value="{{ $item['nama_satker'] }}"
-                                class="{{ $item['nama_satker'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50 dark:text-white' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                class="{{ $item['nama_satker'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
                         <div>
                             <label for="status_Pegawai"
@@ -158,20 +158,20 @@
                                 Pegawai</label>
                             <input type="text" name="status_pegawai" id="status_Pegawai"
                                 value="{{ $item['status_pegawai'] }}"
-                                class="{{ $item['status_pegawai'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50 dark:text-white' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                class="{{ $item['status_pegawai'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
                         <div>
                             <label for="jaksa_tu"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jaksa TU</label>
                             <input type="text" name="jaksa_tu" id="jaksa_tu" value="{{ $item['jaksa_tu'] }}"
-                                class="{{ $item['jaksa_tu'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50 dark:text-white' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                class="{{ $item['jaksa_tu'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
                     </div>
                     <div>
                         <label for="struktural_non"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Struktural</label>
                         <select id="struktural_non" name="struktural_non"
-                            class="{{ $item['struktural_non'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50 dark:text-white' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            class="{{ $item['struktural_non'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50' }} border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option {{ $item['struktural_non'] == 'STRUKTURAL' ? 'selected' : '' }}
                                 value="STRUKTURAL">
                                 STRUKTURAL</option>
