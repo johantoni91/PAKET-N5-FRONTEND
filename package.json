@@ -22,8 +22,10 @@
         "datatables.net-fixedheader-bs5": "^4.0.0",
         "datatables.net-searchbuilder-bs5": "^1.7.0",
         "datatables.net-searchpanes-bs5": "^2.3.0",
+        "express": "^4.19.2",
         "flowbite": "^2.2.1",
         "grapesjs": "^0.21.9",
+        "socket.io": "^4.7.5",
         "sweetalert2": "^11.10.5"
     }
 }

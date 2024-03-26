@@ -74,7 +74,7 @@
                                                                         {{ $item['title'] }}
                                                                     </th>
                                                                     <td class="px-6 py-4 dark:text-white text-center">
-                                                                        200
+                                                                        {{ $item['jumlah'] }}
                                                                     </td>
                                                                     <td
                                                                         class="px-6 py-4 dark:text-white text-center bg-gray-50 dark:bg-gray-800">

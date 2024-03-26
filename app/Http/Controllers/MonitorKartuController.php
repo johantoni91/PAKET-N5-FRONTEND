@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\API\PengajuanApi;
+use App\Events\NotificationEvent;
 use App\Helpers\profile;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Dompdf\Dompdf;
@@ -42,6 +43,7 @@ class MonitorKartuController extends Controller
                 $res = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/pengajuan' . '/' . $id . '/print')->json();
                 if ($res['status'] == true) {
                     Alert::success('Berhasil', 'Kartu telah dicetak');
+                    broadcast(new NotificationEvent('New notification message'));
                     // $kartu = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/kartu/' . $id)->json()['data'];
                     // $kartu_view = Http::get(env('API_URL', '') . '/kartu/' . $id . '/load-kartu')->json()['data'];
 

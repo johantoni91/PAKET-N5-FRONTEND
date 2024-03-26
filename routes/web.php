@@ -9,6 +9,7 @@ use App\Http\Controllers\KepegawaianController;
 use App\Http\Controllers\LayoutKartuController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\MonitorKartuController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PaginationController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\ProfileController;
@@ -105,4 +106,10 @@ Route::middleware(['auth'])->group(function () {
 
     //RATING
     Route::get('/rating', [RateController::class, 'index'])->name('rating');
+
+
+
+    //NOTIFIKASI
+    Route::get('/notif', [NotificationController::class, 'index'])->name('notif');
+    Route::get('/notif/{id}/destroy', [NotificationController::class, 'destroy'])->name('notif.destroy');
 });

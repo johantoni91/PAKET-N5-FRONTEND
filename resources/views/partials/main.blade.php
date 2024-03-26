@@ -30,18 +30,17 @@
         </div>
     @endif
     @yield('content')
-</body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-<script src="{{ asset('assets/libs/lucide/umd/lucide.min.js') }}"></script>
-<script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
-<script src="{{ asset('assets/libs/flatpickr/flatpickr.min.js') }}"></script>
-<script src="{{ asset('assets/libs/@frostui/tailwindcss/frostui.js') }}"></script>
-<script src="{{ asset('assets/libs/prismjs/prism.js') }}"></script>
-<script src="{{ asset('assets/js/app.js') }}"></script>
-@stack('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    <script src="{{ asset('assets/libs/lucide/umd/lucide.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/flatpickr/flatpickr.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/@frostui/tailwindcss/frostui.js') }}"></script>
+    <script src="{{ asset('assets/libs/prismjs/prism.js') }}"></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
 </body>
 
 </html>

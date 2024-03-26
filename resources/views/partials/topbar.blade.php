@@ -25,6 +25,8 @@
                 <button type="button" class="dropdown-toggle flex rounded-full md:me-0" id="Notifications"
                     aria-expanded="false" data-fc-autoclose="both" data-fc-type="dropdown">
                     <span data-lucide="bell" class="top-icon w-5 h-5 dark:text-white"></span>
+                    <small class="bg-yellow-500 rounded-full px-1.5 font-bold dark:text-white"
+                        style="position: absolute; top: -10px; right: -5px;" id="notif_count"></small>
                 </button>
 
                 <div class="left-auto right-0 z-50 my-1 hidden w-64
@@ -32,33 +34,19 @@
            text-base shadow dark:divide-gray-600 bg-white
             dark:bg-slate-800"
                     id="navNotifications" data-simplebar>
-                    <ul class="py-1" aria-labelledby="navNotifications">
-                        <li class="py-2 px-4">
-                            <a href="{{ session('route') ?? route('dashboard') }}" class="dropdown-item">
-                                <div class="flex">
-                                    <div
-                                        class="h-8 w-8 rounded-full bg-primary-500/20 inline-flex m-auto align-middle justify-center me-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1" stroke="currentColor" class="w-6 h-6 mt-1">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5" />
-                                        </svg>
-                                    </div>
-                                    <div class="flex-grow flex-1 ms-0.5">
-                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300">
-                                            {{ ucfirst($profile['profile']['users']['username']) }}
-                                            @if (session('status'))
-                                                <small class="text-gray-400">
-                                                    ({{ now()->diffForHumans() }})</small>
-                                            @endif
-                                        </p>
-                                        <p class="text-gray-500 mb-0 text-xs text-pretty truncate dark:text-gray-400">
-                                            {{ session('status') ?? 'Tidak ada notifikasi' }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
+                    <ul class="py-1" id="notif" aria-labelledby="navNotifications">
+                        <script>
+                            $(function() {
+                                setInterval(() => {
+                                    $.get("{{ route('notif') }}", function(data) {
+                                        if (data.count != 0) {
+                                            $("#notif_count").html(data.count)
+                                            $("#notif").html(data.view)
+                                        }
+                                    })
+                                }, 500);
+                            })
+                        </script>
                     </ul>
                 </div>
             </div>

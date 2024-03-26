@@ -84,7 +84,7 @@ class KepegawaianController extends Controller
             'nrp'            =>  $req->nrp,
             'tgl_lahir'      =>  $req->tgl_lahir,
             'eselon'         =>  $req->eselon,
-            'GOL_KD'         =>  $req->gol_kd,
+            'GOL_KD'         =>  $req->GOL_KD,
             'golpang'        =>  $req->golongan,
             'jaksa_tu'       =>  $req->jaksa_tu,
             'struktural_non' =>  $req->struktural_non,

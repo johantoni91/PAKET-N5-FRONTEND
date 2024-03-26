@@ -27,7 +27,6 @@
                         <img src="https://placehold.co/400x400" id="photo" alt="new-photo"
                             class="mx-auto h-56 w-56 rounded-full inline-block justify-center my-3">
                         <input type="file" name="foto_pegawai" id="photo" accept="image/*" required
-                            oninvalid="this.setCustomValidity('Gausah so misterius jadi orang, isi POTONYA!')"
                             class="bg-gray-50 mx-auto text-sm block w-auto border border-gray-300 rounded-lg dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                             onchange="newPhoto(event)">
                         <small class="text-red-500 italic text-center mt-1">Harus sertakan foto!</small>
@@ -100,13 +99,12 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal
                                 Lahir</label>
                             <input type="date" id="tgl_lahir" name="tgl_lahir" max="{{ now()->format('Y-m-d') }}"
-                                required oninvalid="this.setCustomValidity('Lu lahir dari batu ?')"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
                         <div>
-                            <label for="gol_kd"
+                            <label for="GOL_KD"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">GOL KD</label>
-                            <input type="tel" id="gol_kd" name="gol_kd"
+                            <input type="text" id="GOL_KD" name="GOL_KD"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
                         <div>
@@ -126,7 +124,6 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
                                 Kelamin</label>
                             <select id="jenis_kelamin" name="jenis_kelamin" required
-                                oninvalid="this.setCustomValidity('Cuma cowo cewe, ga terima LaGiBaTuk!')"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option selected disabled>-- Jenis Kelamin --</option>
                                 <option value="L">Laki-laki</option>
@@ -144,7 +141,6 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
                                 Satker</label>
                             <select id="nama_satker" name="nama_satker" required
-                                oninvalid="this.setCustomValidity('Penyusup kah !?')"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option selected disabled>-- Satker --</option>
                                 @foreach ($satker as $item)
