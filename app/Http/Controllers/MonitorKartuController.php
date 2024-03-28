@@ -35,27 +35,18 @@ class MonitorKartuController extends Controller
         }
     }
 
-    function pdf(Request $req, $id)
+    function pdf(Request $req, $id, $kartu)
     {
         try {
             $pengajuan = PengajuanApi::find($id)['data'];
             if ($req->token == $pengajuan['token']) {
-                $res = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/pengajuan' . '/' . $id . '/print')->json();
-                if ($res['status'] == true) {
+                $dataPengajuan = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/pengajuan' . '/' . $id . '/print')->json();
+                $dataKartu = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/kartu' . '/' . $kartu . '/title')->json();
+                if ($dataPengajuan['status'] == true) {
                     Alert::success('Berhasil', 'Kartu telah dicetak');
-                    broadcast(new NotificationEvent('New notification message'));
-                    // $kartu = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/kartu/' . $id)->json()['data'];
-                    // $kartu_view = Http::get(env('API_URL', '') . '/kartu/' . $id . '/load-kartu')->json()['data'];
-
-                    // $pdf = Pdf::loadView('exports.pdf.kartu', [
-                    //     'id'    => $id,
-                    //     'title' => $kartu['title'],
-                    //     'kartu' => $kartu_view
-                    // ]);
-                    // $pdf->download('Kartu_' . Carbon::now()->format('dmY_hiS') . "_" . $kartu['title'] . '.pdf');
                     return back();
                 }
-                Alert::error('Gagal', $res['error']);
+                Alert::error('Gagal', $dataPengajuan['error']);
                 return back();
             }
         } catch (\Throwable $th) {

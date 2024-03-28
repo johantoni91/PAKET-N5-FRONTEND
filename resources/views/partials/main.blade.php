@@ -40,7 +40,6 @@
     <script src="{{ asset('assets/libs/@frostui/tailwindcss/frostui.js') }}"></script>
     <script src="{{ asset('assets/libs/prismjs/prism.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
-    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
 </body>
 
 </html>

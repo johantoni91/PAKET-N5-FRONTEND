@@ -61,7 +61,7 @@
                                                         <tbody>
                                                             @if (!$data['data'])
                                                                 <tr>
-                                                                    <th colspan="3">
+                                                                    <th colspan="4">
                                                                         <p
                                                                             class="text-red-500 mt-3 text-center text-xs italic">
                                                                             Tidak ada pengajuan</p>

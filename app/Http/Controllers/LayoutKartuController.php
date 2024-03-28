@@ -6,6 +6,7 @@ use App\API\KartuApi;
 use App\Helpers\profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class LayoutKartuController extends Controller
@@ -15,13 +16,18 @@ class LayoutKartuController extends Controller
 
     public function index()
     {
-        $kartu = KartuApi::get()['data'];
-        return view($this->view, [
-            'view'      => $this->view,
-            'title'     => $this->title,
-            'data'      => $kartu
-        ]);
-        return redirect()->route('dashboard');
+        try {
+            $kartu = KartuApi::get()['data'];
+            return view($this->view, [
+                'view'      => $this->view,
+                'title'     => $this->title,
+                'data'      => $kartu
+            ]);
+            return redirect()->route('dashboard');
+        } catch (\Throwable $th) {
+            Session::forget('user');
+            return redirect()->route('logout');
+        }
     }
 
     public function store(Request $req)

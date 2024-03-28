@@ -19,9 +19,32 @@ class Role
      */
     public function handle(Request $request, Closure $next)
     {
-        if (in_array(request()->route($next($request)), json_decode(RoleApi::find(profile::getUser()['roles'])['route'], true))) {
-            return $next($request);
-        }
-        return redirect(route('dashboard'));
+        $access = json_decode(RoleApi::find(profile::getUser()['roles'])['route'], true);
+        dd(in_array('user', $access));
+        // if (!(in_array('user', $access))) {
+        //     return view('errors.404');
+        // } elseif (!(in_array('log', $access))) {
+        //     return view('errors.404');
+        // } elseif (!(in_array('satker', $access))) {
+        //     return view('errors.404');
+        // } elseif (!(in_array('pegawai', $access))) {
+        //     return view('errors.404');
+        // } elseif (!(in_array('akses', $access))) {
+        //     return view('errors.404');
+        // } elseif (!(in_array('pengajuan', $access))) {
+        //     return view('errors.404');
+        // } elseif (!(in_array('layout.kartu', $access))) {
+        //     return view('errors.404');
+        // } elseif (!(in_array('monitor.kartu', $access))) {
+        //     return view('errors.404');
+        // } elseif (!(in_array('perangkat', $access))) {
+        //     return view('errors.404');
+        // } elseif (!(in_array('faq', $access))) {
+        //     return view('errors.404');
+        // } elseif (!(in_array('rating', $access))) {
+        //     return view('errors.404');
+        // } else {
+        //     return $next($request);
+        // }
     }
 }

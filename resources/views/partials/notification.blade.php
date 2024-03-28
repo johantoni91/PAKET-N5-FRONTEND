@@ -15,8 +15,19 @@
                     </small>
                 </div>
             </a>
-            <a href="{{ route('notif.destroy', $item['id']) }}"
-                class="rounded-full bg-red-800 text-white px-1.5 hover:shadow dark:hover:shadow-white">X</a>
+            <button type="button" id="delete{{ $item['id'] }}"
+                class="rounded-full bg-red-800 text-white px-1.5 hover:shadow dark:hover:shadow-red dark:bg-white dark:text-red">X</button>
+            <script>
+                $(function() {
+                    $("#delete{{ $item['id'] }}").on('click', function(e) {
+                        e.preventDefault()
+                        $.get("{{ route('notif.destroy', $item['id']) }}", function(data) {
+                            $("#notif_count").html(data.count)
+                            $("#notif").html(data.view)
+                        })
+                    })
+                })
+            </script>
         </div>
     </li>
 @endforeach

@@ -25,6 +25,7 @@
         "express": "^4.19.2",
         "flowbite": "^2.2.1",
         "grapesjs": "^0.21.9",
+        "jspdf": "^2.5.1",
         "socket.io": "^4.7.5",
         "sweetalert2": "^11.10.5"
     }

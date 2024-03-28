@@ -21,19 +21,24 @@ class KepegawaianController extends Controller
     {
         try {
             $data = PegawaiApi::get()['data'];
-            return view($this->view, [
-                'view'      => $this->view,
-                'title'     => $this->title,
-                'satker'    => SatkerApi::getSatkerName()['data'],
-                'data'      => $data
-            ]);
+            if ($data) {
+                return view($this->view, [
+                    'view'      => $this->view,
+                    'title'     => $this->title,
+                    'satker'    => SatkerApi::getSatkerName()['data'],
+                    'data'      => $data
+                ]);
+            } else {
+                return view($this->view, [
+                    'view'      => $this->view,
+                    'title'     => $this->title,
+                    'satker'    => SatkerApi::getSatkerName()['data'],
+                    'data'      => null
+                ]);
+            }
         } catch (\Throwable $th) {
-            return view($this->view, [
-                'view'      => $this->view,
-                'title'     => $this->title,
-                'satker'    => SatkerApi::getSatkerName()['data'],
-                'data'      => null
-            ]);
+            Session::forget('user');
+            return redirect()->route('logout');
         }
     }
 
@@ -75,8 +80,11 @@ class KepegawaianController extends Controller
 
     function store(Request $req)
     {
-        $img = $req->file('foto_pegawai');
-        $gambar = $req->nip ?? $req->nrp . '_' . Carbon::now()->format('dmY') . '.' . $img->getClientOriginalExtension();
+        if ($req->nip == null && $req->nrp == null) {
+            Alert::warning('Perhatian', 'Harap isi NRP / NIP !');
+            return back();
+        }
+
         $input = [
             'nama'           =>  $req->nama,
             'jabatan'        =>  $req->jabatan,
@@ -94,9 +102,14 @@ class KepegawaianController extends Controller
             'status_pegawai' =>  $req->status_pegawai,
         ];
 
-        if ($req->nip == null && $req->nrp == null) {
-            Alert::warning('Perhatian', 'Harap isi NRP / NIP !');
-            return back();
+        $img = $req->file('foto_pegawai');
+        $gambar = '';
+        if ($req->nip && !$req->nrp) {
+            $gambar = $req->nip . '_' . Carbon::now()->format('dmY') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
+        } elseif (!$req->nip && $req->nrp) {
+            $gambar = $req->nrp . '_' . Carbon::now()->format('dmY') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
+        } elseif ($req->nip && $req->nrp) {
+            $gambar = $req->nip . '_' . Carbon::now()->format('dmY') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
         }
         $pegawai = PegawaiApi::insert($img, $gambar, $input)->json();
         if ($pegawai['status'] == true) {
@@ -138,17 +151,24 @@ class KepegawaianController extends Controller
 
             if ($req->hasFile('foto_pegawai')) {
                 $img = $req->file('foto_pegawai');
-                $gambar = $req->nip ?? $req->nrp . '_' . Carbon::now()->format('dmY') . '.' . $img->getClientOriginalExtension();
+                if ($req->nip && !$req->nrp) {
+                    $gambar = $req->nip . '_' . Carbon::now()->format('dmY') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
+                } elseif (!$req->nip && $req->nrp) {
+                    $gambar = $req->nrp . '_' . Carbon::now()->format('dmY') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
+                } elseif ($req->nip && $req->nrp) {
+                    $gambar = $req->nip . '_' . Carbon::now()->format('dmY') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
+                }
             }
 
             $pegawai = PegawaiApi::update($id, $img, $gambar, $input)->json();
-            if ($pegawai['status'] == true) {
-                Alert::success('Berhasil', 'Berhasil mengubah pegawai');
-                session()->flash('status', 'mengubah pegawai ' . $req->nama);
-                session()->flash('route', route('pegawai'));
+            if ($pegawai['status'] == false) {
+                Alert::warning('Gagal mengubah pegawai', $pegawai['error']);
                 return back();
             }
-            Alert::warning('Gagal mengubah pegawai', $pegawai['message']);
+
+            Alert::success('Berhasil', 'Berhasil mengubah pegawai');
+            session()->flash('status', 'mengubah pegawai ' . $req->nama);
+            session()->flash('route', route('pegawai'));
             return back();
         } catch (\Throwable $th) {
             Alert::error('Terjadi Kesalahan', $th->getMessage());

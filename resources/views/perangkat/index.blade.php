@@ -51,7 +51,7 @@
                                                                 </th>
                                                                 <th scope="col"
                                                                     class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                                                                    Keterangan
+                                                                    Fungsi
                                                                 </th>
                                                                 <th scope="col" class="px-6 py-3">
                                                                     Aksi

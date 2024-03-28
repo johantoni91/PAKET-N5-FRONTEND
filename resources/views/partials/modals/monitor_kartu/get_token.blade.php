@@ -20,7 +20,7 @@
                 </button>
             </div>
 
-            <form action="{{ route('monitor.kartu.pdf', $item['id']) }}" method="post">
+            <form action="{{ route('monitor.kartu.pdf', [$item['id'], $item['kartu']]) }}" method="post">
                 @csrf
                 <div class="p-4 space-y-4">
                     <div class="grid gap-4 mb-4 grid-cols-2">

@@ -24,6 +24,7 @@
     <script src="{{ asset('grapesjs/js/grapesjs-style-bg.js') }}"></script>
     <script src="{{ asset('grapesjs/js/grapesjs-blocks-flexbox.js') }}"></script>
     <script src="{{ asset('grapesjs/js/grapesjs-blocks-basic.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     @vite('resources/css/app.css')
     <style>
         body,
@@ -37,19 +38,29 @@
 <body>
     <a href="{{ route('layout.kartu') }}"
         class="flex flex-row gap-2 items-center text-white-500 z-50 hover:animate-pulse bg-pink-300 rounded-lg p-2 shadow shadow-white"
-        style="position: fixed; bottom: 3dvh; right: 3dvw;"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+        style="position: fixed; bottom: 2dvh; right: 16dvw;"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round"
                 d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
         </svg>
-        Kembali</a>
+        Kembali
+    </a>
+    <button type="button" id="exportPDF"
+        class="flex flex-row gap-2 items-center text-white-500 z-50 hover:animate-pulse bg-pink-300 rounded-lg p-2 shadow shadow-white"
+        style="position: fixed; bottom: 2dvh; left: 1dvw;">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+        </svg>
+        Ekspor
+    </button>
     <div id="gjs" style="height:0px; overflow:hidden">
         {!! $kartu !!}
     </div>
     <div id="blocks"></div>
 
-
-    <script type="text/javascript">
+    <script>
         const projectId = '{{ $id }}'
         const loadProjectEndpoint = `{{ url('/api/pages/${projectId}/load-project') }}`;
         const storeProjectEndpoint = `{{ url('/api/pages/${projectId}/store-project') }}`;
@@ -430,7 +441,7 @@
                     highlightable: 0,
                     copyable: false,
                     selectable: true,
-                    content: 'Dit is een test!',
+                    content: 'Completed',
                     _innertext: false,
                 }, ],
             }, ]
@@ -441,8 +452,15 @@
             const html = components.map(cmp => cmp.toHTML()).join('')
             console.log('Rendered HTML is ', html)
         }
-
         renderHTML()
+
+        $(function() {
+            $("#exportPDF").on('click', function() {
+                var gjs_frame = document.querySelector('.gjs-frame').contentWindow;
+                gjs_frame.focus()
+                gjs_frame.print()
+            })
+        })
     </script>
 </body>
 
