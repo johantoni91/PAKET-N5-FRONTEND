@@ -15,8 +15,12 @@ class AuthController extends Controller
 {
     public function home()
     {
-        $title = 'Dashboard';
-        return view("index", compact('title'));
+        try {
+            $title = 'Dashboard';
+            return view("index", compact('title'));
+        } catch (\Throwable $th) {
+            return redirect()->route('logout');
+        }
     }
 
     public function loginPage()
