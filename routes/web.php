@@ -84,6 +84,7 @@ Route::middleware(['auth'])->group(function () {
 
     // LAYOUT KARTU
     Route::get('/layout/kartu', [LayoutKartuController::class, 'index'])->name('layout.kartu');
+    Route::get('/layout/{id}/kartu', [LayoutKartuController::class, 'find'])->name('layout.find.kartu');
     Route::post('/layout/kartu/store', [LayoutKartuController::class, 'store'])->name('layout.kartu.store');
     Route::post('/layout/kartu/update/{id}', [LayoutKartuController::class, 'update'])->name('layout.kartu.update');
     Route::post('/layout/kartu/destroy', [LayoutKartuController::class, 'destroy'])->name('layout.kartu.destroy');
@@ -106,8 +107,6 @@ Route::middleware(['auth'])->group(function () {
 
     //RATING
     Route::get('/rating', [RateController::class, 'index'])->name('rating');
-
-
 
     //NOTIFIKASI
     Route::get('/notif', [NotificationController::class, 'index'])->name('notif');

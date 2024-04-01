@@ -44,7 +44,7 @@
                                             $("#notif").html(data.view)
                                         }
                                     })
-                                }, 5000);
+                                }, 2000);
                             })
                         </script>
                     </ul>

@@ -12,9 +12,6 @@
                                 <div class="items-center ">
                                     <h1 class="font-medium text-3xl block dark:text-slate-100">{{ $title }}</h1>
                                     <ol class="list-reset flex text-sm">
-                                        {{-- <li><a href="{{ route('user.index') }}"
-                                                class="text-blue-500 dark:text-slate-400">Users</a>
-                                        </li> --}}
                                         <li>
                                             <a href="{{ route('user.index') }}" data-tooltip-target="tooltip-bottom"
                                                 data-tooltip-placement="bottom"

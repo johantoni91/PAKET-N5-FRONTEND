@@ -58,6 +58,7 @@
                                                                 var avatar = document.getElementById("avatar");
                                                                 new_photo.src = URL.createObjectURL(event.target.files[0]);
                                                                 new_photo.onload = function() {
+                                                                    console.log(URL.revokeObjectURL(new_photo.src))
                                                                     URL.revokeObjectURL(new_photo.src);
                                                                     new_photo.classList.remove("hidden");
                                                                     avatar.classList.add("hidden");

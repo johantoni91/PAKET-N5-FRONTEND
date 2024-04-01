@@ -30,6 +30,19 @@ class LayoutKartuController extends Controller
         }
     }
 
+    public function find($id)
+    {
+        $kartu = KartuApi::find($id);
+        if ($kartu['status'] == false) {
+            Alert::error('Kesalahan', 'Terjadi kesalahan');
+            return back();
+        }
+        return view('layout_kartu.partials.create', [
+            'title'     => $this->title,
+            'data'      => $kartu
+        ]);
+    }
+
     public function store(Request $req)
     {
         try {
