@@ -23,7 +23,6 @@ class PengajuanController extends Controller
                 'title'     => $this->title,
                 'data'      => $data
             ]);
-            return redirect()->route('dashboard');
         } catch (\Throwable $th) {
             Session::forget('user');
             return redirect()->route('logout');

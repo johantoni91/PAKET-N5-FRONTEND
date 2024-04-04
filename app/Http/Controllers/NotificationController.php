@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\API\PengajuanApi;
 use App\Helpers\profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -15,6 +16,12 @@ class NotificationController extends Controller
             'count'  => count($notif),
             'view'  => view('partials.notification', compact('notif'))->render()
         ]);
+    }
+
+    function direct($id)
+    {
+        Http::withToken(profile::getToken())->get(env('API_URL', '') . '/notif' . '/' . $id . '/destroy')->json();
+        return redirect()->route('pengajuan');
     }
 
     function destroy($id)

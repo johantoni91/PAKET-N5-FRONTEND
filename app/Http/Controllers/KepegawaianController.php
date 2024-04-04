@@ -105,11 +105,11 @@ class KepegawaianController extends Controller
         $img = $req->file('foto_pegawai');
         $gambar = '';
         if ($req->nip && !$req->nrp) {
-            $gambar = $req->nip . '_' . Carbon::now()->format('dmY') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
+            $gambar = $req->nip . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
         } elseif (!$req->nip && $req->nrp) {
-            $gambar = $req->nrp . '_' . Carbon::now()->format('dmY') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
+            $gambar = $req->nrp . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
         } elseif ($req->nip && $req->nrp) {
-            $gambar = $req->nip . '_' . Carbon::now()->format('dmY') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
+            $gambar = $req->nip . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
         }
         $pegawai = PegawaiApi::insert($img, $gambar, $input)->json();
         if ($pegawai['status'] == true) {
@@ -152,11 +152,11 @@ class KepegawaianController extends Controller
             if ($req->hasFile('foto_pegawai')) {
                 $img = $req->file('foto_pegawai');
                 if ($req->nip && !$req->nrp) {
-                    $gambar = $req->nip . '_' . Carbon::now()->format('dmY') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
+                    $gambar = $req->nip . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
                 } elseif (!$req->nip && $req->nrp) {
-                    $gambar = $req->nrp . '_' . Carbon::now()->format('dmY') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
+                    $gambar = $req->nrp . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
                 } elseif ($req->nip && $req->nrp) {
-                    $gambar = $req->nip . '_' . Carbon::now()->format('dmY') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
+                    $gambar = $req->nip . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
                 }
             }
 

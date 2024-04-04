@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\API\KartuApi;
+use App\API\PegawaiApi;
 use App\API\PengajuanApi;
 use App\Events\NotificationEvent;
 use App\Helpers\profile;
@@ -35,7 +37,21 @@ class MonitorKartuController extends Controller
         }
     }
 
-    function pdf(Request $req, $id, $kartu)
+    function pdf($id, $nip, $title)
+    {
+        try {
+            return view('monitor_kartu.pdf', [
+                'pegawai'   => Http::withToken(profile::getToken())->get(env('API_URL', '') . '/pegawai' . '/' . $nip)->json()['data'],
+                'kartu'     => KartuApi::findByTitle($title)['data'],
+                'pengajuan' => PengajuanApi::find($id)['data']
+            ]);
+        } catch (\Throwable $th) {
+            Alert::error('Error', 'Terjadi kesalahan');
+            return back();
+        }
+    }
+
+    public function print(Request $req, $id, $kartu)
     {
         try {
             $pengajuan = PengajuanApi::find($id)['data'];

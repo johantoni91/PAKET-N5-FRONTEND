@@ -1,22 +1,21 @@
 <?php
 
-use App\Http\Controllers\AccessController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DeviceController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\FaqController;
-use App\Http\Controllers\KartuController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RateController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AccessController;
+use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\SatkerController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PengajuanController;
+use App\Http\Controllers\PaginationController;
 use App\Http\Controllers\KepegawaianController;
 use App\Http\Controllers\LayoutKartuController;
-use App\Http\Controllers\LogController;
 use App\Http\Controllers\MonitorKartuController;
 use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\PaginationController;
-use App\Http\Controllers\PengajuanController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RateController;
-use App\Http\Controllers\SatkerController;
-use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,9 +37,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('/profile/{id}/update', [ProfileController::class, 'update'])->name('profile.update');
-
-    //PAGINATION
-    Route::get('/pagination/{view}/{link}/{title}', [PaginationController::class, 'pagination'])->name('pagination');
 
     // MANAGEMENT USERS
     Route::get('/user', [UserController::class, 'index'])->name('user');
@@ -68,8 +64,8 @@ Route::middleware(['auth'])->group(function () {
     // PEGAWAI
     Route::get('/pegawai', [KepegawaianController::class, 'index'])->name('pegawai');
     Route::post('/pegawai/store', [KepegawaianController::class, 'store'])->name('pegawai.store');
-    Route::post('/pegawai/{id}/update', [KepegawaianController::class, 'update'])->name('pegawai.update');
     Route::get('/pegawai/search', [KepegawaianController::class, 'search'])->name('pegawai.search');
+    Route::post('/pegawai/{id}/update', [KepegawaianController::class, 'update'])->name('pegawai.update');
     Route::get('/pegawai/{nip}/destroy', [KepegawaianController::class, 'destroy'])->name('pegawai.destroy');
 
     // HAK AKSES
@@ -79,22 +75,23 @@ Route::middleware(['auth'])->group(function () {
     // PENGAJUAN
     Route::get('/pengajuan', [PengajuanController::class, 'index'])->name('pengajuan');
     Route::get('/pengajuan/search', [PengajuanController::class, 'search'])->name('pengajuan.search');
-    Route::post('/pengajuan/approve', [PengajuanController::class, 'approve'])->name('pengajuan.approve');
     Route::post('/pengajuan/reject', [PengajuanController::class, 'reject'])->name('pengajuan.reject');
+    Route::post('/pengajuan/approve', [PengajuanController::class, 'approve'])->name('pengajuan.approve');
 
     // LAYOUT KARTU
     Route::get('/layout/kartu', [LayoutKartuController::class, 'index'])->name('layout.kartu');
     Route::get('/layout/{id}/kartu', [LayoutKartuController::class, 'find'])->name('layout.find.kartu');
+    Route::get('/layout/kartu/pdf/{id}', [LayoutKartuController::class, 'pdf'])->name('layout.kartu.pdf');
     Route::post('/layout/kartu/store', [LayoutKartuController::class, 'store'])->name('layout.kartu.store');
-    Route::post('/layout/kartu/update/{id}', [LayoutKartuController::class, 'update'])->name('layout.kartu.update');
-    Route::post('/layout/kartu/destroy', [LayoutKartuController::class, 'destroy'])->name('layout.kartu.destroy');
-    Route::get('/kartu/{id}/load-kartu', [LayoutKartuController::class, 'loadKartu']);
-    Route::patch('/kartu/{id}/store-kartu', [LayoutKartuController::class, 'storeKartu']);
-    Route::get('/test/{id}', [LayoutKartuController::class, 'test'])->name('test');
+    Route::post('/layout/kartu/{id}/back', [LayoutKartuController::class, 'backBg'])->name('layout.kartu.back');
+    Route::post('/layout/kartu/{id}/front', [LayoutKartuController::class, 'frontBg'])->name('layout.kartu.front');
+    Route::post('/layout/kartu/{id}/update', [LayoutKartuController::class, 'update'])->name('layout.kartu.update');
+    Route::get('/layout/kartu/{id}destroy', [LayoutKartuController::class, 'destroy'])->name('layout.kartu.destroy');
 
     //MONITORING KARTU
     Route::get('/monitor/kartu', [MonitorKartuController::class, 'index'])->name('monitor.kartu');
-    Route::post('/monitor/kartu/{id}/pdf/{kartu}', [MonitorKartuController::class, 'pdf'])->name('monitor.kartu.pdf');
+    Route::get('/monitor/{id}/kartu/{nip}/pdf/{title}', [MonitorKartuController::class, 'pdf'])->name('monitor.kartu.pdf');
+    Route::post('/monitor/kartu/{id}/pdf/{kartu}', [MonitorKartuController::class, 'print'])->name('monitor.kartu.print');
 
     // PERANGKAT
     Route::get('/devices', [DeviceController::class, 'index'])->name('perangkat');
@@ -108,7 +105,13 @@ Route::middleware(['auth'])->group(function () {
     //RATING
     Route::get('/rating', [RateController::class, 'index'])->name('rating');
 
+
+    // EXTERNAL || EXTRA TOOLS
     //NOTIFIKASI
     Route::get('/notif', [NotificationController::class, 'index'])->name('notif');
+    Route::get('/notif/{id}', [NotificationController::class, 'direct'])->name('notif.direct');
     Route::get('/notif/{id}/destroy', [NotificationController::class, 'destroy'])->name('notif.destroy');
+
+    //PAGINATION
+    Route::get('/pagination/{view}/{link}/{title}', [PaginationController::class, 'pagination'])->name('pagination');
 });

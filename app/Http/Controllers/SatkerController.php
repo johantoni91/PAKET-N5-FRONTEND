@@ -75,8 +75,6 @@ class SatkerController extends Controller
         }
         $satker = SatkerApi::find($id);
         Alert::success('Berhasil', 'Status telah diubah');
-        session()->flash('status', 'Mengubah status satker ' . $satker->json()['data']['satker_name']);
-        session()->flash('route', route('satker'));
         return redirect()->route('satker');
     }
 
@@ -102,9 +100,6 @@ class SatkerController extends Controller
             }
 
             Alert::success('Berhasil', 'Satker berhasil diubah');
-
-            session()->flash('status', 'Mengubah data satker ' . $request->satker);
-            session()->flash('route', route('satker'));
             if (request()->routeIs('profile')) {
                 Alert::success('Berhasil', 'Mengubah data satker');
                 return back();
@@ -125,8 +120,6 @@ class SatkerController extends Controller
             ];
             SatkerApi::store($data);
             Alert::success('Berhasil', 'Berhasil menambahkan satker');
-            session()->flash('status', 'Menambahkan satker ' . $request->satker);
-            session()->flash('route', route('satker'));
             return redirect()->route('satker');
         } catch (\Throwable $th) {
             Alert::error('Kesalahan', $th->getMessage());
@@ -138,12 +131,9 @@ class SatkerController extends Controller
     function destroy(Request $req)
     {
         try {
-            $user = SatkerApi::find($req->id)->json();
             $del = SatkerApi::delete($req->id);
             if (!$del->failed()) {
                 Alert::success('Berhasil', 'Satker berhasil dihapus');
-                session()->flash('status', 'Menghapus satker ' . $user['data']['satker_name']);
-                session()->flash('route', route('satker'));
                 return response($del->json()['message'], 200);
             } else {
                 Alert::error('Terjadi kesalahan', $del->json()['error']);

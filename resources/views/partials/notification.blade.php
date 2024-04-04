@@ -1,7 +1,7 @@
 @foreach ($notif as $item)
     <li class="py-2 px-4">
         <div class="flex flex-row justify-between items-center">
-            <a href="{{ route('pengajuan') }}" class="dropdown-item flex">
+            <a href="{{ route('notif.direct', $item['id']) }}" class="dropdown-item flex">
                 <div class="h-8 w-8 rounded-full bg-primary-500/20 inline-flex m-auto align-middle justify-center me-4">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1"
                         stroke="currentColor" class="w-6 h-6 mt-1 dark:text-white">
