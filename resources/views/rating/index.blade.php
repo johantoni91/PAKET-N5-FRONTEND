@@ -30,9 +30,6 @@
                                             <h4 class="font-medium text-lg flex-1 self-center mb-2 md:mb-0">
                                                 Penilaian
                                             </h4>
-                                            <button type="button" data-modal-target="graph" data-modal-toggle="graph"
-                                                class="focus:outline-none bg-primary-500 text-white border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium py-1 px-3 rounded">Grafik</button>
-                                            @include('rating.components.graph')
                                             @if (!request()->routeIs('rating'))
                                                 <a href="{{ route('rating') }}"
                                                     class="ms-1 focus:outline-none bg-primary-500 text-white border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium py-1 px-3 rounded">Kembali
@@ -42,9 +39,54 @@
                                     </div>
                                     <div class="grid md:grid-cols-2 gap-2 sm:grid-cols-1 p-4">
                                         <div class="sm:mx-6 lg:mx-8 flex flex-col">
-                                            <div class="block m-auto w-full sm:px-6 lg:px-8">
-                                                <div class="relative sm:rounded-lg p-5">
-                                                    @include('rating.components.value')
+                                            <div class="block m-auto w-full">
+                                                <div class="relative sm:rounded-lg">
+                                                    <canvas id="graphOfRating"></canvas>
+                                                    <script>
+                                                        const ctx = document.getElementById('graphOfRating').getContext('2d');
+
+                                                        new Chart(ctx, {
+                                                            type: 'line',
+                                                            data: {
+                                                                labels: ['⭐️1', '⭐️2', '⭐️3', '⭐️4', '⭐️5'],
+                                                                datasets: [{
+                                                                    label: 'Total {{ $additional['total_records'] }} penilaian',
+                                                                    data: [
+                                                                        {{ $additional['stars']['1'] }},
+                                                                        {{ $additional['stars']['2'] }},
+                                                                        {{ $additional['stars']['3'] }},
+                                                                        {{ $additional['stars']['4'] }},
+                                                                        {{ $additional['stars']['5'] }}
+                                                                    ],
+                                                                    borderWidth: 1.5,
+                                                                    borderColor: '#A020F0'
+                                                                }]
+                                                            },
+                                                            options: {
+                                                                animations: {
+                                                                    tension: {
+                                                                        duration: 3000,
+                                                                        easing: 'linear',
+                                                                        from: 1,
+                                                                        to: 0,
+                                                                        loop: true
+                                                                    }
+                                                                },
+                                                                scales: {
+                                                                    x: {
+                                                                        grid: {
+                                                                            display: false
+                                                                        }
+                                                                    },
+                                                                    y: {
+                                                                        grid: {
+                                                                            display: false
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        });
+                                                    </script>
                                                 </div>
                                             </div>
                                         </div>

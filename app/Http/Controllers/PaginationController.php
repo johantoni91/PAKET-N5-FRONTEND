@@ -23,14 +23,14 @@ class PaginationController extends Controller
                 'mobile'            => LogApi::getColumn('mobile')
             ];
             return view($view, [
-                'view'      => $view,
-                'data'      => $data,
-                'profile'   => $profile,
-                'title'     => $title,
-                'kolom'     => $kolom,
-                'satker'    => SatkerApi::getSatkerName()['data'],
-                'roles'     => RoleApi::get(),
-                'stars'     => Http::withToken(profile::getToken())->get(env('API_URL', '') . '/rate/stars')->json()['data'],
+                'view'          => $view,
+                'data'          => $data,
+                'profile'       => $profile,
+                'title'         => $title,
+                'kolom'         => $kolom,
+                'satker'        => SatkerApi::getSatkerName()['data'],
+                'roles'         => RoleApi::get(),
+                'additional'    => Http::withToken(profile::getToken())->get(env('API_URL', '') . '/rate/additional')->json()['data'],
             ]);
         } catch (\Throwable $th) {
             Alert::warning('Peringatan', 'Sudah awal / akhir halaman!');
