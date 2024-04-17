@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Helpers\profile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 
 class RateController extends Controller
 {
@@ -12,9 +14,16 @@ class RateController extends Controller
 
     function index()
     {
-        return view($this->view, [
-            'view'      => $this->view,
-            'title'     => $this->title
-        ]);
+        try {
+            return view($this->view, [
+                'view'  => $this->view,
+                'data'  => Http::withToken(profile::getToken())->get(env('API_URL', '') . '/rate')->json()['data'],
+                'stars' => Http::withToken(profile::getToken())->get(env('API_URL', '') . '/rate/stars')->json()['data'],
+                'title' => $this->title
+            ]);
+        } catch (\Throwable $th) {
+            Session::forget('user');
+            return redirect()->route('logout');
+        }
     }
 }

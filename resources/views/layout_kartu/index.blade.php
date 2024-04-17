@@ -1,6 +1,5 @@
 @extends('partials.main')
 @section('content')
-    @include('partials.grapejs')
     @include('partials.sidebar')
     @include('partials.topbar')
     <div class="ltr:flex flex-1 rtl:flex-row-reverse">

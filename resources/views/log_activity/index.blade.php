@@ -108,7 +108,8 @@
                                                                     <td class="px-6 py-4">
                                                                         {{ $item['log_detail'] }}
                                                                     </td>
-                                                                    <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                                                                    <td
+                                                                        class="px-6 py-4 bg-gray-50 dark:bg-gray-800 text-center">
                                                                         {{ date('d M Y', strtotime($item['created_at'])) }}
                                                                     </td>
                                                                 </tr>

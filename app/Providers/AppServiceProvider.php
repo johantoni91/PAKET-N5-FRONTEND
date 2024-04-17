@@ -31,9 +31,12 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             try {
                 if (!request()->routeIs('login')) {
-                    profile::access();
+                    $profile = profile::getUser();
+                    if (!$profile) {
+                        return redirect()->route('logout');
+                    }
                     $view->with('profile', [
-                        'profile' => profile::getUser(),
+                        'profile' => $profile,
                         'routes'  => json_decode(RoleApi::find(profile::getUser()['roles'])['route'], true),
                         'icons'   => json_decode(RoleApi::find(profile::getUser()['roles'])['icon'], true),
                         'titles'  => json_decode(RoleApi::find(profile::getUser()['roles'])['title'], true)

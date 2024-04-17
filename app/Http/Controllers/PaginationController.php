@@ -29,7 +29,8 @@ class PaginationController extends Controller
                 'title'     => $title,
                 'kolom'     => $kolom,
                 'satker'    => SatkerApi::getSatkerName()['data'],
-                'roles'     => RoleApi::get()
+                'roles'     => RoleApi::get(),
+                'stars'     => Http::withToken(profile::getToken())->get(env('API_URL', '') . '/rate/stars')->json()['data'],
             ]);
         } catch (\Throwable $th) {
             Alert::warning('Peringatan', 'Sudah awal / akhir halaman!');

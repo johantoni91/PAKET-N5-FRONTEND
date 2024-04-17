@@ -19,7 +19,7 @@ class AuthController extends Controller
             $title = 'Dashboard';
             return view("index", compact('title'));
         } catch (\Throwable $th) {
-            return redirect()->route('logout');
+            $this->logout();
         }
     }
 
