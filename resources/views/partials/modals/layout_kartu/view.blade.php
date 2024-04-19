@@ -1,18 +1,3 @@
-<style>
-    .bg-front {
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-image: url({{ $item['front'] }})
-    }
-
-    .bg-back {
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-image: url({{ $item['back'] }})
-    }
-</style>
 <div id="view{{ $item['id'] }}" tabindex="-1" aria-hidden="true"
     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-5 w-full max-w-4xl max-h-full">
@@ -35,44 +20,59 @@
                 </button>
             </div>
             <div class="p-4 space-y-4">
-                <div class="flex flex-row gap-5 w-full p-5">
-                    <div
-                        class="flex flex-col justify-center gap-3 w-[30dvw] h-[60dvh] rounded-lg shadow bg-front p-5 border-double border-2 border-red-400">
+                <div draggable="true"
+                    class="flex justify-center {{ $item['orientation'] == '0' ? 'flex-row' : 'flex-col' }} gap-2 p-5">
+                    <div style="background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-image: url({{ $item['front'] }})"
+                        class="flex flex-col justify-center gap-3 {{ $item['orientation'] == '0' ? ' w-[30dvw] h-[60dvh]' : 'h-[20dvw] w-[80dvh]' }} rounded-lg shadow p-5">
                         <div class="flex flex-row justify-center">
                             <img src="{{ $item['icon'] }}" class="w-24 h-24 rounded-full" alt="">
                         </div>
-                        <div class="flex flex-row justify-center mb-5">
-                            <img src="https://placehold.co/400" class="w-24 h-24 rounded-full" alt="">
-                        </div>
-                        <div class="p-2">
+                        @if ($item['profile'] == '1')
+                            <div class="flex flex-row justify-center mb-5">
+                                <img src="https://placehold.co/400" draggable="true" class="w-24 h-24 rounded-full"
+                                    alt="">
+                            </div>
+                        @endif
+                        <div class="relative p-2">
                             <table class="table-responsive mx-auto p-3 text-white mix-blend-exclusion">
                                 <thead>
-                                    <tr class="text-left">
-                                        <th>NIP</th>
-                                        <th>&nbsp; 199612022022031011</th>
-                                    </tr>
-                                    <tr class="text-left">
-                                        <th>NRP</th>
-                                        <th>&nbsp; 123456</th>
-                                    </tr>
-                                    <tr class="text-left">
-                                        <th>NAMA</th>
-                                        <th>&nbsp; Johan Toni Wijaya, S.Kom.</th>
-                                    </tr>
-                                    <tr class="text-left">
-                                        <th>JABATAN</th>
-                                        <th>&nbsp; Pengolah Data Intelijen</th>
-                                    </tr>
-                                    <tr class="text-left">
-                                        <th>GOLONGAN</th>
-                                        <th>&nbsp; Jaksa Muda (III/A)</th>
-                                    </tr>
+                                    @if ($item['nip'] == '1')
+                                        <tr class="text-left">
+                                            <th>&nbsp; 199612022022031011</th>
+                                        </tr>
+                                    @endif
+                                    @if ($item['nrp'] == '1')
+                                        <tr class="text-left">
+                                            <th>&nbsp; 123456</th>
+                                        </tr>
+                                    @endif
+                                    @if ($item['nama'] == '1')
+                                        <tr class="text-left">
+                                            <th>&nbsp; Johan Toni Wijaya, S.Kom.</th>
+                                        </tr>
+                                    @endif
+                                    @if ($item['jabatan'] == '1')
+                                        <tr class="text-left">
+                                            <th>&nbsp; Pengolah Data Intelijen</th>
+                                        </tr>
+                                    @endif
+                                    @if ($item['golongan'] == '1')
+                                        <tr class="text-left">
+                                            <th>&nbsp; Jaksa Muda (III/A)</th>
+                                        </tr>
+                                    @endif
                                 </thead>
                             </table>
                         </div>
                     </div>
-                    <div
-                        class="flex-col justify-center gap-3 w-[30dvw] rounded-lg shadow bg-back border-2 border-double border-red-400">
+                    <div class="flex-col justify-center gap-3 {{ $item['orientation'] == '0' ? ' w-[30dvw] h-[60dvh]' : 'h-[20dvw] w-[80dvh]' }} rounded-lg shadow"
+                        style="background-position: center;
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        background-image: url({{ $item['back'] }})">
 
                     </div>
                 </div>

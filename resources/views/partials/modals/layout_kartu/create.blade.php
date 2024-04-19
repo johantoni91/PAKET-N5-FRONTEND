@@ -57,9 +57,9 @@
                                 class="mx-auto h-24 w-24 rounded-full inline-block justify-center my-3">
                             <input type="file" name="icon" accept="image/*"
                                 class="bg-gray-50 mx-auto text-sm block w-auto border border-gray-300 rounded-lg dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                onchange="bg(event)">
+                                onchange="background(event)">
                             <script>
-                                var bg = function(event) {
+                                var background = function(event) {
                                     var icon = document.getElementById("icon");
                                     icon.src = URL.createObjectURL(event.target.files[0]);
                                     icon.onload = function() {
@@ -127,7 +127,6 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Golongan</label>
                             <select id="golongan" name="golongan" required
                                 class="bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-
                                 <option selected value="0">Tidak ditambahkan</option>
                                 <option value="1">ditambahkan</option>
                             </select>
@@ -135,7 +134,6 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jabatan</label>
                             <select id="jabatan" name="jabatan" required
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-
                                 <option selected value="0">Tidak ditambahkan</option>
                                 <option value="1">ditambahkan</option>
                             </select>
@@ -145,7 +143,6 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Orientasi</label>
                             <select id="orientation" name="orientation" required
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-
                                 <option selected value="0">Potrait (Vertikal)</option>
                                 <option value="1">Landscape (Horizontal)</option>
                             </select>

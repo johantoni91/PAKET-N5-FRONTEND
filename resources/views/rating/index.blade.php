@@ -40,54 +40,52 @@
                                     <div class="grid md:grid-cols-2 gap-2 sm:grid-cols-1 p-4">
                                         <div class="sm:mx-6 lg:mx-8 flex flex-col">
                                             <div class="block m-auto w-full">
-                                                <div class="relative sm:rounded-lg">
-                                                    <canvas id="graphOfRating"></canvas>
-                                                    <script>
-                                                        const ctx = document.getElementById('graphOfRating').getContext('2d');
+                                                <canvas id="graphOfRating"></canvas>
+                                                <script>
+                                                    const ctx = document.getElementById('graphOfRating').getContext('2d');
 
-                                                        new Chart(ctx, {
-                                                            type: 'line',
-                                                            data: {
-                                                                labels: ['⭐️1', '⭐️2', '⭐️3', '⭐️4', '⭐️5'],
-                                                                datasets: [{
-                                                                    label: 'Total {{ $additional['total_records'] }} penilaian',
-                                                                    data: [
-                                                                        {{ $additional['stars']['1'] }},
-                                                                        {{ $additional['stars']['2'] }},
-                                                                        {{ $additional['stars']['3'] }},
-                                                                        {{ $additional['stars']['4'] }},
-                                                                        {{ $additional['stars']['5'] }}
-                                                                    ],
-                                                                    borderWidth: 1.5,
-                                                                    borderColor: '#A020F0'
-                                                                }]
+                                                    new Chart(ctx, {
+                                                        type: 'line',
+                                                        data: {
+                                                            labels: ['⭐️1', '⭐️2', '⭐️3', '⭐️4', '⭐️5'],
+                                                            datasets: [{
+                                                                label: "Total {{ $additional['total_records'] }} penilaian",
+                                                                data: [
+                                                                    {{ $additional['stars']['1'] }},
+                                                                    {{ $additional['stars']['2'] }},
+                                                                    {{ $additional['stars']['3'] }},
+                                                                    {{ $additional['stars']['4'] }},
+                                                                    {{ $additional['stars']['5'] }}
+                                                                ],
+                                                                borderWidth: 1.5,
+                                                                borderColor: '#A020F0'
+                                                            }]
+                                                        },
+                                                        options: {
+                                                            animations: {
+                                                                tension: {
+                                                                    duration: 4000,
+                                                                    easing: 'easeInOut',
+                                                                    from: 1,
+                                                                    to: 0,
+                                                                    loop: true
+                                                                }
                                                             },
-                                                            options: {
-                                                                animations: {
-                                                                    tension: {
-                                                                        duration: 3000,
-                                                                        easing: 'linear',
-                                                                        from: 1,
-                                                                        to: 0,
-                                                                        loop: true
+                                                            scales: {
+                                                                x: {
+                                                                    grid: {
+                                                                        display: false
                                                                     }
                                                                 },
-                                                                scales: {
-                                                                    x: {
-                                                                        grid: {
-                                                                            display: false
-                                                                        }
-                                                                    },
-                                                                    y: {
-                                                                        grid: {
-                                                                            display: false
-                                                                        }
+                                                                y: {
+                                                                    grid: {
+                                                                        display: false
                                                                     }
                                                                 }
                                                             }
-                                                        });
-                                                    </script>
-                                                </div>
+                                                        }
+                                                    });
+                                                </script>
                                             </div>
                                         </div>
                                         <div class="sm:-mx-6 lg:-mx-8">

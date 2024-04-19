@@ -36,8 +36,10 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Foto profil</label>
                             <select id="profil" name="profil" required
                                 class="bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                <option selected value="0">Tidak ditambahkan</option>
-                                <option value="1">ditambahkan</option>
+                                <option {{ $item['profile'] == '0' ? 'selected' : '' }} value="0">Tidak ditambahkan
+                                </option>
+                                <option {{ $item['profile'] == '1' ? 'selected' : '' }} value="1">ditambahkan
+                                </option>
                             </select>
                         </div>
                         <div class="col-span-2 mb-3 sm:col-span-1">
@@ -45,9 +47,12 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kategori</label>
                             <select id="kategori" name="kategori" required
                                 class="bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                <option selected value="0">Kartu Acara</option>
-                                <option value="1">Kartu Identitas</option>
-                                <option value="2">Kartu Intel</option>
+                                <option {{ $item['categories'] == '0' ? 'selected' : '' }} value="0">Kartu Acara
+                                </option>
+                                <option {{ $item['categories'] == '1' ? 'selected' : '' }} value="1">Kartu Identitas
+                                </option>
+                                <option {{ $item['categories'] == '2' ? 'selected' : '' }} value="2">Kartu Intel
+                                </option>
                             </select>
                         </div>
                         <div class="col-span-2 mb-3 flex flex-col justify-center">
@@ -73,15 +78,17 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
                             <select id="nip" name="nip" required
                                 class="bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                <option selected value="0">Tidak ditambahkan</option>
-                                <option value="1">ditambahkan</option>
+                                <option {{ $item['nip'] == '0' ? 'selected' : '' }} value="0">Tidak ditambahkan
+                                </option>
+                                <option {{ $item['nip'] == '1' ? 'selected' : '' }} value="1">ditambahkan</option>
                             </select>
                             <label for="nrp"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NRP</label>
                             <select id="nrp" name="nrp" required
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                <option selected value="0">Tidak ditambahkan</option>
-                                <option value="1">ditambahkan</option>
+                                <option {{ $item['nrp'] == '0' ? 'selected' : '' }} value="0">Tidak ditambahkan
+                                </option>
+                                <option {{ $item['nrp'] == '1' ? 'selected' : '' }} value="1">ditambahkan</option>
                             </select>
                         </div>
                         <div class="col-span-2 mb-3 sm:col-span-1">
@@ -90,16 +97,20 @@
                             <select id="golongan" name="golongan" required
                                 class="bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 
-                                <option selected value="0">Tidak ditambahkan</option>
-                                <option value="1">ditambahkan</option>
+                                <option {{ $item['golongan'] == '0' ? 'selected' : '' }} value="0">Tidak ditambahkan
+                                </option>
+                                <option {{ $item['golongan'] == '1' ? 'selected' : '' }} value="1">ditambahkan
+                                </option>
                             </select>
                             <label for="jabatan"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jabatan</label>
                             <select id="jabatan" name="jabatan" required
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 
-                                <option selected value="0">Tidak ditambahkan</option>
-                                <option value="1">ditambahkan</option>
+                                <option {{ $item['jabatan'] == '0' ? 'selected' : '' }} value="0">Tidak ditambahkan
+                                </option>
+                                <option {{ $item['jabatan'] == '1' ? 'selected' : '' }} value="1">ditambahkan
+                                </option>
                             </select>
                         </div>
                         <div class="col-span-2 mb-3">
@@ -108,8 +119,10 @@
                             <select id="orientation" name="orientation" required
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 
-                                <option selected value="0">Potrait (Vertikal)</option>
-                                <option value="1">Landscape (Horizontal)</option>
+                                <option {{ $item['orientation'] == '0' ? 'selected' : '' }} value="0">Potrait
+                                    (Vertikal)</option>
+                                <option {{ $item['orientation'] == '1' ? 'selected' : '' }} value="1">Landscape
+                                    (Horizontal)</option>
                             </select>
                         </div>
                     </div>
@@ -119,7 +132,7 @@
                     class="flex justify-end items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
                     <button type="submit"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Tambah</button>
+                        Simpan</button>
                 </div>
             </form>
         </div>

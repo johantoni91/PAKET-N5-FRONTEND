@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kartu {{ $kartu['title'] }}</title>
+    <link rel="shortcut icon" href="{{ $pegawai['foto_pegawai'] }}" />
+    <title>Kartu {{ $pegawai['nama'] }}</title>
     <style>
         .cover {
             display: flex;
@@ -22,12 +23,6 @@
             gap: 0.75rem;
             justify-content: center;
             border-radius: 0.5rem;
-            border-width: 2px;
-            border-color: #F87171;
-            border-style: double;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            width: 30dvw;
-            height: 60dvh;
             mix-blend-mode: difference;
         }
 
@@ -36,11 +31,6 @@
             gap: 0.75rem;
             justify-content: center;
             border-radius: 0.5rem;
-            border-width: 2px;
-            border-color: #F87171;
-            border-style: double;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            width: 30dvw;
             mix-blend-mode: difference;
         }
 
@@ -112,41 +102,50 @@
 
 <body>
     <div class="cover">
-        <div class="card_1 bg_front">
+        <div class="card_1 bg_front"
+            style="{{ $kartu['orientation'] == '0' ? 'width: 30dvw; height: 60dvh;' : 'height: 20dvw; width: 80dvh;' }}">
             <div class="img_card_1">
-                <img src="{{ $kartu['icon'] }}" class="w-12 h-12" alt="">
+                <img src="{{ $kartu['icon'] }}" class="w-12 h-12 rounded-full" alt="">
             </div>
-            <div class="img_card_1 mb-5">
-                <img src="{{ $pengajuan['photo'] }}" class="w-20 h-20 rounded-full" alt="">
-            </div>
+            @if ($kartu['profile'] == '1')
+                <div class="img_card_1 mb-5">
+                    <img src="{{ $pengajuan['photo'] }}" class="w-20 h-20 rounded-full" alt="">
+                </div>
+            @endif
             <div class="p-2">
                 <table class="table-responsive mx-auto p-3">
                     <thead>
-                        <tr class="text-left">
-                            <th>NIP</th>
-                            <th>&nbsp; {{ $pegawai['nip'] }}</th>
-                        </tr>
-                        <tr class="text-left">
-                            <th>NRP</th>
-                            <th>&nbsp; {{ $pegawai['nrp'] }}</th>
-                        </tr>
-                        <tr class="text-left">
-                            <th>NAMA</th>
-                            <th>&nbsp; {{ $pegawai['nama'] }}</th>
-                        </tr>
-                        <tr class="text-left">
-                            <th>JABATAN</th>
-                            <th>&nbsp; {{ $pegawai['jabatan'] }}</th>
-                        </tr>
-                        <tr class="text-left">
-                            <th>GOLONGAN</th>
-                            <th>&nbsp; {{ $pegawai['golpang'] }}</th>
-                        </tr>
+                        @if ($kartu['nip'] == '1')
+                            <tr class="text-center">
+                                <th>&nbsp; {{ $pegawai['nip'] }}</th>
+                            </tr>
+                        @endif
+                        @if ($kartu['nrp'] == '1')
+                            <tr class="text-center">
+                                <th>&nbsp; {{ $pegawai['nrp'] }}</th>
+                            </tr>
+                        @endif
+                        @if ($kartu['nama'] == '1')
+                            <tr class="text-center">
+                                <th>&nbsp; {{ $pegawai['nama'] }}</th>
+                            </tr>
+                        @endif
+                        @if ($kartu['jabatan'] == '1')
+                            <tr class="text-center">
+                                <th>&nbsp; {{ $pegawai['jabatan'] }}</th>
+                            </tr>
+                        @endif
+                        @if ($kartu['golongan'] == '1')
+                            <tr class="text-center">
+                                <th>&nbsp; {{ $pegawai['golpang'] }}</th>
+                            </tr>
+                        @endif
                     </thead>
                 </table>
             </div>
         </div>
-        <div class="card_2 bg_back">
+        <div class="card_2 bg_back"
+            style="{{ $kartu['orientation'] == '0' ? 'width: 30dvw;' : 'height: 20dvw; width: 80dvh;' }}">
 
         </div>
     </div>

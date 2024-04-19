@@ -22,9 +22,6 @@
             gap: 0.75rem;
             justify-content: center;
             border-radius: 0.5rem;
-            border-width: 2px;
-            border-color: #F87171;
-            border-style: double;
             box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
             width: 30dvw;
             height: 60dvh;
@@ -35,12 +32,9 @@
             flex-direction: column;
             gap: 0.75rem;
             justify-content: center;
-            border-radius: 0.5rem;
-            border-width: 2px;
-            border-color: #F87171;
-            border-style: double;
             box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
             width: 30dvw;
+            height: 60dvh;
             mix-blend-mode: difference;
         }
 

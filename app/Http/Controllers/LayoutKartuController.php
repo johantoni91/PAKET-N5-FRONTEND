@@ -90,10 +90,10 @@ class LayoutKartuController extends Controller
             ];
             $ext_icon  = $req->hasFile('icon') ? $req->file('icon')->getClientOriginalExtension() : null;
             KartuApi::update($id, $input, $ext_icon);
-            Alert::success('Berhasil', 'Kartu telah ditambahkan');
+            Alert::success('Berhasil', 'Kartu telah diubah');
             return back();
         } catch (\Throwable $th) {
-            Alert::error('Gagal', 'Kartu gagal ditambahkan', $th->getMessage());
+            Alert::error('Gagal', 'Kartu gagal diubah', $th->getMessage());
             return back();
         }
     }
