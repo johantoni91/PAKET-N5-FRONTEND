@@ -54,7 +54,17 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Auth::class,
-        'role' => \App\Http\Middleware\Role::class,
+        'role_user' => \App\Http\Middleware\User::class,
+        'role_satker' => \App\Http\Middleware\Satker::class,
+        'role_pegawai' => \App\Http\Middleware\Pegawai::class,
+        'role_pengajuan' => \App\Http\Middleware\Pengajuan::class,
+        'role_monitor' => \App\Http\Middleware\MonitoringKartu::class,
+        'role_layout' => \App\Http\Middleware\LayoutKartu::class,
+        'role_log' => \App\Http\Middleware\LogActivity::class,
+        'role_perangkat' => \App\Http\Middleware\Perangkat::class,
+        'role_faq' => \App\Http\Middleware\FAQ::class,
+        'role_rating' => \App\Http\Middleware\Rating::class,
+        'role_akses' => \App\Http\Middleware\Role::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,

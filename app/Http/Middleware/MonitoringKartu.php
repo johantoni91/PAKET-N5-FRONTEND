@@ -6,9 +6,8 @@ use App\API\RoleApi;
 use App\Helpers\profile;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 
-class Role
+class MonitoringKartu
 {
     /**
      * Handle an incoming request.
@@ -20,7 +19,7 @@ class Role
     public function handle(Request $request, Closure $next)
     {
         $access = json_decode(RoleApi::find(profile::getUser()['roles'])['route'], true);
-        if (!in_array('akses', $access)) {
+        if (!in_array('monitor.kartu', $access)) {
             return redirect()->route('error.404');
         }
         return $next($request);
