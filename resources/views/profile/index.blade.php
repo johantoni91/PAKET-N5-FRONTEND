@@ -124,7 +124,8 @@
                                                         <div class="flex flex-row gap-2 ms-28">
                                                             <input type="checkbox" id="checkbox"
                                                                 class="rounded-full shadow">
-                                                            <label for="checkbox">Lihat password</label>
+                                                            <label for="checkbox" class="dark:text-white">Lihat
+                                                                password</label>
                                                         </div>
                                                         <script>
                                                             $(document).ready(function() {

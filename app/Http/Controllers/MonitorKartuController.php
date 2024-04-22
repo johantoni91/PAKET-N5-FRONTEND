@@ -51,14 +51,17 @@ class MonitorKartuController extends Controller
         }
     }
 
-    public function print(Request $req, $id, $kartu)
+    public function print(Request $req, $id, $title)
     {
         try {
             $pengajuan = PengajuanApi::find($id)['data'];
+            $pegawai = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/pegawai' . '/' . $pengajuan['nip'])->json()['data'];
             if ($req->token == $pengajuan['token']) {
                 $dataPengajuan = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/pengajuan' . '/' . $id . '/print')->json();
-                $dataKartu = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/kartu' . '/' . $kartu . '/title')->json();
+                $kartu = Http::withToken(profile::getToken())->post(env('API_URL', '') . '/kartu/title', ['title' => $title])->json()['data'];
                 if ($dataPengajuan['status'] == true) {
+                    $pdf = Pdf::loadView('monitor_kartu.pdf', compact('pegawai', 'kartu', 'pengajuan'));
+                    $pdf->download('Kartu_' . $kartu['title'] . '.pdf');
                     Alert::success('Berhasil', 'Kartu telah dicetak');
                     return back();
                 }
@@ -66,7 +69,7 @@ class MonitorKartuController extends Controller
                 return back();
             }
         } catch (\Throwable $th) {
-            Alert::error('Gagal', 'Kartu gagal dicetak');
+            Alert::error('Gagal', 'Kartu gagal dicetak', $th->getMessage());
             return back();
         }
     }

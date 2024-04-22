@@ -110,7 +110,7 @@
                                                                     </td>
                                                                     <td
                                                                         class="px-6 py-4 bg-gray-50 dark:bg-gray-800 text-center">
-                                                                        {{ date('d M Y', strtotime($item['created_at'])) }}
+                                                                        {{ date('d M Y h:i:s', strtotime($item['created_at'])) }}
                                                                     </td>
                                                                 </tr>
                                                             @endforeach

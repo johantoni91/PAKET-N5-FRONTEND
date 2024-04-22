@@ -183,9 +183,9 @@
                                                                         @endif
                                                                     </td>
                                                                     <td>
-                                                                        <a href="{{ route('user.status', [$item['users_id'], $item['status']]) }}"
-                                                                            class="align-baseline justify-center flex flex-row {{ $item['status'] == '1' ? 'hover:drop-shadow-green' : 'hover:drop-shadow-red' }}">
-                                                                            @if ($item['status'] == '1')
+                                                                        @if ($item['users_id'] == App\Helpers\profile::getUser()['users_id'])
+                                                                            <div
+                                                                                class="align-baseline justify-center flex flex-row drop-shadow-green">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                     fill="none" viewBox="0 0 24 24"
                                                                                     stroke-width="1.5" stroke="currentColor"
@@ -197,21 +197,39 @@
                                                                                 <span
                                                                                     class="text-sm text-green-500 ms-2 mt-0.5">
                                                                                     Aktif</span>
-                                                                            @else
-                                                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                    fill="none" viewBox="0 0 24 24"
-                                                                                    stroke-width="1.5"
-                                                                                    stroke="currentColor"
-                                                                                    class="w-6 h-6 text-red-500">
-                                                                                    <path stroke-linecap="round"
-                                                                                        stroke-linejoin="round"
-                                                                                        d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                                                                </svg>
-                                                                                <span
-                                                                                    class="text-sm text-red-500 ms-2 mt-0.5">
-                                                                                    Nonaktif</span>
-                                                                            @endif
-                                                                        </a>
+                                                                            </div>
+                                                                        @else
+                                                                            <a href="{{ route('user.status', [$item['users_id'], $item['status']]) }}"
+                                                                                class="align-baseline justify-center flex flex-row {{ $item['status'] == '1' ? 'hover:drop-shadow-green' : 'hover:drop-shadow-red' }}">
+                                                                                @if ($item['status'] == '1')
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                        fill="none" viewBox="0 0 24 24"
+                                                                                        stroke-width="1.5"
+                                                                                        stroke="currentColor"
+                                                                                        class="w-6 h-6 text-green-500">
+                                                                                        <path stroke-linecap="round"
+                                                                                            stroke-linejoin="round"
+                                                                                            d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                                                                    </svg>
+                                                                                    <span
+                                                                                        class="text-sm text-green-500 ms-2 mt-0.5">
+                                                                                        Aktif</span>
+                                                                                @else
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                        fill="none" viewBox="0 0 24 24"
+                                                                                        stroke-width="1.5"
+                                                                                        stroke="currentColor"
+                                                                                        class="w-6 h-6 text-red-500">
+                                                                                        <path stroke-linecap="round"
+                                                                                            stroke-linejoin="round"
+                                                                                            d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                                                                    </svg>
+                                                                                    <span
+                                                                                        class="text-sm text-red-500 ms-2 mt-0.5">
+                                                                                        Nonaktif</span>
+                                                                                @endif
+                                                                            </a>
+                                                                        @endif
                                                                     </td>
 
                                                                 </tr>

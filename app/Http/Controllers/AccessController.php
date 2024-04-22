@@ -29,12 +29,13 @@ class AccessController extends Controller
 
     function update(Request $req, $id)
     {
-        $res = RoleApi::update($id, $req->roles);
-        if ($res['status'] == true) {
+        if ($req->roles) {
+            RoleApi::update($id, $req->roles);
             Alert::success('Berhasil', 'Akses role telah diubah!');
             return back();
+        } else {
+            Alert::error('Error', 'Gagal mengubah akses role / Mohon isi minimal 1 akses.');
+            return back();
         }
-        Alert::error('Error', 'Gagal mengubah akses role');
-        return back();
     }
 }

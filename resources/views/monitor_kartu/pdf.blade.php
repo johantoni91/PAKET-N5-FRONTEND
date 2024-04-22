@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="{{ $pegawai['foto_pegawai'] }}" />
     <title>Kartu {{ $pegawai['nama'] }}</title>
-    <style>
+    {{-- <style>
         .cover {
             display: flex;
             padding: 1.25rem;
@@ -97,11 +97,66 @@
             background-repeat: no-repeat;
             background-image: url({{ $kartu['back'] }})
         }
-    </style>
+    </style> --}}
 </head>
 
 <body>
-    <div class="cover">
+    <div class="flex justify-center {{ $kartu['orientation'] == '0' ? 'flex-row' : 'flex-col' }} gap-2 p-5">
+        <div style="background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-image: url({{ $kartu['front'] }})"
+            class="flex flex-col justify-center gap-3 {{ $kartu['orientation'] == '0' ? ' w-[30dvw] h-[60dvh]' : 'h-[20dvw] w-[80dvh]' }} rounded-lg shadow p-5">
+            <div class="flex flex-row justify-center">
+                <img src="{{ $kartu['icon'] }}" class="w-24 h-24 rounded-full" alt="">
+            </div>
+            @if ($kartu['profile'] == '1')
+                <div class="flex flex-row justify-center mb-5">
+                    <img src="https://placehold.co/400" draggable="true" class="w-24 h-24 rounded-full" alt="">
+                </div>
+            @endif
+            <div class="relative p-2">
+                <table class="table-responsive mx-auto p-3 text-white mix-blend-exclusion">
+                    <thead>
+                        @if ($kartu['nip'] == '1')
+                            <tr class="text-left">
+                                <th>&nbsp; 199612022022031011</th>
+                            </tr>
+                        @endif
+                        @if ($kartu['nrp'] == '1')
+                            <tr class="text-left">
+                                <th>&nbsp; 123456</th>
+                            </tr>
+                        @endif
+                        @if ($kartu['nama'] == '1')
+                            <tr class="text-left">
+                                <th>&nbsp; Johan Toni Wijaya, S.Kom.</th>
+                            </tr>
+                        @endif
+                        @if ($kartu['jabatan'] == '1')
+                            <tr class="text-left">
+                                <th>&nbsp; Pengolah Data Intelijen</th>
+                            </tr>
+                        @endif
+                        @if ($kartu['golongan'] == '1')
+                            <tr class="text-left">
+                                <th>&nbsp; Jaksa Muda (III/A)</th>
+                            </tr>
+                        @endif
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="flex-col justify-center gap-3 {{ $kartu['orientation'] == '0' ? ' w-[30dvw] h-[60dvh]' : 'h-[20dvw] w-[80dvh]' }} rounded-lg shadow"
+            style="background-position: center;
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        background-image: url({{ $kartu['back'] }})">
+
+        </div>
+    </div>
+
+    {{-- <div class="cover">
         <div class="card_1 bg_front"
             style="{{ $kartu['orientation'] == '0' ? 'width: 30dvw; height: 60dvh;' : 'height: 20dvw; width: 80dvh;' }}">
             <div class="img_card_1">
@@ -148,7 +203,7 @@
             style="{{ $kartu['orientation'] == '0' ? 'width: 30dvw;' : 'height: 20dvw; width: 80dvh;' }}">
 
         </div>
-    </div>
+    </div> --}}
 </body>
 
 </html>

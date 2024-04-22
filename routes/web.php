@@ -107,7 +107,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role_monitor'])->group(function () {
         Route::get('/monitor/kartu', [MonitorKartuController::class, 'index'])->name('monitor.kartu');
         Route::get('/monitor/{id}/kartu/{nip}/pdf/{title}', [MonitorKartuController::class, 'pdf'])->name('monitor.kartu.pdf');
-        Route::post('/monitor/kartu/{id}/pdf/{kartu}', [MonitorKartuController::class, 'print'])->name('monitor.kartu.print');
+        Route::post('/monitor/kartu/{id}/pdf/{title}', [MonitorKartuController::class, 'print'])->name('monitor.kartu.print');
     });
 
     // PERANGKAT

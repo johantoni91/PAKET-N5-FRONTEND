@@ -5,7 +5,7 @@
                 Komentar</h2>
         </div>
         @if (!$data['data'])
-            <p class="text-center">--Belum ada komentar--</p>
+            <p class="text-center dark:text-white">--Belum ada komentar--</p>
         @else
             @foreach ($data['data'] as $rate)
                 <article class="p-6 text-base bg-white rounded-lg dark:bg-gray-900">

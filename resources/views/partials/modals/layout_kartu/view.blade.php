@@ -20,8 +20,7 @@
                 </button>
             </div>
             <div class="p-4 space-y-4">
-                <div draggable="true"
-                    class="flex justify-center {{ $item['orientation'] == '0' ? 'flex-row' : 'flex-col' }} gap-2 p-5">
+                <div class="flex justify-center {{ $item['orientation'] == '0' ? 'flex-row' : 'flex-col' }} gap-2 p-5">
                     <div style="background-position: center;
                     background-size: cover;
                     background-repeat: no-repeat;
