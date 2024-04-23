@@ -102,7 +102,7 @@
                                                                 @endif
                                                             </tbody>
                                                         </table>
-                                                        @if (!$data['data'])
+                                                        @if ($data['data'])
                                                             @include('partials.pagination')
                                                         @endif
                                                     </div>

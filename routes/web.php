@@ -113,6 +113,7 @@ Route::middleware(['auth'])->group(function () {
     // PERANGKAT
     Route::middleware(['role_perangkat'])->group(function () {
         Route::get('/devices', [DeviceController::class, 'index'])->name('perangkat');
+        Route::get('/devices/reset', [DeviceController::class, 'resetKiosK'])->name('perangkat.reset');
     });
 
     // FAQ

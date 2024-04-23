@@ -6,6 +6,8 @@ use App\API\RoleApi;
 use App\Helpers\profile;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 
 class Satker
 {
@@ -18,10 +20,16 @@ class Satker
      */
     public function handle(Request $request, Closure $next)
     {
-        $access = json_decode(RoleApi::find(profile::getUser()['roles'])['route'], true);
-        if (!in_array('satker', $access)) {
-            return redirect()->route('error.404');
+        try {
+            $access = json_decode(RoleApi::find(profile::getUser()['roles'])['route'], true);
+            if (!in_array('satker', $access)) {
+                return redirect()->route('error.404');
+            }
+            return $next($request);
+        } catch (\Throwable $th) {
+            Session::flush();
+            Cookie::forget('token');
+            return redirect()->route('login');
         }
-        return $next($request);
     }
 }

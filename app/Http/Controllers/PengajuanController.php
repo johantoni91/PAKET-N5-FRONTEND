@@ -6,6 +6,7 @@ use App\API\PegawaiApi;
 use App\API\PengajuanApi;
 use App\Helpers\profile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -16,17 +17,12 @@ class PengajuanController extends Controller
 
     function index()
     {
-        try {
-            $data = PengajuanApi::get()['data'];
-            return view($this->view, [
-                'view'      => $this->view,
-                'title'     => $this->title,
-                'data'      => $data
-            ]);
-        } catch (\Throwable $th) {
-            Session::forget('user');
-            return redirect()->route('logout');
-        }
+        $data = PengajuanApi::get()['data'];
+        return view($this->view, [
+            'view'      => $this->view,
+            'title'     => $this->title,
+            'data'      => $data
+        ]);
     }
 
     function search()

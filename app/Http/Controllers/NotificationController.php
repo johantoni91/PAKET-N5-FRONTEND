@@ -11,7 +11,7 @@ class NotificationController extends Controller
 {
     function index()
     {
-        $notif = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/notif')->json()['data'];
+        $notif = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/notif' . '/' . profile::getUser()['satker'])->json()['data'];
         return response()->json([
             'count'  => count($notif),
             'view'  => view('partials.notification', compact('notif'))->render()

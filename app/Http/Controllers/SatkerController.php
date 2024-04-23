@@ -16,19 +16,13 @@ class SatkerController extends Controller
 
     function index()
     {
-        try {
-            $data = SatkerApi::get();
-            return view($this->view, [
-                'view'    => $this->view,
-                'title'   => $this->title,
-                'data'    => $data
-            ]);
-            return redirect()->route('dashboard');
-        } catch (\Throwable $th) {
-            Alert::error('Kesalahan', $th->getMessage());
-            Session::forget('user');
-            return redirect()->route('logout');
-        }
+        $data = SatkerApi::get();
+        return view($this->view, [
+            'view'    => $this->view,
+            'title'   => $this->title,
+            'data'    => $data
+        ]);
+        return redirect()->route('dashboard');
     }
 
     function search()

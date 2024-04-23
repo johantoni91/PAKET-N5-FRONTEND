@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\API\RoleApi;
+use App\API\SatkerApi;
 use App\API\UserApi;
 use App\Exports\UserExport;
 use App\Helpers\profile;
@@ -10,6 +11,7 @@ use App\Http\Requests\UserRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Session;
 use Jenssegers\Agent\Agent;
@@ -23,18 +25,14 @@ class UserController extends Controller
 
     public function index()
     {
-        try {
-            $data = UserApi::get()['data'];
-            return view($this->view, [
-                'view'      => $this->view,
-                'title'     => $this->title,
-                'data'      => $data,
-                'roles'     => RoleApi::get()['data']
-            ]);
-        } catch (\Throwable $th) {
-            Session::forget('user');
-            return redirect()->route('logout');
-        }
+        $data = UserApi::get()['data'];
+        return view($this->view, [
+            'view'      => $this->view,
+            'title'     => $this->title,
+            'data'      => $data,
+            'satker'    => SatkerApi::getCodeName()['data'],
+            'roles'     => RoleApi::get()['data']
+        ]);
     }
 
     public function search()
@@ -86,6 +84,7 @@ class UserController extends Controller
             'nrp'       => $request->nrp,
             'username'  => $request->username,
             'name'      => $request->name,
+            'satker'    => $request->satker,
             'roles'     => $request->roles,
             'email'     => $request->email,
             'phone'     => $request->phone,
@@ -125,6 +124,7 @@ class UserController extends Controller
             'name'              => $request->name,
             'email'             => $request->email,
             'phone'             => $request->phone,
+            'satker'            => $request->satker,
             'roles'             => $request->roles,
             'photo'             => $request->file('photo'),
             'password'          => $request->password,

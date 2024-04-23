@@ -49,11 +49,11 @@
                                             <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-8">
                                                 <div class="flex flex-col gap-3 mb-5">
                                                     <div class="flex flex-row justify-between px-5">
-                                                        <button type="button" data-modal-target="create"
+                                                        {{-- <button type="button" data-modal-target="create"
                                                             data-modal-toggle="create"
                                                             class="focus:outline-none bg-primary-500 text-white border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium py-1 px-3 rounded w-24">+
                                                             Satker</button>
-                                                        @include('partials.modals.satker.create')
+                                                        @include('partials.modals.satker.create') --}}
                                                         <div class="justify-end">
                                                             <button type="button" data-modal-target="search"
                                                                 data-modal-toggle="search"
@@ -92,6 +92,9 @@
                                                                             </th>
                                                                             <th scope="col"
                                                                                 class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                                                                URL
+                                                                            </th>
+                                                                            <th scope="col" class="px-6 py-3">
                                                                                 Aksi
                                                                             </th>
                                                                         </tr>
@@ -101,7 +104,7 @@
                                                                             <tr
                                                                                 class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                                                                 <th scope="row"
-                                                                                    class="px-4 py-2 text-black whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                                                    class="px-4 py-2 text-black whitespace-nowrap text-wrap bg-gray-50 dark:text-white dark:bg-gray-800">
                                                                                     {{ $item['satker_name'] }}
                                                                                 </th>
                                                                                 <td
@@ -113,29 +116,32 @@
                                                                                     {{ $item['satker_email'] }}
                                                                                 </td>
                                                                                 <td
-                                                                                    class="text-center px-6 py-4 dark:text-white">
+                                                                                    class="text-center px-6 py-4 dark:text-white text-justify">
                                                                                     {{ $item['satker_address'] }}
                                                                                 </td>
                                                                                 <td
-                                                                                    class="px-6 py-4 dark:text-white bg-gray-50 dark:bg-gray-800">
+                                                                                    class="text-center px-6 py-4 dark:text-white bg-gray-50 dark:bg-gray-800">
+                                                                                    {{ $item['satker_url'] }}
+                                                                                </td>
+                                                                                <td class="px-6 py-4 dark:text-white">
                                                                                     <div
                                                                                         class="flex flex-row justify-evenly gap-2">
-                                                                                        <button type="button"
-                                                                                            data-modal-target="update{{ $item['id'] }}"
-                                                                                            data-modal-toggle="update{{ $item['id'] }}"><i
+                                                                                        {{-- <button type="button"
+                                                                                            data-modal-target="update{{ $item['satker_id'] }}"
+                                                                                            data-modal-toggle="update{{ $item['satker_id'] }}"><i
                                                                                                 class="align-baseline text-center icofont-edit text-lg hover:text-black dark:text-gray-400 text-blue-500"></i></button>
-                                                                                        @include('partials.modals.satker.update')
+                                                                                        @include('partials.modals.satker.update') --}}
                                                                                         <input type="hidden"
-                                                                                            value="{{ $item['id'] }}"
-                                                                                            id="del{{ $item['id'] }}">
+                                                                                            value="{{ $item['satker_id'] }}"
+                                                                                            id="del{{ $item['satker_id'] }}">
                                                                                         <button type="button"
-                                                                                            id="delete{{ $item['id'] }}"><i
+                                                                                            id="delete{{ $item['satker_id'] }}"><i
                                                                                                 class="align-baseline text-center icofont-ui-delete text-lg text-red-500 dark:text-red-400 hover:text-black"></i></button>
                                                                                         <script>
                                                                                             $(document).ready(function() {
-                                                                                                $("#delete{{ $item['id'] }}").on('click', function(e) {
+                                                                                                $("#delete{{ $item['satker_id'] }}").on('click', function(e) {
                                                                                                     e.preventDefault()
-                                                                                                    var id = $("#del{{ $item['id'] }}").val()
+                                                                                                    var id = $("#del{{ $item['satker_id'] }}").val()
                                                                                                     Swal.fire({
                                                                                                         title: "PERINGATAN",
                                                                                                         text: "Apakah anda yakin menghapus satker ?",

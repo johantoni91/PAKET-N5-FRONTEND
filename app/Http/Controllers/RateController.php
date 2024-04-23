@@ -14,16 +14,11 @@ class RateController extends Controller
 
     function index()
     {
-        try {
-            return view($this->view, [
-                'view'          => $this->view,
-                'data'          => Http::withToken(profile::getToken())->get(env('API_URL', '') . '/rate')->json()['data'],
-                'additional'    => Http::withToken(profile::getToken())->get(env('API_URL', '') . '/rate/additional')->json()['data'],
-                'title'         => $this->title
-            ]);
-        } catch (\Throwable $th) {
-            Session::forget('user');
-            return redirect()->route('logout');
-        }
+        return view($this->view, [
+            'view'          => $this->view,
+            'data'          => Http::withToken(profile::getToken())->get(env('API_URL', '') . '/rate')->json()['data'],
+            'additional'    => Http::withToken(profile::getToken())->get(env('API_URL', '') . '/rate/additional')->json()['data'],
+            'title'         => $this->title
+        ]);
     }
 }

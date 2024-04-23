@@ -22,6 +22,11 @@ class SatkerApi
         }
     }
 
+    public static function getCodeName()
+    {
+        return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker/all')->json();
+    }
+
     public static function getSatkerName()
     {
         try {

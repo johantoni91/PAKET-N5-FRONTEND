@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\API\UserApi;
 use App\Helpers\profile;
 use App\Http\Requests\ProfileRequest;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -14,13 +15,9 @@ class ProfileController extends Controller
 {
     function index()
     {
-        try {
-            $title = 'Profil User';
-            return view('profile.index', compact('title'));
-        } catch (\Throwable $th) {
-            Session::forget('user');
-            return redirect()->route('logout');
-        }
+        $title = 'Profil User';
+        $satker = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . profile::getUser()['satker'] . '/code')->json()['data'];
+        return view('profile.index', compact('title', 'satker'));
     }
 
     function update(ProfileRequest $request, $id)

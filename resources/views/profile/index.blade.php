@@ -89,7 +89,6 @@
                                                                 required
                                                                 class="{{ $profile['profile']['users']['username'] != null ? 'bg-blue-200 border border-blue-300 shadow shadow-blue-200' : 'bg-gray-200 border border-gray-300 shadow' }} text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                                                             dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-
                                                         </div>
                                                         <div class="flex flex-row gap-5">
                                                             <p class="my-auto w-24 dark:text-white">Name</p>
@@ -97,7 +96,13 @@
                                                                 value="{{ $profile['profile']['users']['name'] }}" required
                                                                 class="{{ $profile['profile']['users']['name'] != null ? 'bg-blue-200 border border-blue-300 shadow shadow-blue-200' : 'bg-gray-200 border border-gray-300 shadow' }} text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                                                             dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-
+                                                        </div>
+                                                        <div class="flex flex-row gap-5">
+                                                            <p class="my-auto w-24 dark:text-white">Satker</p>
+                                                            <input type="text" id="name" name="name" readonly
+                                                                value="{{ $satker['satker_name'] }}" required
+                                                                class="bg-blue-200 border border-blue-300 shadow shadow-blue-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+                                                            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                         </div>
                                                         <div class="flex flex-row gap-5">
                                                             <p class="my-auto w-24 dark:text-white">Email</p>
@@ -106,7 +111,6 @@
                                                                 required
                                                                 class="{{ $profile['profile']['users']['email'] != null ? 'bg-blue-200 border border-blue-300 shadow shadow-blue-200' : 'bg-gray-200 border border-gray-300 shadow' }} text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                                                                 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-
                                                         </div>
                                                         <div class="flex flex-row gap-5">
                                                             <p class="my-auto w-24 dark:text-white">Telepon</p>

@@ -11,7 +11,7 @@ class PengajuanApi
 
     public static function get()
     {
-        return Http::withToken(profile::getToken())->get(env('API_URL', '') . self::$path)->json();
+        return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/pengajuan' . '/' . profile::getUser()['satker'] . '/index')->json();
     }
 
     public static function find($id)
