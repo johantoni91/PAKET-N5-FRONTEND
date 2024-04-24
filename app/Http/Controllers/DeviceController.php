@@ -32,10 +32,14 @@ class DeviceController extends Controller
 
     function resetKiosK()
     {
-        $reset = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/perangkat/import');
-        if ($reset['status'] == true) {
-            Alert::success('Sukses', 'Berhasil melakukan reset ulang');
-            return back();
+        try {
+            $reset = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/perangkat/import');
+            if ($reset['status'] == true) {
+                Alert::success('Sukses', 'Berhasil melakukan reset ulang');
+                return back();
+            }
+        } catch (\Throwable $th) {
+            return redirect()->route('perangkat');
         }
     }
 }
