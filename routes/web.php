@@ -45,6 +45,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/user/report/pdf', [UserController::class, 'pdf'])->name('pdf.users'); // Report PDF
         Route::post('/user/create', [UserController::class, 'store'])->name('user.store');
         Route::get('/user/search', [UserController::class, 'search'])->name('user.search');
+        Route::get('/user/{satker}/search', [UserController::class, 'searchSatker'])->name('user.search.satker');
         Route::post('/user/delete', [UserController::class, 'destroy'])->name('user.destroy');
         Route::get('/user/report/excel', [UserController::class, 'excel'])->name('excel.users'); //Report Excel
         Route::post('/user/{id}/update', [UserController::class, 'update'])->name('user.update');

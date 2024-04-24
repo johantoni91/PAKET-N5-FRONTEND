@@ -31,8 +31,8 @@ class UserController extends Controller
             'view'        => $this->view,
             'title'       => $this->title,
             'data'        => $data,
-            'satker'      => SatkerApi::getCodeName()['data'],
             'roles'       => RoleApi::get()['data'],
+            'satker'      => Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker')->json()['data']['data'],
             'starterPack' => helper::starterPack()
         ]);
     }
@@ -162,6 +162,19 @@ class UserController extends Controller
                 return back();
             }
             return redirect()->route('user');
+        }
+    }
+
+    public function searchSatker($satker)
+    {
+        try {
+            return response()->json([
+                'data' => Http::withToken(profile::getToken())->post(env('API_URL', '') . '/satker/name', ['satker' => $satker])->json()['data']
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'data' => null
+            ], 200);
         }
     }
 

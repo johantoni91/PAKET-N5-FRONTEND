@@ -106,13 +106,10 @@
                             </div>
                             <div class="flex flex-row gap-5">
                                 <label for="satker" class="my-auto w-24">Pilih Satker</label>
-                                <select id="satker" name="satker" required
+                                <input type="text" name="satker" list="satker"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option selected disabled>-- Pilih Satker --</option>
-                                    @foreach ($satker as $item)
-                                        <option value="{{ $item['satker_code'] }}">{{ $item['satker_name'] }}</option>
-                                    @endforeach
-                                </select>
+                                <datalist id="satker">
+                                </datalist>
                             </div>
                             <div class="flex flex-row gap-5">
                                 <label class="my-auto w-24">Email</label>
@@ -169,3 +166,23 @@
         </div>
     </div>
 </div>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(function() {
+        $("input[list='satker']").on('keydown', function() {
+            var item = $(this).val()
+            $.get(`http://127.0.0.1:8000/user/${item}/search`, function(data, status) {
+                for (var i = 0; i < data['data'].length; i++) {
+                    var satker_code = data['data'][i].satker_code
+                    var satker_name = data['data'][i].satker_name
+                    $("#satker").append(
+                        `<option id="a" value='${satker_name}'>`)
+                }
+            })
+            $("option[id='a']").each(function(i) {
+                $("option[id='a']").slice(1).remove();
+            });
+        })
+    })
+</script>

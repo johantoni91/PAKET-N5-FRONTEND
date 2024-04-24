@@ -101,22 +101,6 @@
                                 </select>
                             </div>
                             <div class="flex flex-row gap-5">
-                                <label for="satker{{ $item['id'] }}" class="my-auto w-24">Pilih Satker</label>
-                                <select id="satker{{ $item['id'] }}" name="satker" required
-                                    class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    @foreach ($satker as $data)
-                                        @if (
-                                            $data['satker_name'] ==
-                                                Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . $item['satker'] . '/code')->json()['data']['satker_name']
-                                        )
-                                            <option selected value="{{ $data['satker_code'] }}">
-                                                {{ $data['satker_name'] }}</option>
-                                        @endif
-                                        <option value="{{ $data['satker_code'] }}">{{ $data['satker_name'] }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="flex flex-row gap-5">
                                 <label for="email{{ $item['id'] }}" class="my-auto w-24">Email</label>
                                 <input type="email" id="email{{ $item['id'] }}" name="email"
                                     value="{{ $item['users']['email'] }}"
