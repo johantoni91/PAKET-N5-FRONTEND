@@ -170,8 +170,11 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     $(function() {
-        $("input[list='satker']").on('keydown', function() {
+        $("input[list='satker']").on('keyup', function() {
             var item = $(this).val()
+            $("option[id='a']").each(function(i) {
+                $("option[id='a']").slice(1).remove();
+            });
             $.get(`http://127.0.0.1:8000/user/${item}/search`, function(data, status) {
                 for (var i = 0; i < data['data'].length; i++) {
                     var satker_code = data['data'][i].satker_code
@@ -180,9 +183,7 @@
                         `<option id="a" value='${satker_name}'>`)
                 }
             })
-            $("option[id='a']").each(function(i) {
-                $("option[id='a']").slice(1).remove();
-            });
+
         })
     })
 </script>
