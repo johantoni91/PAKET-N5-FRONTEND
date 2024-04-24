@@ -45,7 +45,8 @@
                         </span>
                         <h3 class="flex items-center text-lg font-semibold text-gray-900 dark:text-white">Melakukan
                             pengajuan<span
-                                class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ms-3">{{ date('d M Y h:i:s', strtotime($item['created_at'])) }}</span>
+                                class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ms-3">{{ date('d M Y H:i:s', strtotime($item['created_at'])) }}
+                                WIB</span>
                         </h3>
                     </li>
                     @if ($item['status'] == '0')
@@ -57,7 +58,8 @@
                             </span>
                             <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">
                                 Ditolak<span
-                                    class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ms-3">{{ date('d M Y h:i:s', strtotime($item['updated_at'])) }}</span>
+                                    class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ms-3">{{ date('d M Y H:i:s', strtotime($item['updated_at'])) }}
+                                    WIB</span>
                             </h3>
                         </li>
                     @else
@@ -95,7 +97,8 @@
                                     {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 4) . '/code')->json()['data']['satker_name'] }}
                                     setuju
                                     <span
-                                        class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 w-40">{{ date('d M Y h:i:s', strtotime($item['updated_at'])) }}</span>
+                                        class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 w-48">{{ date('d M Y H:i:s', strtotime($item['updated_at'])) }}
+                                        WIB</span>
                                 </h3>
                             </li>
                             <li class="mb-10 ms-6">
@@ -131,7 +134,8 @@
                                     {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 4) . '/code')->json()['data']['satker_name'] }}
                                     setuju
                                     <span
-                                        class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 w-40">{{ date('d M Y h:i:s', strtotime($item['updated_at'])) }}</span>
+                                        class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 w-48">{{ date('d M Y H:i:s', strtotime($item['updated_at'])) }}
+                                        WIB</span>
                                 </h3>
                             </li>
                             <li class="mb-10 ms-6">
@@ -150,7 +154,8 @@
                                     {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 2) . '/code')->json()['data']['satker_name'] }}
                                     setuju
                                     <span
-                                        class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 w-40">{{ date('d M Y h:i:s', strtotime($item['updated_at'])) }}</span>
+                                        class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 w-48">{{ date('d M Y H:i:s', strtotime($item['updated_at'])) }}
+                                        WIB</span>
                                 </h3>
                             </li>
                             <li class="ms-6">
@@ -186,7 +191,8 @@
                                     {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 4) . '/code')->json()['data']['satker_name'] }}
                                     setuju
                                     <span
-                                        class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 w-40">{{ date('d M Y h:i:s', strtotime($item['updated_at'])) }}</span>
+                                        class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 w-48">{{ date('d M Y H:i:s', strtotime($item['updated_at'])) }}
+                                        WIB</span>
                                 </h3>
                             </li>
                             <li class="mb-10 ms-6">
@@ -205,7 +211,8 @@
                                     {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 2) . '/code')->json()['data']['satker_name'] }}
                                     setuju
                                     <span
-                                        class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 w-40">{{ date('d M Y h:i:s', strtotime($item['updated_at'])) }}</span>
+                                        class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 w-48">{{ date('d M Y H:i:s', strtotime($item['updated_at'])) }}
+                                        WIB</span>
                                 </h3>
                             </li>
                             <li class="pb-3 ms-6 border-b border-violet-800 dark:border-cyan-300">
@@ -225,7 +232,8 @@
                                     setuju
                                     <div class="flex flex-row gap-2">
                                         <span
-                                            class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 w-40">{{ date('d M Y h:i:s', strtotime($item['updated_at'])) }}</span>
+                                            class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 w-48">{{ date('d M Y H:i:s', strtotime($item['updated_at'])) }}
+                                            WIB</span>
                                         <span
                                             class="bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Token
                                             : {{ $item['token'] }}</span>

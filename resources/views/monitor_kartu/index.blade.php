@@ -51,7 +51,7 @@
                                                                 </th>
                                                                 <th scope="col"
                                                                     class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                                                                    Pengajuan
+                                                                    Approval
                                                                 </th>
                                                                 <th scope="col" class="px-6 py-3">
                                                                     Aksi
@@ -88,27 +88,35 @@
                                                                         </td>
                                                                         <td
                                                                             class="px-10 py-4 text-center dark:text-white bg-gray-50 dark:bg-gray-800">
-                                                                            {{ $item['kartu'] }}
+                                                                            @if ($item['status'] == '0')
+                                                                                -
+                                                                            @else
+                                                                                @if ($item['status'] == '1' && $item['approve_satker'] == '3')
+                                                                                    {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 4) . '/code')->json()['data']['satker_name'] }}
+                                                                                @elseif ($item['status'] == '1' && $item['approve_satker'] == '2')
+                                                                                    {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 2) . '/code')->json()['data']['satker_name'] }}
+                                                                                @elseif ($item['status'] == '2')
+                                                                                    {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker/00/code')->json()['data']['satker_name'] }}
+                                                                                @elseif ($item['status'] == '3')
+                                                                                    -
+                                                                                @endif
+                                                                            @endif
                                                                         </td>
                                                                         <td class="px-6 py-4 dark:text-white text-center">
-                                                                            @if ($item['status'] == 2)
-                                                                                <div
-                                                                                    class="flex flex-row gap-2 justify-center">
-                                                                                    <a target="__blank"
-                                                                                        href="{{ route('monitor.kartu.pdf', [$item['id'], $item['nip'], $item['kartu']]) }}"
-                                                                                        class="font-bold hover:animate-pulse"><svg
-                                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                                            fill="none"
-                                                                                            viewBox="0 0 24 24"
-                                                                                            stroke-width="1.5"
-                                                                                            stroke="currentColor"
-                                                                                            class="w-6 h-6">
-                                                                                            <path stroke-linecap="round"
-                                                                                                stroke-linejoin="round"
-                                                                                                d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Zm3.75 11.625a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
-                                                                                        </svg>
-                                                                                    </a>
-                                                                                    <button
+                                                                            <a target="__blank"
+                                                                                href="{{ route('monitor.kartu.pdf', [$item['id'], $item['nip'], $item['kartu']]) }}"
+                                                                                class="flex flex-row gap-1 justify-center items-center text-black dark:text-white font-bold hover:animate-pulse"><svg
+                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                    fill="none" viewBox="0 0 24 24"
+                                                                                    stroke-width="1.5" stroke="currentColor"
+                                                                                    class="w-6 h-6">
+                                                                                    <path stroke-linecap="round"
+                                                                                        stroke-linejoin="round"
+                                                                                        d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Zm3.75 11.625a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+                                                                                </svg>
+                                                                                Lihat
+                                                                            </a>
+                                                                            {{-- <button
                                                                                         data-modal-target="token{{ $item['id'] }}"
                                                                                         data-modal-toggle="token{{ $item['id'] }}"
                                                                                         class="font-bold hover:animate-pulse">
@@ -122,45 +130,7 @@
                                                                                                 stroke-linejoin="round"
                                                                                                 d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0 .229 2.523a1.125 1.125 0 0 1-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0 0 21 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 0 0-1.913-.247M6.34 18H5.25A2.25 2.25 0 0 1 3 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 0 1 1.913-.247m10.5 0a48.536 48.536 0 0 0-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5Zm-3 0h.008v.008H15V10.5Z" />
                                                                                         </svg>
-                                                                                    </button>
-                                                                                </div>
-                                                                            @elseif($item['status'] == 3)
-                                                                                <div
-                                                                                    class="flex flex-row items-center justify-evenly items-center">
-                                                                                    <a target="__blank"
-                                                                                        href="{{ route('monitor.kartu.pdf', [$item['id'], $item['nip'], $item['kartu']]) }}"
-                                                                                        class="hover:animate-pulse flex flex-row gap-2 items-center dark:text-blue-500"><svg
-                                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                                            fill="none"
-                                                                                            viewBox="0 0 24 24"
-                                                                                            stroke-width="1.5"
-                                                                                            stroke="currentColor"
-                                                                                            class="w-6 h-6">
-                                                                                            <path stroke-linecap="round"
-                                                                                                stroke-linejoin="round"
-                                                                                                d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Zm3.75 11.625a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
-                                                                                        </svg> Lihat Kartu
-                                                                                    </a>
-                                                                                    <button
-                                                                                        data-modal-target="token{{ $item['id'] }}"
-                                                                                        data-modal-toggle="token{{ $item['id'] }}"
-                                                                                        class="flex flex-row gap-2 items-center dark:text-blue-400 hover:text-black hover:drop-shadow-lg hover:dark:text-white hover:animate-pulse"><svg
-                                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                                            fill="none"
-                                                                                            viewBox="0 0 24 24"
-                                                                                            stroke-width="1.5"
-                                                                                            stroke="currentColor"
-                                                                                            class="w-6 h-6">
-                                                                                            <path stroke-linecap="round"
-                                                                                                stroke-linejoin="round"
-                                                                                                d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0 .229 2.523a1.125 1.125 0 0 1-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0 0 21 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 0 0-1.913-.247M6.34 18H5.25A2.25 2.25 0 0 1 3 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 0 1 1.913-.247m10.5 0a48.536 48.536 0 0 0-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5Zm-3 0h.008v.008H15V10.5Z" />
-                                                                                        </svg>
-                                                                                        Ulang</button>
-                                                                                </div>
-                                                                            @else
-                                                                                <h1 class="text-red-500 font-bold">-</h1>
-                                                                            @endif
-                                                                            @include('partials.modals.monitor_kartu.get_token')
+                                                                                    </button> --}}
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach
