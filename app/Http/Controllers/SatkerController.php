@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\API\SatkerApi;
 use App\Helpers\profile;
 use Hamcrest\Core\Every;
+use helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -18,9 +19,10 @@ class SatkerController extends Controller
     {
         $data = SatkerApi::get();
         return view($this->view, [
-            'view'    => $this->view,
-            'title'   => $this->title,
-            'data'    => $data
+            'view'        => $this->view,
+            'title'       => $this->title,
+            'data'        => $data,
+            'starterPack' => helper::starterPack()
         ]);
         return redirect()->route('dashboard');
     }

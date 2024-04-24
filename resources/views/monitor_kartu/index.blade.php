@@ -59,7 +59,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @if (!$data['data'])
+                                                            @if (!$data)
                                                                 <tr>
                                                                     <th colspan="4">
                                                                         <p
@@ -167,7 +167,9 @@
                                                             @endif
                                                         </tbody>
                                                     </table>
-                                                    @include('partials.pagination')
+                                                    @if ($data)
+                                                        @include('partials.pagination')
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>

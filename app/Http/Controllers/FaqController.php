@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\API\FaqApi;
 use App\Helpers\profile;
+use helper;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -16,9 +17,10 @@ class FaqController extends Controller
     {
         $data = FaqApi::get()['data'];
         return view($this->view, [
-            'view'      => $this->view,
-            'title'     => $this->title,
-            'data'      => $data
+            'view'        => $this->view,
+            'title'       => $this->title,
+            'data'        => $data,
+            'starterPack' => helper::starterPack()
         ]);
     }
 

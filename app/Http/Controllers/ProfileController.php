@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\API\UserApi;
 use App\Helpers\profile;
 use App\Http\Requests\ProfileRequest;
+use helper;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
@@ -17,7 +18,8 @@ class ProfileController extends Controller
     {
         $title = 'Profil User';
         $satker = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . profile::getUser()['satker'] . '/code')->json()['data'];
-        return view('profile.index', compact('title', 'satker'));
+        $starterPack = helper::starterPack();
+        return view('profile.index', compact('title', 'satker', 'starterPack'));
     }
 
     function update(ProfileRequest $request, $id)

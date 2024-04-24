@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\profile;
+use helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
@@ -17,9 +18,10 @@ class DeviceController extends Controller
     {
         try {
             return view($this->view, [
-                'view'      => $this->view,
-                'title'     => $this->title,
-                'data'      => Http::withToken(profile::getToken())->get(env('API_URL', '') . '/perangkat')->json()['data']
+                'view'        => $this->view,
+                'title'       => $this->title,
+                'data'        => Http::withToken(profile::getToken())->get(env('API_URL', '') . '/perangkat')->json()['data'],
+                'starterPack' => helper::starterPack()
             ]);
             return redirect()->route('dashboard');
         } catch (\Throwable $th) {

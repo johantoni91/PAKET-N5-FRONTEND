@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\API\RoleApi;
+use helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -16,9 +17,10 @@ class AccessController extends Controller
         try {
             $data = RoleApi::get()['data'];
             return view($this->view, [
-                'view'      => $this->view,
-                'title'     => $this->title,
-                'data'      => $data,
+                'view'        => $this->view,
+                'title'       => $this->title,
+                'data'        => $data,
+                'starterPack' => helper::starterPack()
             ]);
             return redirect()->route('dashboard');
         } catch (\Throwable $th) {

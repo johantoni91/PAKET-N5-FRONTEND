@@ -26,11 +26,11 @@ class PengajuanApi
 
     public static function approve($id)
     {
-        return Http::withToken(profile::getToken())->get(env('API_URL', '') . self::$path . '/approve/' . $id)->json();
+        return Http::withToken(profile::getToken())->get(env('API_URL', '') . self::$path . '/' . $id . '/approve' . '/' . profile::getUser()['satker'])->json();
     }
 
     public static function reject($id)
     {
-        return Http::withToken(profile::getToken())->get(env('API_URL', '') . self::$path . '/reject/' . $id)->json();
+        return Http::withToken(profile::getToken())->get(env('API_URL', '') . self::$path . '/reject' . '/' . $id)->json();
     }
 }

@@ -27,7 +27,7 @@
                                     class="border-b border-slate-200 dark:border-slate-700/40 py-3 px-4 dark:text-slate-300/70">
                                     <div class="flex-none md:flex">
                                         <h4 class="font-medium text-lg flex-1 self-center mb-2 md:mb-0">Data Pengajuan</h4>
-                                        @if ($data['data'])
+                                        @if ($data)
                                             <button type="button" data-modal-target="search" data-modal-toggle="search"
                                                 class="flex text-nowrap gap-2 flex-row focus:outline-none text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium rounded justify-between py-1 px-2 align-bottom items-center">
                                                 Cari Pengajuan <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -61,12 +61,16 @@
                                                                     </th>
                                                                     <th scope="col"
                                                                         class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                                                                        Persetujuan
+                                                                        @if (preg_match('/^\d{6}$/', $starterPack['profile']['satker']))
+                                                                            Progress
+                                                                        @else
+                                                                            Persetujuan
+                                                                        @endif
                                                                     </th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                @if (!$data['data'])
+                                                                @if (!$data)
                                                                     <tr>
                                                                         <th colspan="3">
                                                                             <p
@@ -95,14 +99,18 @@
                                                                             </td>
                                                                             <td
                                                                                 class="px-10 py-4 text-center dark:text-white bg-gray-50 dark:bg-gray-800">
-                                                                                @include('pengajuan.partials.aksi')
+                                                                                @if (preg_match('/^\d{6}$/', $starterPack['profile']['satker']))
+                                                                                    @include('pengajuan.partials.progress')
+                                                                                @else
+                                                                                    @include('pengajuan.partials.aksi')
+                                                                                @endif
                                                                             </td>
                                                                         </tr>
                                                                     @endforeach
                                                                 @endif
                                                             </tbody>
                                                         </table>
-                                                        @if ($data['data'])
+                                                        @if ($data)
                                                             @include('partials.pagination')
                                                         @endif
                                                     </div>

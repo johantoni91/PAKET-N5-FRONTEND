@@ -7,6 +7,7 @@ use App\API\SatkerApi;
 use App\API\Simkari;
 use App\Helpers\profile;
 use Carbon\Carbon;
+use helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
@@ -23,17 +24,19 @@ class KepegawaianController extends Controller
             $data = PegawaiApi::get()['data'];
             if ($data) {
                 return view($this->view, [
-                    'view'      => $this->view,
-                    'title'     => $this->title,
-                    'satker'    => SatkerApi::getSatkerName()['data'],
-                    'data'      => $data
+                    'view'        => $this->view,
+                    'title'       => $this->title,
+                    'satker'      => SatkerApi::getSatkerName()['data'],
+                    'data'        => $data,
+                    'starterPack' => helper::starterPack()
                 ]);
             } else {
                 return view($this->view, [
-                    'view'      => $this->view,
-                    'title'     => $this->title,
-                    'satker'    => SatkerApi::getSatkerName()['data'],
-                    'data'      => null
+                    'view'        => $this->view,
+                    'title'       => $this->title,
+                    'satker'      => SatkerApi::getSatkerName()['data'],
+                    'data'        => null,
+                    'starterPack' => helper::starterPack()
                 ]);
             }
         } catch (\Throwable $th) {
@@ -65,10 +68,11 @@ class KepegawaianController extends Controller
                     return back();
                 }
                 return view($this->view, [
-                    'view'      => $this->view,
-                    'title'     => $this->title,
-                    'satker'    => SatkerApi::getSatkerName()['data'],
-                    'data'      => $res['data']
+                    'view'        => $this->view,
+                    'title'       => $this->title,
+                    'satker'      => SatkerApi::getSatkerName()['data'],
+                    'data'        => $res['data'],
+                    'starterPack' => helper::starterPack()
                 ]);
                 return redirect()->route('dashboard');
             }

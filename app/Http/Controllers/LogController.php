@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\API\LogApi;
 use App\Helpers\profile;
 use Carbon\Carbon;
+use helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
@@ -25,10 +26,11 @@ class LogController extends Controller
             ];
             $data = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/log')->json()['data'];
             return view($this->view, [
-                'view'     => $this->view,
-                'title'    => $this->title,
-                'data'     => $data,
-                'kolom'    => $kolom
+                'view'        => $this->view,
+                'title'       => $this->title,
+                'data'        => $data,
+                'kolom'       => $kolom,
+                'starterPack' => helper::starterPack()
             ]);
             return redirect()->route('dashboard');
         } catch (\Throwable $th) {
@@ -64,10 +66,11 @@ class LogController extends Controller
             $res = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/log/search', $input)->json();
             $data = $res['data'];
             return view($this->view, [
-                'view'     => $this->view,
-                'title'    => $this->title,
-                'data'     => $data,
-                'kolom'    => $kolom
+                'view'        => $this->view,
+                'title'       => $this->title,
+                'data'        => $data,
+                'kolom'       => $kolom,
+                'starterPack' => helper::starterPack()
             ]);
         }
     }

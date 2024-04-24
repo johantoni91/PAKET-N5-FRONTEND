@@ -1,4 +1,4 @@
-@if ($item['status'] == 1)
+@if ($item['status'] == 1 || $item['status'] == 2)
     <div class="flex flex-row gap-3 justify-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" data-tooltip-target="tooltip-setuju" stroke-linecap="round"
@@ -38,11 +38,10 @@
                                 },
                                 success: function(data) {
                                     Swal.fire({
-                                        title: "Token pencetakan",
+                                        title: "Pengajuan telah disetujui",
                                         text: data['token'],
                                         icon: "success",
-                                        confirmButtonText: "Save",
-                                        footer: 'Harap simpan token di atas untuk melakukan pencetakan!',
+                                        confirmButtonText: "Ok",
                                         showClass: {
                                             popup: `animate__animated
                                                     animate__fadeInUp
@@ -120,10 +119,8 @@
             })
         </script>
     </div>
-@elseif($item['status'] == 2)
+@elseif($item['status'] == 3)
     <div class="flex flex-row justify-center gap-2 items-center">
-        <h1 class="font-bold dark:text-green-500 text-green-500">Telah disetujui</h1>
-        |
         <button
             class="font-bold flex flex-row items-center gap-2 text-yellow-500 hover:text-orange-400 hover:animate-pulse"
             id="token{{ $item['id'] }}">
@@ -146,8 +143,6 @@
             })
         </script>
     </div>
-@elseif($item['status'] == 3)
-    <small class="text-green-500 font-bold drop-shadow-green">Telah dicetak</small>
 @else
     <h1 class="text-red-500 font-bold text-center">ditolak</h1>
 @endif

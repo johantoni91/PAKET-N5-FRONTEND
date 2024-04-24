@@ -11,6 +11,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Carbon\Carbon;
+use helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
@@ -26,9 +27,10 @@ class MonitorKartuController extends Controller
         try {
             $data = PengajuanApi::get()['data'];
             return view($this->monitor_view, [
-                'view'      => $this->monitor_view,
-                'title'     => $this->monitor_title,
-                'data'      => $data
+                'view'        => $this->monitor_view,
+                'title'       => $this->monitor_title,
+                'data'        => $data,
+                'starterPack' => helper::starterPack()
             ]);
             return redirect()->route('dashboard');
         } catch (\Throwable $th) {

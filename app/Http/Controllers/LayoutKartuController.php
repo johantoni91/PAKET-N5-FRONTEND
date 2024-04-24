@@ -6,6 +6,7 @@ use App\API\KartuApi;
 use App\Helpers\profile;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
@@ -21,9 +22,10 @@ class LayoutKartuController extends Controller
         try {
             $kartu = KartuApi::get()['data'];
             return view($this->view, [
-                'view'      => $this->view,
-                'title'     => $this->title,
-                'data'      => $kartu
+                'view'        => $this->view,
+                'title'       => $this->title,
+                'data'        => $kartu,
+                'starterPack' => helper::starterPack()
             ]);
             return redirect()->route('dashboard');
         } catch (\Throwable $th) {

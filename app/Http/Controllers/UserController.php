@@ -10,6 +10,7 @@ use App\Helpers\profile;
 use App\Http\Requests\UserRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Request as FacadesRequest;
@@ -27,11 +28,12 @@ class UserController extends Controller
     {
         $data = UserApi::get()['data'];
         return view($this->view, [
-            'view'      => $this->view,
-            'title'     => $this->title,
-            'data'      => $data,
-            'satker'    => SatkerApi::getCodeName()['data'],
-            'roles'     => RoleApi::get()['data']
+            'view'        => $this->view,
+            'title'       => $this->title,
+            'data'        => $data,
+            'satker'      => SatkerApi::getCodeName()['data'],
+            'roles'       => RoleApi::get()['data'],
+            'starterPack' => helper::starterPack()
         ]);
     }
 
@@ -65,10 +67,11 @@ class UserController extends Controller
             return view(
                 $this->view,
                 [
-                    'view'    => $this->view,
-                    'title'   => $this->title,
-                    'data'    => $data,
-                    'input'   => $input
+                    'view'        => $this->view,
+                    'title'       => $this->title,
+                    'data'        => $data,
+                    'input'       => $input,
+                    'starterPack' => helper::starterPack()
                 ]
             );
         } catch (\Throwable $th) {

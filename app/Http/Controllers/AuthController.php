@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\API\RoleApi;
 use App\Helpers\profile;
+use helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Http;
@@ -17,7 +18,8 @@ class AuthController extends Controller
     {
         try {
             $title = 'Dashboard';
-            return view("index", compact('title'));
+            $starterPack = helper::starterPack();
+            return view("index", compact('title', 'starterPack'));
         } catch (\Throwable $th) {
             $this->logout();
         }

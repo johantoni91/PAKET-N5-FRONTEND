@@ -136,7 +136,7 @@
                                                                             data-modal-toggle="update{{ $item['id'] }}"><i
                                                                                 class="align-baseline icofont-edit text-lg text-gray-500 dark:text-gray-400"></i></button>
                                                                         @include('partials.modals.user.update')
-                                                                        @if ($item['users_id'] != $profile['profile']['users_id'])
+                                                                        @if ($item['users_id'] != $starterPack['profile']['users_id'])
                                                                             <input type="hidden"
                                                                                 value="{{ $item['users_id'] }}"
                                                                                 id="del{{ $item['id'] }}">

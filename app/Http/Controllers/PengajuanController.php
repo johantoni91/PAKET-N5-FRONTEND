@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\API\PegawaiApi;
-use App\API\PengajuanApi;
+use helper;
 use App\Helpers\profile;
+use App\API\PengajuanApi;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PengajuanController extends Controller
@@ -19,9 +17,10 @@ class PengajuanController extends Controller
     {
         $data = PengajuanApi::get()['data'];
         return view($this->view, [
-            'view'      => $this->view,
-            'title'     => $this->title,
-            'data'      => $data
+            'view'        => $this->view,
+            'title'       => $this->title,
+            'data'        => $data,
+            'starterPack' => helper::starterPack()
         ]);
     }
 
@@ -55,11 +54,22 @@ class PengajuanController extends Controller
     function approve(Request $req)
     {
         $res = PengajuanApi::approve($req->id);
-        if ($res['status'] == true) {
-            return response()->json([
+        if (
+            preg_match('/^\d{4}$/', profile::getUser()['satker']) ||
+            preg_match('/^\d{2}$/', profile::getUser()['satker']) ||
+            (preg_match('/^\d{2}$/', profile::getUser()['satker']) && profile::getUser()['satker'] != "00")
+        ) {
+            $output = [
+                'message' => 'Berhasil menyetujui pengajuan'
+            ];
+        } else {
+            $output = [
                 'message' => 'Berhasil menyetujui pengajuan',
                 'token'   => $res['data']['token']
-            ], 200);
+            ];
+        }
+        if ($res['status'] == true) {
+            return response()->json($output, 200);
         }
         return response('Gagal menyetujui pengajuan', 400);
     }
