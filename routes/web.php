@@ -87,6 +87,7 @@ Route::middleware(['auth'])->group(function () {
     // PENGAJUAN
     Route::middleware(['role_pengajuan'])->group(function () {
         Route::get('/pengajuan', [PengajuanController::class, 'index'])->name('pengajuan');
+        Route::post('/pengajuan/store', [PengajuanController::class, 'store'])->name('pengajuan.store');
         Route::get('/pengajuan/search', [PengajuanController::class, 'search'])->name('pengajuan.search');
         Route::post('/pengajuan/reject', [PengajuanController::class, 'reject'])->name('pengajuan.reject');
         Route::post('/pengajuan/approve', [PengajuanController::class, 'approve'])->name('pengajuan.approve');

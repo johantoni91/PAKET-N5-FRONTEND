@@ -90,12 +90,14 @@
                                     @endif
                                 </select>
                             </div>
-                            <div class="flex flex-row gap-5">
-                                <label for="satker" class="my-auto w-24 dark:text-white">Satker</label>
-                                <input type="satker" id="satker" name="satker"
-                                    value="{{ request('nama_satker') ?? '' }}"
-                                    class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            </div>
+                            @if ($starterPack['profile']['satker'] == '00')
+                                <div class="flex flex-row gap-5">
+                                    <label for="satker" class="my-auto w-24 dark:text-white">Satker</label>
+                                    <input type="satker" id="satker" name="satker"
+                                        value="{{ request('nama_satker') ?? '' }}"
+                                        class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                </div>
+                            @endif
                             <div class="flex flex-row gap-5">
                                 <label for="status" class="my-auto w-24 dark:text-white">Status Pegawai</label>
                                 <input type="status" id="status" name="status"

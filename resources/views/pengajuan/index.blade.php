@@ -27,9 +27,9 @@
                                     class="border-b border-slate-200 dark:border-slate-700/40 py-3 px-4 dark:text-slate-300/70">
                                     <div class="flex-none md:flex">
                                         <h4 class="font-medium text-lg flex-1 self-center mb-2 md:mb-0">Data Pengajuan</h4>
-                                        @if ($data)
+                                        @if ($data['data'])
                                             <button type="button" data-modal-target="search" data-modal-toggle="search"
-                                                class="flex text-nowrap gap-2 flex-row focus:outline-none text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium rounded justify-between py-1 px-2 align-bottom items-center">
+                                                class="flex flex-row gap-1 items-center focus:outline-none bg-gradient-to-l from-violet-800 to-red-500 text-white dark:bg-gradient-to-b dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-1 px-3 rounded hover:from-red-500 hover:to-violet-800">
                                                 Cari Pengajuan <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                                     class="w-4 h-4">
@@ -44,6 +44,10 @@
                                 <div class="grid grid-cols-1 p-4 overflow-scroll">
                                     <div class="sm:-mx-6 lg:-mx-8">
                                         <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-10">
+                                            <button type="button" data-modal-target="create" data-modal-toggle="create"
+                                                class="focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-b dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-1 px-3 rounded hover:from-red-500 hover:to-violet-800">
+                                                Pengajuan</button>
+                                            @include('partials.modals.pengajuan.create')
                                             <div class="flex flex-col gap-5 p-5">
                                                 <div class="datatable_1">
                                                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">

@@ -11,7 +11,7 @@ use helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
-use Illuminate\View\View;
+use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class KepegawaianController extends Controller
@@ -21,24 +21,15 @@ class KepegawaianController extends Controller
     public function index()
     {
         try {
-            $data = PegawaiApi::get()['data'];
-            if ($data) {
-                return view($this->view, [
-                    'view'        => $this->view,
-                    'title'       => $this->title,
-                    'satker'      => SatkerApi::getSatkerName()['data'],
-                    'data'        => $data,
-                    'starterPack' => helper::starterPack()
-                ]);
-            } else {
-                return view($this->view, [
-                    'view'        => $this->view,
-                    'title'       => $this->title,
-                    'satker'      => SatkerApi::getSatkerName()['data'],
-                    'data'        => null,
-                    'starterPack' => helper::starterPack()
-                ]);
-            }
+            $satker = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . profile::getUser()['satker'] . '/code')->json()['data']['satker_name'];
+            $data = PegawaiApi::get(Str::slug($satker))['data'];
+            return view($this->view, [
+                'view'        => $this->view,
+                'title'       => $this->title,
+                'satker'      => SatkerApi::getSatkerName()['data'],
+                'data'        => $data,
+                'starterPack' => helper::starterPack()
+            ]);
         } catch (\Throwable $th) {
             Session::forget('user');
             return redirect()->route('logout');
@@ -53,8 +44,8 @@ class KepegawaianController extends Controller
                 'jabatan'           => request('jabatan'),
                 'nip'               => request('nip'),
                 'nrp'               => request('nrp'),
+                'nama_satker'       => profile::getUser()['satker'] == "00" ? request('satker') : Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . profile::getUser()['satker'] . '/code')->json()['data']['satker_name'],
                 'jenis_kelamin'     => request('jenis_kelamin'),
-                'nama_satker'       => request('satker'),
                 'agama'             => request('agama'),
                 'status_pegawai'    => request('status')
             ];
@@ -118,8 +109,6 @@ class KepegawaianController extends Controller
         $pegawai = PegawaiApi::insert($img, $gambar, $input)->json();
         if ($pegawai['status'] == true) {
             Alert::success('Berhasil', 'Berhasil menambahkan pegawai');
-            session()->flash('status', 'Menambahkan satker ' . $req->nama);
-            session()->flash('route', route('pegawai'));
             return back();
         }
         Alert::warning('Gagal menambahkan pegawai', $pegawai['error']);
@@ -171,8 +160,6 @@ class KepegawaianController extends Controller
             }
 
             Alert::success('Berhasil', 'Berhasil mengubah pegawai');
-            session()->flash('status', 'mengubah pegawai ' . $req->nama);
-            session()->flash('route', route('pegawai'));
             return back();
         } catch (\Throwable $th) {
             Alert::error('Terjadi Kesalahan', $th->getMessage());

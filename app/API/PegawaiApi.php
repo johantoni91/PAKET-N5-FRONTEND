@@ -12,9 +12,9 @@ use Jenssegers\Agent\Agent;
 
 class PegawaiApi
 {
-    public static function get()
+    public static function get($satker)
     {
-        return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/pegawai')->json();
+        return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/pegawai/index' . '/' . $satker)->json();
     }
 
     public static function search($input)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use helper;
 use App\Helpers\profile;
 use App\API\PengajuanApi;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -22,6 +23,34 @@ class PengajuanController extends Controller
             'data'        => $data,
             'starterPack' => helper::starterPack()
         ]);
+    }
+
+    function store(Request $req)
+    {
+        $img = '';
+        $nama_gambar = '';
+        $input = [
+            'nip'         => $req->nip,
+            'nama'        => $req->nama,
+            'satker_code' => profile::getUser()['satker'],
+            'kartu'       => $req->kartu
+        ];
+
+        if ($req->hasFile('photo')) {
+            $img = $req->file('photo');
+            $nama_gambar = $req->nip . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('photo')->getClientOriginalExtension();
+        } else {
+            $input['photo'] = null;
+        }
+
+        $pengajuan = PengajuanApi::store($input, $img, $nama_gambar);
+        if ($pengajuan['status'] == true) {
+            Alert::success('Berhasil', 'Pengajuan berhasil dikirim');
+            return back();
+        } else {
+            Alert::error('Gagal', 'Pengajuan gagal dikirim');
+            return back();
+        }
     }
 
     function search()

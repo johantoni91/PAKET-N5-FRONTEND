@@ -31,7 +31,7 @@
                         </a>
                         @foreach ($starterPack['routes'] as $item)
                             <a href="{{ route($item) }}"
-                                class="nav-link dark:text-black hover:text-black rounded-md dark:hover:text-slate-200 flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200">
+                                class="{{ request()->routeIs($item) ? 'text-black dark:text-white font-semibold' : '' }} nav-link dark:text-black hover:text-black rounded-md dark:hover:text-slate-200 flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200">
                                 <span data-lucide="{{ $starterPack['icons'][$loop->iteration - 1] }}"
                                     class="w-5 h-5 text-center me-2"></span>
                                 <span>{{ $starterPack['titles'][$loop->iteration - 1] }}</span>

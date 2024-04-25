@@ -47,13 +47,17 @@
                                                                     Nama
                                                                 </th>
                                                                 <th scope="col" class="px-6 py-3">
-                                                                    Status
+                                                                    Satker
                                                                 </th>
                                                                 <th scope="col"
                                                                     class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                                                                    Approval
+                                                                    Status
                                                                 </th>
                                                                 <th scope="col" class="px-6 py-3">
+                                                                    Approval
+                                                                </th>
+                                                                <th scope="col"
+                                                                    class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
                                                                     Aksi
                                                                 </th>
                                                             </tr>
@@ -84,10 +88,13 @@
                                                                         </th>
                                                                         <td
                                                                             class="px-6 py-4 dark:text-white text-center align-baseline">
-                                                                            @include('pengajuan.partials.status')
+                                                                            {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . $item['kode_satker'] . '/code')->json()['data']['satker_name'] }}
                                                                         </td>
                                                                         <td
-                                                                            class="px-10 py-4 text-center dark:text-white bg-gray-50 dark:bg-gray-800">
+                                                                            class="px-6 py-4 dark:text-white text-center align-baseline bg-gray-50 dark:bg-gray-800">
+                                                                            @include('pengajuan.partials.status')
+                                                                        </td>
+                                                                        <td class="px-10 py-4 text-center dark:text-white">
                                                                             @if ($item['status'] == '0')
                                                                                 -
                                                                             @else
@@ -102,7 +109,8 @@
                                                                                 @endif
                                                                             @endif
                                                                         </td>
-                                                                        <td class="px-6 py-4 dark:text-white text-center">
+                                                                        <td
+                                                                            class="px-6 py-4 dark:text-white text-center bg-gray-50 dark:bg-gray-800">
                                                                             <a target="__blank"
                                                                                 href="{{ route('monitor.kartu.pdf', [$item['id'], $item['nip'], $item['kartu']]) }}"
                                                                                 class="flex flex-row gap-1 justify-center items-center text-black dark:text-white font-bold hover:animate-pulse"><svg

@@ -82,12 +82,13 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
+        $satker = SatkerApi::findByName($request->satker)['satker_code'];
         $data = [
             'nip'       => $request->nip,
             'nrp'       => $request->nrp,
             'username'  => $request->username,
             'name'      => $request->name,
-            'satker'    => $request->satker,
+            'satker'    => $satker,
             'roles'     => $request->roles,
             'email'     => $request->email,
             'phone'     => $request->phone,
@@ -102,66 +103,77 @@ class UserController extends Controller
 
             $res = UserApi::insert($photo, $data);
             if ($res->failed()) {
-                Alert::error('Gagal', $res->json()['message']);
+                Alert::error('Gagal', $res->json()['error']);
                 return redirect()->route('user');
             }
 
             Alert::success('Berhasil', 'Berhasil menambah user');
-            session()->flash('status', 'Menambahkan user ' . $request->username);
-            session()->flash('route', route('user'));
-            return redirect()->route('user');
+            return back();
         }
     }
 
     public function update(Request $request, $id)
     {
-        if ($request->nip == null && $request->nrp == null) {
-            Alert::error('Terjadi kesalahan', 'Mohon isi salah satu NIP / NRP atau dua-duanya');
-            return back();
-        }
-        $agent = new Agent();
-        $data = [
-            'nip'               => $request->nip,
-            'nrp'               => $request->nrp,
-            'username'          => $request->username,
-            'name'              => $request->name,
-            'email'             => $request->email,
-            'phone'             => $request->phone,
-            'satker'            => $request->satker,
-            'roles'             => $request->roles,
-            'photo'             => $request->file('photo'),
-            'password'          => $request->password,
-            'browser'           => $agent->browser(),
-            'browser_version'   => $agent->version($agent->browser()),
-            'os'                => $agent->platform(),
-            'ip_address'        => FacadesRequest::ip(),
-            'mobile'            => $agent->device(),
-        ];
-
-        $res = UserApi::update($data['photo'], $id, $data);
-
-        if ($res->failed()) {
-            Alert::error('Gagal', 'User gagal diubah');
-            return back();
-        } else {
-            if ($res->json()['status'] == false) {
-                Alert::error('Kesalahan', $res->json()['message'] . " Dengan username " . '"' . $res->json()['data']['username'] . '"');
+        try {
+            if ($request->nip == null && $request->nrp == null) {
+                Alert::error('Terjadi kesalahan', 'Mohon isi salah satu NIP / NRP atau dua-duanya');
                 return back();
             }
+            $agent = new Agent();
+            $satker = SatkerApi::findByName($request->satker)['satker_code'];
+            $data = [
+                'nip'               => $request->nip,
+                'nrp'               => $request->nrp,
+                'username'          => $request->username,
+                'name'              => $request->name,
+                'email'             => $request->email,
+                'phone'             => $request->phone,
+                'satker'            => $satker,
+                'roles'             => $request->roles,
+                'photo'             => $request->file('photo'),
+                'password'          => $request->password,
+                'browser'           => $agent->browser(),
+                'browser_version'   => $agent->version($agent->browser()),
+                'os'                => $agent->platform(),
+                'ip_address'        => FacadesRequest::ip(),
+                'mobile'            => $agent->device(),
+            ];
 
-            if (profile::getUser()['users_id'] == $id) {
-                Session::flush();
-                Session::put('user', $res->json()['data']);
-            }
-            Alert::success('Berhasil', 'User berhasil diubah');
+            $this->validate($request, [
+                'nip'               => 'required',
+                'nrp'               => 'required',
+                'username'          => 'required',
+                'name'              => 'required',
+                'email'             => 'required|email:rfc,dns',
+                'phone'             => 'required|numeric',
+                'satker'            => 'required',
+                'roles'             => 'required',
+            ]);
 
-            session()->flash('status', 'Mengubah data user ' . $request->username);
-            session()->flash('route', route('user'));
-            if (request()->routeIs('profile')) {
-                Alert::success('Berhasil', 'Mengubah data profil');
+            $res = UserApi::update($data['photo'], $id, $data);
+            if ($res->failed()) {
+                Alert::error('Gagal', 'User gagal diubah');
+                return back();
+            } else {
+                if ($res->json()['status'] == false) {
+                    Alert::error('Kesalahan', $res->json()['message'] . " Dengan username " . '"' . $res->json()['data']['username'] . '"');
+                    return back();
+                }
+
+                if (profile::getUser()['users_id'] == $id) {
+                    Session::flush();
+                    Session::put('user', $res->json()['data']);
+                }
+                Alert::success('Berhasil', 'User berhasil diubah');
+                if (request()->routeIs('profile')) {
+                    Alert::success('Berhasil', 'Mengubah data profil');
+                    return back();
+                }
                 return back();
             }
-            return redirect()->route('user');
+        } catch (\Throwable $th) {
+            Alert::error('Terjadi Kesalahan', 'Mohon refresh halaman dan silahkan coba lagi');
+            return back();
         }
     }
 

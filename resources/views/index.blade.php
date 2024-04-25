@@ -29,15 +29,16 @@
                                 <div class="flex justify-between xl:gap-x-2 items-cente">
                                     <div class="self-center">
                                         <p class="text-gray-800 font-semibold dark:text-slate-400 text-lg uppercase">Total
-                                            orders</p>
-                                        <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200">14253</h3>
+                                            Pengajuan Kartu</p>
+                                        <h3 class="text-center my-4 font-semibold text-[30px] dark:text-slate-200">
+                                            {{ $data['pengajuan'] }}</h3>
                                     </div>
                                     <div class="self-center">
-                                        <i data-lucide="shopping-cart" class=" h-16 w-16 stroke-primary-500/30"></i>
+                                        <i data-lucide="book-open-check" class=" h-16 w-16 stroke-primary-500/30"></i>
                                     </div>
                                 </div>
-                                <p class="truncate text-slate-400"><span class="text-green-500"><i
-                                            class="mdi mdi-trending-up"></i>8.5%</span> New Sessions Today</p>
+                                {{-- <p class="truncate text-slate-400"><span class="text-green-500"><i
+                                            class="mdi mdi-trending-up"></i>8.5%</span> New Sessions Today</p> --}}
                             </div>
                             <div class="flex-auto p-0 overflow-hidden">
                                 <div class="flex mb-0 h-full">
@@ -56,16 +57,17 @@
                             <div class="flex-auto p-4">
                                 <div class="flex justify-between xl:gap-x-2 items-cente">
                                     <div class="self-center">
-                                        <p class="text-gray-800 font-semibold dark:text-slate-400 uppercase">New customers
+                                        <p class="text-gray-800 font-semibold dark:text-slate-400 uppercase">Total Pegawai
                                         </p>
-                                        <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200">532</h3>
+                                        <h3 class="text-center my-4 font-semibold text-[30px] dark:text-slate-200">
+                                            {{ $data['pegawai'] }}</h3>
                                     </div>
                                     <div class="self-center">
                                         <i data-lucide="users" class=" h-16 w-16 stroke-green/30"></i>
                                     </div>
                                 </div>
-                                <p class="truncate text-slate-400"><span class="text-red-500"><i
-                                            class="mdi mdi-trending-down"></i>0.6%</span> Bounce Rate Weekly</p>
+                                {{-- <p class="truncate text-slate-400"><span class="text-red-500"><i
+                                            class="mdi mdi-trending-down"></i>0.6%</span> Bounce Rate Weekly</p> --}}
                             </div>
                             <div class="flex-auto p-0 overflow-hidden">
                                 <div class="flex mb-0 h-full">
@@ -84,17 +86,19 @@
                             <div class="flex-auto p-4">
                                 <div class="flex justify-between xl:gap-x-2 items-cente">
                                     <div class="self-center">
-                                        <p class="text-gray-800 font-semibold dark:text-slate-400 uppercase">Top coupons</p>
-                                        <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200">78%</h3>
+                                        <p class="text-gray-800 font-semibold dark:text-slate-400 uppercase">Total Penilaian
+                                        </p>
+                                        <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200">{{ $data['rating'] }}
+                                        </h3>
                                     </div>
                                     <div class="self-center">
-                                        <i data-lucide="gem" class=" h-16 w-16 stroke-yellow-500/30"></i>
+                                        <i data-lucide="star" class=" h-16 w-16 stroke-yellow-500/30"></i>
                                     </div>
                                 </div>
-                                <p class="truncate text-slate-400"><span class="text-green-500"><i
-                                            class="mdi mdi-trending-up"></i>1.5%</span> Weekly Avg.Sessions</p>
+                                {{-- <p class="truncate text-slate-400"><span class="text-green-500"><i
+                                            class="mdi mdi-trending-up"></i>1.5%</span> Weekly Avg.Sessions</p> --}}
                             </div>
-                            <div class="flex-auto p-0 overflow-hidden">
+                            {{-- <div class="flex-auto p-0 overflow-hidden">
                                 <div class="grid grid-cols-12">
                                     <div class="col-span-6">
                                         <div id="ana_device" class="apex-charts"></div>
@@ -110,10 +114,10 @@
                                         </ol>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
-                    <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
+                    {{-- <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                         <div
                             class="bg-[#1b1b22] shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900  rounded-md w-full relative mb-4">
                             <div class="flex-auto p-4">
@@ -145,10 +149,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
-                <div class="grid grid-cols-12 sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4">
+                {{-- <div class="grid grid-cols-12 sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4">
                     <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-4">
                         <div class="w-full relative mb-4">
                             <div class="flex-auto p-4">
@@ -157,8 +161,7 @@
                                         <img src="assets/images/widgets/user.png" alt="" class="h-auto w-full">
                                     </div>
                                     <div class="col-span-12 sm:col-span-8 self-center">
-                                        <h4
-                                            class="font-medium flex-1 self-center mb-2 md:mb-0 dark:text-slate-400 text-xl">
+                                        <h4 class="font-medium flex-1 self-center mb-2 md:mb-0 dark:text-slate-400 text-xl">
                                             A Guide to Analyze and Optimize Your Online Business</h4>
                                     </div>
                                 </div><!--end grid-->
@@ -239,8 +242,8 @@
                     </div>
 
 
-                </div> <!--end grid-->
-                <div class="grid grid-cols-12 sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4 mb-4">
+                </div>  --}}
+                {{-- <div class="grid grid-cols-12 sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4 mb-4">
                     <div class="col-span-12 sm:col-span-12  md:col-span-12 lg:col-span-6 xl:col-span-6 ">
                         <div
                             class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900   rounded-md w-full relative">
@@ -592,13 +595,13 @@
                             </div>
                         </div> <!--end card-->
                     </div>
-                </div <!-- footer -->
+                </div> --}}
                 @include('partials.footer')
-            </div><!--end container-->
+            </div>
         </div>
     </div>
-    @push('scripts')
+    {{-- @push('scripts')
         <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
         <script src="{{ asset('assets/js/pages/analytics-index.init.js') }}"></script>
-    @endpush
+    @endpush --}}
 @endsection

@@ -101,12 +101,18 @@
                                 </select>
                             </div>
                             <div class="flex flex-row gap-5">
+                                <label for="satker" class="my-auto w-24">Satker</label>
+                                <input type="text" name="satker" list="satker"
+                                    value="{{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . $item['satker'] . '/code')->json()['data']['satker_name'] }}"
+                                    class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <datalist id="satker">
+                                </datalist>
+                            </div>
+                            <div class="flex flex-row gap-5">
                                 <label for="email{{ $item['id'] }}" class="my-auto w-24">Email</label>
                                 <input type="email" id="email{{ $item['id'] }}" name="email"
                                     value="{{ $item['users']['email'] }}"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-
-
                             </div>
                             <div class="flex flex-row gap-5">
                                 <label for="phone{{ $item['id'] }}" class="my-auto w-24">Telepon</label>
@@ -155,3 +161,22 @@
         </div>
     </div>
 </div>
+<script>
+    $(function() {
+        $("input[list='satker']").on('keyup', function() {
+            var item = $(this).val()
+            $("option[id='a']").each(function(i) {
+                $("option[id='a']").slice(1).remove();
+            });
+            $.get(`http://127.0.0.1:8000/user/${item}/search`, function(data, status) {
+                for (var i = 0; i < data['data'].length; i++) {
+                    var satker_code = data['data'][i].satker_code
+                    var satker_name = data['data'][i].satker_name
+                    $("#satker").append(
+                        `<option id="a" value='${satker_name}'>`)
+                }
+            })
+
+        })
+    })
+</script>

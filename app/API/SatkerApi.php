@@ -30,7 +30,7 @@ class SatkerApi
     public static function getSatkerName()
     {
         try {
-            return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker_name')->json();
+            return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker_name');
         } catch (\Throwable $th) {
             return $th->getMessage();
         }
@@ -45,6 +45,11 @@ class SatkerApi
             Session::forget('user');
             return redirect()->route('logout');
         }
+    }
+
+    public static function findByName($satker_name)
+    {
+        return Http::withToken(profile::getToken())->post(env('API_URL', '') . '/satker/find/name', ['satker' => $satker_name])->json()['data'];
     }
 
     public static function status($id, $status)

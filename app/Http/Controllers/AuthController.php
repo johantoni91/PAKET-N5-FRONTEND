@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\API\RoleApi;
 use App\Helpers\profile;
 use helper;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Http;
@@ -17,9 +17,11 @@ class AuthController extends Controller
     public function home()
     {
         try {
-            $title = 'Dashboard';
+            $title       = 'Dashboard';
+            $satker      = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . profile::getUser()['satker'] . '/code')->json()['data']['satker_name'];
             $starterPack = helper::starterPack();
-            return view("index", compact('title', 'starterPack'));
+            $data        = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/dashboard' . '/' . profile::getUser()['satker'] . '/' . Str::slug($satker))->json()['data'];
+            return view("index", compact('title', 'starterPack', 'data'));
         } catch (\Throwable $th) {
             $this->logout();
         }

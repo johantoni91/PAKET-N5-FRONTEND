@@ -3,14 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\API\KartuApi;
-use App\API\PegawaiApi;
 use App\API\PengajuanApi;
-use App\Events\NotificationEvent;
 use App\Helpers\profile;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Dompdf\Dompdf;
-use Dompdf\Options;
-use Carbon\Carbon;
 use helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -22,10 +17,10 @@ class MonitorKartuController extends Controller
     private $monitor_title  = 'Pengaturan Pengajuan Kartu';
     private $monitor_view   = 'monitor_kartu.index';
 
-    public function index()
+    function index()
     {
         try {
-            $data = PengajuanApi::get()['data'];
+            $data = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/monitor' . '/' . profile::getUser()['satker'])->json()['data'];
             return view($this->monitor_view, [
                 'view'        => $this->monitor_view,
                 'title'       => $this->monitor_title,
@@ -53,7 +48,7 @@ class MonitorKartuController extends Controller
         }
     }
 
-    public function print(Request $req, $id, $title)
+    function print(Request $req, $id, $title)
     {
         try {
             $pengajuan = PengajuanApi::find($id)['data'];
