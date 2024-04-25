@@ -82,33 +82,36 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
-        $satker = SatkerApi::findByName($request->satker)['satker_code'];
-        $data = [
-            'nip'       => $request->nip,
-            'nrp'       => $request->nrp,
-            'username'  => $request->username,
-            'name'      => $request->name,
-            'satker'    => $satker,
-            'roles'     => $request->roles,
-            'email'     => $request->email,
-            'phone'     => $request->phone,
-            'password'  => $request->password,
-        ];
-        if ($request->nip == null && $request->nrp == null) {
-            Alert::error('Terjadi kesalahan', 'Mohon isi salah satu NIP / NRP atau dua-duanya');
-            session()->flash('error', $data);
+        $satker = SatkerApi::findByName($request->satker);
+        if (!$satker) {
+            Alert::warning('Peringatan', 'Harap masukkan satker yang benar!');
             return back();
         } else {
-            $photo = $request->file('photo');
+            $data = [
+                'nip'       => $request->nip,
+                'nrp'       => $request->nrp,
+                'username'  => $request->username,
+                'name'      => $request->name,
+                'satker'    => $satker['satker_code'],
+                'roles'     => $request->roles,
+                'email'     => $request->email,
+                'phone'     => $request->phone,
+                'password'  => $request->password,
+            ];
+            if ($request->nip == null && $request->nrp == null) {
+                Alert::error('Terjadi kesalahan', 'Mohon isi salah satu NIP / NRP atau dua-duanya');
+                return back();
+            } else {
+                $photo = $request->file('photo');
+                $res = UserApi::insert($photo, $data);
+                if ($res->failed()) {
+                    Alert::warning('Peringatan', 'NIP/NRP/Email sudah terdaftar');
+                    return redirect()->route('user');
+                }
 
-            $res = UserApi::insert($photo, $data);
-            if ($res->failed()) {
-                Alert::error('Gagal', $res->json()['error']);
-                return redirect()->route('user');
+                Alert::success('Berhasil', 'Berhasil menambah user');
+                return back();
             }
-
-            Alert::success('Berhasil', 'Berhasil menambah user');
-            return back();
         }
     }
 
