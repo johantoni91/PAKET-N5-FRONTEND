@@ -28,13 +28,19 @@
                                     class="border-b border-slate-200 dark:border-slate-700/40 py-3 px-4 dark:text-slate-300/70">
                                     <div class="flex-none md:flex">
                                         <h4 class="font-medium text-lg flex-1 self-center mb-2 md:mb-0">Data Users</h4>
-                                        <div class="gap-5">
+                                        <div class="flex flex-row gap-1">
                                             <a href="{{ route('excel.users') }}"
                                                 class="inline-block focus:outline-none text-green-500 hover:bg-green-500 hover:text-white bg-transparent border border-green-500 dark:bg-transparent dark:text-green-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-green-500 text-sm font-medium py-1 px-3 rounded mb-1 lg:mb-0 csv">Export
                                                 Excel</a>
                                             <a href="{{ route('pdf.users') }}"
                                                 class="inline-block focus:outline-none text-red-400 hover:bg-red-500 hover:text-white bg-transparent border border-red-400 dark:bg-transparent dark:text-red-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-red-500 text-sm font-medium py-1 px-3 rounded mb-1 lg:mb-0 sql">Export
                                                 PDF</a>
+                                            @if (!request()->routeIs('user'))
+                                                <a href="{{ route('user') }}"
+                                                    class="flex items-center gap-1 focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-r dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-1 px-3 rounded hover:from-red-500 hover:to-violet-800 dark:hover:from-cyan-300 dark:hover:to-zinc-500">
+                                                    Kembali
+                                                </a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -43,29 +49,21 @@
                                         <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-8">
                                             <div class="flex flex-row justify-between px-5 mb-5">
                                                 <button type="button" data-modal-target="create" data-modal-toggle="create"
-                                                    class="focus:outline-none bg-primary-500 text-white border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium py-1 px-3 rounded w-24">+
+                                                    class="focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-r dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-1 px-3 rounded hover:from-red-500 hover:to-violet-800 dark:hover:from-cyan-300 dark:hover:to-zinc-500">+
                                                     User</button>
-                                                @include('partials.modals.user.create')
+                                                @include('user.partials.choose_role')
                                                 <div class="justify-center gap-2">
                                                     <button type="button" data-modal-target="search"
                                                         data-modal-toggle="search"
-                                                        class="flex flex-row gap-2 focus:outline-none text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium rounded justify-around py-1 px-2 align-bottom items-center">
-                                                        Cari User <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        class="flex items-center gap-1 focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-r dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-1 px-3 rounded hover:from-red-500 hover:to-violet-800 dark:hover:from-cyan-300 dark:hover:to-zinc-500">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                                             class="w-4 h-4">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                 d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                                                        </svg>
+                                                        </svg> Cari User
                                                     </button>
                                                     @include('partials.modals.user.search')
-                                                    @if (!request()->routeIs('user'))
-                                                        <div class="flex flex-row justify-end">
-                                                            <a href="{{ route('user') }}"
-                                                                class="py-1 px-2 rounded-lg flex flex-row items-center justify-center gap-2 text-blue-500 dark:text-blue-500 dark:text-blue-500 dark:hover:text-white dark:border-blue-500 dark:hover:bg-blue-500 dark:hover:shadow dark:hover:shadow-white hover:bg-blue-500 hover:text-white border border-blue-500">
-                                                                Filter <i data-lucide="search-x"></i>
-                                                            </a>
-                                                        </div>
-                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="flex flex-col gap-5">
@@ -104,10 +102,10 @@
                                                                     class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                                                     <th
                                                                         class="px-4 py-2 text-black whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
-                                                                        @if ($item['users']['photo'])
-                                                                            <img src="{{ env('API_IMG', '') . $item['users']['photo'] }}"
+                                                                        @if ($item['photo'])
+                                                                            <img src="{{ env('API_IMG', '') . $item['photo'] }}"
                                                                                 alt=""
-                                                                                class="mr-2 h-6 rounded-full inline-block">{{ $item['users']['name'] }}
+                                                                                class="mr-2 h-6 rounded-full inline-block">{{ $item['name'] }}
                                                                         @else
                                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                                 fill="none" viewBox="0 0 24 24"
@@ -116,15 +114,15 @@
                                                                                 <path stroke-linecap="round"
                                                                                     stroke-linejoin="round"
                                                                                     d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                                                            </svg> {{ $item['users']['name'] }}
+                                                                            </svg> {{ $item['name'] }}
                                                                         @endif
                                                                     </th>
                                                                     <td class="text-center px-6 py-4 dark:text-white">
-                                                                        {{ $item['users']['email'] }}
+                                                                        {{ $item['email'] }}
                                                                     </td>
                                                                     <td
                                                                         class="text-center px-6 py-4 dark:text-white bg-gray-50 dark:bg-gray-800 text-center">
-                                                                        {{ $item['users']['phone'] }}
+                                                                        {{ $item['phone'] }}
                                                                     </td>
                                                                     <td class="text-center px-6 py-4 dark:text-white">
                                                                         {{ $item['roles'] }}
@@ -136,9 +134,9 @@
                                                                             data-modal-toggle="update{{ $item['id'] }}"><i
                                                                                 class="align-baseline icofont-edit text-lg text-gray-500 dark:text-gray-400"></i></button>
                                                                         @include('partials.modals.user.update')
-                                                                        @if ($item['users_id'] != $starterPack['profile']['users_id'])
+                                                                        @if ($item['id'] != $starterPack['profile']['id'])
                                                                             <input type="hidden"
-                                                                                value="{{ $item['users_id'] }}"
+                                                                                value="{{ $item['id'] }}"
                                                                                 id="del{{ $item['id'] }}">
                                                                             <button type="button"
                                                                                 id="delete{{ $item['id'] }}"><i
@@ -150,7 +148,7 @@
                                                                                         var id = $("#del{{ $item['id'] }}").val()
                                                                                         Swal.fire({
                                                                                             title: "PERINGATAN",
-                                                                                            text: "Apakah anda yakin menghapus user {{ $item['users']['name'] }} ?",
+                                                                                            text: "Apakah anda yakin menghapus user {{ $item['name'] }} ?",
                                                                                             icon: "warning",
                                                                                             showCancelButton: true,
                                                                                             confirmButtonColor: "#3085d6",
@@ -183,7 +181,7 @@
                                                                         @endif
                                                                     </td>
                                                                     <td>
-                                                                        @if ($item['users_id'] == App\Helpers\profile::getUser()['users_id'])
+                                                                        @if ($item['id'] == $starterPack['profile']['id'])
                                                                             <div
                                                                                 class="align-baseline justify-center flex flex-row drop-shadow-green">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -199,7 +197,7 @@
                                                                                     Aktif</span>
                                                                             </div>
                                                                         @else
-                                                                            <a href="{{ route('user.status', [$item['users_id'], $item['status']]) }}"
+                                                                            <a href="{{ route('user.status', [$item['id'], $item['status']]) }}"
                                                                                 class="align-baseline justify-center flex flex-row {{ $item['status'] == '1' ? 'hover:drop-shadow-green' : 'hover:drop-shadow-red' }}">
                                                                                 @if ($item['status'] == '1')
                                                                                     <svg xmlns="http://www.w3.org/2000/svg"

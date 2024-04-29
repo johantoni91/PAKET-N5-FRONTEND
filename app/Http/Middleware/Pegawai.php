@@ -21,7 +21,7 @@ class Pegawai
     public function handle(Request $request, Closure $next)
     {
         try {
-            $access = json_decode(RoleApi::find(profile::getUser()['roles'])['route'], true);
+            $access = json_decode(RoleApi::find(Session::get('data')['roles'])['route'], true);
             if (!in_array('pegawai', $access)) {
                 return redirect()->route('error.404');
             }

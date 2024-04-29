@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\API\KartuApi;
 use App\API\PengajuanApi;
-use App\Helpers\profile;
 use Barryvdh\DomPDF\Facade\Pdf;
 use helper;
 use Illuminate\Http\Request;
@@ -20,7 +19,7 @@ class MonitorKartuController extends Controller
     function index()
     {
         try {
-            $data = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/monitor' . '/' . profile::getUser()['satker'])->json()['data'];
+            $data = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/monitor' . '/' . Session::get('data')['satker'])->json()['data'];
             return view($this->monitor_view, [
                 'view'        => $this->monitor_view,
                 'title'       => $this->monitor_title,
@@ -38,7 +37,7 @@ class MonitorKartuController extends Controller
     {
         try {
             return view('monitor_kartu.pdf', [
-                'pegawai'   => Http::withToken(profile::getToken())->get(env('API_URL', '') . '/pegawai' . '/' . $nip)->json()['data'],
+                'pegawai'   => Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/pegawai' . '/' . $nip)->json()['data'],
                 'kartu'     => KartuApi::findByTitle($title)['data'],
                 'pengajuan' => PengajuanApi::find($id)['data']
             ]);
@@ -52,10 +51,10 @@ class MonitorKartuController extends Controller
     {
         try {
             $pengajuan = PengajuanApi::find($id)['data'];
-            $pegawai = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/pegawai' . '/' . $pengajuan['nip'])->json()['data'];
+            $pegawai = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/pegawai' . '/' . $pengajuan['nip'])->json()['data'];
             if ($req->token == $pengajuan['token']) {
-                $dataPengajuan = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/pengajuan' . '/' . $id . '/print')->json();
-                $kartu = Http::withToken(profile::getToken())->post(env('API_URL', '') . '/kartu/title', ['title' => $title])->json()['data'];
+                $dataPengajuan = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/pengajuan' . '/' . $id . '/print')->json();
+                $kartu = Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . '/kartu/title', ['title' => $title])->json()['data'];
                 if ($dataPengajuan['status'] == true) {
                     $pdf = Pdf::loadView('monitor_kartu.pdf', compact('pegawai', 'kartu', 'pengajuan'));
                     $pdf->download('Kartu_' . $kartu['title'] . '.pdf');

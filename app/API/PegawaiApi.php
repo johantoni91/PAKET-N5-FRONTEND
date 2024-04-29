@@ -14,23 +14,23 @@ class PegawaiApi
 {
     public static function get($satker)
     {
-        return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/pegawai/index' . '/' . $satker)->json();
+        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/pegawai/index' . '/' . $satker)->json();
     }
 
     public static function search($input)
     {
-        return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/pegawai/search', $input);
+        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/pegawai/search', $input);
     }
 
     public static function find($nip)
     {
-        return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/pegawai/' . $nip);
+        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/pegawai' . '/' . $nip . '/find');
     }
 
     public static function destroy($nip)
     {
         try {
-            return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/pegawai/' . $nip . '/destroy')->json();
+            return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/pegawai/' . $nip . '/destroy')->json();
         } catch (\Throwable $th) {
             return $th->getMessage();
         }
@@ -39,7 +39,7 @@ class PegawaiApi
     public static function insert($foto, $gambar, $input)
     {
         try {
-            return Http::withToken(profile::getToken())->attach('photo', file_get_contents($foto), $gambar)
+            return Http::withToken(Session::get('data')['token'])->attach('photo', file_get_contents($foto), $gambar)
                 ->post(env('API_URL', '') . '/pegawai/store', self::arr($input));
         } catch (\Throwable $th) {
             return $th->getMessage();
@@ -51,11 +51,11 @@ class PegawaiApi
         try {
             $var = self::arr($input);
             if ($img) {
-                return Http::withToken(profile::getToken())->attach('photo', file_get_contents($img), $gambar)
+                return Http::withToken(Session::get('data')['token'])->attach('photo', file_get_contents($img), $gambar)
                     ->post(env('API_URL', '') . '/pegawai/' . $id . '/update', $var);
             } else {
                 $var['photo'] = $img;
-                return Http::withToken(profile::getToken())->post(env('API_URL', '') . '/pegawai/' . $id . '/update', $var);
+                return Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . '/pegawai/' . $id . '/update', $var);
             }
         } catch (\Throwable $th) {
             return $th->getMessage();
@@ -80,8 +80,8 @@ class PegawaiApi
             'status_pegawai'  => $input['status_pegawai'],
             'jaksa_tu'        => $input['jaksa_tu'],
             'struktural_non'  => $input['struktural_non'],
-            'users_id'        => profile::getUser()['id'],
-            'username'        => profile::getUser()['users']['username'],
+            'users_id'        => Session::get('data')['id'],
+            'username'        => Session::get('data')['users']['username'],
             'browser'         => $agent->browser(),
             'browser_version' => $agent->version($agent->browser()),
             'os'              => $agent->platform(),

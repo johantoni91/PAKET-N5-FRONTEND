@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Jenssegers\Agent\Agent;
 
@@ -11,8 +12,8 @@ class log
     {
         $agent = new Agent();
         return [
-            'users_id'          => profile::getUser()['id'],
-            'username'          => profile::getUser()['users']['username'],
+            'users_id'          => Auth::user()->id,
+            'username'          => Auth::user()->username,
             'browser'           => $agent->browser(),
             'browser_version'   => $agent->version($agent->browser()),
             'os'                => $agent->platform(),

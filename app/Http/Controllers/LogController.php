@@ -24,7 +24,7 @@ class LogController extends Controller
                 'os'                => LogApi::getColumn('os'),
                 'mobile'            => LogApi::getColumn('mobile')
             ];
-            $data = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/log')->json()['data'];
+            $data = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/log')->json()['data'];
             return view($this->view, [
                 'view'        => $this->view,
                 'title'       => $this->title,
@@ -63,7 +63,7 @@ class LogController extends Controller
             Alert::warning('Peringatan', 'Mohon isi salah satu!');
             return back();
         } elseif (request('username') == null || request('ip_address') == null || request('browser') == null || request('browser_version') == null || request('os') == null || request('mobile') == null || request('log_detail') == null || request('start') == null || request('end')) {
-            $res = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/log/search', $input)->json();
+            $res = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/log/search', $input)->json();
             $data = $res['data'];
             return view($this->view, [
                 'view'        => $this->view,

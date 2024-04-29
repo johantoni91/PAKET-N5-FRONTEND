@@ -11,7 +11,7 @@
                             <div class="">
                                 <div class="flex flex-wrap justify-between">
                                     <div class="items-center ">
-                                        <h1 class="font-medium text-3xl block dark:text-slate-100">{{ $title }}</h1>
+                                        <h1 class="font-medium text-3xl block dark:text-slate-100">Dashboard</h1>
                                     </div>
                                 </div>
                             </div>
@@ -24,7 +24,7 @@
                 <div class="grid grid-cols-12 sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4">
                     <div class="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-3 xl:col-span-3">
                         <div
-                            class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900  rounded-md w-full relative mb-4">
+                            class="bg-white shadow-sm shadow-violet-800 dark:shadow-cyan-300 dark:bg-gray-900 rounded-md w-full relative mb-4">
                             <div class="flex-auto p-4">
                                 <div class="flex justify-between xl:gap-x-2 items-cente">
                                     <div class="self-center">
@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                         <div
-                            class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900  rounded-md w-full relative mb-4">
+                            class="bg-white shadow-sm shadow-violet-800 dark:shadow-cyan-300 dark:bg-gray-900 rounded-md w-full relative mb-4">
                             <div class="flex-auto p-4">
                                 <div class="flex justify-between xl:gap-x-2 items-cente">
                                     <div class="self-center">
@@ -82,13 +82,14 @@
                     </div>
                     <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                         <div
-                            class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900  rounded-md w-full relative mb-4">
+                            class="bg-white shadow-sm shadow-violet-800 dark:shadow-cyan-300 dark:bg-gray-900 rounded-md w-full relative mb-4">
                             <div class="flex-auto p-4">
                                 <div class="flex justify-between xl:gap-x-2 items-cente">
                                     <div class="self-center">
                                         <p class="text-gray-800 font-semibold dark:text-slate-400 uppercase">Total Penilaian
                                         </p>
-                                        <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200">{{ $data['rating'] }}
+                                        <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200 text-center">
+                                            {{ $data['rating'] }}
                                         </h3>
                                     </div>
                                     <div class="self-center">

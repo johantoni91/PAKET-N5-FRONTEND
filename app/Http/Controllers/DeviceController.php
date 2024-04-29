@@ -20,7 +20,7 @@ class DeviceController extends Controller
             return view($this->view, [
                 'view'        => $this->view,
                 'title'       => $this->title,
-                'data'        => Http::withToken(profile::getToken())->get(env('API_URL', '') . '/perangkat' . '/' . profile::getUser()['satker'])->json()['data'],
+                'data'        => Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/perangkat' . '/' . Session::get('data')['satker'])->json()['data'],
                 'starterPack' => helper::starterPack()
             ]);
             return redirect()->route('dashboard');
@@ -38,7 +38,7 @@ class DeviceController extends Controller
                 'password'  => $req->password,
                 'satker'    => $req->satker
             ];
-            $update = Http::withToken(profile::getToken())->post(env('API_URL', '') . '/perangkat' . '/' . $id . '/update', $input)->json();
+            $update = Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . '/perangkat' . '/' . $id . '/update', $input)->json();
             if ($input['status'] == true) {
                 Alert::success('Berhasil', 'Data perangkat telah diubah');
                 return back();
@@ -52,7 +52,7 @@ class DeviceController extends Controller
     function resetKiosK()
     {
         try {
-            $reset = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/perangkat/import');
+            $reset = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/perangkat/import');
             if ($reset['status'] == true) {
                 Alert::success('Sukses', 'Berhasil melakukan reset ulang');
                 return back();

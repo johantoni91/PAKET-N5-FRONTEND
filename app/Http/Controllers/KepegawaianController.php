@@ -20,20 +20,15 @@ class KepegawaianController extends Controller
     private $title = 'Manajemen Pegawai';
     public function index()
     {
-        try {
-            $satker = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . profile::getUser()['satker'] . '/code')->json()['data']['satker_name'];
-            $data = PegawaiApi::get(Str::slug($satker))['data'];
-            return view($this->view, [
-                'view'        => $this->view,
-                'title'       => $this->title,
-                'satker'      => SatkerApi::getSatkerName()['data'],
-                'data'        => $data,
-                'starterPack' => helper::starterPack()
-            ]);
-        } catch (\Throwable $th) {
-            Session::forget('user');
-            return redirect()->route('logout');
-        }
+        $satker = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . Session::get('data')['satker'] . '/code')->json()['data']['satker_name'];
+        $data = PegawaiApi::get(Str::slug($satker))['data'];
+        return view($this->view, [
+            'view'        => $this->view,
+            'title'       => $this->title,
+            'satker'      => SatkerApi::getSatkerName()['data'],
+            'data'        => $data,
+            'starterPack' => helper::starterPack()
+        ]);
     }
 
     public function search()
@@ -41,13 +36,8 @@ class KepegawaianController extends Controller
         try {
             $input = [
                 'nama'              => request('nama'),
-                'jabatan'           => request('jabatan'),
                 'nip'               => request('nip'),
                 'nrp'               => request('nrp'),
-                'nama_satker'       => profile::getUser()['satker'] == "00" ? request('satker') : Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . profile::getUser()['satker'] . '/code')->json()['data']['satker_name'],
-                'jenis_kelamin'     => request('jenis_kelamin'),
-                'agama'             => request('agama'),
-                'status_pegawai'    => request('status')
             ];
             if (request('nama') == null && request('jabatan') == null && request('nip') == null && request('nrp') == null && request('jenis_kelamin') == null && request('satker') == null && request('agama') == null && request('status_pegawai') == null) {
                 Alert::warning('Peringatan', 'Mohon isi salah satu!');
@@ -63,6 +53,7 @@ class KepegawaianController extends Controller
                     'title'       => $this->title,
                     'satker'      => SatkerApi::getSatkerName()['data'],
                     'data'        => $res['data'],
+                    'input'       => $input,
                     'starterPack' => helper::starterPack()
                 ]);
                 return redirect()->route('dashboard');

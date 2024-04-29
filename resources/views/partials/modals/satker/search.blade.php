@@ -29,35 +29,20 @@
                         <input type="text" name="satker" id="satker" value="{{ $input['satker_name'] ?? '' }}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                     </div>
-                    <div class="col-span-2 sm:col-span-1">
-                        <label for="phone"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Telepon</label>
-                        <input type="text" name="phone" id="phone" value="{{ $input['satker_phone'] ?? '' }}"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="081234567890">
-                    </div>
-                    <script>
-                        function keepOnlyNumbers(input) {
-                            return input.replace(/\D/g, "");
-                        }
-                        var inputField = document.getElementById("phone");
-                        inputField.addEventListener("input", function() {
-                            inputField.value = keepOnlyNumbers(inputField.value);
-                        });
-                    </script>
-                    <div class="col-span-2 sm:col-span-1">
-                        <label for="tipe"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipe</label>
+                    <div class="col-span-2">
+                        <label for="tipe" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipe
+                            <small class="text-gray-300">(Kondisional)</small></label>
                         <select id="tipe" name="type"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             @if (request()->routeIs('satker.search'))
                                 @if (!$input['satker_type'])
                                     <option selected disabled>-- Pilih Tipe --</option>
-                                    <option value="0">Kejagung</option>
-                                    <option value="1">Kejati</option>
-                                    <option value="2">Kejari</option>
-                                    <option value="3">Cabjari</option>
-                                    <option value="4">Badiklat</option>
+                                    <option value="0">KEJAKSAAN AGUNG</option>
+                                    <option value="1">KEJAKSAAN TINGGI</option>
+                                    <option value="2">KEJAKSAAN NEGERI</option>
+                                    <option value="3">CABANG KEJAKSAAN NEGERI</option>
+                                    <option value="4">BADAN PENDIDIKAN DAN PELATIHAN KEJAKSAAN REPUBLIK INDONESIA
+                                    </option>
                                 @else
                                     <option {{ $input['satker_type'] == '0' ? 'selected' : '' }} value="0">Kejagung
                                     </option>
@@ -79,19 +64,6 @@
                                 <option value="4">Badiklat</option>
                             @endif
                         </select>
-                    </div>
-                    <div class="col-span-2">
-                        <label for="email"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                        <input type="email" name="email" id="email" value="{{ $input['satker_email'] ?? '' }}"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="test@gmail.com">
-                    </div>
-                    <div class="col-span-2">
-                        <label for="alamat"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat</label>
-                        <input type="text" id="address" name="address" value="{{ $input['satker_address'] ?? '' }}"
-                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     </div>
                 </div>
                 <div class="flex flex-row justify-end">

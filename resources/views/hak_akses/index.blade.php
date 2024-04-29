@@ -1,4 +1,3 @@
-{{-- {{ dd($data) }} --}}
 @extends('partials.main')
 @section('content')
     @include('partials.sidebar')

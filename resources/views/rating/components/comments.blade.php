@@ -4,17 +4,28 @@
             <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
                 Komentar</h2>
         </div>
-        @if (!$data['data'])
+        @if (!$data)
             <p class="text-center dark:text-white">--Belum ada komentar--</p>
         @else
             @foreach ($data['data'] as $rate)
                 <article class="p-6 text-base bg-white rounded-lg dark:bg-gray-900">
                     <footer class="flex justify-between items-center mb-2">
                         <div class="flex items-center">
-                            <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
-                                <img class="mr-2 w-6 h-6 rounded-full"
-                                    src="{{ env('API_IMG_CMNT', '') . $rate['photo'] }}"
-                                    alt="{{ $rate['name'] }}">{{ $rate['name'] }}
+                            <p
+                                class="inline-flex gap-2 items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold">
+                                @if ($rate['user']['photo'])
+                                    <img class="mr-2 w-6 h-6 rounded-full"
+                                        src="{{ env('API_IMG_CMNT', '') . $rate['user']['photo'] }}"
+                                        alt="{{ $rate['user']['name'] }}">
+                                @else
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor"
+                                        class="h-8 w-8 rounded-full dark:text-white">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                    </svg>
+                                @endif
+                                {{ $rate['user']['name'] }}
                             </p>
                             <p class="text-sm text-gray-600 dark:text-gray-400">
                                 <time pubdate

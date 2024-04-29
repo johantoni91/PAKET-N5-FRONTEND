@@ -13,34 +13,17 @@ class UserApi
 {
     public static function get()
     {
-        try {
-            $data = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/users', log::insert());
-            return $data->json();
-        } catch (\Throwable $th) {
-            Session::forget('user');
-            return redirect()->route('logout');
-        }
+        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/users' . '/' . Session::get('data')['satker']);
     }
 
     public static function search($input)
     {
-        try {
-            $response = Http::withToken(profile::getToken())->get(env('API_URL', 'http://localhost:8001/api') . '/user/search', $input);
-            return $response->json();
-        } catch (\Throwable $th) {
-            return  ['error' => $th];
-        }
+        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', 'http://localhost:8001/api') . '/user/search', $input)->json();
     }
 
     public static function find($id)
     {
-        try {
-            $data = Http::withToken(profile::getToken())->post(env('API_URL', '') . '/user/' . $id, log::insert());
-            return $data;
-        } catch (\Throwable $th) {
-            Session::forget('user');
-            return redirect()->route('logout');
-        }
+        return Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . '/user/' . $id, log::insert())->json();
     }
 
     public static function insert($photo, $data)
@@ -54,18 +37,18 @@ class UserApi
                     'username'          => $data['username'],
                     'name'              => $data['name'],
                     'satker'            => $data['satker'],
-                    'roles'             => $data['roles'],
+                    'role'              => $data['role'],
                     'email'             => $data['email'],
                     'phone'             => $data['phone'],
                     'password'          => $data['password'],
                     'photo'             => $photo,
-                    'users_id'          => profile::getUser()['id'],
+                    'users_id'          => Session::get('data')['id'],
                     'browser'           => $agent->browser(),
                     'browser_version'   => $agent->version($agent->browser()),
                     'os'                => $agent->platform(),
                     'ip_address'        => Request::ip(),
                     'mobile'            => $agent->device(),
-                ]);
+                ])->json();
         }
         return Http::post(env('API_URL', '') . '/register', [
             'nip'               => $data['nip'],
@@ -73,37 +56,37 @@ class UserApi
             'username'          => $data['username'],
             'name'              => $data['name'],
             'satker'            => $data['satker'],
-            'roles'             => $data['roles'],
+            'role'              => $data['role'],
             'email'             => $data['email'],
             'phone'             => $data['phone'],
             'password'          => $data['password'],
             'photo'             => $photo,
-            'users_id'          => profile::getUser()['id'],
+            'users_id'          => Session::get('data')['id'],
             'browser'           => $agent->browser(),
             'browser_version'   => $agent->version($agent->browser()),
             'os'                => $agent->platform(),
             'ip_address'        => Request::ip(),
             'mobile'            => $agent->device(),
-        ]);
+        ])->json();
     }
 
     public static function update($photo, $id, $data)
     {
         if (!$photo == null) {
-            return Http::withToken(profile::getToken())->attach('photo', file_get_contents($photo), mt_rand() . '.' . $photo->getClientOriginalExtension())
+            return Http::withToken(Session::get('data')['token'])->attach('photo', file_get_contents($photo), mt_rand() . '.' . $photo->getClientOriginalExtension())
                 ->post(env('API_URL', '') . '/user' . '/' . $id . '/update', $data);
         } else {
-            return Http::withToken(profile::getToken())->post(env('API_URL', '') . '/user' . '/' . $id . '/update', $data);
+            return Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . '/user' . '/' . $id . '/update', $data);
         }
     }
 
     public static function status($id, $status)
     {
-        return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/user' . '/' . $id . '/status' . '/' . $status);
+        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/user' . '/' . $id . '/status' . '/' . $status);
     }
 
     public static function delete($id)
     {
-        return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/user' . '/' . $id . '/delete', log::insert());
+        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/user' . '/' . $id . '/delete', log::insert());
     }
 }

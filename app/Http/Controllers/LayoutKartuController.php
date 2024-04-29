@@ -105,8 +105,8 @@ class LayoutKartuController extends Controller
     public function frontBg(Request $req, $id)
     {
         try {
-            $kartu = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/kartu' . '/' . $id)->json()['data'];
-            $res = Http::withToken(profile::getToken())
+            $kartu = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/kartu' . '/' . $id)->json()['data'];
+            $res = Http::withToken(Session::get('data')['token'])
                 ->attach('front', file_get_contents($req->file('depan')), 'bg_front_card_' . $kartu['title'] . '_' .
                     Carbon::now()->format('dmYhis') . '.' . $req->file('depan')->getClientOriginalExtension())
                 ->post(env('API_URL', '') . '/kartu' . '/' . $id . '/front')->json();
@@ -126,8 +126,8 @@ class LayoutKartuController extends Controller
     public function backBg(Request $req, $id)
     {
         try {
-            $kartu = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/kartu' . '/' . $id)->json()['data'];
-            $res = Http::withToken(profile::getToken())->attach('back', file_get_contents($req->file('belakang')), 'bg_front_card_' . $kartu['title'] . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('belakang')->getClientOriginalExtension())->post(env('API_URL', '') . '/kartu' . '/' . $id . '/back')->json();
+            $kartu = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/kartu' . '/' . $id)->json()['data'];
+            $res = Http::withToken(Session::get('data')['token'])->attach('back', file_get_contents($req->file('belakang')), 'bg_front_card_' . $kartu['title'] . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('belakang')->getClientOriginalExtension())->post(env('API_URL', '') . '/kartu' . '/' . $id . '/back')->json();
             if ($res['status'] == true) {
                 Alert::success('Berhasil', 'Latar belakang telah diubah');
                 return back();
@@ -161,7 +161,7 @@ class LayoutKartuController extends Controller
     public function test($id)
     {
         try {
-            $kartu = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/kartu/' . $id)->json()['data'];
+            $kartu = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/kartu/' . $id)->json()['data'];
             return view('test', [
                 'id'    => $id,
                 'title' => $kartu['title'],

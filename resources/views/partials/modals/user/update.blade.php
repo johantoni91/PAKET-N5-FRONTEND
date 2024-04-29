@@ -22,12 +22,12 @@
             </div>
             <!-- Modal body -->
             <div class="px-4 pb-4">
-                <form class="space-y-4" action="{{ route('user.update', [$item['users_id']]) }}" method="post"
+                <form class="space-y-4" action="{{ route('user.update', [$item['id']]) }}" method="post"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="flex flex-row profile items-center justify-evenly">
                         <div class="flex flex-col">
-                            <img src="{{ $item['users']['photo'] != null ? env('API_IMG', '') . $item['users']['photo'] : 'https://placehold.co/400' }}"
+                            <img src="{{ $item['photo'] != null ? env('API_IMG', '') . $item['photo'] : 'https://placehold.co/400' }}"
                                 id="photo{{ $item['id'] }}" alt="photos"
                                 class="mx-auto h-56 w-56 rounded-full inline-block justify-center my-3">
                             <input type="file" name="photo" id="photos{{ $item['id'] }}" accept="image/*"
@@ -47,7 +47,7 @@
                             <div class="flex flex-row gap-5">
                                 <label for="nip{{ $item['id'] }}" class="my-auto w-24">NIP</label>
                                 <input type="text" id="nip{{ $item['id'] }}" name="nip"
-                                    value="{{ $item['users']['nip'] }}"
+                                    value="{{ $item['nip'] }}" {{ $item['roles'] == 'pegawai' ? 'readonly' : '' }}
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <script>
                                     function keepOnlyNumbers(input) {
@@ -63,7 +63,7 @@
                             <div class="flex flex-row gap-5">
                                 <label for="nrp{{ $item['id'] }}" class="my-auto w-24">NRP</label>
                                 <input type="text" id="nrp{{ $item['id'] }}" name="nrp"
-                                    value="{{ $item['users']['nrp'] }}"
+                                    value="{{ $item['nrp'] }}" {{ $item['roles'] == 'pegawai' ? 'readonly' : '' }}
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <script>
                                     function keepOnlyNumbers(input) {
@@ -79,14 +79,15 @@
                             <div class="flex flex-row gap-5">
                                 <label for="username{{ $item['id'] }}" class="my-auto w-24">Username</label>
                                 <input type="text" id="username{{ $item['id'] }}" name="username"
-                                    value="{{ $item['users']['username'] }}"
+                                    value="{{ $item['username'] }}"
+                                    {{ $item['roles'] == 'pegawai' ? 'readonly' : '' }}
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                             </div>
                             <div class="flex flex-row gap-5">
                                 <label for="name{{ $item['id'] }}" class="my-auto w-24">Name</label>
                                 <input type="text" id="name{{ $item['id'] }}" name="name"
-                                    value="{{ $item['users']['name'] }}"
+                                    value="{{ $item['name'] }}" {{ $item['roles'] == 'pegawai' ? 'readonly' : '' }}
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                             <div class="flex flex-row gap-5">
@@ -102,8 +103,8 @@
                             </div>
                             <div class="flex flex-row gap-5">
                                 <label for="satker" class="my-auto w-24">Satker</label>
-                                <input type="text" name="satker" list="satker"
-                                    value="{{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . $item['satker'] . '/code')->json()['data']['satker_name'] }}"
+                                <input type="text" name="satker" list="satker" readonly
+                                    value="{{ Illuminate\Support\Facades\Http::withToken($starterPack['profile']['token'])->get(env('API_URL', '') . '/satker' . '/' . $item['satker'] . '/code')->json()['data']['satker_name'] }}"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <datalist id="satker">
                                 </datalist>
@@ -111,13 +112,13 @@
                             <div class="flex flex-row gap-5">
                                 <label for="email{{ $item['id'] }}" class="my-auto w-24">Email</label>
                                 <input type="email" id="email{{ $item['id'] }}" name="email"
-                                    value="{{ $item['users']['email'] }}"
+                                    value="{{ $item['email'] }}"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                             <div class="flex flex-row gap-5">
                                 <label for="phone{{ $item['id'] }}" class="my-auto w-24">Telepon</label>
                                 <input type="text" id="phone{{ $item['id'] }}" name="phone"
-                                    value="{{ $item['users']['phone'] }}"
+                                    value="{{ $item['phone'] }}"
                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <script>
                                     function keepOnlyNumbers(input) {

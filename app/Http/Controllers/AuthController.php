@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\profile;
 use helper;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Jenssegers\Agent\Agent;
@@ -16,15 +14,11 @@ class AuthController extends Controller
 {
     public function home()
     {
-        try {
-            $title       = 'Dashboard';
-            $satker      = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . profile::getUser()['satker'] . '/code')->json()['data']['satker_name'];
-            $starterPack = helper::starterPack();
-            $data        = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/dashboard' . '/' . profile::getUser()['satker'] . '/' . Str::slug($satker))->json()['data'];
-            return view("index", compact('title', 'starterPack', 'data'));
-        } catch (\Throwable $th) {
-            $this->logout();
-        }
+        return view('index', [
+            'data'          => Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/dashboard' . '/' . Session::get('data')['satker'])->json()['data'],
+            'title'         => 'Dashboard',
+            'starterPack'   => helper::starterPack()
+        ]);
     }
 
     public function loginPage()
@@ -60,7 +54,6 @@ class AuthController extends Controller
                 'ip_address' => $request->ip(),
                 'mobile' => $agent->device(),
             ]);
-
             if ($res->status() == 500) {
                 Alert::error('Error', 'Server sedang bermasalah');
                 return view('errors.500');
@@ -72,28 +65,26 @@ class AuthController extends Controller
             }
 
             if ($res->json()['status'] == false) {
-                Alert::warning('Akun nonaktif', $res->json()['message']);
+                Alert::warning('Pemberitahuan', $res->json()['message']);
                 return back();
             }
 
             $data = $res->json();
-            Session::put('user', $data['data']);
-            if ($request->remember == 1) {
-                Cookie::make('token', $data['token'], 60 * 60 * 24);
+            if (Auth::attempt(['username' => $request->username, 'password' => $request->password], true)) {
+                Session::put('data', $data['data']);
+                return redirect()->route('dashboard');
+            } else {
+                Alert::warning('Peringatan', 'Data invalid');
+                return back();
             }
-            session()->flash('welcome', 'Selamat datang ' . $data['data']['user']['users']['username'] . '!');
-            return redirect()->route('dashboard');
         } catch (\Throwable $th) {
-            Alert::error('Error', 'Server sedang bermasalah');
-            return view('errors.500');
+            $this->logout();
         }
     }
 
     public function logout()
     {
-        if (Cookie::has('token')) {
-            Cookie::forget('token');
-        }
+        Auth::logout();
         Session::flush();
         return redirect('/login');
     }

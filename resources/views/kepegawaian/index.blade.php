@@ -37,7 +37,7 @@
                                             </div>
                                         @endif
                                     </div>
-                                </div><!--end header-title-->
+                                </div>
                                 <div class="grid grid-cols-1 p-4 overflow-scroll">
                                     <div class="sm:-mx-6 lg:-mx-8">
                                         <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-10">

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\API\PegawaiApi;
 use App\API\RoleApi;
 use App\API\SatkerApi;
 use App\API\UserApi;
 use App\Exports\UserExport;
-use App\Helpers\profile;
-use App\Http\Requests\UserRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use helper;
@@ -21,7 +20,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
-    private $title = 'Manajemen User';
+    private $title = 'Manajemen Pengguna';
     private $view  = 'user.index';
 
     public function index()
@@ -32,7 +31,22 @@ class UserController extends Controller
             'title'       => $this->title,
             'data'        => $data,
             'roles'       => RoleApi::get()['data'],
-            'satker'      => Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker')->json()['data']['data'],
+            'satker'      => Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/satker')->json()['data']['data'],
+            'starterPack' => helper::starterPack()
+        ]);
+    }
+
+    public function role(Request $req)
+    {
+        return redirect('/user' . '/' . $req->roles . '/create');
+    }
+
+    public function create($role)
+    {
+        return view('user.create', [
+            'title'       => $this->title,
+            'role'        => $role,
+            'satker'      => Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/satker')->json()['data']['data'],
             'starterPack' => helper::starterPack()
         ]);
     }
@@ -80,38 +94,40 @@ class UserController extends Controller
         }
     }
 
-    public function store(UserRequest $request)
+    public function store(Request $request, $role)
     {
-        $satker = SatkerApi::findByName($request->satker);
-        if (!$satker) {
-            Alert::warning('Peringatan', 'Harap masukkan satker yang benar!');
+        $pegawai = PegawaiApi::find($request->nip)['data'];
+        if (!$pegawai) {
+            Alert::warning('Peringatan', 'Pegawai tidak ditemukan, mohon masukkan NIP & NRP dengan benar');
+            return back();
+        }
+        $satker = SatkerApi::findByName($pegawai['nama_satker']);
+        $input = [
+            'nip'       => $request->nip,
+            'nrp'       => $request->nrp,
+            'username'  => $request->username,
+            'name'      => $request->name,
+            'satker'    => $satker['satker_code'],
+            'role'      => $role,
+            'email'     => $request->email,
+            'phone'     => $request->phone,
+            'password'  => $request->password,
+        ];
+        if ($role == 'pegawai') {
+            $input['username'] = $request->nip;
+            $input['name'] = $request->nip;
+        }
+        if ($request->nip == null && $request->nrp == null) {
+            Alert::error('Terjadi kesalahan', 'Mohon isi salah satu NIP / NRP atau dua-duanya');
             return back();
         } else {
-            $data = [
-                'nip'       => $request->nip,
-                'nrp'       => $request->nrp,
-                'username'  => $request->username,
-                'name'      => $request->name,
-                'satker'    => $satker['satker_code'],
-                'roles'     => $request->roles,
-                'email'     => $request->email,
-                'phone'     => $request->phone,
-                'password'  => $request->password,
-            ];
-            if ($request->nip == null && $request->nrp == null) {
-                Alert::error('Terjadi kesalahan', 'Mohon isi salah satu NIP / NRP atau dua-duanya');
-                return back();
-            } else {
-                $photo = $request->file('photo');
-                $res = UserApi::insert($photo, $data);
-                if ($res->failed()) {
-                    Alert::warning('Peringatan', 'NIP/NRP/Email sudah terdaftar');
-                    return redirect()->route('user');
-                }
-
-                Alert::success('Berhasil', 'Berhasil menambah user');
+            $res = UserApi::insert($role == 'pegawai' ? null : $request->file('photo'), $input);
+            if ($res['status'] == false) {
+                Alert::warning('Peringatan', $res['message']);
                 return back();
             }
+            Alert::success('Berhasil', 'Berhasil menambah user');
+            return redirect()->route('user');
         }
     }
 
@@ -163,7 +179,7 @@ class UserController extends Controller
                     return back();
                 }
 
-                if (profile::getUser()['users_id'] == $id) {
+                if (Session::get('data')['users_id'] == $id) {
                     Session::flush();
                     Session::put('user', $res->json()['data']);
                 }
@@ -184,7 +200,7 @@ class UserController extends Controller
     {
         try {
             return response()->json([
-                'data' => Http::withToken(profile::getToken())->post(env('API_URL', '') . '/satker/name', ['satker' => $satker])->json()['data']
+                'data' => Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . '/satker/name', ['satker' => $satker])->json()['data']
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([

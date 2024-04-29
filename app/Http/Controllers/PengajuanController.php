@@ -7,6 +7,7 @@ use App\Helpers\profile;
 use App\API\PengajuanApi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PengajuanController extends Controller
@@ -32,7 +33,7 @@ class PengajuanController extends Controller
         $input = [
             'nip'         => $req->nip,
             'nama'        => $req->nama,
-            'satker_code' => profile::getUser()['satker'],
+            'satker_code' => Session::get('data')['satker'],
             'kartu'       => $req->kartu
         ];
 
@@ -76,6 +77,7 @@ class PengajuanController extends Controller
                 'title'   => $this->title,
                 'data'    => $data,
                 'input'   => $input,
+                'starterPack' => helper::starterPack()
             ]
         );
     }
@@ -84,9 +86,9 @@ class PengajuanController extends Controller
     {
         $res = PengajuanApi::approve($req->id);
         if (
-            preg_match('/^\d{4}$/', profile::getUser()['satker']) ||
-            preg_match('/^\d{2}$/', profile::getUser()['satker']) ||
-            (preg_match('/^\d{2}$/', profile::getUser()['satker']) && profile::getUser()['satker'] != "00")
+            preg_match('/^\d{4}$/', Session::get('data')['satker']) ||
+            preg_match('/^\d{2}$/', Session::get('data')['satker']) ||
+            (preg_match('/^\d{2}$/', Session::get('data')['satker']) && Session::get('data')['satker'] != "00")
         ) {
             $output = [
                 'message' => 'Berhasil menyetujui pengajuan'

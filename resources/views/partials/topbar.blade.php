@@ -44,7 +44,7 @@
                                             $("#notif").html(data.view)
                                         }
                                     })
-                                }, 2000);
+                                }, 7000);
                             })
                         </script>
                     </ul>
@@ -55,7 +55,7 @@
                     class="dropdown-toggle flex items-center rounded-full text-sm
             focus:bg-none focus:ring-0 dark:focus:ring-0 md:me-0"
                     id="user-profile" aria-expanded="false" data-fc-autoclose="both" data-fc-type="dropdown">
-                    @if ($starterPack['profile']['users']['photo'])
+                    @if ($starterPack['profile']['photo'])
                         <img src="{{ env('API_IMG', '') . $starterPack['profile']['users']['photo'] }}" alt=""
                             class="h-8 w-8 rounded-full">
                     @else
@@ -68,7 +68,7 @@
 
                     <span class="ltr:ms-2 rtl:ms-0 rtl:me-2 hidden text-left xl:block">
                         <span
-                            class="block font-medium text-slate-600 dark:text-gray-300">{{ ucfirst($starterPack['profile']['users']['username']) }}</span>
+                            class="block font-medium text-slate-600 dark:text-gray-300">{{ ucfirst($starterPack['profile']['username']) }}</span>
                     </span>
                 </button>
 

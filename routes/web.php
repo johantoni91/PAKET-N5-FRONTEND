@@ -42,8 +42,10 @@ Route::middleware(['auth'])->group(function () {
     // MANAGEMENT USERS
     Route::middleware(['role_user'])->group(function () {
         Route::get('/user', [UserController::class, 'index'])->name('user');
+        Route::post('/user/role', [UserController::class, 'role'])->name('user.role');
+        Route::get('/user/{role}/create', [UserController::class, 'create'])->name('user.create');
+        Route::post('/user/{role}/create', [UserController::class, 'store'])->name('user.store');
         Route::get('/user/report/pdf', [UserController::class, 'pdf'])->name('pdf.users'); // Report PDF
-        Route::post('/user/create', [UserController::class, 'store'])->name('user.store');
         Route::get('/user/search', [UserController::class, 'search'])->name('user.search');
         Route::get('/user/{satker}/search', [UserController::class, 'searchSatker'])->name('user.search.satker');
         Route::post('/user/delete', [UserController::class, 'destroy'])->name('user.destroy');

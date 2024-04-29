@@ -3,11 +3,9 @@
 namespace App\Http\Middleware;
 
 use App\API\RoleApi;
-use App\Helpers\profile;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
 class Role
@@ -22,7 +20,7 @@ class Role
     public function handle(Request $request, Closure $next)
     {
         try {
-            $access = json_decode(RoleApi::find(profile::getUser()['roles'])['route'], true);
+            $access = json_decode(RoleApi::find(Session::get('data')['roles'])['route'], true);
             if (!in_array('akses', $access)) {
                 return redirect()->route('error.404');
             }

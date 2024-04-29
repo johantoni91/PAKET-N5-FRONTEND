@@ -33,16 +33,10 @@ class SatkerController extends Controller
             $input = [
                 'satker_name'    => request('satker'),
                 'satker_type'    => request('type'),
-                'satker_phone'   => request('phone'),
-                'satker_email'   => request('email'),
-                'satker_address' => request('address'),
             ];
             if (
                 $input['satker_name'] == null &&
-                $input['satker_type'] == null &&
-                $input['satker_phone'] == null &&
-                $input['satker_email'] == null &&
-                $input['satker_address'] == null
+                $input['satker_type'] == null
             ) {
                 Alert::warning('Peringatan', 'Mohon isi salah satu!');
                 return back();
@@ -55,10 +49,11 @@ class SatkerController extends Controller
                     'title'   => $this->title,
                     'data'    => $data,
                     'input'   => $input,
+                    'starterPack' => helper::starterPack()
                 ]
             );
         } catch (\Throwable $th) {
-            return $th->getMessage();
+            dd($th->getMessage());
         }
     }
 

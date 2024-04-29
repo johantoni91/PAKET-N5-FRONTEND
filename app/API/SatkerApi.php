@@ -15,7 +15,7 @@ class SatkerApi
     public static function get()
     {
         try {
-            return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker')->json()['data'];
+            return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/satker')->json()['data'];
         } catch (\Throwable $th) {
             Session::forget('user');
             return redirect()->route('logout');
@@ -24,13 +24,13 @@ class SatkerApi
 
     public static function getCodeName()
     {
-        return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker/all')->json();
+        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/satker/all')->json();
     }
 
     public static function getSatkerName()
     {
         try {
-            return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker_name');
+            return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/satker_name');
         } catch (\Throwable $th) {
             return $th->getMessage();
         }
@@ -39,7 +39,7 @@ class SatkerApi
     public static function find($id)
     {
         try {
-            $data = Http::withToken(profile::getToken())->post(env('API_URL', '') . '/satker/' . $id, log::insert());
+            $data = Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . '/satker/' . $id, log::insert());
             return $data;
         } catch (\Throwable $th) {
             Session::forget('user');
@@ -49,23 +49,23 @@ class SatkerApi
 
     public static function findByName($satker_name)
     {
-        return Http::withToken(profile::getToken())->post(env('API_URL', '') . '/satker/find/name', ['satker' => $satker_name])->json()['data'];
+        return Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . '/satker/find/name', ['satker' => $satker_name])->json()['data'];
     }
 
     public static function status($id, $status)
     {
-        return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . $id . '/status' . '/' . $status);
+        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . $id . '/status' . '/' . $status);
     }
 
     public static function delete($id)
     {
-        return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . $id . '/delete', log::insert());
+        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . $id . '/delete', log::insert());
     }
 
     public static function search($input)
     {
         try {
-            return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker/search', $input)->json()['data'];
+            return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/satker/search', $input)->json()['data'];
         } catch (\Throwable $th) {
             return  ['error' => $th];
         }
@@ -74,14 +74,14 @@ class SatkerApi
     public static function store($data)
     {
         $agent = new Agent();
-        return Http::withToken(profile::getToken())->post(env('API_URL', '') . '/satker/store', [
+        return Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . '/satker/store', [
             'satker'          => $data['satker'],
             'type'            => $data['type'],
             'phone'           => $data['phone'],
             'email'           => $data['email'],
             'address'         => $data['address'],
-            'users_id'        => profile::getUser()['id'],
-            'username'        => profile::getUser()['users']['username'],
+            'users_id'        => Session::get('data')['id'],
+            'username'        => Session::get('data')['users']['username'],
             'browser'         => $agent->browser(),
             'browser_version' => $agent->version($agent->browser()),
             'os'              => $agent->platform(),
@@ -93,14 +93,14 @@ class SatkerApi
     public static function update($id, $data)
     {
         $agent = new Agent();
-        return Http::withToken(profile::getToken())->post(env('API_URL', '') . '/satker/' . $id . '/update', [
+        return Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . '/satker/' . $id . '/update', [
             'satker'          => $data['satker'],
             'type'            => $data['type'],
             'phone'           => $data['phone'],
             'email'           => $data['email'],
             'address'         => $data['address'],
-            'users_id'        => profile::getUser()['id'],
-            'username'        => profile::getUser()['users']['username'],
+            'users_id'        => Session::get('data')['id'],
+            'username'        => Session::get('data')['users']['username'],
             'browser'         => $agent->browser(),
             'browser_version' => $agent->version($agent->browser()),
             'os'              => $agent->platform(),

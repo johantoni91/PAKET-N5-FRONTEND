@@ -6,8 +6,10 @@ use App\API\RoleApi;
 use App\Helpers\profile;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\View;
 
 class Auth
 {
@@ -20,12 +22,11 @@ class Auth
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!(Session::has('user'))) {
+        if (!(Session::has('data'))) {
+            FacadesAuth::logout();
             Session::flush();
-            Cookie::forget('token');
             return redirect()->route('login');
         }
-
         return $next($request);
     }
 }

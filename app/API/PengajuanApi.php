@@ -2,8 +2,8 @@
 
 namespace App\API;
 
-use App\Helpers\profile;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 
 class PengajuanApi
 {
@@ -11,35 +11,35 @@ class PengajuanApi
 
     public static function get()
     {
-        return Http::withToken(profile::getToken())->get(env('API_URL', '') . '/pengajuan' . '/' . profile::getUser()['satker'] . '/index')->json();
+        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/pengajuan' . '/' . Session::get('data')['satker'] . '/index')->json();
     }
 
     public static function store($input, $file, $file_name)
     {
         if ($file != '') {
-            return Http::withToken(profile::getToken())->attach('photo', file_get_contents($file), $file_name)->post(env('API_URL', '') . '/pengajuan/store', $input)->json();
+            return Http::withToken(Session::get('data')['token'])->attach('photo', file_get_contents($file), $file_name)->post(env('API_URL', '') . '/pengajuan/store', $input)->json();
         } else {
-            return Http::withToken(profile::getToken())->post(env('API_URL', '') . '/pengajuan/store', $input)->json();
+            return Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . '/pengajuan/store', $input)->json();
         }
     }
 
     public static function find($id)
     {
-        return Http::withToken(profile::getToken())->get(env('API_URL', '') . self::$path . '/' . $id)->json();
+        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . self::$path . '/' . $id)->json();
     }
 
     public static function search($input)
     {
-        return Http::withToken(profile::getToken())->get(env('API_URL', '') . self::$path . '/search', $input)->json();
+        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . self::$path . '/search', $input)->json();
     }
 
     public static function approve($id)
     {
-        return Http::withToken(profile::getToken())->get(env('API_URL', '') . self::$path . '/' . $id . '/approve' . '/' . profile::getUser()['satker'])->json();
+        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . self::$path . '/' . $id . '/approve' . '/' . Session::get('data')['satker'])->json();
     }
 
     public static function reject($id)
     {
-        return Http::withToken(profile::getToken())->get(env('API_URL', '') . self::$path . '/reject' . '/' . $id)->json();
+        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . self::$path . '/reject' . '/' . $id)->json();
     }
 }

@@ -6,6 +6,7 @@ use App\API\RoleApi;
 use App\Helpers\profile;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 
@@ -21,14 +22,14 @@ class Pengajuan
     public function handle(Request $request, Closure $next)
     {
         try {
-            $access = json_decode(RoleApi::find(profile::getUser()['roles'])['route'], true);
+            $access = json_decode(RoleApi::find(Session::get('data')['roles'])['route'], true);
             if (!in_array('pengajuan', $access)) {
                 return redirect()->route('error.404');
             }
             return $next($request);
         } catch (\Throwable $th) {
+            Auth::logout();
             Session::flush();
-            Cookie::forget('token');
             return redirect()->route('login');
         }
     }

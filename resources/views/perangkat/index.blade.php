@@ -75,7 +75,7 @@
                                                                     class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                                                     <th scope="row"
                                                                         class="px-4 py-2 text-black wrap-text bg-gray-50 dark:text-white dark:bg-gray-800">
-                                                                        {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . $item['satker'] . '/code')->json()['data']['satker_name'] }}
+                                                                        {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . $item['satker'] . '/code')->json()['data']['satker_name'] }}
                                                                     </th>
                                                                     <td class="px-6 py-4 dark:text-white text-center">
                                                                         <div
