@@ -17,7 +17,7 @@ class ProfileController extends Controller
     function index()
     {
         $title = 'Profil User';
-        $satker = Http::withToken(profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . profile::getUser()['satker'] . '/code')->json()['data'];
+        $satker = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . Session::get('data')['satker'] . '/code')->json()['data'];
         $starterPack = helper::starterPack();
         return view('profile.index', compact('title', 'satker', 'starterPack'));
     }
