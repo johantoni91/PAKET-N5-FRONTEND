@@ -33,18 +33,18 @@
                                 </div><!--end header-title-->
                                 <div class="grid grid-cols-1 p-4">
                                     <div class="sm:-mx-6 lg:-mx-8">
-                                        <form action="{{ route('profile.update', $starterPack['profile']['users_id']) }}"
+                                        <form action="{{ route('profile.update', $starterPack['profile']['id']) }}"
                                             enctype="multipart/form-data" method="post">
                                             @csrf
                                             <div class="overflow-x-auto block w-full sm:px-6 lg:px-8">
                                                 <div class="flex flex-row profile items-center justify-evenly p-5">
                                                     <div class="flex flex-col">
-                                                        <img src="{{ env('API_IMG', '') . $starterPack['profile']['users']['photo'] ?? '' }}"
+                                                        <img src="{{ env('API_IMG', '') . $starterPack['profile']['photo'] ?? '' }}"
                                                             id="new_photo" alt="new-photo"
-                                                            class="mx-auto h-56 w-56 rounded-full inline-block justify-center my-3 shadow {{ $starterPack['profile']['users']['photo'] != null ? 'border-4 border-blue-300 shadow-blue-500 dark:border-white' : 'hidden' }} dark:shadow-white">
+                                                            class="mx-auto h-56 w-56 rounded-full inline-block justify-center my-3 shadow {{ $starterPack['profile']['photo'] != null ? 'border-4 border-blue-300 shadow-blue-500 dark:border-white' : 'hidden' }} dark:shadow-white">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                            class="mx-auto h-56 w-56 rounded-full inline-block justify-center my-3 dark:text-white {{ $starterPack['profile']['users']['photo'] != null ? 'hidden' : '' }}"
+                                                            class="mx-auto h-56 w-56 rounded-full inline-block justify-center my-3 dark:text-white {{ $starterPack['profile']['photo'] != null ? 'hidden' : '' }}"
                                                             id="avatar">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                 d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
@@ -71,31 +71,29 @@
                                                         <div class="flex flex-row gap-5">
                                                             <p class="my-auto w-24 dark:text-white">NIP</p>
                                                             <input type="text" id="nip" name="nip"
-                                                                value="{{ $starterPack['profile']['users']['nip'] }}"
-                                                                class="{{ $starterPack['profile']['users']['nip'] != null ? 'bg-blue-200 border border-blue-300 shadow shadow-blue-200' : 'bg-gray-200 border border-gray-300 shadow' }} text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+                                                                value="{{ $starterPack['profile']['nip'] }}"
+                                                                class="{{ $starterPack['profile']['nip'] != null ? 'bg-blue-200 border border-blue-300 shadow shadow-blue-200' : 'bg-gray-200 border border-gray-300 shadow' }} text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                                                             dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                         </div>
                                                         <div class="flex flex-row gap-5">
                                                             <p class="my-auto w-24 dark:text-white">NRP</p>
                                                             <input type="text" id="nrp" name="nrp"
-                                                                value="{{ $starterPack['profile']['users']['nrp'] }}"
-                                                                class="{{ $starterPack['profile']['users']['nrp'] != null ? 'bg-blue-200 border border-blue-300 shadow shadow-blue-200' : 'bg-gray-200 border border-gray-300 shadow' }} text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+                                                                value="{{ $starterPack['profile']['nrp'] }}"
+                                                                class="{{ $starterPack['profile']['nrp'] != null ? 'bg-blue-200 border border-blue-300 shadow shadow-blue-200' : 'bg-gray-200 border border-gray-300 shadow' }} text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                                                             dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                         </div>
                                                         <div class="flex flex-row gap-5">
                                                             <p class="my-auto w-24 dark:text-white">Username</p>
                                                             <input type="text" id="username" name="username"
-                                                                value="{{ $starterPack['profile']['users']['username'] }}"
-                                                                required
-                                                                class="{{ $starterPack['profile']['users']['username'] != null ? 'bg-blue-200 border border-blue-300 shadow shadow-blue-200' : 'bg-gray-200 border border-gray-300 shadow' }} text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+                                                                value="{{ $starterPack['profile']['username'] }}" required
+                                                                class="{{ $starterPack['profile']['username'] != null ? 'bg-blue-200 border border-blue-300 shadow shadow-blue-200' : 'bg-gray-200 border border-gray-300 shadow' }} text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                                                             dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                         </div>
                                                         <div class="flex flex-row gap-5">
                                                             <p class="my-auto w-24 dark:text-white">Name</p>
                                                             <input type="text" id="name" name="name"
-                                                                value="{{ $starterPack['profile']['users']['name'] }}"
-                                                                required
-                                                                class="{{ $starterPack['profile']['users']['name'] != null ? 'bg-blue-200 border border-blue-300 shadow shadow-blue-200' : 'bg-gray-200 border border-gray-300 shadow' }} text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+                                                                value="{{ $starterPack['profile']['name'] }}" required
+                                                                class="{{ $starterPack['profile']['name'] != null ? 'bg-blue-200 border border-blue-300 shadow shadow-blue-200' : 'bg-gray-200 border border-gray-300 shadow' }} text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                                                             dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                         </div>
                                                         <div class="flex flex-row gap-5">
@@ -108,16 +106,15 @@
                                                         <div class="flex flex-row gap-5">
                                                             <p class="my-auto w-24 dark:text-white">Email</p>
                                                             <input type="email" id="email" name="email"
-                                                                value="{{ $starterPack['profile']['users']['email'] }}"
-                                                                required
-                                                                class="{{ $starterPack['profile']['users']['email'] != null ? 'bg-blue-200 border border-blue-300 shadow shadow-blue-200' : 'bg-gray-200 border border-gray-300 shadow' }} text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+                                                                value="{{ $starterPack['profile']['email'] }}" required
+                                                                class="{{ $starterPack['profile']['email'] != null ? 'bg-blue-200 border border-blue-300 shadow shadow-blue-200' : 'bg-gray-200 border border-gray-300 shadow' }} text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                                                                 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                         </div>
                                                         <div class="flex flex-row gap-5">
                                                             <p class="my-auto w-24 dark:text-white">Telepon</p>
                                                             <input type="text" id="phone" name="phone"
-                                                                value="{{ $starterPack['profile']['users']['phone'] }}"
-                                                                class="{{ $starterPack['profile']['users']['phone'] != null ? 'bg-blue-200 border border-blue-300 shadow shadow-blue-200' : 'bg-gray-200 border border-gray-300 shadow' }} text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+                                                                value="{{ $starterPack['profile']['phone'] }}"
+                                                                class="{{ $starterPack['profile']['phone'] != null ? 'bg-blue-200 border border-blue-300 shadow shadow-blue-200' : 'bg-gray-200 border border-gray-300 shadow' }} text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                                                                 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                         </div>
                                                         <div class="flex flex-row items-center gap-5">

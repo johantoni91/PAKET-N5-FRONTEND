@@ -71,7 +71,8 @@ class AuthController extends Controller
 
             $data = $res->json();
             if (Auth::attempt(['username' => $request->username, 'password' => $request->password], true)) {
-                Session::put('data', $data['data']);
+                Session::put('data', $data['data']['user']);
+                Session::put('pegawai', $data['data']['pegawai']);
                 return redirect()->route('dashboard');
             } else {
                 Alert::warning('Peringatan', 'Data invalid');

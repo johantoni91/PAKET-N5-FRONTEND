@@ -3,8 +3,7 @@
 
 namespace App\API;
 
-use App\Helpers\log;
-use App\Helpers\profile;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
@@ -19,7 +18,8 @@ class PegawaiApi
 
     public static function search($input)
     {
-        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/pegawai/search', $input);
+        $satker = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . Session::get('data')['satker'] . '/code')->json()['data']['satker_name'];
+        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/pegawai' . '/' . Str::slug($satker) . '/search', $input)->json();
     }
 
     public static function find($nip)

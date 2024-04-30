@@ -39,10 +39,10 @@ class KepegawaianController extends Controller
                 'nip'               => request('nip'),
                 'nrp'               => request('nrp'),
             ];
-            if (request('nama') == null && request('jabatan') == null && request('nip') == null && request('nrp') == null && request('jenis_kelamin') == null && request('satker') == null && request('agama') == null && request('status_pegawai') == null) {
+            if (request('nama') == null && request('nip') == null && request('nrp') == null) {
                 Alert::warning('Peringatan', 'Mohon isi salah satu!');
                 return back();
-            } elseif (request('nama') == null || request('jabatan') == null || request('nip') == null || request('nrp') == null || request('jenis_kelamin') == null || request('satker') == null || request('agama') == null || request('status_pegawai') == null) {
+            } elseif (request('nama') == null || request('nip') == null || request('nrp') == null) {
                 $res = PegawaiApi::search($input);
                 if ($res['status'] = false) {
                     Alert::error('error', $res['message']);

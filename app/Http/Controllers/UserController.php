@@ -115,7 +115,7 @@ class UserController extends Controller
         ];
         if ($role == 'pegawai') {
             $input['username'] = $request->nip;
-            $input['name'] = $request->nip;
+            $input['name'] = $pegawai['nama'];
         }
         if ($request->nip == null && $request->nrp == null) {
             Alert::error('Terjadi kesalahan', 'Mohon isi salah satu NIP / NRP atau dua-duanya');
@@ -216,11 +216,8 @@ class UserController extends Controller
             Alert::error('Gagal', 'Gagal ubah status');
             return back();
         }
-        $user = UserApi::find($id);
         Alert::success('Berhasil', 'Status telah diubah');
-        session()->flash('status', 'Mengubah status user ' . $user->json()['data']['users']["username"]);
-        session()->flash('route', route('user'));
-        return redirect()->route('user');
+        return back();
     }
 
     public function destroy(Request $req)
