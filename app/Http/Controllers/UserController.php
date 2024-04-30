@@ -85,6 +85,7 @@ class UserController extends Controller
                     'title'       => $this->title,
                     'data'        => $data,
                     'input'       => $input,
+                    'roles'       => RoleApi::get()['data'],
                     'starterPack' => helper::starterPack()
                 ]
             );

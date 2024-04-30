@@ -32,12 +32,6 @@
                                                 class="focus:outline-none bg-red-700 text-white border border-red-700 hover:bg-transparent hover:text-red-700 dark:bg-transparent dark:text-red-700 dark:hover:text-white dark:border-gray-700 dark:hover:bg-red-700 text-sm font-medium py-1 px-3 rounded w-24 hidden">
                                                 Batalkan
                                             </button>
-                                            <button type="button" id="tambah_kartu" data-modal-target="create"
-                                                data-modal-toggle="create"
-                                                class="focus:outline-none bg-primary-500 text-white border border-primary-500 hover:bg-transparent hover:text-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium py-1 px-3 rounded w-24">
-                                                + Kartu
-                                            </button>
-                                            @include('partials.modals.layout_kartu.create')
                                         </div>
                                     </div>
                                 </div>
@@ -45,6 +39,10 @@
                                     <div class="sm:-mx-6 lg:-mx-8">
                                         <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-10">
                                             <div class="p-4 md:p-5 space-y-4">
+                                                <button type="button" data-modal-target="create" data-modal-toggle="create"
+                                                    class="focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-b dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-1 px-3 rounded hover:from-red-500 hover:to-violet-800">+
+                                                    Kartu</button>
+                                                @include('partials.modals.layout_kartu.create')
                                                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                                                     <table
                                                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

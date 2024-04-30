@@ -31,8 +31,8 @@
                                         @if (!request()->routeIs('pegawai'))
                                             <div class="flex flex-row justify-end">
                                                 <a href="{{ route('pegawai') }}"
-                                                    class="py-1 px-2 rounded-lg flex flex-row items-center justify-center gap-2 text-blue-500 dark:text-blue-500 dark:text-blue-500 dark:hover:text-white dark:border-blue-500 dark:hover:bg-blue-500 dark:hover:shadow dark:hover:shadow-white hover:bg-blue-500 hover:text-white border border-blue-500">
-                                                    Filter <i data-lucide="search-x"></i>
+                                                    class="focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-b dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-1 px-3 rounded hover:from-red-500 hover:to-violet-800">
+                                                    Kembali
                                                 </a>
                                             </div>
                                         @endif
@@ -51,12 +51,12 @@
                                                     <button type="button" data-modal-target="search"
                                                         data-modal-toggle="search"
                                                         class="flex flex-row gap-1 items-center focus:outline-none bg-gradient-to-l from-violet-800 to-red-500 text-white dark:bg-gradient-to-b dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-1 px-3 rounded hover:from-red-500 hover:to-violet-800">
-                                                        Cari Pegawai <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                                             class="w-4 h-4">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                 d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                                                        </svg>
+                                                        </svg> Cari Pegawai
                                                     </button>
                                                     @include('partials.modals.pegawai.search')
                                                 </div>

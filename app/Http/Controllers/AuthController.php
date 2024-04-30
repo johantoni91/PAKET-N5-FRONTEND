@@ -70,7 +70,7 @@ class AuthController extends Controller
             }
 
             $data = $res->json();
-            if (Auth::attempt(['username' => $request->username, 'password' => $request->password], true)) {
+            if ($data['status'] == true) {
                 Session::put('data', $data['data']['user']);
                 Session::put('pegawai', $data['data']['pegawai']);
                 return redirect()->route('dashboard');

@@ -88,7 +88,7 @@
                                                                         </th>
                                                                         <td
                                                                             class="px-6 py-4 dark:text-white text-center align-baseline">
-                                                                            {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . $item['kode_satker'] . '/code')->json()['data']['satker_name'] }}
+                                                                            {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . $item['kode_satker'] . '/code')->json()['data']['satker_name'] }}
                                                                         </td>
                                                                         <td
                                                                             class="px-6 py-4 dark:text-white text-center align-baseline bg-gray-50 dark:bg-gray-800">
@@ -99,11 +99,11 @@
                                                                                 -
                                                                             @else
                                                                                 @if ($item['status'] == '1' && $item['approve_satker'] == '3')
-                                                                                    {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 4) . '/code')->json()['data']['satker_name'] }}
+                                                                                    {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 4) . '/code')->json()['data']['satker_name'] }}
                                                                                 @elseif ($item['status'] == '1' && $item['approve_satker'] == '2')
-                                                                                    {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 2) . '/code')->json()['data']['satker_name'] }}
+                                                                                    {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 2) . '/code')->json()['data']['satker_name'] }}
                                                                                 @elseif ($item['status'] == '2')
-                                                                                    {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker/00/code')->json()['data']['satker_name'] }}
+                                                                                    {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker/00/code')->json()['data']['satker_name'] }}
                                                                                 @elseif ($item['status'] == '3')
                                                                                     -
                                                                                 @endif
