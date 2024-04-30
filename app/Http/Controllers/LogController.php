@@ -24,7 +24,7 @@ class LogController extends Controller
                 'os'                => LogApi::getColumn('os'),
                 'mobile'            => LogApi::getColumn('mobile')
             ];
-            $data = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/log')->json()['data'];
+            $data = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/log' . '/' . session('data')['id'] . '/index')->json()['data'];
             return view($this->view, [
                 'view'        => $this->view,
                 'title'       => $this->title,
@@ -34,7 +34,6 @@ class LogController extends Controller
             ]);
             return redirect()->route('dashboard');
         } catch (\Throwable $th) {
-            Alert::error('Kesalahan', $th->getMessage());
             Session::forget('user');
             return redirect()->route('logout');
         }

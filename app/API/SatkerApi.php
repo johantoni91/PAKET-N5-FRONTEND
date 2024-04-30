@@ -15,7 +15,7 @@ class SatkerApi
     public static function get()
     {
         try {
-            return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/satker')->json()['data'];
+            return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . session('data')['satker'] . '/index')->json()['data'];
         } catch (\Throwable $th) {
             Session::forget('user');
             return redirect()->route('logout');
@@ -45,6 +45,11 @@ class SatkerApi
             Session::forget('user');
             return redirect()->route('logout');
         }
+    }
+
+    public static function satkerNameProfile()
+    {
+        return Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . session('data')['satker'] . '/code')->json()['data']['satker_name'];
     }
 
     public static function findByName($satker_name)

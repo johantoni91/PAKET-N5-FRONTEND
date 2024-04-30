@@ -31,7 +31,6 @@ class UserController extends Controller
             'title'       => $this->title,
             'data'        => $data,
             'roles'       => RoleApi::get()['data'],
-            'satker'      => Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/satker')->json()['data']['data'],
             'starterPack' => helper::starterPack()
         ]);
     }
@@ -46,7 +45,6 @@ class UserController extends Controller
         return view('user.create', [
             'title'       => $this->title,
             'role'        => $role,
-            'satker'      => Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/satker')->json()['data']['data'],
             'starterPack' => helper::starterPack()
         ]);
     }
@@ -122,6 +120,10 @@ class UserController extends Controller
             Alert::error('Terjadi kesalahan', 'Mohon isi salah satu NIP / NRP atau dua-duanya');
             return back();
         } else {
+            if ($pegawai['nama_satker'] != SatkerApi::satkerNameProfile()) {
+                Alert::warning('Peringatan', 'Pegawai tidak terdaftar pada satker ini!');
+                return back();
+            }
             $res = UserApi::insert($role == 'pegawai' ? null : $request->file('photo'), $input);
             if ($res['status'] == false) {
                 Alert::warning('Peringatan', $res['message']);
@@ -224,19 +226,16 @@ class UserController extends Controller
     public function destroy(Request $req)
     {
         try {
-            $user = UserApi::find($req->id)->json();
             $del = UserApi::delete($req->id);
             if (!$del->failed()) {
                 Alert::success('Berhasil', 'User berhasil dihapus');
-                session()->flash('status', 'Menghapus user ' . $user['data']['users']['name']);
-                session()->flash('route', route('user'));
                 return response($del->json()['message'], 200);
             } else {
                 Alert::error('Terjadi kesalahan', $del->json()['error']);
                 return response($del->json()['message'], 200);
             }
         } catch (\Throwable $th) {
-            Alert::error('Terjadi kesalahan', $th->getMessage());
+            Alert::error('Terjadi kesalahan');
             return response($th->getMessage(), 400);
         }
     }

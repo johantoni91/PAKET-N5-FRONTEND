@@ -53,19 +53,21 @@
                                                             class="focus:outline-none bg-primary-500 text-white border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium py-1 px-3 rounded w-24">+
                                                             Satker</button>
                                                         @include('partials.modals.satker.create') --}}
-                                                        <div class="justify-end">
-                                                            <button type="button" data-modal-target="search"
-                                                                data-modal-toggle="search"
-                                                                class="flex items-center gap-1 focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-r dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-1 px-3 rounded hover:from-red-500 hover:to-violet-800 dark:hover:from-cyan-300 dark:hover:to-zinc-500">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                                    viewBox="0 0 24 24" stroke-width="2"
-                                                                    stroke="currentColor" class="w-4 h-4">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                                                                </svg> Cari Satker
-                                                            </button>
-                                                            @include('partials.modals.satker.search')
-                                                        </div>
+                                                        @if (session('data')['satker'] == '00')
+                                                            <div class="justify-end">
+                                                                <button type="button" data-modal-target="search"
+                                                                    data-modal-toggle="search"
+                                                                    class="flex items-center gap-1 focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-r dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-1 px-3 rounded hover:from-red-500 hover:to-violet-800 dark:hover:from-cyan-300 dark:hover:to-zinc-500">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                        viewBox="0 0 24 24" stroke-width="2"
+                                                                        stroke="currentColor" class="w-4 h-4">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                                                    </svg> Cari Satker
+                                                                </button>
+                                                                @include('partials.modals.satker.search')
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                     <div class="flex flex-col gap-5">
                                                         <div class="datatable_1">
@@ -103,7 +105,8 @@
                                                                             <tr
                                                                                 class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                                                                 <th scope="row"
-                                                                                    class="px-4 py-2 text-black whitespace-nowrap text-wrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                                                    class="px-4 py-2 text-black bg-gray-50 dark:text-white dark:bg-gray-800"
+                                                                                    style="text-wrap: wrap">
                                                                                     {{ $item['satker_name'] }}
                                                                                 </th>
                                                                                 <td
@@ -118,8 +121,8 @@
                                                                                     class="text-center px-6 py-4 dark:text-white text-justify">
                                                                                     {{ $item['satker_address'] }}
                                                                                 </td>
-                                                                                <td
-                                                                                    class="text-center px-6 py-4 dark:text-white bg-gray-50 dark:bg-gray-800">
+                                                                                <td class="text-center px-6 py-4 dark:text-white bg-gray-50 dark:bg-gray-800"
+                                                                                    style="text-wrap: wrap">
                                                                                     {{ $item['satker_url'] }}
                                                                                 </td>
                                                                                 <td class="px-6 py-4 dark:text-white">

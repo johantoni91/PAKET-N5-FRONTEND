@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\API\PegawaiApi;
 use App\API\SatkerApi;
 use App\API\Simkari;
-use App\Helpers\profile;
 use Carbon\Carbon;
 use helper;
 use Illuminate\Http\Request;
@@ -42,7 +41,7 @@ class KepegawaianController extends Controller
             if (request('nama') == null && request('nip') == null && request('nrp') == null) {
                 Alert::warning('Peringatan', 'Mohon isi salah satu!');
                 return back();
-            } elseif (request('nama') == null || request('nip') == null || request('nrp') == null) {
+            } else {
                 $res = PegawaiApi::search($input);
                 if ($res['status'] = false) {
                     Alert::error('error', $res['message']);
@@ -56,7 +55,6 @@ class KepegawaianController extends Controller
                     'input'       => $input,
                     'starterPack' => helper::starterPack()
                 ]);
-                return redirect()->route('dashboard');
             }
         } catch (\Throwable $th) {
             Alert::error('error', $th->getMessage());

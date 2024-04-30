@@ -56,15 +56,16 @@
                                                             <thead
                                                                 class="text-xs text-gray-700 uppercase dark:text-gray-400 border-b-2 border-slate-500">
                                                                 <tr class="text-center">
-                                                                    <th scope="col"
-                                                                        class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                                                    <th class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
                                                                         Nama
                                                                     </th>
-                                                                    <th scope="col" class="px-6 py-3">
+                                                                    <th class="px-6 py-3">
+                                                                        Satker
+                                                                    </th>
+                                                                    <th class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
                                                                         Pengajuan
                                                                     </th>
-                                                                    <th scope="col"
-                                                                        class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                                                    <th class="px-6 py-3">
                                                                         @if (preg_match('/^\d{6}$/', $starterPack['profile']['satker']))
                                                                             Progress
                                                                         @else
@@ -87,7 +88,7 @@
                                                                         <tr
                                                                             class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                                                             <th scope="row"
-                                                                                class="px-4 py-2 text-black whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                                                class="px-4 py-2 text-black bg-gray-50 dark:text-white dark:bg-gray-800">
                                                                                 <div
                                                                                     class="flex flex-col justify-center text-wrap">
                                                                                     {{ $item['nama'] }}
@@ -99,10 +100,14 @@
                                                                             </th>
                                                                             <td
                                                                                 class="px-6 py-4 dark:text-white text-center font-bold">
-                                                                                {{ $item['kartu'] }}
+                                                                                {{ Illuminate\Support\Facades\Http::withToken($starterPack['profile']['token'])->get(env('API_URL', '') . '/satker' . '/' . $item['kode_satker'] . '/code')->json()['data']['satker_name'] }}
                                                                             </td>
                                                                             <td
-                                                                                class="px-10 py-4 text-center dark:text-white bg-gray-50 dark:bg-gray-800">
+                                                                                class="px-6 py-4 dark:text-white text-center font-bold bg-gray-50 dark:bg-gray-800">
+                                                                                {{ Illuminate\Support\Facades\Http::withToken($starterPack['profile']['token'])->get(env('API_URL', '') . '/kartu' . '/' . $item['kartu'])->json()['data']['title'] }}
+                                                                            </td>
+                                                                            <td
+                                                                                class="px-10 py-4 text-center dark:text-white">
                                                                                 @if (preg_match('/^\d{6}$/', $starterPack['profile']['satker']))
                                                                                     @include('pengajuan.partials.progress')
                                                                                 @else
