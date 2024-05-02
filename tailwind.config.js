@@ -17,6 +17,7 @@ module.exports = {
         "./node_modules/tw-elements/dist/js/**/*.js",
         "./node_modules/@frostui/tailwindcss/dist/js/**/*.js",
         "./resources/**/*.blade.php",
+        "./resources/**/*.css",
         "./resources/**/*.js",
         "./resources/**/*.vue",
         "./node_modules/flowbite/**/*.js",
