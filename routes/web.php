@@ -117,7 +117,16 @@ Route::middleware(['auth'])->group(function () {
     // PERANGKAT
     Route::middleware(['role_perangkat'])->group(function () {
         Route::get('/devices', [DeviceController::class, 'index'])->name('perangkat');
+        Route::get('/devices/search', [DeviceController::class, 'search'])->name('perangkat.search');
         Route::get('/devices/reset', [DeviceController::class, 'resetKiosK'])->name('perangkat.reset');
+        Route::get('/devices/perangkat', [DeviceController::class, 'perangkat'])->name('perangkat.perangkat');
+        Route::get('/devices/perangkat/{id}/rincian', [DeviceController::class, 'rincianPerangkat'])->name('perangkat.rincian');
+        Route::get('/devices/perangkat/{id}/update/rincian', [DeviceController::class, 'updateRincianPerangkatView'])->name('perangkat.update.rincian');
+        Route::post('/devices/perangkat', [DeviceController::class, 'storeAlat'])->name('perangkat.tm.store');
+        Route::post('/devices/perangkat/{id}/satker', [DeviceController::class, 'storeAlatSatker'])->name('perangkat.tc.store');
+        Route::post('/devices/perangkat/{id}/update/satker', [DeviceController::class, 'updateRincianPerangkatSatker'])->name('perangkat.tc.update');
+        Route::post('/devices/{id}/update/perangkat', [DeviceController::class, 'updateAlat'])->name('perangkat.tm.update');
+        Route::get('/devices/{id}/destroy/perangkat', [DeviceController::class, 'destroyAlat'])->name('perangkat.tm.destroy');
     });
 
     // FAQ

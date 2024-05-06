@@ -27,29 +27,47 @@
                                 <div
                                     class="border-b border-slate-200 dark:border-slate-700/40 py-3 px-4 dark:text-slate-300/70">
                                     <div class="flex-row justify-between md:flex">
-                                        <h4 class="font-medium text-lg flex-1 self-center mb-2 md:mb-0">Data Perangkat Per
-                                            Satuan Kerja
+                                        <h4 class="font-medium text-lg flex-1 self-center mb-2 md:mb-0">Data Perangkat
                                         </h4>
-                                        <div class="flex flex-row justify-evenly gap-2">
-                                            @if (!request()->routeIs('perangkat'))
-                                                <a href="{{ route('perangkat') }}"
-                                                    class="flex text-nowrap gap-2 flex-row focus:outline-none text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium rounded justify-between py-1 px-2 align-bottom items-center">Ke
-                                                    halaman awal
+                                        @if (session('data')['satker'] == '00')
+                                            <div class="flex flex-row justify-evenly gap-2">
+                                                <a href="{{ route('perangkat.perangkat') }}"
+                                                    class="pt-2 px-3 border align-bottom border-b-0 dark:border-slate-700/40 rounded-t-md -mb-3 hover:bg-gradient-to-b hover:from-violet-800 hover:to-red-500 hover:text-white dark:hover:bg-gradient-to-b dark:hover:from-cyan-300 dark:hover:to-zinc-500">Peralatan
                                                 </a>
-                                            @endif
-                                            <button type="button" data-modal-target="reset" data-modal-toggle="reset"
-                                                class="flex text-nowrap gap-2 flex-row focus:outline-none text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium rounded justify-between py-1 px-2 align-bottom items-center">Reset
-                                                Perangkat
-                                            </button>
-                                            @include('partials.modals.perangkat.reset')
-                                        </div>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-1 p-4 overflow-scroll">
                                     <div class="sm:-mx-6 lg:-mx-8">
                                         <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-10">
+                                            <div class="ms-5 flex flex-row justify-between py-1">
+                                                @if (session('data')['satker'] == '00')
+                                                    <div class="flex justify-start gap-2">
+                                                        <div class="self-start">
+                                                            <input type="text" id="search_perangkat"
+                                                                class="mt-3 py-1 px-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                placeholder="Cari" />
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                                <div class="flex justify-end gap-2 me-5">
+                                                    @if (session('data')['satker'] == '00')
+                                                        <button type="button" data-modal-target="reset"
+                                                            data-modal-toggle="reset"
+                                                            class="focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-r dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium mt-3 py-1 px-3 rounded hover:from-red-500 hover:to-violet-800 dark:hover:from-cyan-300 dark:hover:to-zinc-500">Reset
+                                                            Perangkat
+                                                        </button>
+                                                        @include('perangkat.modals.reset')
+                                                    @endif
+                                                    @if (!request()->routeIs('perangkat'))
+                                                        <a href="{{ route('perangkat') }}"
+                                                            class="bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-r dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium mt-3 py-1 px-3 rounded hover:from-red-500 hover:to-violet-800 dark:hover:from-cyan-300 dark:hover:to-zinc-500">Kembali
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                            </div>
                                             <div class="flex flex-col gap-5 p-5">
-
                                                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                                                     <table
                                                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -65,7 +83,7 @@
                                                                 </th>
                                                                 <th scope="col"
                                                                     class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                                                                    Details
+                                                                    Rincian
                                                                 </th>
                                                             </tr>
                                                         </thead>
@@ -79,7 +97,7 @@
                                                                     </th>
                                                                     <td class="px-6 py-4 dark:text-white text-center">
                                                                         <div
-                                                                            class="justify-center items-center gap-2 flex flex-row text-green-500 drop-shadow-green">
+                                                                            class="justify-center items-center gap-2 flex flex-row {{ $item['status'] == '1' ? 'drop-shadow-green' : 'drop-shadow-red' }}">
                                                                             @if ($item['status'] == '1')
                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                     fill="none" viewBox="0 0 24 24"
@@ -108,8 +126,29 @@
                                                                         </div>
                                                                     </td>
                                                                     <td
-                                                                        class="px-6 py-4 dark:text-white text-center bg-gray-50 dark:bg-gray-800">
-                                                                        @include('perangkat.details')
+                                                                        class="px-6 py-4 dark:text-white bg-gray-50 dark:bg-gray-800">
+                                                                        @if (session('data')['satker'] == '00')
+                                                                            <div class="text-center">
+                                                                                @include('perangkat.modals.details')
+                                                                            </div>
+                                                                        @else
+                                                                            <a href="{{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/perangkat' . '/' . $item['satker'] . '/find/tools/tc_hardware')->json()['data']? route('perangkat.update.rincian', [$item['satker']]): route('perangkat.rincian', [$item['id']]) }}"
+                                                                                class="text-center text-blue-600 hover:text-blue-400">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                    width="24" height="24"
+                                                                                    class="text-center mx-auto"
+                                                                                    viewBox="0 0 24 24" fill="none"
+                                                                                    stroke="currentColor" stroke-width="2"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    class="lucide lucide-settings">
+                                                                                    <path
+                                                                                        d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+                                                                                    <circle cx="12" cy="12"
+                                                                                        r="3" />
+                                                                                </svg>
+                                                                            </a>
+                                                                        @endif
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
@@ -129,4 +168,21 @@
             </div>
         </div>
     </div>
+    <script>
+        $(function() {
+            $('#search_perangkat').on('keyup', function() {
+                var data = $(this).val()
+                $.ajax({
+                    url: "{{ route('perangkat.search') }}",
+                    type: "GET",
+                    data: {
+                        search: data
+                    },
+                    success: function(data) {
+                        console.log(data)
+                    }
+                })
+            })
+        })
+    </script>
 @endsection

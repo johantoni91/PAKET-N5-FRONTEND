@@ -120,7 +120,7 @@ class UserController extends Controller
             Alert::error('Terjadi kesalahan', 'Mohon isi salah satu NIP / NRP atau dua-duanya');
             return back();
         } else {
-            if ($pegawai['nama_satker'] != SatkerApi::satkerNameProfile()) {
+            if ($pegawai['nama_satker'] != SatkerApi::satkerNameProfile() && session('data')['satker'] != '00') {
                 Alert::warning('Peringatan', 'Pegawai tidak terdaftar pada satker ini!');
                 return back();
             }

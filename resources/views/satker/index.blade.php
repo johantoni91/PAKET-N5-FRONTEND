@@ -95,9 +95,9 @@
                                                                                 class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
                                                                                 URL
                                                                             </th>
-                                                                            <th scope="col" class="px-6 py-3">
+                                                                            {{-- <th scope="col" class="px-6 py-3">
                                                                                 Aksi
-                                                                            </th>
+                                                                            </th> --}}
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -125,14 +125,14 @@
                                                                                     style="text-wrap: wrap">
                                                                                     {{ $item['satker_url'] }}
                                                                                 </td>
-                                                                                <td class="px-6 py-4 dark:text-white">
+                                                                                {{-- <td class="px-6 py-4 dark:text-white">
                                                                                     <div
                                                                                         class="flex flex-row justify-evenly gap-2">
-                                                                                        {{-- <button type="button"
+                                                                                        <button type="button"
                                                                                             data-modal-target="update{{ $item['satker_id'] }}"
                                                                                             data-modal-toggle="update{{ $item['satker_id'] }}"><i
                                                                                                 class="align-baseline text-center icofont-edit text-lg hover:text-black dark:text-gray-400 text-blue-500"></i></button>
-                                                                                        @include('partials.modals.satker.update') --}}
+                                                                                        @include('partials.modals.satker.update')
                                                                                         <input type="hidden"
                                                                                             value="{{ $item['satker_id'] }}"
                                                                                             id="del{{ $item['satker_id'] }}">
@@ -177,7 +177,7 @@
                                                                                             })
                                                                                         </script>
                                                                                     </div>
-                                                                                </td>
+                                                                                </td> --}}
                                                                             </tr>
                                                                         @endforeach
                                                                     </tbody>
