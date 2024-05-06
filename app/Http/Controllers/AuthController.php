@@ -14,11 +14,15 @@ class AuthController extends Controller
 {
     public function home()
     {
-        return view('index', [
-            'data'          => Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/dashboard' . '/' . Session::get('data')['satker'])->json()['data'],
-            'title'         => 'Dashboard',
-            'starterPack'   => helper::starterPack()
-        ]);
+        try {
+            return view('index', [
+                'data'          => Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/dashboard' . '/' . Session::get('data')['satker'])->json()['data'],
+                'title'         => 'Dashboard',
+                'starterPack'   => helper::starterPack()
+            ]);
+        } catch (\Throwable $th) {
+            return redirect()->route('logout');
+        }
     }
 
     public function loginPage()
@@ -85,7 +89,6 @@ class AuthController extends Controller
 
     public function logout()
     {
-        Auth::logout();
         Session::flush();
         return redirect('/login');
     }

@@ -182,7 +182,8 @@ class DeviceController extends Controller
 
     function storeAlat(Request $req)
     {
-        $store = PerangkatAPI::alatPost(env('API_URL', '') . '/perangkat/tm_hardware', ['perangkat' => $req->perangkat]);
+        $store = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/perangkat/tm_hardware', ['perangkat' => $req->perangkat])->json();
+        // $store = PerangkatAPI::alatPost(env('API_URL', '') . '/perangkat/tm_hardware', ['perangkat' => $req->perangkat]);
         if ($store['status'] == false) {
             Alert::error('Gagal', $store['message']);
             return back();
@@ -193,7 +194,7 @@ class DeviceController extends Controller
 
     function updateAlat(Request $req, $id)
     {
-        $update = PerangkatAPI::alatPost(env('API_URL', '') . '/perangkat' . '/' . $id . '/update/tm_hardware', ['perangkat' => $req->perangkat, 'status' => $req->status]);
+        $update = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/perangkat' . '/' . $id . '/update/tm_hardware', ['perangkat' => $req->perangkat, 'status' => $req->status])->json();
         if ($update['status'] == false) {
             Alert::error('Gagal', $update['message']);
             return back();
