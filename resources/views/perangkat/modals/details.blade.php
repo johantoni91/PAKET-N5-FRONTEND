@@ -47,7 +47,7 @@
                             <li class="py-3 sm:py-4">
                                 <div class="flex text-start items-center space-x-4 rtl:space-x-reverse">
                                     <div class="flex-shrink-0">
-                                        <img class="w-8 h-8 rounded-full"
+                                        <img class="w-20 h-20 rounded-lg"
                                             src="{{ $alat['photo'] ?? 'https://placehold.co/600x400' }}"
                                             alt="{{ Illuminate\Support\Str::slug($alat['photo']) }}">
                                     </div>

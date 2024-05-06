@@ -35,33 +35,28 @@
                         <select id="tipe" name="type"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             @if (request()->routeIs('satker.search'))
-                                @if (!$input['satker_type'])
-                                    <option selected disabled>-- Pilih Tipe --</option>
-                                    <option value="0">KEJAKSAAN AGUNG</option>
-                                    <option value="1">KEJAKSAAN TINGGI</option>
-                                    <option value="2">KEJAKSAAN NEGERI</option>
-                                    <option value="3">CABANG KEJAKSAAN NEGERI</option>
-                                    <option value="4">BADAN PENDIDIKAN DAN PELATIHAN KEJAKSAAN REPUBLIK INDONESIA
-                                    </option>
-                                @else
-                                    <option {{ $input['satker_type'] == '0' ? 'selected' : '' }} value="0">Kejagung
-                                    </option>
-                                    <option {{ $input['satker_type'] == '1' ? 'selected' : '' }} value="1">Kejati
-                                    </option>
-                                    <option {{ $input['satker_type'] == '2' ? 'selected' : '' }} value="2">Kejari
-                                    </option>
-                                    <option {{ $input['satker_type'] == '3' ? 'selected' : '' }} value="3">Cabjari
-                                    </option>
-                                    <option {{ $input['satker_type'] == '4' ? 'selected' : '' }} value="4">Badiklat
-                                    </option>
-                                @endif
+                                <option {{ $input['satker_type'] == '0' ? 'selected' : '' }} value="0">KEJAKSAAN
+                                    AGUNG
+                                </option>
+                                <option {{ $input['satker_type'] == '1' ? 'selected' : '' }} value="1">KEJAKSAAN
+                                    TINGGI
+                                </option>
+                                <option {{ $input['satker_type'] == '2' ? 'selected' : '' }} value="2">KEJAKSAAN
+                                    NEGERI
+                                </option>
+                                <option {{ $input['satker_type'] == '3' ? 'selected' : '' }} value="3">CABANG
+                                    KEJAKSAAN NEGERI
+                                </option>
+                                <option {{ $input['satker_type'] == '4' ? 'selected' : '' }} value="4">BADAN
+                                    PENDIDIKAN DAN PELATIHAN KEJAKSAAN REPUBLIK INDONESIA
+                                </option>
                             @else
-                                <option selected disabled>-- Pilih Tipe --</option>
-                                <option value="0">Kejagung</option>
-                                <option value="1">Kejati</option>
-                                <option value="2">Kejari</option>
-                                <option value="3">Cabjari</option>
-                                <option value="4">Badiklat</option>
+                                <option value="0">KEJAKSAAN AGUNG</option>
+                                <option value="1">KEJAKSAAN TINGGI</option>
+                                <option value="2">KEJAKSAAN NEGERI</option>
+                                <option value="3">CABANG KEJAKSAAN NEGERI</option>
+                                <option value="4">BADAN PENDIDIKAN DAN PELATIHAN KEJAKSAAN REPUBLIK INDONESIA
+                                </option>
                             @endif
                         </select>
                     </div>

@@ -32,8 +32,17 @@ class DeviceController extends Controller
 
     function search()
     {
-        $result = Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/perangkat/search', ['satker' => request('search')])->json()['data'];
-        return response($result);
+        $result = Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/perangkat/search', ['satker_name' => request('satker'), 'satker_type' => request('type'), 'profile' => session('data')['satker']])->json()['data'];
+        return view($this->view, [
+            'view'        => $this->view,
+            'title'       => $this->title,
+            'data'        => $result,
+            'input'       => [
+                'satker_name'    => request('satker'),
+                'satker_type'    => request('type'),
+            ],
+            'starterPack' => helper::starterPack()
+        ]);
     }
 
     function update(Request $req, $id)
@@ -183,7 +192,6 @@ class DeviceController extends Controller
     function storeAlat(Request $req)
     {
         $store = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/perangkat/tm_hardware', ['perangkat' => $req->perangkat])->json();
-        // $store = PerangkatAPI::alatPost(env('API_URL', '') . '/perangkat/tm_hardware', ['perangkat' => $req->perangkat]);
         if ($store['status'] == false) {
             Alert::error('Gagal', $store['message']);
             return back();

@@ -53,7 +53,8 @@ class SatkerController extends Controller
                 ]
             );
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+            Alert::warning('Peringatan', 'Mohon masukkan nama satker maupun tipe satker dengan benar!');
+            return back();
         }
     }
 

@@ -45,9 +45,12 @@
                                                 @if (session('data')['satker'] == '00')
                                                     <div class="flex justify-start gap-2">
                                                         <div class="self-start">
-                                                            <input type="text" id="search_perangkat"
-                                                                class="mt-3 py-1 px-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                                placeholder="Cari" />
+                                                            <button type="button" data-modal-target="search"
+                                                                data-modal-toggle="search"
+                                                                class="focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-r dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium mt-3 py-1 px-3 rounded hover:from-red-500 hover:to-violet-800 dark:hover:from-cyan-300 dark:hover:to-zinc-500">Cari
+                                                                Perangkat
+                                                            </button>
+                                                            @include('perangkat.modals.search')
                                                         </div>
                                                     </div>
                                                 @endif
@@ -168,21 +171,4 @@
             </div>
         </div>
     </div>
-    <script>
-        $(function() {
-            $('#search_perangkat').on('keyup', function() {
-                var data = $(this).val()
-                $.ajax({
-                    url: "{{ route('perangkat.search') }}",
-                    type: "GET",
-                    data: {
-                        search: data
-                    },
-                    success: function(data) {
-                        console.log(data)
-                    }
-                })
-            })
-        })
-    </script>
 @endsection

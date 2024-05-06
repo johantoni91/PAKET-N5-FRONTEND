@@ -20,18 +20,45 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form class="p-4 md:p-5" action="{{ route('satker.search') }}" method="get">
+            <form class="p-4 md:p-5" action="{{ route('perangkat.search') }}" method="get">
+                @csrf
                 <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2">
-                        <input id="satker" name="satker" type="text" list="satker_list" class="form-control">
-                        <datalist id="satker_list">
-                            <option>Delhi</option>
-                            <option>Goa</option>
-                        </datalist>
-                        {{-- <label for="satker"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Perangkat</label>
+                        <label for="satker"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Satuan Kerja</label>
                         <input type="text" name="satker" id="satker" value="{{ $input['satker_name'] ?? '' }}"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"> --}}
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                    </div>
+                    <div class="col-span-2">
+                        <label for="tipe" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipe
+                            <small class="text-gray-300">(Kondisional)</small></label>
+                        <select id="tipe" name="type"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            @if (request()->routeIs('satker.search'))
+                                <option {{ $input['satker_type'] == '0' ? 'selected' : '' }} value="0">KEJAKSAAN
+                                    AGUNG
+                                </option>
+                                <option {{ $input['satker_type'] == '1' ? 'selected' : '' }} value="1">KEJAKSAAN
+                                    TINGGI
+                                </option>
+                                <option {{ $input['satker_type'] == '2' ? 'selected' : '' }} value="2">KEJAKSAAN
+                                    NEGERI
+                                </option>
+                                <option {{ $input['satker_type'] == '3' ? 'selected' : '' }} value="3">CABANG
+                                    KEJAKSAAN NEGERI
+                                </option>
+                                <option {{ $input['satker_type'] == '4' ? 'selected' : '' }} value="4">BADAN
+                                    PENDIDIKAN DAN PELATIHAN KEJAKSAAN REPUBLIK INDONESIA
+                                </option>
+                            @else
+                                <option value="0">KEJAKSAAN AGUNG</option>
+                                <option value="1">KEJAKSAAN TINGGI</option>
+                                <option value="2">KEJAKSAAN NEGERI</option>
+                                <option value="3">CABANG KEJAKSAAN NEGERI</option>
+                                <option value="4">BADAN PENDIDIKAN DAN PELATIHAN KEJAKSAAN REPUBLIK INDONESIA
+                                </option>
+                            @endif
+                        </select>
                     </div>
                 </div>
                 <div class="flex flex-row justify-end">
