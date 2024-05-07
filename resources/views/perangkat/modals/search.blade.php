@@ -34,7 +34,8 @@
                             <small class="text-gray-300">(Kondisional)</small></label>
                         <select id="tipe" name="type"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            @if (request()->routeIs('satker.search'))
+
+                            @if ($input != null)
                                 <option {{ $input['satker_type'] == '0' ? 'selected' : '' }} value="0">KEJAKSAAN
                                     AGUNG
                                 </option>
@@ -51,11 +52,20 @@
                                     PENDIDIKAN DAN PELATIHAN KEJAKSAAN REPUBLIK INDONESIA
                                 </option>
                             @else
-                                <option value="0">KEJAKSAAN AGUNG</option>
-                                <option value="1">KEJAKSAAN TINGGI</option>
-                                <option value="2">KEJAKSAAN NEGERI</option>
-                                <option value="3">CABANG KEJAKSAAN NEGERI</option>
-                                <option value="4">BADAN PENDIDIKAN DAN PELATIHAN KEJAKSAAN REPUBLIK INDONESIA
+                                <option value="0">KEJAKSAAN
+                                    AGUNG
+                                </option>
+                                <option value="1">KEJAKSAAN
+                                    TINGGI
+                                </option>
+                                <option value="2">KEJAKSAAN
+                                    NEGERI
+                                </option>
+                                <option value="3">CABANG
+                                    KEJAKSAAN NEGERI
+                                </option>
+                                <option value="4">BADAN
+                                    PENDIDIKAN DAN PELATIHAN KEJAKSAAN REPUBLIK INDONESIA
                                 </option>
                             @endif
                         </select>

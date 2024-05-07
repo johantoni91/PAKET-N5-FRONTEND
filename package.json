@@ -26,6 +26,7 @@
         "flowbite": "^2.2.1",
         "grapesjs": "^0.21.9",
         "jspdf": "^2.5.1",
+        "puppeteer": "^22.8.0",
         "socket.io": "^4.7.5",
         "sweetalert2": "^11.10.5"
     }

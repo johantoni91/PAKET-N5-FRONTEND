@@ -38,6 +38,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('/profile/{id}/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/example', [LayoutKartuController::class, 'example'])->name('test');
 
     // MANAGEMENT USERS
     Route::middleware(['role_user'])->group(function () {
@@ -98,6 +99,8 @@ Route::middleware(['auth'])->group(function () {
     // LAYOUT KARTU
     Route::middleware(['role_layout'])->group(function () {
         Route::get('/layout/kartu', [LayoutKartuController::class, 'index'])->name('layout.kartu');
+        Route::post('/layout/attribute/kartu', [LayoutKartuController::class, 'getAttribute'])->name('layout.kartu.attribute');
+        Route::get('/layout/create/kartu', [LayoutKartuController::class, 'create'])->name('layout.kartu.create');
         Route::get('/layout/{id}/kartu', [LayoutKartuController::class, 'find'])->name('layout.find.kartu');
         Route::get('/layout/kartu/pdf/{id}', [LayoutKartuController::class, 'pdf'])->name('layout.kartu.pdf');
         Route::post('/layout/kartu/store', [LayoutKartuController::class, 'store'])->name('layout.kartu.store');

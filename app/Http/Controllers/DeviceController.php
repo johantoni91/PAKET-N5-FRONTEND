@@ -22,7 +22,8 @@ class DeviceController extends Controller
                 'view'        => $this->view,
                 'title'       => $this->title,
                 'data'        => Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/perangkat' . '/' . Session::get('data')['satker'])->json()['data'],
-                'starterPack' => helper::starterPack()
+                'starterPack' => helper::starterPack(),
+                'input'       => null
             ]);
         } catch (\Throwable $th) {
             Session::forget('user');

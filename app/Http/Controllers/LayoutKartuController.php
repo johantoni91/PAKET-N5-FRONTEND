@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\API\KartuApi;
-use App\Helpers\profile;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use Dompdf\Dompdf;
 use helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\View;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class LayoutKartuController extends Controller
@@ -27,11 +28,19 @@ class LayoutKartuController extends Controller
                 'data'        => $kartu,
                 'starterPack' => helper::starterPack()
             ]);
-            return redirect()->route('dashboard');
         } catch (\Throwable $th) {
             Session::forget('user');
             return redirect()->route('logout');
         }
+    }
+
+    public function create()
+    {
+        return view('layout_kartu.create', [
+            'view'        => 'layout_kartu.create',
+            'title'       => $this->title,
+            'starterPack' => helper::starterPack()
+        ]);
     }
 
     public function find($id)
@@ -49,6 +58,7 @@ class LayoutKartuController extends Controller
 
     public function store(Request $req)
     {
+        dd($req->all());
         try {
             $input = [
                 'title'       => $req->title,
@@ -69,7 +79,7 @@ class LayoutKartuController extends Controller
             $ext_back  = $req->file('belakang')->getClientOriginalExtension();
             KartuApi::store($input, $ext_icon, $ext_front, $ext_back);
             Alert::success('Berhasil', 'Kartu telah ditambahkan');
-            return back();
+            return redirect()->route('layout.kartu');
         } catch (\Throwable $th) {
             Alert::error('Gagal', 'Kartu gagal ditambahkan', $th->getMessage());
             return back();
@@ -179,5 +189,15 @@ class LayoutKartuController extends Controller
         // return view('layout_kartu.pdf', compact('kartu'));
         $pdf = Pdf::loadView('layout_kartu.pdf', compact('kartu'));
         return $pdf->download('Kartu_' . $kartu['title'] . '.pdf');
+    }
+
+    public function getAttribute(Request $req)
+    {
+        dd($req->all());
+    }
+
+    public function example()
+    {
+        return view('welcome');
     }
 }
