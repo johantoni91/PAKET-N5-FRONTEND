@@ -15,6 +15,11 @@ class KartuApi
         return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . self::$path)->json();
     }
 
+    public static function getTitle()
+    {
+        return Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/kartu/title')->json()['data'];
+    }
+
     public static function find($id)
     {
         return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . self::$path . '/' . $id)->json();

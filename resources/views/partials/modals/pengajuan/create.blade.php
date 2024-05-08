@@ -73,24 +73,17 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                     </div>
                     <div class="col-span-2">
-                        <label for="kartu"
+                        <label for="tipe"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kartu</label>
-                        <input type="text" name="kartu" id="kartu"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                    </div>
-                    {{-- <div class="col-span-2">
-                        <label for="tipe" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipe
-                            Kartu</label>
                         <select id="tipe" name="tipe"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <option selected value="0">Kartu Acara</option>
-                            <option value="1">Kartu Identitas</option>
-                            <option value="2">Kartu Intel</option>
+                            @foreach ($kartu as $i)
+                                <option value="{{ $i['id'] }}">{{ $i['title'] }} -
+                                    {{ ($i['categories'] == '0' ? 'Kartu Acara' : $i['categories'] == '1') ? 'Kartu Identitas' : 'Kartu Intel' }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
-                    <div class="col-span-2" id="add_kartu">
-
-                    </div> --}}
                 </div>
                 <div class="flex flex-row justify-end">
                     <button type="submit"

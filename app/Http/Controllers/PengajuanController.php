@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\API\KartuApi;
 use helper;
 use App\Helpers\profile;
 use App\API\PengajuanApi;
@@ -22,6 +23,7 @@ class PengajuanController extends Controller
             'view'        => $this->view,
             'title'       => $this->title,
             'data'        => $data,
+            'kartu'       => KartuApi::getTitle(),
             'starterPack' => helper::starterPack()
         ]);
     }

@@ -8,6 +8,7 @@ use App\Http\Controllers\RateController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AccessController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\SatkerController;
 use App\Http\Controllers\ProfileController;
@@ -38,7 +39,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('/profile/{id}/update', [ProfileController::class, 'update'])->name('profile.update');
-    Route::get('/example', [LayoutKartuController::class, 'example'])->name('test');
+    Route::get('/inbox', [DashboardController::class, 'inbox'])->name('inbox');
 
     // MANAGEMENT USERS
     Route::middleware(['role_user'])->group(function () {

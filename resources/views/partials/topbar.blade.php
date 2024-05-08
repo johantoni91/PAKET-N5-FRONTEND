@@ -9,12 +9,12 @@
                 <i data-lucide="menu" class="top-icon w-5 h-5 dark:text-white"></i>
             </button>
         </div>
-        <!-- <div class="flex items-center md:w-[40%] lg:w-[30%] xl:w-[20%]">
-        <div class="relative ltr:mx-2 rtl:mx-2 self-center">
-          <button class="px-2 py-1 bg-primary-500/10 border border-transparent collapse:bg-green-100 text-primary text-sm rounded hover:bg-blue-600 hover:text-white"><i class="ti ti-plus me-1"></i> New Task</button>
-        </div>
-      </div> -->
         <div class="order-1 ltr:ms-auto rtl:ms-0 rtl:me-auto flex items-center md:order-2">
+            <div class="ltr:me-2 ltr:md:me-4 rtl:me-0 rtl:ms-2 rtl:lg:me-0 rtl:md:ms-4">
+                <a href="{{ route('inbox') }}" class="flex rounded-full md:me-0 relative">
+                    <span data-lucide="mail" class="top-icon w-5 h-5 dark:text-white"></span>
+                </a>
+            </div>
             <div class="ltr:me-2 ltr:md:me-4 rtl:me-0 rtl:ms-2 rtl:lg:me-0 rtl:md:ms-4">
                 <button id="toggle-theme" class="flex rounded-full md:me-0 relative">
                     <span data-lucide="moon" class="top-icon w-5 h-5 dark"></span>
