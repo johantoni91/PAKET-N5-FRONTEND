@@ -54,9 +54,9 @@
                                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Orientasi</label>
                                                                 <select id="orientasi" name="orientasi" required
                                                                     class="bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                                    <option selected value="width: 20rem;">Vertikal
+                                                                    <option selected value="0">Vertikal
                                                                     </option>
-                                                                    <option value="width: 40rem;">Horizontal</option>
+                                                                    <option value="1">Horizontal</option>
                                                                 </select>
                                                             </div>
                                                             <div class="col-span-1">
@@ -81,34 +81,6 @@
                                                                 </select>
                                                             </div>
                                                             <div class="col-span-2 mb-5">
-                                                                <label for="profil"
-                                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Posisi
-                                                                    Foto
-                                                                    profil</label>
-                                                                <select id="posisi_foto_profil" name="posisi_foto_profil"
-                                                                    class="uppercase bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                                    <option value="position: absolute; left: 0;">Atas Kiri
-                                                                    </option>
-                                                                    <option value="position: absolute; left: 50%;">Atas
-                                                                        Tengah</option>
-                                                                    <option value="position: absolute; right: 0;">Atas Kanan
-                                                                    </option>
-                                                                    <option value="position: absolute; top: 50%;">Tengah
-                                                                        Kiri</option>
-                                                                    <option
-                                                                        value="position: absolute; top: 50%; left: 50%;">
-                                                                        Tengah tengah</option>
-                                                                    <option value="position: absolute; top: 50%;">Tengah
-                                                                        Kanan</option>
-                                                                    <option value="position: absolute; left: 0; bottom: 0;">
-                                                                        Bawah Kiri </option>
-                                                                    <option
-                                                                        value="position: absolute; left: 50%; bottom: 0;">
-                                                                        Bawah tengah</option>
-                                                                    <option
-                                                                        value="position: absolute; right: 0; bottom: 0;">
-                                                                        Bawah kanan</option>
-                                                                </select>
                                                             </div>
                                                             <div class="col-span-1 flex flex-col">
                                                                 <label for="icon"
@@ -118,6 +90,7 @@
                                                                     id="icon" alt="icon"
                                                                     class="h-24 w-24 rounded-lg my-3 self-center">
                                                                 <input type="file" name="icon" accept="image/*"
+                                                                    required
                                                                     class="bg-gray-50 text-sm block w-auto border border-gray-300 rounded-lg dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                                                     onchange="background(event)">
                                                                 <script>
@@ -132,12 +105,13 @@
                                                             </div>
                                                             <div class="col-span-1 flex flex-col">
                                                                 <label for="depan"
-                                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Background
-                                                                    (depan)</label>
+                                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Latar
+                                                                    depan</label>
                                                                 <img src="{{ asset('assets/images/kejaksaan-logo.png') }}"
                                                                     id="depan" alt="depan"
                                                                     class="h-24 w-24 rounded-lg self-center my-3">
                                                                 <input type="file" name="depan" accept="image/*"
+                                                                    required
                                                                     class="bg-gray-50 text-sm block w-auto border border-gray-300 rounded-lg dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                                                     onchange="front(event)">
                                                                 <script>
@@ -152,12 +126,13 @@
                                                             </div>
                                                             <div class="col-span-1 flex flex-col">
                                                                 <label for="belakang"
-                                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Background
-                                                                    (belakang)</label>
+                                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Latar
+                                                                    belakang</label>
                                                                 <img src="{{ asset('assets/images/kejaksaan-logo.png') }}"
                                                                     id="belakang" alt="new-photo"
                                                                     class="h-24 w-24 rounded-lg self-center my-3">
                                                                 <input type="file" name="belakang" accept="image/*"
+                                                                    required
                                                                     class="bg-gray-50 text-sm block w-auto border border-gray-300 rounded-lg dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                                                     onchange="back(event)">
                                                                 <script>
@@ -186,38 +161,6 @@
                                                                     <option value="1">ditambahkan</option>
                                                                 </select>
                                                             </div>
-                                                            <div class="col-span-2">
-                                                                <label for="nip"
-                                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Posisi
-                                                                    NIP</label>
-                                                                <select id="posisi_nip" name="posisi_nip"
-                                                                    class="uppercase bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                                    <option value="">Urut</option>
-                                                                    <option value="position: absolute; left: 0;">Atas Kiri
-                                                                    </option>
-                                                                    <option value="position: absolute; left: 50%;">Atas
-                                                                        Tengah</option>
-                                                                    <option value="position: absolute; right: 0;">Atas
-                                                                        Kanan
-                                                                    </option>
-                                                                    <option value="position: absolute; top: 50%;">Tengah
-                                                                        Kiri</option>
-                                                                    <option
-                                                                        value="position: absolute; top: 50%; left: 50%;">
-                                                                        Tengah tengah</option>
-                                                                    <option value="position: absolute; top: 50%;">Tengah
-                                                                        Kanan</option>
-                                                                    <option
-                                                                        value="position: absolute; left: 0; bottom: 0;">
-                                                                        Bawah Kiri </option>
-                                                                    <option
-                                                                        value="position: absolute; left: 50%; bottom: 0;">
-                                                                        Bawah tengah</option>
-                                                                    <option
-                                                                        value="position: absolute; right: 0; bottom: 0;">
-                                                                        Bawah kanan</option>
-                                                                </select>
-                                                            </div>
                                                             <div class="col-span-1">
                                                                 <label for="nrp"
                                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NRP</label>
@@ -228,44 +171,14 @@
                                                                     <option value="1">ditambahkan</option>
                                                                 </select>
                                                             </div>
-                                                            <div class="col-span-2">
-                                                                <label for="nrp"
-                                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Posisi
-                                                                    NRP</label>
-                                                                <select id="posisi_nrp" name="posisi_nrp"
-                                                                    class="uppercase bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                                    <option value="0">Urut</option>
-                                                                    <option
-                                                                        value="position: absolute; left: 0; top: 1rem; writing-mode: vertical-rl;">
-                                                                        Atas Kiri
+                                                            <div class="col-span-1">
+                                                                <label for="nama"
+                                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
+                                                                <select id="nama" name="nama" required
+                                                                    class="bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                                    <option selected value="0">Tidak ditambahkan
                                                                     </option>
-                                                                    <option value="position: absolute; left: 50%;">Atas
-                                                                        Tengah</option>
-                                                                    <option
-                                                                        value="position: absolute; right: 0; top: 1rem; writing-mode: vertical-rl;">
-                                                                        Atas
-                                                                        Kanan
-                                                                    </option>
-                                                                    <option
-                                                                        value="position: absolute; left: 0; top: 50%; writing-mode: vertical-rl;">
-                                                                        Tengah
-                                                                        Kiri</option>
-                                                                    <option
-                                                                        value="position: absolute; top: 50%; left: 50%;">
-                                                                        Tengah tengah</option>
-                                                                    <option
-                                                                        value="position: absolute; right: 0; top: 50%; writing-mode: vertical-rl;">
-                                                                        Tengah
-                                                                        Kanan</option>
-                                                                    <option
-                                                                        value="position: absolute; left: 0; bottom: 1rem; writing-mode: vertical-rl;">
-                                                                        Bawah Kiri </option>
-                                                                    <option
-                                                                        value="position: absolute; left: 50%; bottom: 0;">
-                                                                        Bawah tengah</option>
-                                                                    <option
-                                                                        value="position: absolute; right: 0; bottom: 1rem; writing-mode: vertical-rl;">
-                                                                        Bawah kanan</option>
+                                                                    <option value="1">ditambahkan</option>
                                                                 </select>
                                                             </div>
                                                             <div class="col-span-1">
@@ -278,50 +191,6 @@
                                                                     <option value="1">ditambahkan</option>
                                                                 </select>
                                                             </div>
-                                                            <div class="col-span-2">
-                                                                <label for="golongan"
-                                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Posisi
-                                                                    golongan</label>
-                                                                <select id="posisi_golongan" name="posisi_golongan"
-                                                                    class="uppercase bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                                    <option value="">Urut</option>
-                                                                    <select id="posisi_nrp" name="posisi_nrp"
-                                                                        class="uppercase bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                                        <option value="0">Urut</option>
-                                                                        <option
-                                                                            value="position: absolute; left: 0; top: 1rem; writing-mode: vertical-rl;">
-                                                                            Atas Kiri
-                                                                        </option>
-                                                                        <option value="position: absolute; left: 50%;">Atas
-                                                                            Tengah</option>
-                                                                        <option
-                                                                            value="position: absolute; right: 0; top: 1rem; writing-mode: vertical-rl;">
-                                                                            Atas
-                                                                            Kanan
-                                                                        </option>
-                                                                        <option
-                                                                            value="position: absolute; left: 0; top: 50%; writing-mode: vertical-rl;">
-                                                                            Tengah
-                                                                            Kiri</option>
-                                                                        <option
-                                                                            value="position: absolute; top: 50%; left: 50%;">
-                                                                            Tengah tengah</option>
-                                                                        <option
-                                                                            value="position: absolute; right: 0; top: 50%; writing-mode: vertical-rl;">
-                                                                            Tengah
-                                                                            Kanan</option>
-                                                                        <option
-                                                                            value="position: absolute; left: 0; bottom: 1rem; writing-mode: vertical-rl;">
-                                                                            Bawah Kiri </option>
-                                                                        <option
-                                                                            value="position: absolute; left: 50%; bottom: 0;">
-                                                                            Bawah tengah</option>
-                                                                        <option
-                                                                            value="position: absolute; right: 0; bottom: 1rem; writing-mode: vertical-rl;">
-                                                                            Bawah kanan</option>
-                                                                    </select>
-                                                                </select>
-                                                            </div>
                                                             <div class="col-span-1">
                                                                 <label for="jabatan"
                                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jabatan</label>
@@ -332,71 +201,13 @@
                                                                     <option value="1">ditambahkan</option>
                                                                 </select>
                                                             </div>
-                                                            <div class="col-span-2">
-                                                                <label for="jabatan"
-                                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Posisi
-                                                                    jabatan</label>
-                                                                <select id="posisi_jabatan" name="posisi_jabatan"
-                                                                    class="uppercase bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                                    <option value="0">Urut</option>
-                                                                    <select id="posisi_nrp" name="posisi_nrp"
-                                                                        class="uppercase bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                                        <option value="">Urut</option>
-                                                                        <option
-                                                                            value="position: absolute; left: 0; top: 1rem; writing-mode: vertical-rl;">
-                                                                            Atas Kiri
-                                                                        </option>
-                                                                        <option value="position: absolute; left: 50%;">Atas
-                                                                            Tengah</option>
-                                                                        <option
-                                                                            value="position: absolute; right: 0; top: 1rem; writing-mode: vertical-rl;">
-                                                                            Atas
-                                                                            Kanan
-                                                                        </option>
-                                                                        <option
-                                                                            value="position: absolute; left: 0; top: 50%; writing-mode: vertical-rl;">
-                                                                            Tengah
-                                                                            Kiri</option>
-                                                                        <option
-                                                                            value="position: absolute; top: 50%; left: 50%;">
-                                                                            Tengah tengah</option>
-                                                                        <option
-                                                                            value="position: absolute; right: 0; top: 50%; writing-mode: vertical-rl;">
-                                                                            Tengah
-                                                                            Kanan</option>
-                                                                        <option
-                                                                            value="position: absolute; left: 0; bottom: 1rem; writing-mode: vertical-rl;">
-                                                                            Bawah Kiri </option>
-                                                                        <option
-                                                                            value="position: absolute; left: 50%; bottom: 0;">
-                                                                            Bawah tengah</option>
-                                                                        <option
-                                                                            value="position: absolute; right: 0; bottom: 1rem; writing-mode: vertical-rl;">
-                                                                            Bawah kanan</option>
-                                                                    </select>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-span-3 text-end">
-                                                                <small class="text-red dark:text-cyan-300"><span
-                                                                        class="font-semibold text-lg">*</span>
-                                                                    Atribut dapat tertimpa apabila memilih posisi yang
-                                                                    sama</small>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div
-                                                        class="flex justify-between gap-5 items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                                        <small class="text-red dark:text-cyan-300">disarankan lihat hasil
-                                                            terlebih
-                                                            dahulu</small>
-                                                        <div class="">
-                                                            <a href="#"
-                                                                class="focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-r dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-2 px-3 rounded hover:from-red-500 hover:to-violet-800 dark:hover:from-cyan-300 dark:hover:to-zinc-500">
-                                                                Lihat hasil</a>
-                                                            <button type="submit"
-                                                                class="focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-r dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-2 px-3 rounded hover:from-red-500 hover:to-violet-800 dark:hover:from-cyan-300 dark:hover:to-zinc-500">
-                                                                Buat</button>
-                                                        </div>
+                                                        class="flex justify-end gap-5 items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                                                        <button type="submit"
+                                                            class="focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-r dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-2 px-3 rounded hover:from-red-500 hover:to-violet-800 dark:hover:from-cyan-300 dark:hover:to-zinc-500">
+                                                            Buat</button>
                                                     </div>
                                                 </form>
                                             </div>

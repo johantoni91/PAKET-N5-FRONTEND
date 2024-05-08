@@ -1,149 +1,272 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kartu {{ $kartu['title'] }}</title>
     <style>
-        .cover {
-            display: flex;
-            padding: 1.25rem;
-            flex-direction: row;
-            gap: 1.25rem;
-            width: 100%;
-        }
-
-        .card_1 {
-            display: flex;
-            padding: 1.25rem;
-            flex-direction: column;
-            gap: 0.75rem;
-            justify-content: center;
-            border-radius: 0.5rem;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            width: 30dvw;
-            height: 60dvh;
-            mix-blend-mode: difference;
-        }
-
-        .card_2 {
-            flex-direction: column;
-            gap: 0.75rem;
-            justify-content: center;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            width: 30dvw;
-            height: 60dvh;
-            mix-blend-mode: difference;
-        }
-
-        .img_card_1 {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-        }
-
-        .mb-5 {
-            margin-bottom: 1.25rem;
-        }
-
-        .p-2 {
-            padding: 0.5rem;
-        }
-
-        .p-3 {
-            table-layout: fixed;
-        }
-
-        .table-responsive {
-            table-layout: auto;
-        }
-
-        .mx-auto {
-            margin: auto;
-        }
-
-        .w-12 {
-            width: 3rem;
-        }
-
-        .w-20 {
-            width: 5rem;
-        }
-
-        .h-20 {
-            height: 5rem;
-        }
-
-        .h-13 {
-            height: 3rem;
-        }
-
-        .bg_front {
+        .kartuver {
+            height: 321.26px;
+            width: 203.72px;
+            border: 0.5px solid #4CAF50;
+            border-radius: 8px;
+            text-wrap: pretty;
+            background-image: url({{ $kartu['front'] }});
             background-position: center;
-            background-size: cover;
             background-repeat: no-repeat;
-            background-image: url({{ $kartu['front'] }})
+            background-size: cover;
         }
 
-        .rounded-full {
-            border-radius: 9999px;
-        }
-
-        .text-left {
-            text-align: left;
-        }
-
-        .bg_back {
+        .kartuverback {
+            position: relative;
+            height: 321.26px;
+            width: 203.72px;
+            border: 0.5px solid #4CAF50;
+            border-radius: 8px;
+            text-wrap: pretty;
+            background-image: url({{ $kartu['back'] }});
             background-position: center;
-            background-size: cover;
             background-repeat: no-repeat;
-            background-image: url({{ $kartu['back'] }})
+            background-size: cover;
+        }
+
+        .imglogover {
+            width: 45px;
+            height: 45px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+        }
+
+        .imglogoverback {
+            width: 80px;
+            height: 80px;
+            display: block;
+            position: absolute;
+            left: 60px;
+            top: 115px;
+        }
+
+        .imgver {
+            width: 75.6px;
+            height: 113.39px;
+            display: block;
+            border-radius: 6px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tablever {
+            width: 150px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tdver {
+            width: 150px;
+            font-size: 9px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .kartuhor {
+            width: 321.26px;
+            height: 203.72px;
+            border: 0.5px solid #4CAF50;
+            border-radius: 8px;
+            text-wrap: pretty;
+            background-image: url({{ $kartu['front'] }});
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .kartuhorback {
+            position: relative;
+            width: 321.26px;
+            height: 203.72px;
+            border: 0.5px solid #4CAF50;
+            border-radius: 8px;
+            text-wrap: pretty;
+            background-image: url({{ $kartu['back'] }});
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .divhead {
+            padding: 5px;
+            width: 300px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .divheadtd {
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .imglogohor {
+            width: 45px;
+            height: 45px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .imglogohorback {
+            width: 100px;
+            height: 100px;
+            display: block;
+            position: absolute;
+            left: 110px;
+            top: 50px;
+        }
+
+        .imghor {
+            width: 75.6px;
+            height: 113.39px;
+            display: block;
+            border-radius: 6px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tablehor {
+            width: 150px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tdhor {
+            vertical-align: text-top;
+            text-align: justify;
+            font-size: 9px;
+            margin-left: auto;
+            margin-right: auto;
         }
     </style>
 </head>
 
 <body>
-    <div class="cover">
-        <div class="card_1 bg_front">
-            <div class="img_card_1">
-                <img src="{{ asset('assets/images/kejaksaan-logo.png') }}" class="w-12 h-12" alt="">
-            </div>
-            <div class="img_card_1 mb-5">
-                <img src="{{ $kartu['icon'] }}" class="w-20 h-20 rounded-full" alt="">
-            </div>
-            <div class="p-2">
-                <table class="table-responsive mx-auto p-3">
-                    <thead>
-                        <tr class="text-left">
-                            <th>NIP</th>
-                            <th>&nbsp; 199612022022031011</th>
+    @if ($kartu['orientation'] == '0')
+        <div style="display: flex; flex-direction: row; gap: 8px;">
+            <div class="kartuver">
+                <img class="imglogover" src="{{ $kartu['icon'] }}">
+                <p style="font-size: 9px; text-transform: uppercase; font-weight: bold; text-align: center;">
+                    KEJAKSAAN AGUNG REPUBLIK INDONESIA
+                </p>
+                @if ($kartu['profile'] == '1')
+                    <img class="imgver" src="{{ asset('assets/images/5856.jpg') }}">
+                @endif
+                @if ($kartu['nama'] == '1')
+                    <p style="font-size: 9px; text-transform: uppercase; font-weight: bold; text-align: center;">
+                        Asep Ucup Udin Budi, S.Kom.
+                    </p>
+                @endif
+                <table class="tablever">
+                    @if ($kartu['nip'] == '1')
+                        <tr>
+                            <td class="tdver">NIP </td>
+                            <td class="tdver">: 199909092022011001</td>
                         </tr>
-                        <tr class="text-left">
-                            <th>NRP</th>
-                            <th>&nbsp; 123456</th>
+                    @endif
+                    @if ($kartu['nrp'] == '1')
+                        <tr>
+                            <td class="tdver">NRP </td>
+                            <td class="tdver">: 00234577</td>
                         </tr>
-                        <tr class="text-left">
-                            <th>NAMA</th>
-                            <th>&nbsp; Johan Toni Wijaya, S.Kom.</th>
+                    @endif
+                    @if ($kartu['golongan'] == '1')
+                        <tr>
+                            <td class="tdver">Gol </td>
+                            <td class="tdver">: Penata Muda (III/a)</td>
                         </tr>
-                        <tr class="text-left">
-                            <th>JABATAN</th>
-                            <th>&nbsp; Pengolah Data Intelijen</th>
-                        </tr>
-                        <tr class="text-left">
-                            <th>GOLONGAN</th>
-                            <th>&nbsp; Jaksa Muda (III/A)</th>
-                        </tr>
-                    </thead>
+                    @endif
                 </table>
+                @if ($kartu['jabatan'] == '1')
+                    <p style="font-size: 7px; text-transform: uppercase; text-align: center;">
+                        Analis Pengelolaan Keuangan Apbn Ahli Pertama pada Kejaksaan Agung Republik Indonesia
+                    </p>
+                @endif
+            </div>
+
+            <div class="kartuverback">
+                <img class="imglogoverback" src="{{ asset('assets/images/qrcode.png') }}">
             </div>
         </div>
-        <div class="card_2 bg_back">
 
-        </div>
+        <br>
+    @else
+        <div style="display: flex; flex-direction: row; gap: 8px;">
+            <div class="kartuhor">
+                <table class="divhead">
+                    <tr>
+                        <td>
+                            <img class="imglogohor"
+                                src="https://kejari-batanghari.kejaksaan.go.id/wp-content/uploads/2022/06/RI.png">
+                        </td>
+                        <td class="divheadtd" style="font-size: 9px; text-transform: uppercase; font-weight: bold;">
+                            KEJAKSAAN
+                            NEGERI KABUPATEN PROBOLINGGO</td>
+                    </tr>
+                </table>
+                <table class="divhead">
+                    <tr>
+                        <td rowspan="6">
+                            @if ($kartu['profile'] == '1')
+                                <img class="imghor" src="https://spmb.stis.ac.id/images/pasfoto-2-color.jpg">
+                            @endif
+                        </td>
+                        <td>
+                            @if ($kartu['nama'] == '1')
+                    <tr>
+                        <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Nama</td>
+                        <td class="tdhor">:</td>
+                        <td class="tdhor" style="text-transform: uppercase; font-weight: bold;">JOHAN TONI WIJAYA</td>
+                    </tr>
+    @endif
+    @if ($kartu['nip'] == '1')
+        <tr>
+            <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NIP</td>
+            <td class="tdhor">:</td>
+            <td class="tdhor">199909092022011001</td>
+        </tr>
+    @endif
+    @if ($kartu['nrp'] == '1')
+        <tr>
+            <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NRP</td>
+            <td class="tdhor">:</td>
+            <td class="tdhor">00234577</td>
+        </tr>
+    @endif
+    @if ($kartu['golongan'] == '1')
+        <tr>
+            <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Gol</td>
+            <td class="tdhor">:</td>
+            <td class="tdhor">Penata Muda (III/a)</td>
+        </tr>
+    @endif
+    @if ($kartu['jabatan'] == '1')
+        <tr>
+            <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Jabatan</td>
+            <td class="tdhor">:</td>
+            <td class="tdhor">Analis Pengelolaan Keuangan Apbn Ahli Pertama pada Kejaksaan Negeri Kabupaten
+                Probolinggo</td>
+        </tr>
+    @endif
+    </td>
+    </tr>
+    </table>
     </div>
+
+    <div class="kartuhorback">
+        <img class="imglogohorback" src="{{ asset('assets/images/qrcode.png') }}" alt="">
+    </div>
+    @endif
 </body>
 
 </html>

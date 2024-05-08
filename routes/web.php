@@ -99,7 +99,7 @@ Route::middleware(['auth'])->group(function () {
     // LAYOUT KARTU
     Route::middleware(['role_layout'])->group(function () {
         Route::get('/layout/kartu', [LayoutKartuController::class, 'index'])->name('layout.kartu');
-        Route::post('/layout/attribute/kartu', [LayoutKartuController::class, 'getAttribute'])->name('layout.kartu.attribute');
+        Route::post('/layout/result/kartu', [LayoutKartuController::class, 'resultCard'])->name('layout.kartu.result');
         Route::get('/layout/create/kartu', [LayoutKartuController::class, 'create'])->name('layout.kartu.create');
         Route::get('/layout/{id}/kartu', [LayoutKartuController::class, 'find'])->name('layout.find.kartu');
         Route::get('/layout/kartu/pdf/{id}', [LayoutKartuController::class, 'pdf'])->name('layout.kartu.pdf');

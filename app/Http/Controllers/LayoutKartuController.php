@@ -58,7 +58,6 @@ class LayoutKartuController extends Controller
 
     public function store(Request $req)
     {
-        dd($req->all());
         try {
             $input = [
                 'title'       => $req->title,
@@ -67,17 +66,18 @@ class LayoutKartuController extends Controller
                 'belakang'    => $req->file('belakang'),
                 'profile'     => $req->profil,
                 'kategori'    => $req->kategori,
-                'orientation' => $req->orientation,
+                'orientation' => $req->orientasi,
+                'nama'        => $req->nama,
                 'nip'         => $req->nip,
                 'nrp'         => $req->nrp,
                 'golongan'    => $req->golongan,
                 'jabatan'     => $req->jabatan
             ];
-
-            $ext_icon  = $req->hasFile('icon') ? $req->file('icon')->getClientOriginalExtension() : null;
-            $ext_front = $req->file('depan')->getClientOriginalExtension();
-            $ext_back  = $req->file('belakang')->getClientOriginalExtension();
-            KartuApi::store($input, $ext_icon, $ext_front, $ext_back);
+            $kartu = KartuApi::store($input, $req->file('icon')->getClientOriginalExtension(), $req->file('depan')->getClientOriginalExtension(), $req->file('belakang')->getClientOriginalExtension());
+            if ($kartu['status'] == false) {
+                Alert::error('Gagal', $kartu['message']);
+                return back();
+            }
             Alert::success('Berhasil', 'Kartu telah ditambahkan');
             return redirect()->route('layout.kartu');
         } catch (\Throwable $th) {
@@ -186,14 +186,16 @@ class LayoutKartuController extends Controller
     public function pdf($id)
     {
         $kartu = KartuApi::find($id)['data'];
-        // return view('layout_kartu.pdf', compact('kartu'));
-        $pdf = Pdf::loadView('layout_kartu.pdf', compact('kartu'));
-        return $pdf->download('Kartu_' . $kartu['title'] . '.pdf');
+        return view('layout_kartu.pdf', ['kartu' => $kartu]);
+        // $pdf = Pdf::loadView('layout_kartu.pdf', ['kartu' => $kartu]);
+        // return $pdf->download('Kartu_' . $kartu['title'] . '.pdf');
     }
 
-    public function getAttribute(Request $req)
+    public function resultCard(Request $req)
     {
-        dd($req->all());
+        return view('welcome', [
+            'input' => $req->all()
+        ]);
     }
 
     public function example()

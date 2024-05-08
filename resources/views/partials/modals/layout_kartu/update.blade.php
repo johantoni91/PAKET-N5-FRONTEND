@@ -24,12 +24,24 @@
                 @csrf
                 <div class="p-4 space-y-4">
                     <div class="grid gap-4 mb-4 grid-cols-2">
-                        <div class="col-span-2 mb-3">
+                        <div class="col-span-1 mb-3">
                             <label for="title"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Kartu</label>
                             <input type="text" name="title" id="title" value="{{ $item['title'] }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 required>
+                        </div>
+                        <div class="col-span-1 mb-3">
+                            <label for="orientation"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Orientasi</label>
+                            <select id="orientation" name="orientation" required
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+
+                                <option {{ $item['orientation'] == '0' ? 'selected' : '' }} value="0">Potrait
+                                    (Vertikal)</option>
+                                <option {{ $item['orientation'] == '1' ? 'selected' : '' }} value="1">Landscape
+                                    (Horizontal)</option>
+                            </select>
                         </div>
                         <div class="col-span-2 mb-3 sm:col-span-1">
                             <label for="profil"
@@ -49,7 +61,8 @@
                                 class="bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <option {{ $item['categories'] == '0' ? 'selected' : '' }} value="0">Kartu Acara
                                 </option>
-                                <option {{ $item['categories'] == '1' ? 'selected' : '' }} value="1">Kartu Identitas
+                                <option {{ $item['categories'] == '1' ? 'selected' : '' }} value="1">Kartu
+                                    Identitas
                                 </option>
                                 <option {{ $item['categories'] == '2' ? 'selected' : '' }} value="2">Kartu Intel
                                 </option>
@@ -62,9 +75,9 @@
                                 class="mx-auto h-24 w-24 rounded-full inline-block justify-center my-3">
                             <input type="file" name="icon" accept="image/*"
                                 class="bg-gray-50 mx-auto text-sm block w-auto border border-gray-300 rounded-lg dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                onchange="bg(event)">
+                                onchange="bg{{ $item['id'] }}(event)">
                             <script>
-                                var bg = function(event) {
+                                var bg{{ $item['id'] }} = function(event) {
                                     var icon = document.getElementById("icon{{ $item['id'] }}");
                                     icon.src = URL.createObjectURL(event.target.files[0]);
                                     icon.onload = function() {
@@ -72,6 +85,17 @@
                                     }
                                 };
                             </script>
+                        </div>
+                        <div class="col-span-2 mb-3 sm:col-span-1">
+                            <label for="nama"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
+                            <select id="nama" name="nama" required
+                                class="bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                <option {{ $item['nama'] == '0' ? 'selected' : '' }} value="0">Tidak ditambahkan
+                                </option>
+                                <option {{ $item['nama'] == '1' ? 'selected' : '' }} value="1">ditambahkan
+                                </option>
+                            </select>
                         </div>
                         <div class="col-span-2 mb-3 sm:col-span-1">
                             <label for="nip"
@@ -82,6 +106,8 @@
                                 </option>
                                 <option {{ $item['nip'] == '1' ? 'selected' : '' }} value="1">ditambahkan</option>
                             </select>
+                        </div>
+                        <div class="col-span-2 mb-3 sm:col-span-1">
                             <label for="nrp"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NRP</label>
                             <select id="nrp" name="nrp" required
@@ -97,32 +123,24 @@
                             <select id="golongan" name="golongan" required
                                 class="bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 
-                                <option {{ $item['golongan'] == '0' ? 'selected' : '' }} value="0">Tidak ditambahkan
+                                <option {{ $item['golongan'] == '0' ? 'selected' : '' }} value="0">Tidak
+                                    ditambahkan
                                 </option>
                                 <option {{ $item['golongan'] == '1' ? 'selected' : '' }} value="1">ditambahkan
                                 </option>
                             </select>
+                        </div>
+                        <div class="col-span-2 mb-3 sm:col-span-1">
                             <label for="jabatan"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jabatan</label>
                             <select id="jabatan" name="jabatan" required
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 
-                                <option {{ $item['jabatan'] == '0' ? 'selected' : '' }} value="0">Tidak ditambahkan
+                                <option {{ $item['jabatan'] == '0' ? 'selected' : '' }} value="0">Tidak
+                                    ditambahkan
                                 </option>
                                 <option {{ $item['jabatan'] == '1' ? 'selected' : '' }} value="1">ditambahkan
                                 </option>
-                            </select>
-                        </div>
-                        <div class="col-span-2 mb-3">
-                            <label for="orientation"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Orientasi</label>
-                            <select id="orientation" name="orientation" required
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-
-                                <option {{ $item['orientation'] == '0' ? 'selected' : '' }} value="0">Potrait
-                                    (Vertikal)</option>
-                                <option {{ $item['orientation'] == '1' ? 'selected' : '' }} value="1">Landscape
-                                    (Horizontal)</option>
                             </select>
                         </div>
                     </div>

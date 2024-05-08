@@ -1,126 +1,272 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth group" data-sidebar="brand" dir="ltr">
-<meta charset="utf-8" />
-<title>OTENTIK | Example</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta content="Tailwind Multipurpose Admin & Dashboard Template" name="description" />
-<meta content="" name="Mannatthemes" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}" />
+<html>
 
-<link rel="stylesheet" href="{{ asset('assets/libs/icofont/icofont.min.css') }}">
-<link href="{{ asset('assets/libs/flatpickr/flatpickr.min.css') }}" type="text/css" rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('assets/css/tailwind.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-<link href="{{ asset('assets/libs/prismjs/themes/prism-twilight.min.css') }}" type="text/css" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-@vite('resources/css/app.css')
+<head>
+    <style>
+        .kartuver {
+            height: 321.26px;
+            width: 203.72px;
+            border: 0.5px solid #4CAF50;
+            border-radius: 8px;
+            text-wrap: pretty;
+            background-image: url('../assets/images/bg-d.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
 
-<body data-sidebar-size="default" data-theme-layout="vertical" class="dark:bg-gray-900"
-    style="background-color: #EEF0FC;">
-    <div style="padding: 1.25rem">
-        <div
-            style="display: flex; gap: 1.25rem; flex-direction: row; justify-content: space-evenly; align-items: center; font-size: 0.75rem; line-height: 1rem;">
-            {{-- VERTIKAL --}}
-            <div
-                style="position: relative; width: 20rem; border: 2px solid black; border-radius: 0.375rem; background-color: white; text-align: center; padding-top: 0.5rem; padding-bottom: 0.5rem;">
-                <img src="../assets/images/kejaksaan-logo.png" alt=""
-                    style="width: 5rem; height: 5rem; margin: auto;">
-                <p style="font-size: 90%; text-transform: uppercase; font-weight: 600;">KEJAKSAAN NEGERI KABUPATEN
-                    PROBOLINGGO
-                </p>
-                <img src="../assets/images/5856.jpg" alt=""
-                    style="width: 9.5rem; height: 10rem; margin-left: auto; margin-right: auto; border-radius: 0.375rem;">
-                <div
-                    style="display: flex; flex-direction: column; gap: 1.25rem; justify-content: center; align-items: center;">
-                    <p style="font-weight: 700; font-size: 0.75rem; line-height: 1rem;">Johan Toni Wijaya, S.Kom.
-                    </p>
-                    <div class="grid grid-cols-2">
-                        <p>1810631170189
-                        </p>
-                    </div>
-                    <div class="grid grid-cols-2">
-                        <p>NRP</p>
-                        <p>1810631170189</p>
-                    </div>
-                    <p>Analis Pengelolaan Keuangan Apbn Ahli Pertama pada Kejaksaan Negeri Kabupaten Probolinggo</p>
-                </div>
-            </div>
+        .imglogover {
+            width: 45px;
+            height: 45px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+        }
 
-            {{-- HORIZONTAL --}}
-            <div class="border-2 border-black rounded-md bg-white p-2" style="width: 40rem;">
-                <div class="flex flex-row items-center mb-5">
-                    <img src="{{ asset('assets/images/kejaksaan-logo.png') }}" alt="" class="ms-5"
-                        style="width: 5rem; height: 5rem;">
-                    <p class="uppercase font-semibold text-center mx-auto">KEJAKSAAN NEGERI KABUPATEN PROBOLINGGO</p>
-                </div>
-                <div class="flex flex-row justify-between items-center">
-                    <img src="{{ asset('assets/images/5856.jpg') }}" alt=""
-                        style="width: 9.5rem; height: 10rem;">
-                    <div class="flex flex-col gap-1">
-                        <div class="grid grid-cols-2">
-                            <div class="cols-span-1">
-                                <p>Nama : </p>
-                            </div>
-                            <div class="cols-span-1">
-                                <p>Johan Toni Wijaya, S.Kom.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2">
-                            <div class="cols-span-1">
-                                <p>NIP : </p>
-                            </div>
-                            <div class="cols-span-1">
-                                <p>1810631170189
-                                </p>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2">
-                            <div class="cols-span-1">
-                                <p>NRP : </p>
-                            </div>
-                            <div class="cols-span-1">
-                                <p>123456789101112
-                                </p>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2">
-                            <div class="cols-span-1">
-                                <p>Jabatan : </p>
-                            </div>
-                            <div class="cols-span-1">
-                                <p class="text-wrap">Analis Pengelolaan Keuangan Apbn Ahli Pertama pada Kejaksaan Negeri
-                                    Kabupaten Probolinggo
-                                </p>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2">
-                            <div class="cols-span-1">
-                                <p>Gol : </p>
-                            </div>
-                            <div class="cols-span-1">
-                                <p>Sena Wira / (III/d)
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        .imgver {
+            width: 75.6px;
+            height: 113.39px;
+            display: block;
+            border-radius: 6px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tablever {
+            width: 150px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tdver {
+            width: 150px;
+            font-size: 9px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .kartuhor {
+            width: 321.26px;
+            height: 203.72px;
+            border: 0.5px solid #4CAF50;
+            border-radius: 8px;
+            text-wrap: pretty;
+            background-image: url('../assets/images/bg-d.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .divhead {
+            padding: 5px;
+            width: 300px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .divheadtd {
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .imglogohor {
+            width: 45px;
+            height: 45px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .imghor {
+            width: 75.6px;
+            height: 113.39px;
+            display: block;
+            border-radius: 6px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tablehor {
+            width: 150px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tdhor {
+            vertical-align: text-top;
+            text-align: justify;
+            font-size: 9px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="display: flex; flex-direction: row; gap: 8px;">
+        <div class="kartuver">
+            <img class="imglogover" src="https://kejari-batanghari.kejaksaan.go.id/wp-content/uploads/2022/06/RI.png">
+            <p style="font-size: 9px; text-transform: uppercase; font-weight: bold; text-align: center;">
+                KEJAKSAAN NEGERI KABUPATEN PROBOLINGGO
+            </p>
+            <img class="imgver" src="https://spmb.stis.ac.id/images/pasfoto-2-color.jpg">
+            <p style="font-size: 9px; text-transform: uppercase; font-weight: bold; text-align: center;">
+                Asep Ucup Udin Budi, S.Kom.
+            </p>
+            <table class="tablever">
+                <tr>
+                    <td class="tdver">NIP </td>
+                    <td class="tdver">: 199909092022011001</td>
+                </tr>
+                <tr>
+                    <td class="tdver">NRP </td>
+                    <td class="tdver">: 00234577</td>
+                </tr>
+                <tr>
+                    <td class="tdver">Gol </td>
+                    <td class="tdver">: Penata Muda (III/a)</td>
+                </tr>
+            </table>
+            <p style="font-size: 7px; text-transform: uppercase; text-align: center;">
+                Analis Pengelolaan Keuangan Apbn Ahli Pertama pada Kejaksaan Negeri Kabupaten Probolinggo
+            </p>
+        </div>
+
+        <div class="kartuver">
+            <img class="imglogover" src="https://kejari-batanghari.kejaksaan.go.id/wp-content/uploads/2022/06/RI.png">
+            <p style="font-size: 9px; text-transform: uppercase; font-weight: bold; text-align: center;">
+                KEJAKSAAN NEGERI KABUPATEN PROBOLINGGO
+            </p>
+            <img class="imgver" src="https://spmb.stis.ac.id/images/pasfoto-2-color.jpg">
+            <p style="font-size: 9px; text-transform: uppercase; font-weight: bold; text-align: center;">
+                Asep Ucup Udin Budi, S.Kom.
+            </p>
+            <table class="tablever">
+                <tr>
+                    <td class="tdver">NIP </td>
+                    <td class="tdver">: 199909092022011001</td>
+                </tr>
+                <tr>
+                    <td class="tdver">NRP </td>
+                    <td class="tdver">: 00234577</td>
+                </tr>
+                <tr>
+                    <td class="tdver">Gol </td>
+                    <td class="tdver">: Penata Muda (III/a)</td>
+                </tr>
+            </table>
+            <p style="font-size: 7px; text-transform: uppercase; text-align: center;">
+                Analis Pengelolaan Keuangan Apbn Ahli Pertama pada Kejaksaan Negeri Kabupaten Probolinggo
+            </p>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-    <script src="{{ asset('assets/libs/lucide/umd/lucide.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/flatpickr/flatpickr.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/@frostui/tailwindcss/frostui.js') }}"></script>
-    <script src="{{ asset('assets/libs/prismjs/prism.js') }}"></script>
-    <script src="{{ asset('assets/js/app.js') }}"></script>
+
+    <br>
+
+    <div style="display: flex; flex-direction: row; gap: 8px;">
+        <div class="kartuhor">
+            <table class="divhead">
+                <tr>
+                    <td>
+                        <img class="imglogohor"
+                            src="https://kejari-batanghari.kejaksaan.go.id/wp-content/uploads/2022/06/RI.png">
+                    </td>
+                    <td class="divheadtd" style="font-size: 9px; text-transform: uppercase; font-weight: bold;">
+                        KEJAKSAAN
+                        NEGERI KABUPATEN PROBOLINGGO</td>
+                </tr>
+            </table>
+            <table class="divhead">
+                <tr>
+                    <td rowspan="6">
+                        <img class="imghor" src="https://spmb.stis.ac.id/images/pasfoto-2-color.jpg">
+                    </td>
+                    <td>
+                <tr>
+                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Nama</td>
+                    <td class="tdhor">:</td>
+                    <td class="tdhor" style="text-transform: uppercase; font-weight: bold;">JOHAN TONI WIJAYA</td>
+                </tr>
+                <tr>
+                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NIP</td>
+                    <td class="tdhor">:</td>
+                    <td class="tdhor">199909092022011001</td>
+                </tr>
+                <tr>
+                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NRP</td>
+                    <td class="tdhor">:</td>
+                    <td class="tdhor">00234577</td>
+                </tr>
+                <tr>
+                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Gol</td>
+                    <td class="tdhor">:</td>
+                    <td class="tdhor">Penata Muda (III/a)</td>
+                </tr>
+                <tr>
+                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Jabatan</td>
+                    <td class="tdhor">:</td>
+                    <td class="tdhor">Analis Pengelolaan Keuangan Apbn Ahli Pertama pada Kejaksaan Negeri Kabupaten
+                        Probolinggo</td>
+                </tr>
+                </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="kartuhor">
+            <table class="divhead">
+                <tr>
+                    <td>
+                        <img class="imglogohor"
+                            src="https://kejari-batanghari.kejaksaan.go.id/wp-content/uploads/2022/06/RI.png">
+                    </td>
+                    <td class="divheadtd" style="font-size: 9px; text-transform: uppercase; font-weight: bold;">
+                        KEJAKSAAN
+                        NEGERI KABUPATEN PROBOLINGGO</td>
+                </tr>
+            </table>
+            <table class="divhead">
+                <tr>
+                    <td rowspan="6">
+                        <img class="imghor" src="https://spmb.stis.ac.id/images/pasfoto-2-color.jpg">
+                    </td>
+                    <td>
+                <tr>
+                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Nama</td>
+                    <td class="tdhor">:</td>
+                    <td class="tdhor" style="text-transform: uppercase; font-weight: bold;">JOHAN TONI WIJAYA</td>
+                </tr>
+                <tr>
+                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NIP</td>
+                    <td class="tdhor">:</td>
+                    <td class="tdhor">199909092022011001</td>
+                </tr>
+                <tr>
+                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NRP</td>
+                    <td class="tdhor">:</td>
+                    <td class="tdhor">00234577</td>
+                </tr>
+                <tr>
+                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Gol</td>
+                    <td class="tdhor">:</td>
+                    <td class="tdhor">Penata Muda (III/a)</td>
+                </tr>
+                <tr>
+                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Jabatan</td>
+                    <td class="tdhor">:</td>
+                    <td class="tdhor">Analis Pengelolaan Keuangan Apbn Ahli Pertama pada Kejaksaan Negeri Kabupaten
+                        Probolinggo</td>
+                </tr>
+                </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </body>
 
 </html>

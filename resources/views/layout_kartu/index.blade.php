@@ -112,9 +112,8 @@
                                                                     <td
                                                                         class="px-6 py-4 dark:text-white text-center bg-gray-50 dark:bg-gray-800">
                                                                         <div class="flex flex-row gap-3 justify-center">
-                                                                            <button
-                                                                                data-modal-target="view{{ $item['id'] }}"
-                                                                                data-modal-toggle="view{{ $item['id'] }}"
+                                                                            <a target="__blank"
+                                                                                href="{{ route('layout.kartu.pdf', $item['id']) }}"
                                                                                 class="text-black dark:text-white">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                     fill="none" viewBox="0 0 24 24"
@@ -127,8 +126,7 @@
                                                                                         stroke-linejoin="round"
                                                                                         d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                                                                 </svg>
-                                                                            </button>
-                                                                            @include('partials.modals.layout_kartu.view')
+                                                                            </a>
                                                                             <button
                                                                                 data-modal-target="update{{ $item['id'] }}"
                                                                                 data-modal-toggle="update{{ $item['id'] }}"
@@ -143,24 +141,12 @@
                                                                                 </svg>
                                                                             </button>
                                                                             @include('partials.modals.layout_kartu.update')
-                                                                            <a href="{{ route('layout.kartu.pdf', $item['id']) }}"
-                                                                                class="text-black dark:text-white">
-                                                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                    fill="none" viewBox="0 0 24 24"
-                                                                                    stroke-width="1.5" stroke="currentColor"
-                                                                                    class="w-6 h-6 hover:animate-spin">
-                                                                                    <path stroke-linecap="round"
-                                                                                        stroke-linejoin="round"
-                                                                                        d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-                                                                                </svg>
-                                                                            </a>
                                                                             <button class="text-red-500"
                                                                                 data-modal-target="delete{{ $item['id'] }}"
                                                                                 data-modal-toggle="delete{{ $item['id'] }}">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                     fill="none" viewBox="0 0 24 24"
-                                                                                    stroke-width="1.5"
-                                                                                    stroke="currentColor"
+                                                                                    stroke-width="1.5" stroke="currentColor"
                                                                                     class="w-6 h-6 hover:animate-spin">
                                                                                     <path stroke-linecap="round"
                                                                                         stroke-linejoin="round"
