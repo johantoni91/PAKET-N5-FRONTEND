@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\API\PengajuanApi;
+use App\API\PerangkatAPI;
 use helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,9 +18,12 @@ class AuthController extends Controller
     {
         try {
             return view('index', [
-                'data'          => Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/dashboard' . '/' . Session::get('data')['satker'])->json()['data'],
-                'title'         => 'Dashboard',
-                'starterPack'   => helper::starterPack()
+                'data'              => Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/dashboard' . '/' . Session::get('data')['satker'])->json()['data'],
+                'title'             => 'Dashboard',
+                'status_pengajuan'  => PengajuanApi::status(),
+                'status_perangkat'  => PerangkatAPI::status(),
+                'top'               => PengajuanApi::top(),
+                'starterPack'       => helper::starterPack()
             ]);
         } catch (\Throwable $th) {
             return redirect()->route('logout');

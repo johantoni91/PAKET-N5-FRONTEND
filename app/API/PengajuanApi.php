@@ -42,4 +42,14 @@ class PengajuanApi
     {
         return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . self::$path . '/reject' . '/' . $id)->json();
     }
+
+    public static function status()
+    {
+        return Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/pengajuan/status')->json()['data'];
+    }
+
+    public static function top()
+    {
+        return http::withToken(session('data')['token'])->get(env('API_URL', '') . '/pengajuan/top')->json();
+    }
 }

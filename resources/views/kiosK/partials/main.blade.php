@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth group" data-sidebar="brand" dir="ltr">
 <meta charset="utf-8" />
-<title>OTENTIK | {{ $title ?? '' }}</title>
+<title>OTENTIK</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta content="Tailwind Multipurpose Admin & Dashboard Template" name="description" />
 <meta content="" name="Mannatthemes" />
@@ -21,14 +21,16 @@
 
 <body data-sidebar-size="default" data-theme-layout="vertical" class="bg-[#EEF0FC] dark:bg-gray-900">
     @include('sweetalert::alert')
-    @if (session('welcome'))
-        <div style="position:fixed; z-index: 99; bottom: 2.5rem; right: 2.5rem;"
-            class="flex flex-row items-center p-3 px-8 rounded-lg bg-purple-600 text-white dark:bg-slate-700 dark:text-white shadow-lg shadow-purple-600 dark:shadow-white">
-            <span data-lucide="hand-metal" class="w-5 h-5"></span>
-            <small>&nbsp; {{ session('welcome') }}</small>
-        </div>
+    @yield('kiosk')
+    @if (!request()->routeIs('kios.dashboard'))
+        <a href="{{ route('kios.dashboard') }}" class="absolute p-2 rounded-lg border bottom-5 right-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-arrow-big-left">
+                <path d="M18 15h-6v4l-7-7 7-7v4h6v6z" />
+            </svg>
+        </a>
     @endif
-    @yield('content')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>

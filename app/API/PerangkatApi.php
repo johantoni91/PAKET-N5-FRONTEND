@@ -15,4 +15,9 @@ class PerangkatAPI
     {
         return Http::withToken(session('data')['token'])->get($url, $request)->json();
     }
+
+    public static function status()
+    {
+        return Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/perangkat/status')->json()['data'];
+    }
 }

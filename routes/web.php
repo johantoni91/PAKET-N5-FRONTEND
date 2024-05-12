@@ -15,6 +15,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\PaginationController;
 use App\Http\Controllers\KepegawaianController;
+use App\Http\Controllers\KiosController;
 use App\Http\Controllers\LayoutKartuController;
 use App\Http\Controllers\MonitorKartuController;
 use App\Http\Controllers\NotificationController;
@@ -154,6 +155,23 @@ Route::middleware(['auth'])->group(function () {
     //PAGINATION
     Route::get('/pagination/{view}/{link}/{title}', [PaginationController::class, 'pagination'])->name('pagination');
 });
+
+
+
+
+// KIOSK
+Route::get('/login-kios', [KiosController::class, 'loginPage'])->name('kios');
+Route::post('/login-kios', [KiosController::class, 'login'])->name('kios.login');
+Route::middleware(['kios'])->group(function () {
+    Route::get('/dashboard/kios', [KiosController::class, 'dashboard'])->name('kios.dashboard');
+    Route::get('/kios/profil', [KiosController::class, 'profil'])->name('kios.profil');
+    Route::get('/kios/token', [KiosController::class, 'tokenPage'])->name('kios.token');
+    Route::post('/kios/token', [KiosController::class, 'token'])->name('kios.token');
+    Route::get('/kios/{token}/verifikasi', [KiosController::class, 'verifikasi'])->name('kios.verifikasi');
+    Route::post('/kios/{token}/verifikasi', [KiosController::class, 'storeVerifikasi'])->name('kios.verifikasi');
+    Route::get('/kios/{token}/kartu', [KiosController::class, 'kartu'])->name('kios.kartu');
+});
+
 
 //ERR
 Route::get('/404/not-found', [Controller::class, 'error404'])->name('error.404');

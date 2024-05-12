@@ -2,7 +2,6 @@
 @section('content')
     @include('partials.sidebar')
     @include('partials.topbar')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
     <div class="ltr:flex flex-1 rtl:flex-row-reverse">
         <div class="page-wrapper relative ltr:ml-auto rtl:mr-auto rtl:ml-0 w-[calc(100%-260px)] px-4 pt-[64px] duration-300">
             <div class="xl:w-full">
