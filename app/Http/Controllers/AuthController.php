@@ -94,7 +94,8 @@ class AuthController extends Controller
 
     public function logout()
     {
-        Session::flush();
+        Session::forget('data');
+        Session::forget('pegawai');
         return redirect('/login');
     }
 }

@@ -24,17 +24,17 @@
                 <div class="grid grid-cols-12 sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4">
                     <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                         <div
-                            class="bg-white shadow-sm shadow-violet-800 dark:shadow-cyan-300 dark:bg-gray-900 rounded-md w-full relative mb-4">
+                            class="bg-white shadow-sm shadow-violet-800 dark:shadow-cyan-300 dark:bg-white rounded-md w-full relative mb-4">
                             <div class="flex-auto p-4">
                                 <div class="flex justify-between xl:gap-x-2 items-cente">
                                     <div class="self-center">
-                                        <p class="text-gray-800 font-semibold dark:text-slate-400 uppercase">Total Pengguna
+                                        <p class="text-gray-800 font-semibold dark:text-black uppercase">Total Pengguna
                                         </p>
-                                        <h3 class="text-center my-4 font-semibold text-[30px] dark:text-slate-200">
+                                        <h3 class="text-center my-4 font-semibold text-[30px] dark:text-black">
                                             {{ $data['user'] }}</h3>
                                     </div>
                                     <div class="self-center">
-                                        <i data-lucide="user" class=" h-16 w-16 stroke-green/30"></i>
+                                        <i data-lucide="user" class=" h-16 w-16 stroke-green/30 font-bold"></i>
                                     </div>
                                 </div>
                             </div>
@@ -51,20 +51,20 @@
                     </div>
                     <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                         <div
-                            class="bg-white shadow-sm shadow-violet-800 dark:shadow-cyan-300 dark:bg-gray-900 rounded-md w-full relative mb-4">
+                            class="bg-white shadow-sm shadow-violet-800 dark:shadow-cyan-300 dark:bg-white rounded-md w-full relative mb-4">
                             <div class="flex-auto p-4">
                                 <div class="flex justify-between xl:gap-x-2 items-cente">
                                     <div class="self-center">
-                                        <p class="text-gray-800 font-semibold dark:text-slate-400 uppercase">Total Satker
+                                        <p class="text-gray-800 font-semibold dark:text-black uppercase">Total Satker
                                         </p>
-                                        <h3 class="text-center my-4 font-semibold text-[30px] dark:text-slate-200">
+                                        <h3 class="text-center my-4 font-semibold text-[30px] dark:text-black">
                                             {{ $data['satker'] }}</h3>
                                     </div>
                                     <div class="self-center">
                                         <i data-lucide="building-2" class=" h-16 w-16 stroke-green/30"></i>
                                     </div>
                                 </div>
-                                {{-- <p class="truncate text-slate-400"><span class="text-red-500"><i
+                                {{-- <p class="truncate text-black"><span class="text-red-500"><i
                                             class="mdi mdi-trending-down"></i>0.6%</span> Bounce Rate Weekly</p> --}}
                             </div>
                             <div class="flex-auto p-0 overflow-hidden">
@@ -80,20 +80,20 @@
                     </div>
                     <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                         <div
-                            class="bg-white shadow-sm shadow-violet-800 dark:shadow-cyan-300 dark:bg-gray-900 rounded-md w-full relative mb-4">
+                            class="bg-white shadow-sm shadow-violet-800 dark:shadow-cyan-300 dark:bg-white rounded-md w-full relative mb-4">
                             <div class="flex-auto p-4">
                                 <div class="flex justify-between xl:gap-x-2 items-cente">
                                     <div class="self-center">
-                                        <p class="text-gray-800 font-semibold dark:text-slate-400 uppercase">Total Pegawai
+                                        <p class="text-gray-800 font-semibold dark:text-black uppercase">Total Pegawai
                                         </p>
-                                        <h3 class="text-center my-4 font-semibold text-[30px] dark:text-slate-200">
+                                        <h3 class="text-center my-4 font-semibold text-[30px] dark:text-black">
                                             {{ $data['pegawai'] }}</h3>
                                     </div>
                                     <div class="self-center">
                                         <i data-lucide="users" class=" h-16 w-16 stroke-green/30"></i>
                                     </div>
                                 </div>
-                                {{-- <p class="truncate text-slate-400"><span class="text-red-500"><i
+                                {{-- <p class="truncate text-black"><span class="text-red-500"><i
                                             class="mdi mdi-trending-down"></i>0.6%</span> Bounce Rate Weekly</p> --}}
                             </div>
                             <div class="flex-auto p-0 overflow-hidden">
@@ -109,13 +109,13 @@
                     </div>
                     <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                         <div
-                            class="bg-white shadow-sm shadow-violet-800 dark:shadow-cyan-300 dark:bg-gray-900 rounded-md w-full relative mb-4">
+                            class="bg-white shadow-sm shadow-violet-800 dark:shadow-cyan-300 dark:bg-white rounded-md w-full relative mb-4">
                             <div class="flex-auto p-4">
                                 <div class="flex justify-between xl:gap-x-2 items-cente">
                                     <div class="self-center">
-                                        <p class="text-gray-800 font-semibold dark:text-slate-400 uppercase">Total Pengajuan
+                                        <p class="text-gray-800 font-semibold dark:text-black uppercase">Total Pengajuan
                                         </p>
-                                        <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200 text-center">
+                                        <h3 class="my-4 font-semibold text-[30px] dark:text-black text-center">
                                             {{ $data['pengajuan'] }}
                                         </h3>
                                     </div>
@@ -128,13 +128,13 @@
                     </div>
                     <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                         <div
-                            class="bg-white shadow-sm shadow-violet-800 dark:shadow-cyan-300 dark:bg-gray-900 rounded-md w-full relative mb-4">
+                            class="bg-white shadow-sm shadow-violet-800 dark:shadow-cyan-300 dark:bg-white rounded-md w-full relative mb-4">
                             <div class="flex-auto p-4">
                                 <div class="flex justify-between xl:gap-x-2 items-cente">
                                     <div class="self-center">
-                                        <p class="text-gray-800 font-semibold dark:text-slate-400 uppercase">Total Penilaian
+                                        <p class="text-gray-800 font-semibold dark:text-black uppercase">Total Penilaian
                                         </p>
-                                        <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200 text-center">
+                                        <h3 class="my-4 font-semibold text-[30px] dark:text-black text-center">
                                             {{ $data['rating'] }}
                                         </h3>
                                     </div>
@@ -147,7 +147,7 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-2">
-                    <div class="col-span-1">
+                    <div class="p-4 col-span-1">
                         <canvas id="approval"></canvas>
                     </div>
                     <div class="col-span-1">
@@ -168,7 +168,7 @@
         const perangkat = document.getElementById('perangkat').getContext('2d');
         const top5 = document.getElementById('top5').getContext('2d');
         new Chart(approval, {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: ['ditolak', 'Proses', 'Verifikasi', 'disetujui'],
                 datasets: [{
@@ -177,7 +177,7 @@
                         {{ $status_pengajuan['verifikasi'] }}, {{ $status_pengajuan['setuju'] }}
                     ],
                     borderWidth: 1.5,
-                    borderColor: '#A020F0'
+                    borderColor: '#0077B6'
                 }]
             },
             options: {
@@ -212,7 +212,7 @@
                     label: "Total Perangkat",
                     data: [{{ $status_perangkat['aktif'] }}, {{ $status_perangkat['nonaktif'] }}],
                     borderWidth: 1.5,
-                    borderColor: '#A020F0'
+                    borderColor: '#0077B6'
                 }]
             },
             options: {
@@ -247,7 +247,7 @@
                     label: "Satker dengan pengajuan terbanyak",
                     data: [{{ $status_perangkat['aktif'] }}, {{ $status_perangkat['nonaktif'] }}],
                     borderWidth: 1.5,
-                    borderColor: '#A020F0'
+                    borderColor: '#0077B6'
                 }]
             },
             options: {
