@@ -154,7 +154,7 @@
                         <canvas id="perangkat"></canvas>
                     </div>
                 </div>
-                <div class="grid grid-cols-1">
+                <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-2">
                     <div class="col-span-1">
                         <canvas id="top5"></canvas>
                     </div>
@@ -205,7 +205,7 @@
             }
         });
         new Chart(perangkat, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: ['Aktif', 'Nonaktif'],
                 datasets: [{
@@ -240,26 +240,22 @@
             }
         });
         new Chart(top5, {
-            type: 'line',
+            type: 'polarArea',
             data: {
-                labels: ['Aktif', 'Nonaktif'],
+                labels: ["{{ $top1 }}", "{{ $top2 }}", "{{ $top3 }}",
+                    "{{ $top4 }}", "{{ $top5 }}"
+                ],
                 datasets: [{
                     label: "Satker dengan pengajuan terbanyak",
-                    data: [{{ $status_perangkat['aktif'] }}, {{ $status_perangkat['nonaktif'] }}],
+                    data: [{{ $top_value1 }}, {{ $top_value2 }}, {{ $top_value3 }},
+                        {{ $top_value4 }}, {{ $top_value5 }},
+                    ],
                     borderWidth: 1.5,
-                    borderColor: '#0077B6'
+                    borderColor: '#0077B6',
+                    backgroundColor: ['#98FF98', '#abc123', '#c5cbe1', '#cc6666', '#fff'],
                 }]
             },
             options: {
-                animations: {
-                    tension: {
-                        duration: 4000,
-                        easing: 'easeInOut',
-                        from: 1,
-                        to: 0,
-                        loop: true
-                    }
-                },
                 scales: {
                     x: {
                         grid: {

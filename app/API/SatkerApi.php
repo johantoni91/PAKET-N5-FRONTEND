@@ -52,6 +52,11 @@ class SatkerApi
         return Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . session('data')['satker'] . '/code')->json()['data']['satker_name'];
     }
 
+    public static function satkerByCode($kode)
+    {
+        return Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . $kode . '/code')->json()['data']['satker_name'];
+    }
+
     public static function findByName($satker_name)
     {
         return Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . '/satker/find/name', ['satker' => $satker_name])->json()['data'];

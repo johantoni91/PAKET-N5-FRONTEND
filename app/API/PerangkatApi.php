@@ -4,7 +4,7 @@ namespace App\API;
 
 use Illuminate\Support\Facades\Http;
 
-class PerangkatAPI
+class PerangkatApi
 {
     public static function alatPost($url, $request = null)
     {

@@ -1,6 +1,7 @@
 @extends('kiosK.partials.main')
 @section('kiosk')
-    <div class="relative bg-slate-200 flex flex-row gap-5 justify-center items-center" style="width: 100dvw; height: 100dvh;">
+    <div
+        class="relative bg-slate-200 flex flex-row gap-5 justify-center items-center"style="width: 100dvw; height:100dvh; background-position: center; background-repeat: no-repeat; background-size: cover; background-image: url({{ asset('assets/images/bg-kios.jpg') }});">
         <div class="relative w-1/2">
             <form action="{{ route('kios.token') }}" method="post">
                 @csrf

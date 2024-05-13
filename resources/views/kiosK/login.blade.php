@@ -1,8 +1,8 @@
 @extends('kiosK.partials.main')
 @section('kiosk')
-    <div class="relative flex flex-col justify-center min-h-screen overflow-hidden">
-        <div
-            class="w-full  m-auto bg-white dark:bg-slate-800/60 rounded shadow-lg ring-2 ring-slate-300/50 dark:ring-slate-700/50 lg:max-w-md">
+    <div class="relative flex flex-col justify-center min-h-screen overflow-hidden"
+        style="width: 100dvw; height:100dvh; background-position: center; background-repeat: no-repeat; background-size: cover; background-image: url({{ asset('assets/images/bg-kios.jpg') }});">
+        <div class="w-full m-auto bg-white dark:bg-slate-800/60 rounded shadow-lg shadow-green-500 lg:max-w-md">
             <div class="text-center p-6 bg-slate-900 rounded-t">
                 <a href="index.html"><img src="assets/images/kejaksaan-logo.png" alt=""
                         class="w-20 h-20 mx-auto mb-2"></a>
@@ -16,13 +16,13 @@
                     <label for="username" class="font-medium text-sm text-slate-600 dark:text-slate-400">Username</label>
                     <input type="username" id="username" name="username"
                         class="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
-                        placeholder="Masukkan Username" value="504443310" required>
+                        placeholder="Masukkan Username" value="1485458329" required>
                 </div>
                 <div class="mt-4">
                     <label for="password" class="font-medium text-sm text-slate-600 dark:text-slate-400">Password</label>
                     <input type="password" id="password" name="password"
                         class="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
-                        placeholder="Masukkan Password" value="860482406" required>
+                        placeholder="Masukkan Password" value="624031393" required>
                 </div>
                 <!-- <a href="#" class="text-xs font-medium text-brand-500 underline ">Forget Password?</a> -->
                 <div class="mt-4">

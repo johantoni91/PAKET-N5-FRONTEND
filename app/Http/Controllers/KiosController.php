@@ -33,7 +33,8 @@ class KiosController extends Controller
     function dashboard()
     {
         try {
-            return view('kiosK.dashboard');
+            $satker = Http::withToken(session('kios')['serial_number'])->get(env('API_URL', '') . '/satker' . '/' . session('kios')['id_satker'] . '/code-kios')->json()['data'];
+            return view('kiosK.dashboard', compact('satker'));
         } catch (\Throwable $th) {
             Session::forget('kios');
             return redirect()->route('kios');
