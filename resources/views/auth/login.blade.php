@@ -2,7 +2,7 @@
 @section('content')
     <div class="relative flex flex-col justify-center min-h-screen overflow-hidden">
         <div
-            class="w-full  m-auto bg-white dark:bg-slate-800/60 rounded shadow-lg ring-2 ring-slate-300/50 dark:ring-slate-700/50 lg:max-w-md">
+            class="w-[80%] m-auto bg-white dark:bg-slate-800/60 rounded shadow-lg ring-2 ring-slate-300/50 dark:ring-slate-700/50 sm:max-w-md">
             <div class="text-center p-6 bg-slate-900 rounded-t">
                 <a href="index.html"><img src="assets/images/kejaksaan-logo.png" alt=""
                         class="w-20 h-20 mx-auto mb-2"></a>
@@ -43,8 +43,8 @@
                 </div>
             </form>
             <!-- <p class="mb-5 text-sm font-medium text-center text-slate-500"> Don't have an account? <a href="auth-register.html"
-                                                class="font-medium text-brand-500 hover:underline">Sign up</a>
-                                            </p> -->
+                                                                        class="font-medium text-brand-500 hover:underline">Sign up</a>
+                                                                    </p> -->
         </div>
     </div>
 @endsection

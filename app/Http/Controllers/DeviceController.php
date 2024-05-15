@@ -26,7 +26,6 @@ class DeviceController extends Controller
                 'input'       => null
             ]);
         } catch (\Throwable $th) {
-            Session::forget('user');
             return redirect()->route('logout');
         }
     }

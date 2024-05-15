@@ -1,6 +1,40 @@
 <div
-    class="min-h-full dark:bg-slate-100 z-40 fixed print:hidden bg-gradient-to-b from-violet-800 to-red-500 dark:bg-[#603dc3] main-sidebar duration-300 group-data-[sidebar=dark]:bg-[#603dc3] group-data-[sidebar=brand]:bg-brand group-[.dark]:group-data-[sidebar=brand]:bg-[#603dc3]">
-    <div class="text-center h-[64px] flex justify-center items-center dark:bg-zinc-500">
+    class="min-h-full z-40 fixed print:hidden bg-gradient-to-b from-violet-800 to-red-500 dark:from-cyan-600 dark:to-green-700 main-sidebar duration-300 group-data-[sidebar=dark]:bg-[#603dc3] group-data-[sidebar=brand]:bg-brand group-[.dark]:group-data-[sidebar=brand]:bg-[#603dc3]">
+    <div class="area">
+        <ul class="circles">
+            <li
+                class="bg-slate-300/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
+            </li>
+            <li
+                class="bg-slate-300/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
+            </li>
+            <li
+                class="bg-slate-300/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
+            </li>
+            <li
+                class="bg-slate-300/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
+            </li>
+            <li
+                class="bg-slate-300/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
+            </li>
+            <li
+                class="bg-slate-300/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
+            </li>
+            <li
+                class="bg-slate-300/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
+            </li>
+            <li
+                class="bg-slate-300/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
+            </li>
+            <li
+                class="bg-slate-300/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
+            </li>
+            <li
+                class="bg-slate-300/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
+            </li>
+        </ul>
+    </div>
+    <div class="text-center h-[64px] flex justify-center items-center">
         <a href="{{ route('dashboard') }}" class="logo">
             <span>
                 <img src="{{ asset('assets/images/kejaksaan-logo.png') }}" alt="logo-small"
@@ -14,14 +48,10 @@
             </span>
         </a>
     </div>
-    <div class="border-r pb-14 h-[100vh] dark:bg-gradient-to-b dark:from-zinc-500 dark:to-cyan-300 dark:text-white group-data-[sidebar=dark]:border-slate-700/40 group-data-[sidebar=brand]:border-slate-700/40"
+    <div class="border-r pb-14 h-[100vh] dark:text-white group-data-[sidebar=dark]:border-slate-700/40 group-data-[sidebar=brand]:border-slate-700/40"
         data-simplebar>
         <div class="p-4 block">
             <ul class="navbar-nav">
-                <li
-                    class="uppercase text-[11px]  text-primary-500 dark:text-primary-400 mt-0 leading-4 mb-2 group-data-[sidebar=dark]:text-primary-400 group-data-[sidebar=brand]:text-primary-300">
-                    <span class="text-[9px] text-white dark:text-black font-semibold">Menu</span>
-                </li>
                 <li>
                     <div id="parent-accordion" data-fc-type="accordion">
                         <a href="{{ route('dashboard') }}"

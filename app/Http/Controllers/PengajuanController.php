@@ -18,14 +18,18 @@ class PengajuanController extends Controller
 
     function index()
     {
-        $data = PengajuanApi::get()['data'];
-        return view($this->view, [
-            'view'        => $this->view,
-            'title'       => $this->title,
-            'data'        => $data,
-            'kartu'       => KartuApi::getTitle(),
-            'starterPack' => helper::starterPack()
-        ]);
+        try {
+            $data = PengajuanApi::get()['data'];
+            return view($this->view, [
+                'view'        => $this->view,
+                'title'       => $this->title,
+                'data'        => $data,
+                'kartu'       => KartuApi::getTitle(),
+                'starterPack' => helper::starterPack()
+            ]);
+        } catch (\Throwable $th) {
+            return redirect()->route('logout');
+        }
     }
 
     function store(Request $req)

@@ -16,10 +16,14 @@ class ProfileController extends Controller
 {
     function index()
     {
-        $title = 'Profil User';
-        $satker = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . Session::get('data')['satker'] . '/code')->json()['data'];
-        $starterPack = helper::starterPack();
-        return view('profile.index', compact('title', 'satker', 'starterPack'));
+        try {
+            $title = 'Profil User';
+            $satker = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . Session::get('data')['satker'] . '/code')->json()['data'];
+            $starterPack = helper::starterPack();
+            return view('profile.index', compact('title', 'satker', 'starterPack'));
+        } catch (\Throwable $th) {
+            return redirect()->route('logout');
+        }
     }
 
     function update(ProfileRequest $request, $id)

@@ -10,6 +10,7 @@ use App\Http\Controllers\AccessController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\IntegrasiController;
 use App\Http\Controllers\SatkerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PengajuanController;
@@ -142,9 +143,19 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/faq/{id}/update', [FaqController::class, 'update'])->name('faq.update');
     });
 
-    //RATING
+    // RATING
     Route::get('/rating', [RateController::class, 'index'])->name('rating')->middleware(['role_rating']);
 
+
+    // INTEGRASI
+    Route::get('/integrasi', [IntegrasiController::class, 'index'])->name('integrasi');
+    Route::post('/integrasi/store', [IntegrasiController::class, 'store'])->name('integrasi.store');
+    Route::post('/integrasi/{id}/update', [IntegrasiController::class, 'update'])->name('integrasi.update');
+    Route::get('/integrasi/{id}/destroy', [IntegrasiController::class, 'destroy'])->name('integrasi.destroy');
+    Route::post('/integration', [IntegrasiController::class, 'import'])->name('integrate');
+
+    // SMART CARD
+    Route::get('/smart-card', [MonitorKartuController::class, 'index'])->name('smart');
 
     // EXTERNAL || EXTRA TOOLS
     //NOTIFIKASI

@@ -28,7 +28,6 @@ class MonitorKartuController extends Controller
             ]);
             return redirect()->route('dashboard');
         } catch (\Throwable $th) {
-            Session::forget('user');
             return redirect()->route('logout');
         }
     }

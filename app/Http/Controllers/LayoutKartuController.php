@@ -29,7 +29,6 @@ class LayoutKartuController extends Controller
                 'starterPack' => helper::starterPack()
             ]);
         } catch (\Throwable $th) {
-            Session::forget('user');
             return redirect()->route('logout');
         }
     }

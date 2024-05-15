@@ -19,15 +19,19 @@ class KepegawaianController extends Controller
     private $title = 'Manajemen Pegawai';
     public function index()
     {
-        $satker = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . Session::get('data')['satker'] . '/code')->json()['data']['satker_name'];
-        $data = PegawaiApi::get(Str::slug($satker))['data'];
-        return view($this->view, [
-            'view'        => $this->view,
-            'title'       => $this->title,
-            'satker'      => SatkerApi::getSatkerName()['data'],
-            'data'        => $data,
-            'starterPack' => helper::starterPack()
-        ]);
+        try {
+            $satker = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . Session::get('data')['satker'] . '/code')->json()['data']['satker_name'];
+            $data = PegawaiApi::get(Str::slug($satker))['data'];
+            return view($this->view, [
+                'view'        => $this->view,
+                'title'       => $this->title,
+                'satker'      => SatkerApi::getSatkerName()['data'],
+                'data'        => $data,
+                'starterPack' => helper::starterPack()
+            ]);
+        } catch (\Throwable $th) {
+            return redirect()->route('logout');
+        }
     }
 
     public function search()

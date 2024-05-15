@@ -25,14 +25,18 @@ class UserController extends Controller
 
     public function index()
     {
-        $data = UserApi::get()['data'];
-        return view($this->view, [
-            'view'        => $this->view,
-            'title'       => $this->title,
-            'data'        => $data,
-            'roles'       => RoleApi::get()['data'],
-            'starterPack' => helper::starterPack()
-        ]);
+        try {
+            $data = UserApi::get()['data'];
+            return view($this->view, [
+                'view'        => $this->view,
+                'title'       => $this->title,
+                'data'        => $data,
+                'roles'       => RoleApi::get()['data'],
+                'starterPack' => helper::starterPack()
+            ]);
+        } catch (\Throwable $th) {
+            return redirect()->route('logout');
+        }
     }
 
     public function role(Request $req)

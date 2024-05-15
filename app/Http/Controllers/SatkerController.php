@@ -17,14 +17,17 @@ class SatkerController extends Controller
 
     function index()
     {
-        $data = SatkerApi::get();
-        return view($this->view, [
-            'view'        => $this->view,
-            'title'       => $this->title,
-            'data'        => $data,
-            'starterPack' => helper::starterPack()
-        ]);
-        return redirect()->route('dashboard');
+        try {
+            $data = SatkerApi::get();
+            return view($this->view, [
+                'view'        => $this->view,
+                'title'       => $this->title,
+                'data'        => $data,
+                'starterPack' => helper::starterPack()
+            ]);
+        } catch (\Throwable $th) {
+            return redirect()->route('logout');
+        }
     }
 
     function search()

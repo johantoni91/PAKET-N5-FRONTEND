@@ -1,8 +1,21 @@
 @extends('kiosK.partials.main')
 @section('kiosk')
-    <div class="relative flex flex-col justify-center min-h-screen overflow-hidden"
-        style="width: 100dvw; height:100dvh; background-position: center; background-repeat: no-repeat; background-size: cover; background-image: url({{ asset('assets/images/bg-kios.jpg') }});">
-        <div class="w-full m-auto bg-white dark:bg-slate-800/60 rounded shadow-lg shadow-green-500 lg:max-w-md">
+    <div class="relative flex flex-col justify-center min-h-screen overflow-hidden" style="width: 100dvw; height:100dvh;">
+        <div class="area bg-gradient-to-br from-green-800 via-orange-600 to-yellow-400">
+            <ul class="circles">
+                <li class="bg-slate-300/50 shadow-lg shadow-blue-300 rounded-lg"></li>
+                <li class="bg-slate-300/50 shadow-lg shadow-blue-300 rounded-lg"></li>
+                <li class="bg-slate-300/50 shadow-lg shadow-blue-300 rounded-lg"></li>
+                <li class="bg-slate-300/50 shadow-lg shadow-blue-300 rounded-lg"></li>
+                <li class="bg-slate-300/50 shadow-lg shadow-blue-300 rounded-lg"></li>
+                <li class="bg-slate-300/50 shadow-lg shadow-blue-300 rounded-lg"></li>
+                <li class="bg-slate-300/50 shadow-lg shadow-blue-300 rounded-lg"></li>
+                <li class="bg-slate-300/50 shadow-lg shadow-blue-300 rounded-lg"></li>
+                <li class="bg-slate-300/50 shadow-lg shadow-blue-300 rounded-lg"></li>
+                <li class="bg-slate-300/50 shadow-lg shadow-blue-300 rounded-lg"></li>
+            </ul>
+        </div>
+        <div class="w-[80%] m-auto bg-white dark:bg-slate-800/60 rounded shadow-lg shadow-green-500 sm:max-w-md">
             <div class="text-center p-6 bg-slate-900 rounded-t">
                 <a href="index.html"><img src="assets/images/kejaksaan-logo.png" alt=""
                         class="w-20 h-20 mx-auto mb-2"></a>

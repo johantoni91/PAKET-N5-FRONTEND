@@ -10,10 +10,14 @@ class DashboardController extends Controller
 {
     function inbox()
     {
-        return view('inbox.index', [
-            'title'             => 'Inbox',
-            'users'             => UserApi::get()->json()['data'],
-            'starterPack'       => helper::starterPack()
-        ]);
+        try {
+            return view('inbox.index', [
+                'title'             => 'Inbox',
+                'users'             => UserApi::get()->json()['data'],
+                'starterPack'       => helper::starterPack()
+            ]);
+        } catch (\Throwable $th) {
+            return redirect()->route('logout');
+        }
     }
 }

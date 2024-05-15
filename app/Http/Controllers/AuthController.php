@@ -55,7 +55,6 @@ class AuthController extends Controller
             $title = 'Login';
             return view('auth.login', compact('title'));
         } catch (\Throwable $th) {
-            Alert::error('Server bermasalah', $th->getMessage());
             return view('errors.500');
         }
     }
@@ -77,7 +76,6 @@ class AuthController extends Controller
                 Alert::error('Error', 'Server sedang bermasalah');
                 return view('errors.500');
             }
-
             if (!$res->successful()) {
                 Alert::error('Gagal', 'Login gagal');
                 return back();
