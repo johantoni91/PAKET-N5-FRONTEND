@@ -92,68 +92,136 @@
                                                         </thead>
                                                         <tbody>
                                                             @foreach ($data['data'] as $item)
-                                                                <tr
-                                                                    class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                                                    <th scope="row"
-                                                                        class="px-4 py-2 text-black wrap-text bg-gray-50 dark:text-white dark:bg-gray-800">
-                                                                        {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . $item['satker'] . '/code')->json()['data']['satker_name'] }}
-                                                                    </th>
-                                                                    <td class="px-6 py-4 dark:text-white text-center">
-                                                                        <div
-                                                                            class="justify-center items-center gap-2 flex flex-row {{ $item['status'] == '1' ? 'drop-shadow-green' : 'drop-shadow-red' }}">
-                                                                            @if ($item['status'] == '1')
-                                                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                    fill="none" viewBox="0 0 24 24"
-                                                                                    stroke-width="1.5" stroke="currentColor"
-                                                                                    class="w-6 h-6 text-green-500">
-                                                                                    <path stroke-linecap="round"
-                                                                                        stroke-linejoin="round"
-                                                                                        d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                                                                </svg>
-                                                                                <span
-                                                                                    class="text-sm text-green-500 ms-2 mt-0.5">
-                                                                                    Aktif</span>
-                                                                            @else
-                                                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                    fill="none" viewBox="0 0 24 24"
-                                                                                    stroke-width="1.5" stroke="currentColor"
-                                                                                    class="w-6 h-6 text-red-500">
-                                                                                    <path stroke-linecap="round"
-                                                                                        stroke-linejoin="round"
-                                                                                        d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                                                                </svg>
-                                                                                <span
-                                                                                    class="text-sm text-red-500 ms-2 mt-0.5">
-                                                                                    Nonaktif</span>
-                                                                            @endif
-                                                                        </div>
-                                                                    </td>
-                                                                    <td
-                                                                        class="px-6 py-4 dark:text-white bg-gray-50 dark:bg-gray-800">
-                                                                        @if (session('data')['satker'] == '00')
-                                                                            <div class="text-center">
-                                                                                @include('perangkat.modals.details')
+                                                                @if (!$item)
+                                                                    <tr class="text-center">Tidak ada perangkat</tr>
+                                                                @else
+                                                                    <tr
+                                                                        class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                                                        <th scope="row"
+                                                                            class="px-4 py-2 text-black wrap-text bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                                            {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . $item['satker'] . '/code')->json()['data']['satker_name'] }}
+                                                                        </th>
+                                                                        <td class="px-6 py-4 dark:text-white text-center">
+                                                                            <div
+                                                                                class="justify-center items-center gap-2 flex flex-row {{ $item['status'] == '1' ? 'drop-shadow-green' : 'drop-shadow-red' }}">
+                                                                                @if ($item['status'] == '1')
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                        fill="none" viewBox="0 0 24 24"
+                                                                                        stroke-width="1.5"
+                                                                                        stroke="currentColor"
+                                                                                        class="w-6 h-6 text-green-500">
+                                                                                        <path stroke-linecap="round"
+                                                                                            stroke-linejoin="round"
+                                                                                            d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                                                                    </svg>
+                                                                                    <span
+                                                                                        class="text-sm text-green-500 ms-2 mt-0.5">
+                                                                                        Aktif</span>
+                                                                                @else
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                        fill="none" viewBox="0 0 24 24"
+                                                                                        stroke-width="1.5"
+                                                                                        stroke="currentColor"
+                                                                                        class="w-6 h-6 text-red-500">
+                                                                                        <path stroke-linecap="round"
+                                                                                            stroke-linejoin="round"
+                                                                                            d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                                                                    </svg>
+                                                                                    <span
+                                                                                        class="text-sm text-red-500 ms-2 mt-0.5">
+                                                                                        Nonaktif</span>
+                                                                                @endif
                                                                             </div>
-                                                                        @else
-                                                                            <a href="{{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/perangkat' . '/' . $item['satker'] . '/find/tools/tc_hardware')->json()['data']? route('perangkat.update.rincian', [$item['satker']]): route('perangkat.rincian', [$item['id']]) }}"
-                                                                                class="text-center text-blue-600 hover:text-blue-400">
-                                                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                    width="24" height="24"
-                                                                                    class="text-center mx-auto"
-                                                                                    viewBox="0 0 24 24" fill="none"
-                                                                                    stroke="currentColor" stroke-width="2"
-                                                                                    stroke-linecap="round"
-                                                                                    stroke-linejoin="round"
-                                                                                    class="lucide lucide-settings">
-                                                                                    <path
-                                                                                        d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
-                                                                                    <circle cx="12" cy="12"
-                                                                                        r="3" />
-                                                                                </svg>
-                                                                            </a>
-                                                                        @endif
-                                                                    </td>
-                                                                </tr>
+                                                                        </td>
+                                                                        <td
+                                                                            class="px-6 py-4 dark:text-white bg-gray-50 dark:bg-gray-800">
+                                                                            @if (session('data')['satker'] == '00')
+                                                                                <div
+                                                                                    class="flex flex-row justify-evenly items-center">
+                                                                                    @include('perangkat.modals.details')
+                                                                                    <button type="button"
+                                                                                        data-modal-target="update{{ $item['id'] }}"
+                                                                                        data-modal-toggle="update{{ $item['id'] }}"
+                                                                                        class="text-black dark:text-white drop-shadow-black dark:drop-shadow-white">
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                            width="24" height="24"
+                                                                                            viewBox="0 0 24 24"
+                                                                                            fill="none"
+                                                                                            stroke="currentColor"
+                                                                                            stroke-width="2"
+                                                                                            stroke-linecap="round"
+                                                                                            stroke-linejoin="round"
+                                                                                            class="lucide lucide-user-round-search">
+                                                                                            <circle cx="10"
+                                                                                                cy="8" r="5" />
+                                                                                            <path
+                                                                                                d="M2 21a8 8 0 0 1 10.434-7.62" />
+                                                                                            <circle cx="18"
+                                                                                                cy="18" r="3" />
+                                                                                            <path d="m22 22-1.9-1.9" />
+                                                                                        </svg></button>
+                                                                                    <a href="{{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/perangkat' . '/' . $item['satker'] . '/find/tools/tc_hardware')->json()['data']? route('perangkat.update.rincian', [$item['satker']]): route('perangkat.rincian', [$item['id']]) }}"
+                                                                                        class="text-center text-blue-600 hover:text-blue-400">
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                            width="24" height="24"
+                                                                                            class="text-center mx-auto"
+                                                                                            viewBox="0 0 24 24"
+                                                                                            fill="none"
+                                                                                            stroke="currentColor"
+                                                                                            stroke-width="2"
+                                                                                            stroke-linecap="round"
+                                                                                            stroke-linejoin="round"
+                                                                                            class="lucide lucide-settings">
+                                                                                            <path
+                                                                                                d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+                                                                                            <circle cx="12"
+                                                                                                cy="12" r="3" />
+                                                                                        </svg>
+                                                                                    </a>
+                                                                                </div>
+                                                                            @else
+                                                                                <button type="button"
+                                                                                    data-modal-target="update{{ $item['id'] }}"
+                                                                                    data-modal-toggle="update{{ $item['id'] }}"
+                                                                                    class="text-black dark:text-white drop-shadow-black dark:drop-shadow-white">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                        width="24" height="24"
+                                                                                        viewBox="0 0 24 24" fill="none"
+                                                                                        stroke="currentColor"
+                                                                                        stroke-width="2"
+                                                                                        stroke-linecap="round"
+                                                                                        stroke-linejoin="round"
+                                                                                        class="lucide lucide-user-round-search">
+                                                                                        <circle cx="10"
+                                                                                            cy="8" r="5" />
+                                                                                        <path
+                                                                                            d="M2 21a8 8 0 0 1 10.434-7.62" />
+                                                                                        <circle cx="18"
+                                                                                            cy="18" r="3" />
+                                                                                        <path d="m22 22-1.9-1.9" />
+                                                                                    </svg></button>
+                                                                                <a href="{{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/perangkat' . '/' . $item['satker'] . '/find/tools/tc_hardware')->json()['data']? route('perangkat.update.rincian', [$item['satker']]): route('perangkat.rincian', [$item['id']]) }}"
+                                                                                    class="text-center text-blue-600 hover:text-blue-400">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                        width="24" height="24"
+                                                                                        class="text-center mx-auto"
+                                                                                        viewBox="0 0 24 24" fill="none"
+                                                                                        stroke="currentColor"
+                                                                                        stroke-width="2"
+                                                                                        stroke-linecap="round"
+                                                                                        stroke-linejoin="round"
+                                                                                        class="lucide lucide-settings">
+                                                                                        <path
+                                                                                            d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+                                                                                        <circle cx="12"
+                                                                                            cy="12" r="3" />
+                                                                                    </svg>
+                                                                                </a>
+                                                                            @endif
+                                                                            @include('perangkat.modals.update')
+                                                                        </td>
+                                                                    </tr>
+                                                                @endif
                                                             @endforeach
                                                         </tbody>
                                                     </table>

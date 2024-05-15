@@ -29,13 +29,13 @@
                     <label for="username" class="font-medium text-sm text-slate-600 dark:text-slate-400">Username</label>
                     <input type="username" id="username" name="username"
                         class="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
-                        placeholder="Masukkan Username" value="1485458329" required>
+                        placeholder="Masukkan Username" value="superadmin" required>
                 </div>
                 <div class="mt-4">
                     <label for="password" class="font-medium text-sm text-slate-600 dark:text-slate-400">Password</label>
                     <input type="password" id="password" name="password"
                         class="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
-                        placeholder="Masukkan Password" value="624031393" required>
+                        placeholder="Masukkan Password" value="123" required>
                 </div>
                 <!-- <a href="#" class="text-xs font-medium text-brand-500 underline ">Forget Password?</a> -->
                 <div class="mt-4">

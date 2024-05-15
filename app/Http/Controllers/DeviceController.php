@@ -50,8 +50,7 @@ class DeviceController extends Controller
         try {
             $input = [
                 'user'      => $req->user,
-                'password'  => $req->password,
-                'satker'    => $req->satker
+                'password'  => $req->password
             ];
             $update = Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . '/perangkat' . '/' . $id . '/update', $input)->json();
             if ($update['status'] == true) {

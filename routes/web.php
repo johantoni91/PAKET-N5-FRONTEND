@@ -123,6 +123,7 @@ Route::middleware(['auth'])->group(function () {
     // PERANGKAT
     Route::middleware(['role_perangkat'])->group(function () {
         Route::get('/devices', [DeviceController::class, 'index'])->name('perangkat');
+        Route::post('/devices/{id}/update', [DeviceController::class, 'update'])->name('perangkat.update');
         Route::get('/devices/search', [DeviceController::class, 'search'])->name('perangkat.search');
         Route::get('/devices/reset', [DeviceController::class, 'resetKiosK'])->name('perangkat.reset');
         Route::get('/devices/perangkat', [DeviceController::class, 'perangkat'])->name('perangkat.perangkat');
