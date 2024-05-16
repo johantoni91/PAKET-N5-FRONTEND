@@ -41,7 +41,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('/profile/{id}/update', [ProfileController::class, 'update'])->name('profile.update');
+
+    // INBOX
     Route::get('/inbox', [DashboardController::class, 'inbox'])->name('inbox');
+    Route::post('/inbox', [DashboardController::class, 'getRoom'])->name('inbox.room');
+    Route::post('/inbox/send', [DashboardController::class, 'send'])->name('inbox.store');
 
     // MANAGEMENT USERS
     Route::middleware(['role_user'])->group(function () {

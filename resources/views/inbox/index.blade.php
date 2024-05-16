@@ -33,37 +33,57 @@
                                     <div class="sm:-mx-6 lg:-mx-8">
                                         <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-10">
                                             <div class="relative overflow-x-auto p-5">
-                                                <div class="flex flex-row md:flex-nowrap flex-wrap gap-2">
+                                                <div class="flex flex-row-reverse md:flex-nowrap flex-wrap gap-2">
+                                                    <div id="room"
+                                                        class="md:w-4/6 w-full flex flex-col justify-between gap-1 bg-slate-200 rounded shadow overflow-y-scroll mb-3 rounded-lg dark:bg-slate-800"
+                                                        style="height: 60dvh;">
+                                                    </div>
                                                     <div class="w-full md:w-2/6">
                                                         <ul class="divide-y divide-gray-200 dark:divide-gray-700">
                                                             @foreach ($users['data'] as $user)
-                                                                <li
-                                                                    class="py-2 ps-1 hover:bg-slate-400/50 dark:hover:bg-slate-200/50">
-                                                                    <button
-                                                                        class="flex flex-row justify-between w-full items-center">
-                                                                        <div class="flex flex-row items-center gap-2">
-                                                                            <img class="w-8 h-8 rounded-full"
-                                                                                src="{{ $user['photo'] == '' ? asset('assets/images/5856.jpg') : $user['photo'] }}"
-                                                                                alt="5856">
-                                                                            <p
-                                                                                class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                                                {{ $user['name'] }}
-                                                                            </p>
-                                                                        </div>
-                                                                        <div
-                                                                            class="relative inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                                            <div
-                                                                                class="absolute w-3 h-3 right-4 rounded-full {{ $user['status'] == '1' ? 'bg-green' : 'bg-red' }}">
+                                                                @if ($user['id'] != session('data')['id'])
+                                                                    <li
+                                                                        class="py-2 ps-1 hover:bg-slate-400/50 dark:hover:bg-slate-200/50">
+                                                                        <button id="chat{{ $user['id'] }}"
+                                                                            class="flex flex-row justify-between w-full items-center">
+                                                                            <div class="flex flex-row items-center gap-2">
+                                                                                <img class="w-8 h-8 rounded-full"
+                                                                                    src="{{ $user['photo'] == '' ? asset('assets/images/5856.jpg') : $user['photo'] }}"
+                                                                                    alt="5856">
+                                                                                <p
+                                                                                    class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                                                                    {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/pegawai' . '/' . $user['nip'] . '/find')->json()['data']['nama'] ?? '' }}
+                                                                                </p>
                                                                             </div>
-                                                                        </div>
-                                                                    </button>
-                                                                </li>
+                                                                            <div
+                                                                                class="relative inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                                                                <div
+                                                                                    class="absolute w-3 h-3 right-4 rounded-full {{ $user['status'] == '1' ? 'bg-green' : 'bg-red' }}">
+                                                                                </div>
+                                                                            </div>
+                                                                        </button>
+                                                                        <script>
+                                                                            $(function() {
+                                                                                $("#chat{{ $user['id'] }}").on('click', function() {
+                                                                                    $.ajax({
+                                                                                        url: "{{ route('inbox.room') }}",
+                                                                                        type: "POST",
+                                                                                        data: {
+                                                                                            _token: "{{ csrf_token() }}",
+                                                                                            user1: "{{ session('data')['id'] }}",
+                                                                                            user2: "{{ $user['id'] }}"
+                                                                                        },
+                                                                                        success: function(data) {
+                                                                                            $("#room").html(data.view)
+                                                                                        }
+                                                                                    })
+                                                                                })
+                                                                            })
+                                                                        </script>
+                                                                    </li>
+                                                                @endif
                                                             @endforeach
                                                         </ul>
-                                                    </div>
-                                                    <div class="md:w-4/6 w-full flex flex-col justify-between gap-1 bg-slate-200 rounded shadow overflow-y-scroll mb-3 rounded-lg dark:bg-slate-800"
-                                                        style="max-height: 60dvh;">
-                                                        @include('inbox.message')
                                                     </div>
                                                 </div>
                                             </div>
