@@ -1,3 +1,134 @@
+<style>
+    .kartuver {
+        height: 321.26px;
+        width: 203.72px;
+        border: 0.5px solid #4CAF50;
+        border-radius: 8px;
+        text-wrap: pretty;
+    }
+
+    .kartuverback {
+        position: relative;
+        height: 321.26px;
+        width: 203.72px;
+        border: 0.5px solid #4CAF50;
+        border-radius: 8px;
+        text-wrap: pretty;
+    }
+
+    .imglogover {
+        width: 45px;
+        height: 45px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+    }
+
+    .imglogoverback {
+        width: 80px;
+        height: 80px;
+        display: block;
+        position: absolute;
+        left: 60px;
+        top: 115px;
+    }
+
+    .imgver {
+        width: 75.6px;
+        height: 113.39px;
+        display: block;
+        border-radius: 6px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .tablever {
+        width: 150px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .tdver {
+        width: 150px;
+        font-size: 9px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .kartuhor {
+        width: 321.26px;
+        height: 203.72px;
+        border: 0.5px solid #4CAF50;
+        border-radius: 8px;
+        text-wrap: pretty;
+    }
+
+    .kartuhorback {
+        position: relative;
+        width: 321.26px;
+        height: 203.72px;
+        border: 0.5px solid #4CAF50;
+        border-radius: 8px;
+        text-wrap: pretty;
+    }
+
+    .divhead {
+        padding: 5px;
+        width: 300px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .divheadtd {
+        width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .imglogohor {
+        width: 45px;
+        height: 45px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .imglogohorback {
+        width: 100px;
+        height: 100px;
+        display: block;
+        position: absolute;
+        left: 110px;
+        top: 50px;
+    }
+
+    .imghor {
+        width: 75.6px;
+        height: 113.39px;
+        display: block;
+        border-radius: 6px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .tablehor {
+        width: 150px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .tdhor {
+        vertical-align: text-top;
+        text-align: justify;
+        font-size: 9px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
 <div id="look{{ $item['id'] }}" tabindex="-1" aria-hidden="true"
     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full max-w-4xl max-h-full">
@@ -21,141 +152,10 @@
             </div>
             <!-- Modal body -->
             <div class="overflow-x-scroll p-4 md:p-5 space-y-4">
-                <style>
-                    .kartuver {
-                        height: 321.26px;
-                        width: 203.72px;
-                        border: 0.5px solid #4CAF50;
-                        border-radius: 8px;
-                        text-wrap: pretty;
-                    }
-
-                    .kartuverback {
-                        position: relative;
-                        height: 321.26px;
-                        width: 203.72px;
-                        border: 0.5px solid #4CAF50;
-                        border-radius: 8px;
-                        text-wrap: pretty;
-                    }
-
-                    .imglogover {
-                        width: 45px;
-                        height: 45px;
-                        display: block;
-                        margin-left: auto;
-                        margin-right: auto;
-                        margin-top: 10px;
-                    }
-
-                    .imglogoverback {
-                        width: 80px;
-                        height: 80px;
-                        display: block;
-                        position: absolute;
-                        left: 60px;
-                        top: 115px;
-                    }
-
-                    .imgver {
-                        width: 75.6px;
-                        height: 113.39px;
-                        display: block;
-                        border-radius: 6px;
-                        margin-left: auto;
-                        margin-right: auto;
-                    }
-
-                    .tablever {
-                        width: 150px;
-                        display: block;
-                        margin-left: auto;
-                        margin-right: auto;
-                    }
-
-                    .tdver {
-                        width: 150px;
-                        font-size: 9px;
-                        margin-left: auto;
-                        margin-right: auto;
-                    }
-
-                    .kartuhor {
-                        width: 321.26px;
-                        height: 203.72px;
-                        border: 0.5px solid #4CAF50;
-                        border-radius: 8px;
-                        text-wrap: pretty;
-                    }
-
-                    .kartuhorback {
-                        position: relative;
-                        width: 321.26px;
-                        height: 203.72px;
-                        border: 0.5px solid #4CAF50;
-                        border-radius: 8px;
-                        text-wrap: pretty;
-                    }
-
-                    .divhead {
-                        padding: 5px;
-                        width: 300px;
-                        display: block;
-                        margin-left: auto;
-                        margin-right: auto;
-                    }
-
-                    .divheadtd {
-                        width: 300px;
-                        margin-left: auto;
-                        margin-right: auto;
-                    }
-
-                    .imglogohor {
-                        width: 45px;
-                        height: 45px;
-                        display: block;
-                        margin-left: auto;
-                        margin-right: auto;
-                    }
-
-                    .imglogohorback {
-                        width: 100px;
-                        height: 100px;
-                        display: block;
-                        position: absolute;
-                        left: 110px;
-                        top: 50px;
-                    }
-
-                    .imghor {
-                        width: 75.6px;
-                        height: 113.39px;
-                        display: block;
-                        border-radius: 6px;
-                        margin-left: auto;
-                        margin-right: auto;
-                    }
-
-                    .tablehor {
-                        width: 150px;
-                        display: block;
-                        margin-left: auto;
-                        margin-right: auto;
-                    }
-
-                    .tdhor {
-                        vertical-align: text-top;
-                        text-align: justify;
-                        font-size: 9px;
-                        margin-left: auto;
-                        margin-right: auto;
-                    }
-                </style>
                 <div class="flex flex-row gap-3 justify-center items-center">
                     @if ($item['orientation'] == '0')
                         <div style="display: flex; flex-direction: row; gap: 8px;">
-                            <div id="kartu" class="kartuver"
+                            <div id="kartu{{ $item['id'] }}" class="kartuver"
                                 style="background-image: url({{ env('APP_IMG', '') . $item['front'] }});
                             background-position: center;
                             background-repeat: no-repeat;
@@ -202,7 +202,7 @@
                                 @endif
                             </div>
 
-                            <div id="kartuback" class="kartuverback"
+                            <div id="kartuback{{ $item['id'] }}" class="kartuverback"
                                 style="background-image: url({{ env('APP_IMG', '') . $item['back'] }});
                             background-position: center;
                             background-repeat: no-repeat;
@@ -213,7 +213,7 @@
 
                         <br>
                     @else
-                        <div id="kartu" class="kartuhor"
+                        <div id="kartu{{ $item['id'] }}" class="kartuhor"
                             style="background-image: url({{ env('APP_IMG', '') . $item['front'] }});
                         background-position: center;
                         background-repeat: no-repeat;
@@ -285,7 +285,7 @@
                             </table>
                         </div>
                     @endif
-                    <div id="kartuback" class="kartuhorback"
+                    <div id="kartuback{{ $item['id'] }}" class="kartuhorback"
                         style="background-image: url({{ env('APP_IMG', '') . $item['back'] }});
                     background-position: center;
                     background-repeat: no-repeat;
@@ -294,25 +294,30 @@
                     </div>
                     @endif
                 </div>
-                <button id="unduh" class="bg-slate-200 p-2 rounded-lg mb-3 dark:bg-black dark:text-white">Siap untuk
+                <button id="unduh{{ $item['id'] }}"
+                    class="bg-slate-200 p-2 rounded-lg mb-3 dark:bg-black dark:text-white">Siap untuk
                     pengajuan</button>
             </div>
         </div>
         <script>
             $(function() {
-                $("#unduh").on('click', function() {
-                    const a = html2canvas(document.getElementById("kartu")).then(function(canvas) {
+                $("#unduh{{ $item['id'] }}").on('click', function() {
+                    const a{{ $item['id'] }} = html2canvas(document.getElementById(
+                        "kartu{{ $item['id'] }}")).then(function(
+                        canvas) {
                         const image1 = canvas.toDataURL("image/png", 1.0);
                         return image1
                     });
 
-                    a.then(res => {
-                        const b = html2canvas(document.getElementById("kartuback")).then(function(
-                            canvas) {
-                            const image2 = canvas.toDataURL("image/png", 1.0);
-                            return image2
-                        });
-                        b.then(test => {
+                    a{{ $item['id'] }}.then(res => {
+                        const b{{ $item['id'] }} = html2canvas(document.getElementById(
+                                "kartuback{{ $item['id'] }}"))
+                            .then(function(
+                                canvas) {
+                                const image2 = canvas.toDataURL("image/png", 1.0);
+                                return image2
+                            });
+                        b{{ $item['id'] }}.then(test => {
                             $.post("{{ route('layout.kartu.store.card') }}", {
                                 _token: "{{ csrf_token() }}",
                                 id: "{{ $item['id'] }}",
