@@ -68,6 +68,60 @@
                                 </option>
                             </select>
                         </div>
+                        <div class="col-span-1 mb-5">
+                            <label for="warna"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Warna
+                                teks</label>
+                            <select id="warna" name="warna" required
+                                class="bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                <option {{ $item['warna_teks'] == 'text-black' ? 'selected' : '' }} value="text-black">
+                                    Hitam</option>
+                                <option {{ $item['warna_teks'] == 'text-white' ? 'selected' : '' }} value="text-white">
+                                    Putih</option>
+                                <option {{ $item['warna_teks'] == 'text-gray-400' ? 'selected' : '' }}
+                                    value="text-gray-400">
+                                    Abu-abu</option>
+                                <option {{ $item['warna_teks'] == 'text-green-500' ? 'selected' : '' }}
+                                    value="text-green-500">
+                                    Hijau</option>
+                                <option {{ $item['warna_teks'] == 'text-lime-500' ? 'selected' : '' }}
+                                    value="text-lime-500">
+                                    Lime</option>
+                                <option {{ $item['warna_teks'] == 'text-emerald-500' ? 'selected' : '' }}
+                                    value="text-emerald-500">
+                                    Emerald</option>
+                                <option {{ $item['warna_teks'] == 'text-orange-500' ? 'selected' : '' }}
+                                    value="text-orange-500">
+                                    Oranye</option>
+                                <option {{ $item['warna_teks'] == 'text-yellow-500' ? 'selected' : '' }}
+                                    value="text-yellow-500">
+                                    Kuning</option>
+                                <option {{ $item['warna_teks'] == 'text-blue-500' ? 'selected' : '' }}
+                                    value="text-blue-500">
+                                    Biru</option>
+                                <option {{ $item['warna_teks'] == 'text-indigo-500' ? 'selected' : '' }}
+                                    value="text-indigo-500">
+                                    Indigo</option>
+                                <option {{ $item['warna_teks'] == 'text-sky-500' ? 'selected' : '' }}
+                                    value="text-sky-500">
+                                    Sky</option>
+                                <option {{ $item['warna_teks'] == 'text-violet-500' ? 'selected' : '' }}
+                                    value="text-violet-500">
+                                    Violet</option>
+                                <option {{ $item['warna_teks'] == 'text-purple-500' ? 'selected' : '' }}
+                                    value="text-purple-500">
+                                    Ungu</option>
+                                <option {{ $item['warna_teks'] == 'text-fuchsia-500' ? 'selected' : '' }}
+                                    value="text-fuchsia-500">
+                                    Fuchsia</option>
+                                <option {{ $item['warna_teks'] == 'text-pink-500' ? 'selected' : '' }}
+                                    value="text-pink-500">
+                                    Pink</option>
+                                <option {{ $item['warna_teks'] == 'text-rose-500' ? 'selected' : '' }}
+                                    value="text-rose-500">
+                                    Rose</option>
+                            </select>
+                        </div>
                         <div class="col-span-2 mb-3 flex flex-col justify-center">
                             <label for="icon"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Icon Kartu</label>
@@ -93,7 +147,8 @@
                                 class="bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <option {{ $item['nip'] == '0' ? 'selected' : '' }} value="0">Tidak ditambahkan
                                 </option>
-                                <option {{ $item['nip'] == '1' ? 'selected' : '' }} value="1">ditambahkan</option>
+                                <option {{ $item['nip'] == '1' ? 'selected' : '' }} value="1">ditambahkan
+                                </option>
                             </select>
                         </div>
                         <div class="col-span-2 mb-3 sm:col-span-1">
@@ -103,7 +158,8 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <option {{ $item['nrp'] == '0' ? 'selected' : '' }} value="0">Tidak ditambahkan
                                 </option>
-                                <option {{ $item['nrp'] == '1' ? 'selected' : '' }} value="1">ditambahkan</option>
+                                <option {{ $item['nrp'] == '1' ? 'selected' : '' }} value="1">ditambahkan
+                                </option>
                             </select>
                         </div>
                         <div class="col-span-2 mb-3 sm:col-span-1">

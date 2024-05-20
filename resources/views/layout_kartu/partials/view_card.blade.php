@@ -155,7 +155,7 @@
                 <div class="flex flex-row gap-3 justify-center items-center">
                     @if ($item['orientation'] == '0')
                         <div style="display: flex; flex-direction: row; gap: 8px;">
-                            <div id="kartu{{ $item['id'] }}" class="kartuver"
+                            <div id="kartu{{ $item['id'] }}" class="kartuver {{ $item['warna_teks'] }}"
                                 style="background-image: url({{ env('APP_IMG', '') . $item['front'] }});
                             background-position: center;
                             background-repeat: no-repeat;
@@ -202,7 +202,7 @@
                                 @endif
                             </div>
 
-                            <div id="kartuback{{ $item['id'] }}" class="kartuverback"
+                            <div id="kartuback{{ $item['id'] }}" class="kartuverback {{ $item['warna_teks'] }}"
                                 style="background-image: url({{ env('APP_IMG', '') . $item['back'] }});
                             background-position: center;
                             background-repeat: no-repeat;
@@ -213,7 +213,7 @@
 
                         <br>
                     @else
-                        <div id="kartu{{ $item['id'] }}" class="kartuhor"
+                        <div id="kartu{{ $item['id'] }}" class="kartuhor {{ $item['warna_teks'] }}"
                             style="background-image: url({{ env('APP_IMG', '') . $item['front'] }});
                         background-position: center;
                         background-repeat: no-repeat;
@@ -285,7 +285,7 @@
                             </table>
                         </div>
                     @endif
-                    <div id="kartuback{{ $item['id'] }}" class="kartuhorback"
+                    <div id="kartuback{{ $item['id'] }}" class="kartuhorback {{ $item['warna_teks'] }}"
                         style="background-image: url({{ env('APP_IMG', '') . $item['back'] }});
                     background-position: center;
                     background-repeat: no-repeat;

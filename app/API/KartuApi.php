@@ -39,6 +39,7 @@ class KartuApi
                 'back'          => $input['belakang'],
                 'golongan'      => $input['golongan'],
                 'jabatan'       => $input['jabatan'],
+                'warna_teks'    => $input['warna_teks'],
                 'nama'          => $input['nama'],
                 'nip'           => $input['nip'],
                 'nrp'           => $input['nrp'],
@@ -58,6 +59,7 @@ class KartuApi
                 'nrp'           => $input['nrp'],
                 'golongan'      => $input['golongan'],
                 'jabatan'       => $input['jabatan'],
+                'warna_teks'    => $input['warna_teks']
             ])->json();
     }
 

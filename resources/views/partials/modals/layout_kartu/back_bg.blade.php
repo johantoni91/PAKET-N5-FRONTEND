@@ -32,6 +32,16 @@
                         onchange="backBg(event)">
                     <script>
                         var backBg = function(event) {
+                            if (event.target.files[0].size > 2000000) {
+                                document.getElementById("ubah{{ $item['id'] }}").classList.add('hidden')
+                                Swal.fire({
+                                    title: "Gagal",
+                                    text: "Mohon ganti latar dengan gambar maksimal ukuran 2MB",
+                                    icon: "error"
+                                });
+                            } else {
+                                document.getElementById("ubah{{ $item['id'] }}").classList.remove('hidden')
+                            }
                             var back = document.getElementById("back{{ $item['id'] }}");
                             back.src = URL.createObjectURL(event.target.files[0]);
                             back.onload = function() {
@@ -43,7 +53,7 @@
 
                 <div
                     class="flex justify-end items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                    <button type="submit"
+                    <button type="submit" id="ubah{{ $item['id'] }}"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         Ubah</button>
                 </div>

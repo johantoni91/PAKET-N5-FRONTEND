@@ -78,7 +78,8 @@ class LayoutKartuController extends Controller
                 'nip'         => $req->nip,
                 'nrp'         => $req->nrp,
                 'golongan'    => $req->golongan,
-                'jabatan'     => $req->jabatan
+                'jabatan'     => $req->jabatan,
+                'warna_teks'  => $req->warna
             ];
             $req->file('icon')->move('kartu', $filename_icon);
             $req->file('depan')->move('kartu', $filename_depan);
@@ -117,7 +118,8 @@ class LayoutKartuController extends Controller
                 'nip'         => $req->nip,
                 'nrp'         => $req->nrp,
                 'golongan'    => $req->golongan,
-                'jabatan'     => $req->jabatan
+                'jabatan'     => $req->jabatan,
+                'warna_teks'  => $req->warna
             ];
             $kartu = KartuApi::update($id, $input);
             if ($kartu['status'] == true) {

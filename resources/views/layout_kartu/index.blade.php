@@ -109,7 +109,7 @@
                                                                             @include('partials.modals.layout_kartu.back_bg')
                                                                         </div>
                                                                     </td>
-                                                                    <td class="px-6 py-4">
+                                                                    <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
                                                                         <div
                                                                             class="flex flex-row gap-3 justify-center items-center">
                                                                             <button

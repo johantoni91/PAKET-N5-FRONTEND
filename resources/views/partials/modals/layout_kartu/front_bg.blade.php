@@ -27,11 +27,21 @@
                         Depan Kartu</label>
                     <img src="{{ env('APP_IMG', '') . $item['front'] }}" id="front{{ $item['id'] }}" alt="front"
                         class="mx-auto h-24 w-24 rounded-full inline-block justify-center my-3">
-                    <input type="file" name="depan" accept="image/*"
+                    <input type="file" name="depan" accept="image/*" id="depan{{ $item['id'] }}"
                         class="bg-gray-50 mx-auto text-sm block w-auto border border-gray-300 rounded-lg dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                         onchange="frontBg(event)">
                     <script>
                         var frontBg = function(event) {
+                            if (event.target.files[0].size > 2000000) {
+                                document.getElementById("kirim{{ $item['id'] }}").classList.add('hidden')
+                                Swal.fire({
+                                    title: "Gagal",
+                                    text: "Mohon ganti latar dengan gambar maksimal ukuran 2MB",
+                                    icon: "error"
+                                });
+                            } else {
+                                document.getElementById("kirim{{ $item['id'] }}").classList.remove('hidden')
+                            }
                             var front = document.getElementById("front{{ $item['id'] }}");
                             front.src = URL.createObjectURL(event.target.files[0]);
                             front.onload = function() {
@@ -43,7 +53,7 @@
 
                 <div
                     class="flex justify-end items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                    <button type="submit"
+                    <button type="submit" id="kirim{{ $item['id'] }}"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         Ubah</button>
                 </div>
