@@ -159,7 +159,7 @@ class LayoutKartuController extends Controller
             unlink(public_path('kartu/' . $kartu['back']));
 
             $filename_belakang = 'bg_back_card_' . $req->title . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('belakang')->getClientOriginalExtension();
-            $req->file('depan')->move('kartu', $filename_belakang);
+            $req->file('belakang')->move('kartu', $filename_belakang);
 
             Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . '/kartu' . '/' . $id . '/back', ['back' => $filename_belakang])->json();
             Alert::success('Berhasil', 'Latar belakang telah diubah');

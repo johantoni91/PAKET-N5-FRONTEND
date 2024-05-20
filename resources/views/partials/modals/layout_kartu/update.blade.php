@@ -71,8 +71,8 @@
                         <div class="col-span-2 mb-3 flex flex-col justify-center">
                             <label for="icon"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Icon Kartu</label>
-                            <img src="{{ $item['icon'] }}" id="icon{{ $item['id'] }}" alt="icon"
-                                class="mx-auto h-24 w-24 rounded-full inline-block justify-center my-3">
+                            <img src="{{ env('APP_IMG', '') . $item['icon'] }}" id="icon{{ $item['id'] }}"
+                                alt="icon" class="mx-auto h-24 w-24 rounded-full inline-block justify-center my-3">
                             <input type="file" name="icon" accept="image/*"
                                 class="bg-gray-50 mx-auto text-sm block w-auto border border-gray-300 rounded-lg dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 onchange="bg{{ $item['id'] }}(event)">

@@ -324,7 +324,11 @@
                                 image1: res,
                                 image2: test
                             }, function(data) {
-                                console.log(data)
+                                Swal.fire({
+                                    title: "Berhasil",
+                                    text: "Kartu {{ $item['title'] }} sudah siap untuk pengajuan.",
+                                    icon: "success"
+                                });
                             })
                         })
                     })
