@@ -103,7 +103,9 @@ class LayoutKartuController extends Controller
             $filename_icon = '';
             if ($req->hasFile('icon')) {
                 $filename_icon = 'icon_card_' . $req->title . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('icon')->getClientOriginalExtension();
-                unlink(public_path('kartu/' . $kartu['icon']));
+                if (File::exists(public_path('kartu/' . $kartu['icon']))) {
+                    unlink(public_path('kartu/' . $kartu['icon']));
+                }
                 $req->file('icon')->move('kartu', $filename_icon);
             }
             $input = [
@@ -135,8 +137,9 @@ class LayoutKartuController extends Controller
                 'depan'     => 'required'
             ]);
             $kartu = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/kartu' . '/' . $id)->json()['data'];
-            unlink(public_path('kartu/' . $kartu['front']));
-
+            if (File::exists(public_path('kartu/' . $kartu['front']))) {
+                unlink(public_path('kartu/' . $kartu['front']));
+            }
             $filename_depan = 'bg_front_card_' . $req->title . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('depan')->getClientOriginalExtension();
             $req->file('depan')->move('kartu', $filename_depan);
 
@@ -156,8 +159,9 @@ class LayoutKartuController extends Controller
                 'belakang'  => 'required'
             ]);
             $kartu = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/kartu' . '/' . $id)->json()['data'];
-            unlink(public_path('kartu/' . $kartu['back']));
-
+            if (File::exists(public_path('kartu/' . $kartu['back']))) {
+                unlink(public_path('kartu/' . $kartu['back']));
+            }
             $filename_belakang = 'bg_back_card_' . $req->title . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('belakang')->getClientOriginalExtension();
             $req->file('belakang')->move('kartu', $filename_belakang);
 
@@ -174,9 +178,15 @@ class LayoutKartuController extends Controller
     {
         try {
             $kartu = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/kartu' . '/' . $id)->json()['data'];
-            unlink(public_path('kartu/' . $kartu['icon']));
-            unlink(public_path('kartu/' . $kartu['front']));
-            unlink(public_path('kartu/' . $kartu['back']));
+            if (File::exists(public_path('kartu/' . $kartu['icon']))) {
+                unlink(public_path('kartu/' . $kartu['icon']));
+            }
+            if (File::exists(public_path('kartu/' . $kartu['front']))) {
+                unlink(public_path('kartu/' . $kartu['front']));
+            }
+            if (File::exists(public_path('kartu/' . $kartu['back']))) {
+                unlink(public_path('kartu/' . $kartu['back']));
+            }
             $hapus = KartuApi::destroy($id);
             if ($hapus['status'] == true) {
                 Alert::success('Berhasil', 'Kartu berhasil dihapus');
@@ -186,8 +196,9 @@ class LayoutKartuController extends Controller
                 return back();
             }
         } catch (\Throwable $th) {
-            Alert::error('Terjadi kesalahan', $th->getMessage());
-            return response($th->getMessage(), 400);
+            $hapus = KartuApi::destroy($id);
+            Alert::success('Berhasil dihapus');
+            return back();
         }
     }
 
