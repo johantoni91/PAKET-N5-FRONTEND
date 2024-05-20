@@ -87,17 +87,6 @@
                             </script>
                         </div>
                         <div class="col-span-2 mb-3 sm:col-span-1">
-                            <label for="nama"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
-                            <select id="nama" name="nama" required
-                                class="bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                <option {{ $item['nama'] == '0' ? 'selected' : '' }} value="0">Tidak ditambahkan
-                                </option>
-                                <option {{ $item['nama'] == '1' ? 'selected' : '' }} value="1">ditambahkan
-                                </option>
-                            </select>
-                        </div>
-                        <div class="col-span-2 mb-3 sm:col-span-1">
                             <label for="nip"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
                             <select id="nip" name="nip" required

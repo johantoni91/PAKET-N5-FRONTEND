@@ -110,6 +110,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/layout/create/kartu', [LayoutKartuController::class, 'create'])->name('layout.kartu.create');
         Route::get('/layout/{id}/kartu', [LayoutKartuController::class, 'find'])->name('layout.find.kartu');
         Route::get('/layout/kartu/pdf/{id}', [LayoutKartuController::class, 'pdf'])->name('layout.kartu.pdf');
+        Route::post('/layout/kartu/store/card', [LayoutKartuController::class, 'storeCard'])->name('layout.kartu.store.card');
         Route::post('/layout/kartu/store', [LayoutKartuController::class, 'store'])->name('layout.kartu.store');
         Route::post('/layout/kartu/{id}/back', [LayoutKartuController::class, 'backBg'])->name('layout.kartu.back');
         Route::post('/layout/kartu/{id}/front', [LayoutKartuController::class, 'frontBg'])->name('layout.kartu.front');

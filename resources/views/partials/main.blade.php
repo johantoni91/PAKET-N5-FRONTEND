@@ -39,6 +39,7 @@
     <script src="{{ asset('assets/libs/@frostui/tailwindcss/frostui.js') }}"></script>
     <script src="{{ asset('assets/libs/prismjs/prism.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
+    <script src="{{ asset('assets/js/html2canvas.min.js') }}"></script>
 </body>
 
 </html>

@@ -75,9 +75,9 @@
                                                                     profil</label>
                                                                 <select id="profil" name="profil" required
                                                                     class="bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                                    <option selected value="0">Tidak ditambahkan
+                                                                    <option value="0">Tidak ditambahkan
                                                                     </option>
-                                                                    <option value="1">ditambahkan</option>
+                                                                    <option selected value="1">ditambahkan</option>
                                                                 </select>
                                                             </div>
                                                             <div class="col-span-2 mb-5">
@@ -156,29 +156,19 @@
                                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
                                                                 <select id="nip" name="nip" required
                                                                     class="bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                                    <option selected value="0">Tidak ditambahkan
+                                                                    <option value="0">Tidak ditambahkan
                                                                     </option>
-                                                                    <option value="1">ditambahkan</option>
+                                                                    <option selected value="1">ditambahkan</option>
                                                                 </select>
                                                             </div>
-                                                            <div class="col-span-1">
+                                                            <div class="col-span-2">
                                                                 <label for="nrp"
                                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NRP</label>
                                                                 <select id="nrp" name="nrp" required
                                                                     class="bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                                    <option selected value="0">Tidak ditambahkan
+                                                                    <option value="0">Tidak ditambahkan
                                                                     </option>
-                                                                    <option value="1">ditambahkan</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-span-1">
-                                                                <label for="nama"
-                                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
-                                                                <select id="nama" name="nama" required
-                                                                    class="bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                                    <option selected value="0">Tidak ditambahkan
-                                                                    </option>
-                                                                    <option value="1">ditambahkan</option>
+                                                                    <option selected value="1">ditambahkan</option>
                                                                 </select>
                                                             </div>
                                                             <div class="col-span-1">
@@ -186,19 +176,19 @@
                                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Golongan</label>
                                                                 <select id="golongan" name="golongan" required
                                                                     class="bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                                    <option selected value="0">Tidak ditambahkan
+                                                                    <option value="0">Tidak ditambahkan
                                                                     </option>
-                                                                    <option value="1">ditambahkan</option>
+                                                                    <option selected value="1">ditambahkan</option>
                                                                 </select>
                                                             </div>
-                                                            <div class="col-span-1">
+                                                            <div class="col-span-2">
                                                                 <label for="jabatan"
                                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jabatan</label>
                                                                 <select id="jabatan" name="jabatan" required
                                                                     class="bg-gray-50 mb-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                                    <option selected value="0">Tidak ditambahkan
+                                                                    <option value="0">Tidak ditambahkan
                                                                     </option>
-                                                                    <option value="1">ditambahkan</option>
+                                                                    <option selected value="1">ditambahkan</option>
                                                                 </select>
                                                             </div>
                                                         </div>

@@ -9,7 +9,7 @@
             border: 0.5px solid #4CAF50;
             border-radius: 8px;
             text-wrap: pretty;
-            background-image: url({{ $kartu['front'] }});
+            background-image: url({{ env('APP_IMG', '') . $kartu['front'] }});
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -22,7 +22,7 @@
             border: 0.5px solid #4CAF50;
             border-radius: 8px;
             text-wrap: pretty;
-            background-image: url({{ $kartu['back'] }});
+            background-image: url({{ env('APP_IMG', '') . $kartu['back'] }});
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -75,7 +75,7 @@
             border: 0.5px solid #4CAF50;
             border-radius: 8px;
             text-wrap: pretty;
-            background-image: url({{ $kartu['front'] }});
+            background-image: url({{ env('APP_IMG', '') . $kartu['front'] }});
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -88,7 +88,7 @@
             border: 0.5px solid #4CAF50;
             border-radius: 8px;
             text-wrap: pretty;
-            background-image: url({{ $kartu['back'] }});
+            background-image: url({{ env('APP_IMG', '') . $kartu['back'] }});
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -152,10 +152,11 @@
 </head>
 
 <body>
+
     @if ($kartu['orientation'] == '0')
         <div style="display: flex; flex-direction: row; gap: 8px;">
-            <div class="kartuver">
-                <img class="imglogover" src="{{ $kartu['icon'] }}">
+            <div id="kartu" class="kartuver">
+                <img class="imglogover" src="{{ env('APP_IMG', '') . $kartu['icon'] }}">
                 <p style="font-size: 9px; text-transform: uppercase; font-weight: bold; text-align: center;">
                     KEJAKSAAN AGUNG REPUBLIK INDONESIA
                 </p>
@@ -194,7 +195,7 @@
                 @endif
             </div>
 
-            <div class="kartuverback">
+            <div id="kartuback" class="kartuverback">
                 <img class="imglogoverback" src="{{ asset('assets/images/qrcode.png') }}">
             </div>
         </div>
@@ -202,7 +203,7 @@
         <br>
     @else
         <div style="display: flex; flex-direction: row; gap: 8px;">
-            <div class="kartuhor">
+            <div id="kartu" class="kartuhor">
                 <table class="divhead">
                     <tr>
                         <td>
@@ -226,7 +227,8 @@
                     <tr>
                         <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Nama</td>
                         <td class="tdhor">:</td>
-                        <td class="tdhor" style="text-transform: uppercase; font-weight: bold;">JOHAN TONI WIJAYA</td>
+                        <td class="tdhor" style="text-transform: uppercase; font-weight: bold;">JOHAN TONI WIJAYA
+                        </td>
                     </tr>
     @endif
     @if ($kartu['nip'] == '1')
@@ -261,12 +263,44 @@
     </td>
     </tr>
     </table>
-    </div>
 
-    <div class="kartuhorback">
+    <div id="kartuback" class="kartuhorback">
         <img class="imglogohorback" src="{{ asset('assets/images/qrcode.png') }}" alt="">
     </div>
     @endif
+    </div>
+    <button id="unduh" style="padding: 8px; border-radius: 1rem;">Unduh gambar kartu</button>
 </body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="{{ asset('assets/js/html2canvas.min.js') }}"></script>
+<script>
+    $(function() {
+        $("#unduh").on('click', function() {
+            const a = html2canvas(document.getElementById("kartu")).then(function(canvas) {
+                const image1 = canvas.toDataURL("image/png", 1.0);
+                return image1
+            });
+
+            a.then(res => {
+                const b = html2canvas(document.getElementById("kartuback")).then(function(
+                    canvas) {
+                    const image2 = canvas.toDataURL("image/png", 1.0);
+                    return image2
+                });
+                b.then(test => {
+                    $.post("{{ route('layout.kartu.store.card') }}", {
+                        _token: "{{ csrf_token() }}",
+                        id: "{{ $kartu['id'] }}",
+                        image1: res,
+                        image2: test
+                    }, function(data) {
+                        console.log(data)
+                    })
+                })
+            })
+
+        })
+    })
+</script>
 
 </html>

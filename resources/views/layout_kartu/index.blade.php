@@ -94,7 +94,7 @@
                                                                             <button
                                                                                 data-modal-target="depan{{ $item['id'] }}"
                                                                                 data-modal-toggle="depan{{ $item['id'] }}">
-                                                                                <img src="{{ $item['front'] }}"
+                                                                                <img src="{{ env('APP_IMG', '') . $item['front'] }}"
                                                                                     class="w-12 h-12 rounded-lg"
                                                                                     alt="">
                                                                             </button>
@@ -102,31 +102,36 @@
                                                                             <button
                                                                                 data-modal-target="belakang{{ $item['id'] }}"
                                                                                 data-modal-toggle="belakang{{ $item['id'] }}">
-                                                                                <img src="{{ $item['back'] }}"
+                                                                                <img src="{{ env('APP_IMG', '') . $item['back'] }}"
                                                                                     class="w-12 h-12 rounded-lg"
                                                                                     alt="">
                                                                             </button>
                                                                             @include('partials.modals.layout_kartu.back_bg')
                                                                         </div>
                                                                     </td>
-                                                                    <td
-                                                                        class="px-6 py-4 dark:text-white text-center bg-gray-50 dark:bg-gray-800">
-                                                                        <div class="flex flex-row gap-3 justify-center">
-                                                                            <a target="__blank"
-                                                                                href="{{ route('layout.kartu.pdf', $item['id']) }}"
+                                                                    <td class="px-6 py-4">
+                                                                        <div
+                                                                            class="flex flex-row gap-3 justify-center items-center">
+
+                                                                            <button
+                                                                                data-modal-target="look{{ $item['id'] }}"
+                                                                                data-modal-toggle="look{{ $item['id'] }}"
                                                                                 class="text-black dark:text-white">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                    fill="none" viewBox="0 0 24 24"
-                                                                                    stroke-width="1.5" stroke="currentColor"
-                                                                                    class="w-6 h-6 hover:animate-spin">
-                                                                                    <path stroke-linecap="round"
-                                                                                        stroke-linejoin="round"
-                                                                                        d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                                                                                    <path stroke-linecap="round"
-                                                                                        stroke-linejoin="round"
-                                                                                        d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                                                                    class="w-6 h-6 hover:animate-spin"
+                                                                                    width="24" height="24"
+                                                                                    viewBox="0 0 24 24" fill="none"
+                                                                                    stroke="currentColor" stroke-width="2"
+                                                                                    stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    class="lucide lucide-eye">
+                                                                                    <path
+                                                                                        d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                                                                                    <circle cx="12" cy="12"
+                                                                                        r="3" />
                                                                                 </svg>
-                                                                            </a>
+                                                                            </button>
+                                                                            @include('layout_kartu.partials.view_card')
                                                                             <button
                                                                                 data-modal-target="update{{ $item['id'] }}"
                                                                                 data-modal-toggle="update{{ $item['id'] }}"

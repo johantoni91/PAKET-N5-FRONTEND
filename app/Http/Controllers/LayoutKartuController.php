@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\API\KartuApi;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
-use Dompdf\Dompdf;
 use helper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class LayoutKartuController extends Controller
@@ -58,21 +57,33 @@ class LayoutKartuController extends Controller
     public function store(Request $req)
     {
         try {
+            $this->validate($req, [
+                'icon'      => 'required',
+                'depan'     => 'required',
+                'belakang'  => 'required'
+            ]);
+            $filename_icon = 'icon_card_' . $req->title . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('icon')->getClientOriginalExtension();
+            $filename_depan = 'bg_front_card_' . $req->title . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('depan')->getClientOriginalExtension();
+            $filename_belakang = 'bg_back_card_' . $req->title . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('belakang')->getClientOriginalExtension();
+
             $input = [
                 'title'       => $req->title,
-                'icon'        => $req->file('icon'),
-                'depan'       => $req->file('depan'),
-                'belakang'    => $req->file('belakang'),
+                'icon'        => $filename_icon,
+                'depan'       => $filename_depan,
+                'belakang'    => $filename_belakang,
                 'profile'     => $req->profil,
                 'kategori'    => $req->kategori,
                 'orientation' => $req->orientasi,
-                'nama'        => $req->nama,
+                'nama'        => "1",
                 'nip'         => $req->nip,
                 'nrp'         => $req->nrp,
                 'golongan'    => $req->golongan,
                 'jabatan'     => $req->jabatan
             ];
-            $kartu = KartuApi::store($input, $req->file('icon')->getClientOriginalExtension(), $req->file('depan')->getClientOriginalExtension(), $req->file('belakang')->getClientOriginalExtension());
+            $req->file('icon')->move('kartu', $filename_icon);
+            $req->file('depan')->move('kartu', $filename_depan);
+            $req->file('belakang')->move('kartu', $filename_belakang);
+            $kartu = KartuApi::store($input);
             if ($kartu['status'] == false) {
                 Alert::error('Gagal', $kartu['message']);
                 return back();
@@ -80,7 +91,7 @@ class LayoutKartuController extends Controller
             Alert::success('Berhasil', 'Kartu telah ditambahkan');
             return redirect()->route('layout.kartu');
         } catch (\Throwable $th) {
-            Alert::error('Gagal', 'Kartu gagal ditambahkan', $th->getMessage());
+            Alert::error('Gagal', $th->getMessage());
             return back();
         }
     }
@@ -88,9 +99,16 @@ class LayoutKartuController extends Controller
     public function update(Request $req, $id)
     {
         try {
+            $kartu = Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/kartu' . '/' . $id)->json()['data'];
+            $filename_icon = '';
+            if ($req->hasFile('icon')) {
+                $filename_icon = 'icon_card_' . $req->title . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('icon')->getClientOriginalExtension();
+                unlink(public_path('kartu/' . $kartu['icon']));
+                $req->file('icon')->move('kartu', $filename_icon);
+            }
             $input = [
                 'title'       => $req->title,
-                'icon'        => $req->file('icon'),
+                'icon'        => $filename_icon == '' ? $kartu['icon'] : $filename_icon,
                 'profile'     => $req->profil,
                 'kategori'    => $req->kategori,
                 'orientation' => $req->orientation,
@@ -99,14 +117,13 @@ class LayoutKartuController extends Controller
                 'golongan'    => $req->golongan,
                 'jabatan'     => $req->jabatan
             ];
-            $ext_icon  = $req->hasFile('icon') ? $req->file('icon')->getClientOriginalExtension() : null;
-            $kartu = KartuApi::update($id, $input, $ext_icon);
+            $kartu = KartuApi::update($id, $input);
             if ($kartu['status'] == true) {
                 Alert::success('Berhasil', 'Kartu telah diubah');
                 return back();
             }
         } catch (\Throwable $th) {
-            Alert::error('Gagal', 'Kartu gagal diubah', $th->getMessage());
+            Alert::error('Gagal', 'Kartu gagal diubah');
             return back();
         }
     }
@@ -114,18 +131,18 @@ class LayoutKartuController extends Controller
     public function frontBg(Request $req, $id)
     {
         try {
+            $this->validate($req, [
+                'depan'     => 'required'
+            ]);
             $kartu = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/kartu' . '/' . $id)->json()['data'];
-            $res = Http::withToken(Session::get('data')['token'])
-                ->attach('front', file_get_contents($req->file('depan')), 'bg_front_card_' . $kartu['title'] . '_' .
-                    Carbon::now()->format('dmYhis') . '.' . $req->file('depan')->getClientOriginalExtension())
-                ->post(env('API_URL', '') . '/kartu' . '/' . $id . '/front')->json();
-            if ($res['status'] == true) {
-                Alert::success('Berhasil', 'Latar depan telah diubah');
-                return back();
-            } else {
-                Alert::error('Gagal', $res['error']);
-                return back();
-            }
+            unlink(public_path('kartu/' . $kartu['front']));
+
+            $filename_depan = 'bg_front_card_' . $req->title . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('depan')->getClientOriginalExtension();
+            $req->file('depan')->move('kartu', $filename_depan);
+
+            Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . '/kartu' . '/' . $id . '/front', ["front" => $filename_depan])->json();
+            Alert::success('Berhasil', 'Latar depan telah diubah');
+            return back();
         } catch (\Throwable $th) {
             Alert::error('Gagal', $th->getMessage());
             return back();
@@ -135,15 +152,18 @@ class LayoutKartuController extends Controller
     public function backBg(Request $req, $id)
     {
         try {
+            $this->validate($req, [
+                'belakang'  => 'required'
+            ]);
             $kartu = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/kartu' . '/' . $id)->json()['data'];
-            $res = Http::withToken(Session::get('data')['token'])->attach('back', file_get_contents($req->file('belakang')), 'bg_front_card_' . $kartu['title'] . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('belakang')->getClientOriginalExtension())->post(env('API_URL', '') . '/kartu' . '/' . $id . '/back')->json();
-            if ($res['status'] == true) {
-                Alert::success('Berhasil', 'Latar belakang telah diubah');
-                return back();
-            } else {
-                Alert::error('Gagal', $res['error']);
-                return back();
-            }
+            unlink(public_path('kartu/' . $kartu['back']));
+
+            $filename_belakang = 'bg_back_card_' . $req->title . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('belakang')->getClientOriginalExtension();
+            $req->file('depan')->move('kartu', $filename_belakang);
+
+            Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . '/kartu' . '/' . $id . '/back', ['back' => $filename_belakang])->json();
+            Alert::success('Berhasil', 'Latar belakang telah diubah');
+            return back();
         } catch (\Throwable $th) {
             Alert::error('Gagal', $th->getMessage());
             return back();
@@ -153,12 +173,16 @@ class LayoutKartuController extends Controller
     public function destroy($id)
     {
         try {
-            $kartu = KartuApi::destroy($id);
-            if ($kartu['status'] == true) {
+            $kartu = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/kartu' . '/' . $id)->json()['data'];
+            unlink(public_path('kartu/' . $kartu['icon']));
+            unlink(public_path('kartu/' . $kartu['front']));
+            unlink(public_path('kartu/' . $kartu['back']));
+            $hapus = KartuApi::destroy($id);
+            if ($hapus['status'] == true) {
                 Alert::success('Berhasil', 'Kartu berhasil dihapus');
                 return back();
             } else {
-                Alert::error('Terjadi kesalahan', $kartu->json()['error']);
+                Alert::error('Terjadi kesalahan', $hapus->json()['error']);
                 return back();
             }
         } catch (\Throwable $th) {
@@ -186,8 +210,32 @@ class LayoutKartuController extends Controller
     {
         $kartu = KartuApi::find($id)['data'];
         return view('layout_kartu.pdf', ['kartu' => $kartu]);
-        // $pdf = Pdf::loadView('layout_kartu.pdf', ['kartu' => $kartu]);
-        // return $pdf->download('Kartu_' . $kartu['title'] . '.pdf');
+    }
+
+    public function storeCard(Request $req)
+    {
+        try {
+            $var = json_encode([
+                'depan'     => $req->image1,
+                'belakang'  => $req->image2
+            ]);
+            $kartu = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/kartu' . '/' . $req->id . '/card', ['card' => $var])->json();
+            if ($kartu['status'] == true) {
+                return response()->json([
+                    'message' => 'Kartu berhasil disimpan',
+                    'kartu'   => $kartu['data']
+                ], 200);
+            } else {
+                return response()->json([
+                    'message' => 'Kartu gagal disimpan',
+                    'error'   => $kartu['message']
+                ], 400);
+            }
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => $th->getMessage()
+            ], 400);
+        }
     }
 
     public function resultCard(Request $req)
