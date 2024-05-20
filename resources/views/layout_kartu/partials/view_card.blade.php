@@ -147,7 +147,7 @@
 </style>
 <div id="look{{ $item['id'] }}" tabindex="-1" aria-hidden="true"
     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative p-4 w-full max-w-2xl max-h-full">
+    <div class="relative p-4 w-full max-w-4xl max-h-full">
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <!-- Modal header -->
@@ -168,7 +168,7 @@
             </div>
             <!-- Modal body -->
             <div class="overflow-x-scroll p-4 md:p-5 space-y-4">
-                <div class="flex flex-row justify-center items-center-gap-2">
+                <div class="flex flex-row gap-3 justify-center items-center">
                     @if ($item['orientation'] == '0')
                         <div style="display: flex; flex-direction: row; gap: 8px;">
                             <div id="kartu" class="kartuver">
@@ -221,111 +221,111 @@
 
                         <br>
                     @else
-                        <div style="display: flex; flex-direction: row; gap: 8px;">
-                            <div id="kartu" class="kartuhor">
-                                <table class="divhead">
+                        <div id="kartu" class="kartuhor">
+                            <table class="divhead">
+                                <tr>
+                                    <td>
+                                        <img class="imglogohor" width="50" height="50"
+                                            src="{{ env('APP_IMG', '') . $item['icon'] }}">
+                                    </td>
+                                    <td class="divheadtd"
+                                        style="font-size: 9px; text-transform: uppercase; font-weight: bold;">
+                                        KEJAKSAAN
+                                        NEGERI KABUPATEN PROBOLINGGO</td>
+                                </tr>
+                            </table>
+                            <table class="divhead">
+                                <tr>
+                                    <td rowspan="6">
+                                        @if ($item['profile'] == '1')
+                                            <img class="imghor" src="{{ asset('assets/images/5856.jpg') }}">
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($item['nama'] == '1')
+                                <tr>
+                                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Nama</td>
+                                    <td class="tdhor">:</td>
+                                    <td class="tdhor" style="text-transform: uppercase; font-weight: bold;">JOHAN
+                                        TONI
+                                        WIJAYA
+                                    </td>
+                                </tr>
+                                @if ($item['nip'] == '1')
                                     <tr>
-                                        <td>
-                                            <img class="imglogohor"
-                                                src="https://kejari-batanghari.kejaksaan.go.id/wp-content/uploads/2022/06/RI.png">
-                                        </td>
-                                        <td class="divheadtd"
-                                            style="font-size: 9px; text-transform: uppercase; font-weight: bold;">
-                                            KEJAKSAAN
-                                            NEGERI KABUPATEN PROBOLINGGO</td>
-                                    </tr>
-                                </table>
-                                <table class="divhead">
-                                    <tr>
-                                        <td rowspan="6">
-                                            @if ($item['profile'] == '1')
-                                                <img class="imghor"
-                                                    src="https://spmb.stis.ac.id/images/pasfoto-2-color.jpg">
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if ($item['nama'] == '1')
-                                    <tr>
-                                        <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Nama</td>
+                                        <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NIP</td>
                                         <td class="tdhor">:</td>
-                                        <td class="tdhor" style="text-transform: uppercase; font-weight: bold;">JOHAN
-                                            TONI
-                                            WIJAYA
-                                        </td>
+                                        <td class="tdhor">199909092022011001</td>
                                     </tr>
+                                @endif
+                                @if ($item['nrp'] == '1')
+                                    <tr>
+                                        <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NRP</td>
+                                        <td class="tdhor">:</td>
+                                        <td class="tdhor">00234577</td>
+                                    </tr>
+                                @endif
+                                @if ($item['golongan'] == '1')
+                                    <tr>
+                                        <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Gol</td>
+                                        <td class="tdhor">:</td>
+                                        <td class="tdhor">Penata Muda (III/a)</td>
+                                    </tr>
+                                @endif
+                                @if ($item['jabatan'] == '1')
+                                    <tr>
+                                        <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Jabatan</td>
+                                        <td class="tdhor">:</td>
+                                        <td class="tdhor" style="line-height: 1;text-align: left;">Analis Pengelolaan
+                                            Keuangan Apbn Ahli
+                                            Pertama pada Kejaksaan
+                                            Negeri
+                                            Kabupaten
+                                            Probolinggo</td>
+                                    </tr>
+                                @endif
+                                </td>
+                                </tr>
+                            </table>
+                        </div>
                     @endif
-                    @if ($item['nip'] == '1')
-                        <tr>
-                            <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NIP</td>
-                            <td class="tdhor">:</td>
-                            <td class="tdhor">199909092022011001</td>
-                        </tr>
-                    @endif
-                    @if ($item['nrp'] == '1')
-                        <tr>
-                            <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NRP</td>
-                            <td class="tdhor">:</td>
-                            <td class="tdhor">00234577</td>
-                        </tr>
-                    @endif
-                    @if ($item['golongan'] == '1')
-                        <tr>
-                            <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Gol</td>
-                            <td class="tdhor">:</td>
-                            <td class="tdhor">Penata Muda (III/a)</td>
-                        </tr>
-                    @endif
-                    @if ($item['jabatan'] == '1')
-                        <tr>
-                            <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Jabatan</td>
-                            <td class="tdhor">:</td>
-                            <td class="tdhor">Analis Pengelolaan Keuangan Apbn Ahli Pertama pada Kejaksaan Negeri
-                                Kabupaten
-                                Probolinggo</td>
-                        </tr>
-                    @endif
-                    </td>
-                    </tr>
-                    </table>
-
                     <div id="kartuback" class="kartuhorback">
                         <img class="imglogohorback" src="{{ asset('assets/images/qrcode.png') }}" alt="">
                     </div>
                     @endif
                 </div>
+                <button id="unduh" class="bg-slate-200 p-2 rounded-lg mb-3 dark:bg-black dark:text-white">Siap untuk
+                    pengajuan</button>
             </div>
-            <button id="unduh" class="bg-slate-200 p-2 rounded-lg mb-3 dark:bg-black dark:text-white">Siap untuk
-                pengajuan</button>
         </div>
-    </div>
-    <script>
-        $(function() {
-            $("#unduh").on('click', function() {
-                const a = html2canvas(document.getElementById("kartu")).then(function(canvas) {
-                    const image1 = canvas.toDataURL("image/png", 1.0);
-                    return image1
-                });
-
-                a.then(res => {
-                    const b = html2canvas(document.getElementById("kartuback")).then(function(
-                        canvas) {
-                        const image2 = canvas.toDataURL("image/png", 1.0);
-                        return image2
+        <script>
+            $(function() {
+                $("#unduh").on('click', function() {
+                    const a = html2canvas(document.getElementById("kartu")).then(function(canvas) {
+                        const image1 = canvas.toDataURL("image/png", 1.0);
+                        return image1
                     });
-                    b.then(test => {
-                        $.post("{{ route('layout.kartu.store.card') }}", {
-                            _token: "{{ csrf_token() }}",
-                            id: "{{ $item['id'] }}",
-                            image1: res,
-                            image2: test
-                        }, function(data) {
-                            console.log(data)
+
+                    a.then(res => {
+                        const b = html2canvas(document.getElementById("kartuback")).then(function(
+                            canvas) {
+                            const image2 = canvas.toDataURL("image/png", 1.0);
+                            return image2
+                        });
+                        b.then(test => {
+                            $.post("{{ route('layout.kartu.store.card') }}", {
+                                _token: "{{ csrf_token() }}",
+                                id: "{{ $item['id'] }}",
+                                image1: res,
+                                image2: test
+                            }, function(data) {
+                                console.log(data)
+                            })
                         })
                     })
-                })
 
+                })
             })
-        })
-    </script>
-</div>
+        </script>
+    </div>
 </div>

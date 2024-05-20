@@ -112,7 +112,6 @@
                                                                     <td class="px-6 py-4">
                                                                         <div
                                                                             class="flex flex-row gap-3 justify-center items-center">
-
                                                                             <button
                                                                                 data-modal-target="look{{ $item['id'] }}"
                                                                                 data-modal-toggle="look{{ $item['id'] }}"
