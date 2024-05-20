@@ -1,150 +1,3 @@
-<style>
-    .kartuver {
-        height: 321.26px;
-        width: 203.72px;
-        border: 0.5px solid #4CAF50;
-        border-radius: 8px;
-        text-wrap: pretty;
-        background-image: url({{ env('APP_IMG', '') . $item['front'] }});
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    .kartuverback {
-        position: relative;
-        height: 321.26px;
-        width: 203.72px;
-        border: 0.5px solid #4CAF50;
-        border-radius: 8px;
-        text-wrap: pretty;
-        background-image: url({{ env('APP_IMG', '') . $item['back'] }});
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    .imglogover {
-        width: 45px;
-        height: 45px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 10px;
-    }
-
-    .imglogoverback {
-        width: 80px;
-        height: 80px;
-        display: block;
-        position: absolute;
-        left: 60px;
-        top: 115px;
-    }
-
-    .imgver {
-        width: 75.6px;
-        height: 113.39px;
-        display: block;
-        border-radius: 6px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .tablever {
-        width: 150px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .tdver {
-        width: 150px;
-        font-size: 9px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .kartuhor {
-        width: 321.26px;
-        height: 203.72px;
-        border: 0.5px solid #4CAF50;
-        border-radius: 8px;
-        text-wrap: pretty;
-        background-image: url({{ env('APP_IMG', '') . $item['front'] }});
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    .kartuhorback {
-        position: relative;
-        width: 321.26px;
-        height: 203.72px;
-        border: 0.5px solid #4CAF50;
-        border-radius: 8px;
-        text-wrap: pretty;
-        background-image: url({{ env('APP_IMG', '') . $item['back'] }});
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    .divhead {
-        padding: 5px;
-        width: 300px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .divheadtd {
-        width: 300px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .imglogohor {
-        width: 45px;
-        height: 45px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .imglogohorback {
-        width: 100px;
-        height: 100px;
-        display: block;
-        position: absolute;
-        left: 110px;
-        top: 50px;
-    }
-
-    .imghor {
-        width: 75.6px;
-        height: 113.39px;
-        display: block;
-        border-radius: 6px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .tablehor {
-        width: 150px;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .tdhor {
-        vertical-align: text-top;
-        text-align: justify;
-        font-size: 9px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-</style>
 <div id="look{{ $item['id'] }}" tabindex="-1" aria-hidden="true"
     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full max-w-4xl max-h-full">
@@ -168,10 +21,145 @@
             </div>
             <!-- Modal body -->
             <div class="overflow-x-scroll p-4 md:p-5 space-y-4">
+                <style>
+                    .kartuver {
+                        height: 321.26px;
+                        width: 203.72px;
+                        border: 0.5px solid #4CAF50;
+                        border-radius: 8px;
+                        text-wrap: pretty;
+                    }
+
+                    .kartuverback {
+                        position: relative;
+                        height: 321.26px;
+                        width: 203.72px;
+                        border: 0.5px solid #4CAF50;
+                        border-radius: 8px;
+                        text-wrap: pretty;
+                    }
+
+                    .imglogover {
+                        width: 45px;
+                        height: 45px;
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                        margin-top: 10px;
+                    }
+
+                    .imglogoverback {
+                        width: 80px;
+                        height: 80px;
+                        display: block;
+                        position: absolute;
+                        left: 60px;
+                        top: 115px;
+                    }
+
+                    .imgver {
+                        width: 75.6px;
+                        height: 113.39px;
+                        display: block;
+                        border-radius: 6px;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+
+                    .tablever {
+                        width: 150px;
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+
+                    .tdver {
+                        width: 150px;
+                        font-size: 9px;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+
+                    .kartuhor {
+                        width: 321.26px;
+                        height: 203.72px;
+                        border: 0.5px solid #4CAF50;
+                        border-radius: 8px;
+                        text-wrap: pretty;
+                    }
+
+                    .kartuhorback {
+                        position: relative;
+                        width: 321.26px;
+                        height: 203.72px;
+                        border: 0.5px solid #4CAF50;
+                        border-radius: 8px;
+                        text-wrap: pretty;
+                    }
+
+                    .divhead {
+                        padding: 5px;
+                        width: 300px;
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+
+                    .divheadtd {
+                        width: 300px;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+
+                    .imglogohor {
+                        width: 45px;
+                        height: 45px;
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+
+                    .imglogohorback {
+                        width: 100px;
+                        height: 100px;
+                        display: block;
+                        position: absolute;
+                        left: 110px;
+                        top: 50px;
+                    }
+
+                    .imghor {
+                        width: 75.6px;
+                        height: 113.39px;
+                        display: block;
+                        border-radius: 6px;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+
+                    .tablehor {
+                        width: 150px;
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+
+                    .tdhor {
+                        vertical-align: text-top;
+                        text-align: justify;
+                        font-size: 9px;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+                </style>
                 <div class="flex flex-row gap-3 justify-center items-center">
                     @if ($item['orientation'] == '0')
                         <div style="display: flex; flex-direction: row; gap: 8px;">
-                            <div id="kartu" class="kartuver">
+                            <div id="kartu" class="kartuver"
+                                style="background-image: url({{ env('APP_IMG', '') . $item['front'] }});
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            background-size: cover;">
                                 <img class="imglogover" src="{{ env('APP_IMG', '') . $item['icon'] }}">
                                 <p
                                     style="font-size: 9px; text-transform: uppercase; font-weight: bold; text-align: center;">
@@ -214,14 +202,22 @@
                                 @endif
                             </div>
 
-                            <div id="kartuback" class="kartuverback">
+                            <div id="kartuback" class="kartuverback"
+                                style="background-image: url({{ env('APP_IMG', '') . $item['back'] }});
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            background-size: cover;">
                                 <img class="imglogoverback" src="{{ asset('assets/images/qrcode.png') }}">
                             </div>
                         </div>
 
                         <br>
                     @else
-                        <div id="kartu" class="kartuhor">
+                        <div id="kartu" class="kartuhor"
+                            style="background-image: url({{ env('APP_IMG', '') . $item['front'] }});
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;">
                             <table class="divhead">
                                 <tr>
                                     <td>
@@ -289,7 +285,11 @@
                             </table>
                         </div>
                     @endif
-                    <div id="kartuback" class="kartuhorback">
+                    <div id="kartuback" class="kartuhorback"
+                        style="background-image: url({{ env('APP_IMG', '') . $item['back'] }});
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;">
                         <img class="imglogohorback" src="{{ asset('assets/images/qrcode.png') }}" alt="">
                     </div>
                     @endif
