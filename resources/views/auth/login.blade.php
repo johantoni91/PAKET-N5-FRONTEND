@@ -441,59 +441,65 @@
     </style>
     <div class="relative flex flex-col justify-center min-h-screen overflow-hidden">
         <div class="stars" style="z-index: -1">
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
-            <div class="star bg-orange-800 text-orange dark:bg-white text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+            <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+        </div>
+        <div class="absolute top-5 right-5 text-cyan-700 dark:text-yellow">
+            <button id="toggle-theme" class="flex rounded-full md:me-0 relative">
+                <span data-lucide="moon" class="top-icon w-8 h-8 dark"></span>
+                <span data-lucide="sun" class="top-icon w-8 h-8 light hidden"></span>
+            </button>
         </div>
         <div
-            class="w-[80%] m-auto bg-white dark:bg-slate-800/60 rounded shadow-lg ring-2 ring-slate-300/50 dark:ring-slate-700/50 sm:max-w-md">
+            class="w-[80%] m-auto bg-slate-100/60 dark:bg-slate-800/60 rounded shadow-lg ring-2 ring-slate-300/50 dark:ring-slate-700/50 sm:max-w-md">
             <div class="text-center p-6 bg-slate-900 rounded-t">
                 <a href="{{ route('login') }}"><img src="assets/images/kejaksaan-logo.png" alt=""
                         class="w-20 h-20 mx-auto mb-2"></a>
@@ -534,8 +540,8 @@
                 </div>
             </form>
             <!-- <p class="mb-5 text-sm font-medium text-center text-slate-500"> Don't have an account? <a href="auth-register.html"
-                                                                                                                                    class="font-medium text-brand-500 hover:underline">Sign up</a>
-                                                                                                                                </p> -->
+                                                                                                                                                                                        class="font-medium text-brand-500 hover:underline">Sign up</a>
+                                                                                                                                                                                    </p> -->
         </div>
     </div>
 @endsection
