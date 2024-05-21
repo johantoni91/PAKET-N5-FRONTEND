@@ -30,9 +30,9 @@
                             class="{{ $item['foto_pegawai'] ? 'dark:shadow dark:shadow-blue-300' : '' }} mx-auto h-56 w-56 rounded-full inline-block justify-center my-3">
                         <input type="file" name="foto_pegawai" id="photo" accept="image/*"
                             class="{{ $item['foto_pegawai'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50 dark:text-black' }} mx-auto text-sm block w-auto border border-gray-300 rounded-lg dark:border-gray-500"
-                            onchange="update(event)">
+                            onchange="update{{ $item['id'] }}(event)">
                         <script>
-                            var update = function(event) {
+                            var update{{ $item['id'] }} = function(event) {
                                 var foto = document.getElementById("foto{{ $item['nip'] ?? $item['nrp'] }}");
                                 foto.src = URL.createObjectURL(event.target.files[0]);
                                 foto.onload = function() {
