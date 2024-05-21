@@ -19,7 +19,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
 @vite('resources/css/app.css')
 
-<body data-sidebar-size="default" data-theme-layout="vertical">
+<body data-sidebar-size="default" data-theme-layout="vertical" class="relative" style="height: 100dvh">
     @include('sweetalert::alert')
     @yield('kiosk')
     @if (!request()->routeIs('kios.dashboard') && !request()->routeIs('kios'))
@@ -40,7 +40,6 @@
     <script src="{{ asset('assets/libs/flatpickr/flatpickr.min.js') }}"></script>
     <script src="{{ asset('assets/libs/@frostui/tailwindcss/frostui.js') }}"></script>
     <script src="{{ asset('assets/libs/prismjs/prism.js') }}"></script>
-    <script src="{{ asset('assets/js/app.js') }}"></script>
 </body>
 
 </html>

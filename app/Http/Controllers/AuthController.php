@@ -48,7 +48,7 @@ class AuthController extends Controller
                 return view('errors.500');
             }
 
-            if (Session::has('user')) {
+            if (Session::has('data') || Session::has('pegawai')) {
                 return redirect()->route('dashboard');
             }
 

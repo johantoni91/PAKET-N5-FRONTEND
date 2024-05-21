@@ -54,20 +54,23 @@
                                                         </thead>
                                                         <tbody>
                                                             @foreach ($data as $item)
-                                                                <form action="{{ route('akses.update', $item['id']) }}"
-                                                                    method="post">
-                                                                    @csrf
-                                                                    @php
-                                                                        $val = $item['route'];
-                                                                        $route = null;
-                                                                        if ($val) {
-                                                                            $route = json_decode($item['route'], true);
-                                                                        } else {
+                                                                <tr
+                                                                    class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                                                    <form action="{{ route('akses.update', $item['id']) }}"
+                                                                        method="post">
+                                                                        @csrf
+                                                                        @php
+                                                                            $val = $item['route'];
                                                                             $route = null;
-                                                                        }
-                                                                    @endphp
-                                                                    <tr
-                                                                        class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                                                            if ($val) {
+                                                                                $route = json_decode(
+                                                                                    $item['route'],
+                                                                                    true,
+                                                                                );
+                                                                            } else {
+                                                                                $route = null;
+                                                                            }
+                                                                        @endphp
                                                                         <td class="px-6 py-4 dark:text-white text-center">
                                                                             {{ $item['role'] }}
                                                                         </td>
@@ -177,8 +180,7 @@
                                                                                 </div>
                                                                                 <div
                                                                                     class="flex flex-row gap-1 items-center">
-                                                                                    <input type="checkbox"
-                                                                                        {{ session('data')['roles'] == 'superadmin' ? 'checked' : '' }}name="roles[]"
+                                                                                    <input type="checkbox" name="roles[]"
                                                                                         id="hak_akses{{ $item['id'] }}"
                                                                                         value="akses"
                                                                                         {{ $route == null ? '' : (in_array('akses', $route) ? 'checked' : '') }}
@@ -232,8 +234,8 @@
                                                                                 </button>
                                                                             </div>
                                                                         </td>
-                                                                    </tr>
-                                                                </form>
+                                                                    </form>
+                                                                </tr>
                                                             @endforeach
                                                         </tbody>
                                                     </table>

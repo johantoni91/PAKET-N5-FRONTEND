@@ -77,7 +77,7 @@
                                 <h3
                                     class="flex flex-col justify-start text-start text-lg font-semibold text-gray-900 dark:text-white">
                                     Menunggu persetujuan dari
-                                    {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 4) . '/code')->json()['data']['satker_name'] }}
+                                    {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 4) . '/code')->json()['data']['satker_name'] }}
                                 </h3>
                             </li>
                         @elseif ($item['status'] == '1' && $item['approve_satker'] == '2')
@@ -94,7 +94,7 @@
                                 </span>
                                 <h3
                                     class="flex flex-col justify-start text-start text-lg font-semibold text-gray-900 dark:text-white">
-                                    {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 4) . '/code')->json()['data']['satker_name'] }}
+                                    {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 4) . '/code')->json()['data']['satker_name'] }}
                                     setuju
                                     <span
                                         class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 w-48">{{ date('d M Y H:i:s', strtotime($item['updated_at'])) }}
@@ -114,7 +114,7 @@
                                 <h3
                                     class="flex flex-col justify-start text-start text-lg font-semibold text-gray-900 dark:text-white">
                                     Menunggu persetujuan dari
-                                    {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 2) . '/code')->json()['data']['satker_name'] }}
+                                    {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 2) . '/code')->json()['data']['satker_name'] }}
                                 </h3>
                             </li>
                         @elseif ($item['status'] == '2')
@@ -131,7 +131,7 @@
                                 </span>
                                 <h3
                                     class="flex flex-col justify-start text-start text-lg font-semibold text-gray-900 dark:text-white">
-                                    {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 4) . '/code')->json()['data']['satker_name'] }}
+                                    {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 4) . '/code')->json()['data']['satker_name'] }}
                                     setuju
                                     <span
                                         class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 w-48">{{ date('d M Y H:i:s', strtotime($item['updated_at'])) }}
@@ -151,7 +151,7 @@
                                 </span>
                                 <h3
                                     class="flex flex-col justify-start text-start text-lg font-semibold text-gray-900 dark:text-white">
-                                    {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 2) . '/code')->json()['data']['satker_name'] }}
+                                    {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 2) . '/code')->json()['data']['satker_name'] }}
                                     setuju
                                     <span
                                         class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 w-48">{{ date('d M Y H:i:s', strtotime($item['updated_at'])) }}
@@ -171,7 +171,7 @@
                                 <h3
                                     class="flex flex-col justify-start text-start text-lg font-semibold text-gray-900 dark:text-white">
                                     Menunggu persetujuan dari
-                                    {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker/00/code')->json()['data']['satker_name'] }}
+                                    {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker/00/code')->json()['data']['satker_name'] }}
                                 </h3>
                             </li>
                         @elseif ($item['status'] == '3')
@@ -188,7 +188,7 @@
                                 </span>
                                 <h3
                                     class="flex flex-col justify-start text-start text-lg font-semibold text-gray-900 dark:text-white">
-                                    {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 4) . '/code')->json()['data']['satker_name'] }}
+                                    {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 4) . '/code')->json()['data']['satker_name'] }}
                                     setuju
                                     <span
                                         class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 w-48">{{ date('d M Y H:i:s', strtotime($item['updated_at'])) }}
@@ -208,7 +208,7 @@
                                 </span>
                                 <h3
                                     class="flex flex-col justify-start text-start text-lg font-semibold text-gray-900 dark:text-white">
-                                    {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 2) . '/code')->json()['data']['satker_name'] }}
+                                    {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 2) . '/code')->json()['data']['satker_name'] }}
                                     setuju
                                     <span
                                         class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 w-48">{{ date('d M Y H:i:s', strtotime($item['updated_at'])) }}
@@ -228,7 +228,7 @@
                                 </span>
                                 <h3
                                     class="flex flex-col justify-start text-start text-lg font-semibold text-gray-900 dark:text-white">
-                                    {{ Illuminate\Support\Facades\Http::withToken(App\Helpers\profile::getToken())->get(env('API_URL', '') . '/satker/00/code')->json()['data']['satker_name'] }}
+                                    {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker/00/code')->json()['data']['satker_name'] }}
                                     setuju
                                     <div class="flex flex-row gap-2">
                                         <span

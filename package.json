@@ -29,6 +29,7 @@
         "html-to-image": "^1.11.11",
         "jspdf": "^2.5.1",
         "puppeteer": "^22.8.0",
+        "quagga": "^0.12.1",
         "socket.io": "^4.7.5",
         "sweetalert2": "^11.10.5"
     }

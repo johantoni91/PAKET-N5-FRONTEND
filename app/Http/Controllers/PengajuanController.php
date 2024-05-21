@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\API\KartuApi;
 use helper;
-use App\Helpers\profile;
 use App\API\PengajuanApi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -55,6 +54,7 @@ class PengajuanController extends Controller
             Alert::success('Berhasil', 'Pengajuan berhasil dikirim');
             return back();
         } else {
+            dd($pengajuan);
             Alert::error('Gagal', 'Pengajuan gagal dikirim');
             return back();
         }

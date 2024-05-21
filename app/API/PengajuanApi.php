@@ -4,6 +4,7 @@ namespace App\API;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class PengajuanApi
 {
@@ -35,7 +36,16 @@ class PengajuanApi
 
     public static function approve($id)
     {
-        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . self::$path . '/' . $id . '/approve' . '/' . Session::get('data')['satker'])->json();
+        $token = session('data')['token'] ? mt_rand() : '';
+        $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+        return Http::withToken(Session::get('data')['token'])->post(
+            env('API_URL', '') . self::$path . '/' . $id . '/approve' . '/' . Session::get('data')['satker'],
+            [
+                'token'   => $token,
+                'barcode' => session('data')['satker'] == '00' ? 'data:image/png;base64,' . base64_encode($generator->getBarcode($token, $generator::TYPE_CODE_128)) : null,
+                'qrCode'  => session('data')['satker'] == '00' ? 'data:image/png;base64,' . base64_encode(QrCode::format('png')->size(300)->merge(public_path('assets/images/favicon.ico'), 0.5, true)->generate($token)) : null
+            ]
+        )->json();
     }
 
     public static function reject($id)

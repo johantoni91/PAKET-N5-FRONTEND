@@ -44,7 +44,8 @@ class KiosController extends Controller
     function tokenPage()
     {
         try {
-            return view('kiosK.token');
+            $satker = Http::withToken(session('kios')['serial_number'])->get(env('API_URL', '') . '/satker' . '/' . session('kios')['id_satker'] . '/code-kios')->json()['data'];
+            return view('kiosK.token', compact('satker'));
         } catch (\Throwable $th) {
             Session::forget('kios');
             return redirect()->route('kios');
@@ -59,7 +60,8 @@ class KiosController extends Controller
                 Alert::warning('Peringatan', 'Token yang anda masukkan salah!');
                 return back();
             }
-            return redirect()->route('kios.verifikasi', [$req->token]);
+            Alert::success('Pemberitahuan', 'Kartu atas nama ' . $check['data']['nama'] . ' sedang dicetak.');
+            return back();
         } catch (\Throwable $th) {
             Alert::error('Peringatan', $th->getMessage());
             return back();

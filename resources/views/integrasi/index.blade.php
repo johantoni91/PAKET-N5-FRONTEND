@@ -30,7 +30,6 @@
             <div class="xl:w-full  min-h-[calc(100vh-138px)] relative pb-14">
                 <div class="xl:w-full  min-h-[calc(100vh-138px)] relative pb-14">
                     <div class="grid md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4 mb-4">
-
                         <div class="sm:col-span-12  md:col-span-12 lg:col-span-12 xl:col-span-12 xl:col-start-0 ">
                             <div
                                 class="bg-white dark:bg-gray-900 border border-slate-200 dark:border-slate-700/40  rounded-md w-full relative mb-4">

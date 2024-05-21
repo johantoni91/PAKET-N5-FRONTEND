@@ -1,6 +1,5 @@
 @extends('kiosK.partials.main')
 @section('kiosk')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
     <div
         class="bg-slate-200 flex flex-col gap-5 justify-center items-center"style="width: 100dvw; height:100dvh; background-position: center; background-repeat: no-repeat; background-size: cover; background-image: url({{ asset('assets/images/bg-kios.jpg') }});">
         <form action="{{ route('kios.verifikasi', [$token]) }}" method="post" enctype="multipart/form-data">
