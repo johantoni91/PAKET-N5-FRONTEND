@@ -30,16 +30,7 @@
                             class="{{ $item['foto_pegawai'] ? 'dark:shadow dark:shadow-blue-300' : '' }} mx-auto h-56 w-56 rounded-full inline-block justify-center my-3">
                         <input type="file" name="foto_pegawai" id="photo" accept="image/*"
                             class="{{ $item['foto_pegawai'] ? 'bg-blue-300 dark:bg-blue-300 dark:text-black' : 'bg-gray-50 dark:text-black' }} mx-auto text-sm block w-auto border border-gray-300 rounded-lg dark:border-gray-500"
-                            onchange="update{{ $item['id'] }}(event)">
-                        <script>
-                            var update{{ $item['id'] }} = function(event) {
-                                var foto = document.getElementById("foto{{ $item['nip'] ?? $item['nrp'] }}");
-                                foto.src = URL.createObjectURL(event.target.files[0]);
-                                foto.onload = function() {
-                                    URL.revokeObjectURL(foto.src)
-                                }
-                            };
-                        </script>
+                            onchange="update{{ $item['nip'] ?? $item['nrp'] }}(event)">
                     </div>
                     <div class="mb-3">
                         <label for="nama"
@@ -98,7 +89,7 @@
                                     value="Berkepercayaan kepada Tuhan Yang Maha Esa (lain-lain)">Berkepercayaan kepada
                                     Tuhan Yang Maha Esa (lain-lain)
                                 </option>
-                                <option {{ $item['agama'] == null ? 'selected' : '' }}>Ateis
+                                <option {{ $item['agama'] == null ? 'selected' : '' }}>Belum pilih agama
                                 </option>
                             </select>
                         </div>
@@ -190,3 +181,12 @@
         </form>
     </div>
 </div>
+<script>
+    var update{{ $item['nip'] ?? $item['nrp'] }} = function(event) {
+        var foto = document.getElementById("foto{{ $item['nip'] ?? $item['nrp'] }}");
+        foto.src = URL.createObjectURL(event.target.files[0]);
+        foto.onload = function() {
+            URL.revokeObjectURL(foto.src)
+        }
+    };
+</script>
