@@ -23,7 +23,8 @@
     @include('sweetalert::alert')
     @yield('kiosk')
     @if (!request()->routeIs('kios.dashboard') && !request()->routeIs('kios'))
-        <a href="{{ route('kios.dashboard') }}" class="absolute p-2 rounded-lg border bottom-5 right-5">
+        <a href="{{ route('kios.dashboard') }}"
+            class="absolute p-2 rounded-lg bottom-5 right-5 bg-gradient-to-br from-blue-600 via-sky-600 to-emerald-700 mix-blend-color-normal">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-arrow-big-left">

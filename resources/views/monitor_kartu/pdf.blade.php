@@ -1,209 +1,304 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="{{ $pegawai['foto_pegawai'] }}" />
-    <title>Kartu {{ $pegawai['nama'] }}</title>
-    {{-- <style>
-        .cover {
-            display: flex;
-            padding: 1.25rem;
-            flex-direction: row;
-            gap: 1.25rem;
-            width: 100%;
-        }
-
-        .card_1 {
-            display: flex;
-            padding: 1.25rem;
-            flex-direction: column;
-            gap: 0.75rem;
-            justify-content: center;
-            border-radius: 0.5rem;
-            mix-blend-mode: difference;
-        }
-
-        .card_2 {
-            flex-direction: column;
-            gap: 0.75rem;
-            justify-content: center;
-            border-radius: 0.5rem;
-            mix-blend-mode: difference;
-        }
-
-        .img_card_1 {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-        }
-
-        .mb-5 {
-            margin-bottom: 1.25rem;
-        }
-
-        .p-2 {
-            padding: 0.5rem;
-        }
-
-        .p-3 {
-            table-layout: fixed;
-        }
-
-        .table-responsive {
-            table-layout: auto;
-        }
-
-        .mx-auto {
-            margin: auto;
-        }
-
-        .w-12 {
-            width: 3rem;
-        }
-
-        .w-20 {
-            width: 5rem;
-        }
-
-        .h-20 {
-            height: 5rem;
-        }
-
-        .h-13 {
-            height: 3rem;
-        }
-
-        .bg_front {
+    <style>
+        .kartuver {
+            height: 321.26px;
+            width: 203.72px;
+            border: 0.5px solid #4CAF50;
+            border-radius: 8px;
+            text-wrap: pretty;
+            background-image: url({{ env('APP_IMG', '') . $kartu['front'] }});
             background-position: center;
-            background-size: cover;
             background-repeat: no-repeat;
-            background-image: url({{ $kartu['front'] }})
+            background-size: cover;
         }
 
-        .rounded-full {
-            border-radius: 9999px;
-        }
-
-        .text-left {
-            text-align: left;
-        }
-
-        .bg_back {
+        .kartuverback {
+            position: relative;
+            height: 321.26px;
+            width: 203.72px;
+            border: 0.5px solid #4CAF50;
+            border-radius: 8px;
+            text-wrap: pretty;
+            background-image: url({{ env('APP_IMG', '') . $kartu['back'] }});
             background-position: center;
-            background-size: cover;
             background-repeat: no-repeat;
-            background-image: url({{ $kartu['back'] }})
+            background-size: cover;
         }
-    </style> --}}
+
+        .imglogover {
+            width: 45px;
+            height: 45px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+        }
+
+        .imglogoverback {
+            width: 80px;
+            height: 80px;
+            display: block;
+            position: absolute;
+            left: 60px;
+            top: 115px;
+        }
+
+        .imgver {
+            width: 75.6px;
+            height: 113.39px;
+            display: block;
+            border-radius: 6px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tablever {
+            width: 150px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tdver {
+            width: 150px;
+            font-size: 9px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .kartuhor {
+            width: 321.26px;
+            height: 203.72px;
+            border: 0.5px solid #4CAF50;
+            border-radius: 8px;
+            text-wrap: pretty;
+            background-image: url({{ env('APP_IMG', '') . $kartu['front'] }});
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .kartuhorback {
+            position: relative;
+            width: 321.26px;
+            height: 203.72px;
+            border: 0.5px solid #4CAF50;
+            border-radius: 8px;
+            text-wrap: pretty;
+            background-image: url({{ env('APP_IMG', '') . $kartu['back'] }});
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .divhead {
+            padding: 5px;
+            width: 300px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .divheadtd {
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .imglogohor {
+            width: 45px;
+            height: 45px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .imglogohorback {
+            width: 100px;
+            height: 100px;
+            display: block;
+            position: absolute;
+            left: 110px;
+            top: 50px;
+        }
+
+        .imghor {
+            width: 75.6px;
+            height: 113.39px;
+            display: block;
+            border-radius: 6px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tablehor {
+            width: 150px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tdhor {
+            vertical-align: text-top;
+            text-align: justify;
+            font-size: 9px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="flex justify-center {{ $kartu['orientation'] == '0' ? 'flex-row' : 'flex-col' }} gap-2 p-5">
-        <div style="background-position: center;
-                    background-size: cover;
-                    background-repeat: no-repeat;
-                    background-image: url({{ $kartu['front'] }})"
-            class="flex flex-col justify-center gap-3 {{ $kartu['orientation'] == '0' ? ' w-[30dvw] h-[60dvh]' : 'h-[20dvw] w-[80dvh]' }} rounded-lg shadow p-5">
-            <div class="flex flex-row justify-center">
-                <img src="{{ $kartu['icon'] }}" class="w-24 h-24 rounded-full" alt="">
-            </div>
-            @if ($kartu['profile'] == '1')
-                <div class="flex flex-row justify-center mb-5">
-                    <img src="https://placehold.co/400" draggable="true" class="w-24 h-24 rounded-full" alt="">
-                </div>
-            @endif
-            <div class="relative p-2">
-                <table class="table-responsive mx-auto p-3 text-white mix-blend-exclusion">
-                    <thead>
-                        @if ($kartu['nip'] == '1')
-                            <tr class="text-left">
-                                <th>&nbsp; 199612022022031011</th>
-                            </tr>
-                        @endif
-                        @if ($kartu['nrp'] == '1')
-                            <tr class="text-left">
-                                <th>&nbsp; 123456</th>
-                            </tr>
-                        @endif
-                        @if ($kartu['nama'] == '1')
-                            <tr class="text-left">
-                                <th>&nbsp; Johan Toni Wijaya, S.Kom.</th>
-                            </tr>
-                        @endif
-                        @if ($kartu['jabatan'] == '1')
-                            <tr class="text-left">
-                                <th>&nbsp; Pengolah Data Intelijen</th>
-                            </tr>
-                        @endif
-                        @if ($kartu['golongan'] == '1')
-                            <tr class="text-left">
-                                <th>&nbsp; Jaksa Muda (III/A)</th>
-                            </tr>
-                        @endif
-                    </thead>
-                </table>
-            </div>
-        </div>
-        <div class="flex-col justify-center gap-3 {{ $kartu['orientation'] == '0' ? ' w-[30dvw] h-[60dvh]' : 'h-[20dvw] w-[80dvh]' }} rounded-lg shadow"
-            style="background-position: center;
-                        background-size: cover;
-                        background-repeat: no-repeat;
-                        background-image: url({{ $kartu['back'] }})">
 
+    @if ($kartu['orientation'] == '0')
+        <div style="display: flex; flex-direction: row; gap: 8px;">
+            <div id="kartu" class="kartuver">
+                <img class="imglogover" src="{{ env('APP_IMG', '') . $kartu['icon'] }}">
+                <p style="font-size: 9px; text-transform: uppercase; font-weight: bold; text-align: center;">
+                    {{ $pegawai['nama_satker'] }}
+                </p>
+                @if ($kartu['profile'] == '1')
+                    <img class="imgver" src="{{ $pegawai['foto_pegawai'] }}">
+                @endif
+                @if ($kartu['nama'] == '1')
+                    <p style="font-size: 9px; text-transform: uppercase; font-weight: bold; text-align: center;">
+                        {{ $pegawai['nama'] }}
+                    </p>
+                @endif
+                <table class="tablever">
+                    @if ($kartu['nip'] == '1')
+                        <tr>
+                            <td class="tdver">NIP </td>
+                            <td class="tdver">: {{ $pegawai['nip'] }}</td>
+                        </tr>
+                    @endif
+                    @if ($kartu['nrp'] == '1')
+                        <tr>
+                            <td class="tdver">NRP </td>
+                            <td class="tdver">: {{ $pegawai['nrp'] }}</td>
+                        </tr>
+                    @endif
+                    @if ($kartu['golongan'] == '1')
+                        <tr>
+                            <td class="tdver">Gol </td>
+                            <td class="tdver">: {{ $pegawai['golpang'] }}</td>
+                        </tr>
+                    @endif
+                </table>
+                @if ($kartu['jabatan'] == '1')
+                    <p style="font-size: 7px; text-transform: uppercase; text-align: center;">
+                        {{ $pegawai['jabatan'] }}
+                    </p>
+                @endif
+            </div>
+
+            <div id="kartuback" class="kartuverback">
+                <img class="imglogoverback" src="{{ $pengajuan['qrcode'] }}">
+            </div>
         </div>
+
+        <br>
+    @else
+        <div style="display: flex; flex-direction: row; gap: 8px;">
+            <div id="kartu" class="kartuhor">
+                <table class="divhead">
+                    <tr>
+                        <td>
+                            <img class="imglogohor"
+                                src="https://kejari-batanghari.kejaksaan.go.id/wp-content/uploads/2022/06/RI.png">
+                        </td>
+                        <td class="divheadtd" style="font-size: 9px; text-transform: uppercase; font-weight: bold;">
+                            {{ $pegawai['nama_satker'] }}</td>
+                    </tr>
+                </table>
+                <table class="divhead">
+                    <tr>
+                        <td rowspan="6">
+                            @if ($kartu['profile'] == '1')
+                                <img class="imghor" src="{{ $pegawai['foto_pegawai'] }}">
+                            @endif
+                        </td>
+                        <td>
+                            @if ($kartu['nama'] == '1')
+                    <tr>
+                        <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Nama</td>
+                        <td class="tdhor">:</td>
+                        <td class="tdhor" style="text-transform: uppercase; font-weight: bold;">{{ $pegawai['nama'] }}
+                        </td>
+                    </tr>
+    @endif
+    @if ($kartu['nip'] == '1')
+        <tr>
+            <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NIP</td>
+            <td class="tdhor">:</td>
+            <td class="tdhor">{{ $pegawai['nip'] }}</td>
+        </tr>
+    @endif
+    @if ($kartu['nrp'] == '1')
+        <tr>
+            <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NRP</td>
+            <td class="tdhor">:</td>
+            <td class="tdhor">{{ $pegawai['nrp'] }}</td>
+        </tr>
+    @endif
+    @if ($kartu['golongan'] == '1')
+        <tr>
+            <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Gol</td>
+            <td class="tdhor">:</td>
+            <td class="tdhor">{{ $pegawai['golpang'] }}</td>
+        </tr>
+    @endif
+    @if ($kartu['jabatan'] == '1')
+        <tr>
+            <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Jabatan</td>
+            <td class="tdhor">:</td>
+            <td class="tdhor">{{ $pegawai['jabatan'] }}</td>
+        </tr>
+    @endif
+    </td>
+    </tr>
+    </table>
+
+    <div id="kartuback" class="kartuhorback">
+        <img class="imglogohorback" src="{{ $pengajuan['qrcode'] }}" alt="">
     </div>
-
-    {{-- <div class="cover">
-        <div class="card_1 bg_front"
-            style="{{ $kartu['orientation'] == '0' ? 'width: 30dvw; height: 60dvh;' : 'height: 20dvw; width: 80dvh;' }}">
-            <div class="img_card_1">
-                <img src="{{ $kartu['icon'] }}" class="w-12 h-12 rounded-full" alt="">
-            </div>
-            @if ($kartu['profile'] == '1')
-                <div class="img_card_1 mb-5">
-                    <img src="{{ $pengajuan['photo'] }}" class="w-20 h-20 rounded-full" alt="">
-                </div>
-            @endif
-            <div class="p-2">
-                <table class="table-responsive mx-auto p-3">
-                    <thead>
-                        @if ($kartu['nip'] == '1')
-                            <tr class="text-center">
-                                <th>&nbsp; {{ $pegawai['nip'] }}</th>
-                            </tr>
-                        @endif
-                        @if ($kartu['nrp'] == '1')
-                            <tr class="text-center">
-                                <th>&nbsp; {{ $pegawai['nrp'] }}</th>
-                            </tr>
-                        @endif
-                        @if ($kartu['nama'] == '1')
-                            <tr class="text-center">
-                                <th>&nbsp; {{ $pegawai['nama'] }}</th>
-                            </tr>
-                        @endif
-                        @if ($kartu['jabatan'] == '1')
-                            <tr class="text-center">
-                                <th>&nbsp; {{ $pegawai['jabatan'] }}</th>
-                            </tr>
-                        @endif
-                        @if ($kartu['golongan'] == '1')
-                            <tr class="text-center">
-                                <th>&nbsp; {{ $pegawai['golpang'] }}</th>
-                            </tr>
-                        @endif
-                    </thead>
-                </table>
-            </div>
-        </div>
-        <div class="card_2 bg_back"
-            style="{{ $kartu['orientation'] == '0' ? 'width: 30dvw;' : 'height: 20dvw; width: 80dvh;' }}">
-
-        </div>
-    </div> --}}
+    @endif
+    </div>
+    {{-- <button id="unduh" style="padding: 8px; border-radius: 1rem;">Unduh gambar kartu</button> --}}
 </body>
+{{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="{{ asset('assets/js/html2canvas.min.js') }}"></script>
+<script>
+    $(function() {
+        $("#unduh").on('click', function() {
+            const a = html2canvas(document.getElementById("kartu")).then(function(canvas) {
+                const image1 = canvas.toDataURL("image/png", 1.0);
+                return image1
+            });
+
+            a.then(res => {
+                const b = html2canvas(document.getElementById("kartuback")).then(function(
+                    canvas) {
+                    const image2 = canvas.toDataURL("image/png", 1.0);
+                    return image2
+                });
+                b.then(test => {
+                    $.post("{{ route('layout.kartu.store.card') }}", {
+                        _token: "{{ csrf_token() }}",
+                        id: "{{ $kartu['id'] }}",
+                        image1: res,
+                        image2: test
+                    }, function(data) {
+                        console.log(data)
+                    })
+                })
+            })
+
+        })
+    })
+</script> --}}
 
 </html>

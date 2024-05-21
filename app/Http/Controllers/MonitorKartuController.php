@@ -36,7 +36,7 @@ class MonitorKartuController extends Controller
     {
         try {
             return view('monitor_kartu.pdf', [
-                'pegawai'   => Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/pegawai' . '/' . $nip)->json()['data'],
+                'pegawai'   => Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/pegawai' . '/' . $nip . '/find')->json()['data'],
                 'kartu'     => KartuApi::findByTitle($title)['data'],
                 'pengajuan' => PengajuanApi::find($id)['data']
             ]);
