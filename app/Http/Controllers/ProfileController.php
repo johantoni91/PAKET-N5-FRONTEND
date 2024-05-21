@@ -38,6 +38,7 @@ class ProfileController extends Controller
             'nrp'               => $request->nrp,
             'username'          => $request->username,
             'name'              => $request->name,
+            'satker'            => Http::withtoken(session('data')['token'])->post(env('API_URL', '') . '/satker/find/name', ['satker' => $request->satker])->json()['data']['satker_code'],
             'email'             => $request->email,
             'phone'             => $request->phone,
             'photo'             => $request->file('photo'),
@@ -55,11 +56,7 @@ class ProfileController extends Controller
             return back();
         }
 
-        Alert::success('Berhasil', 'Berhasil mengubah data profil');
-        Session::flush();
-        Session::put('user', $res->json()['data']);
-        session()->flash('status', 'Mengubah data profil');
-        session()->flash('route', route('profile'));
-        return back();
+        Alert::success('Berhasil', 'Silahkan login kembali');
+        return redirect()->route('logout');
     }
 }

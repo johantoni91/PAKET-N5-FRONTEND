@@ -52,30 +52,12 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
                             <input type="text" id="nip" name="nip"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                            <script>
-                                function keepOnlyNumbers(input) {
-                                    return input.replace(/\D/g, "");
-                                }
-                                var inputField1 = document.getElementById("nip");
-                                inputField1.addEventListener("input", function() {
-                                    inputField1.value = keepOnlyNumbers(inputField1.value);
-                                });
-                            </script>
                         </div>
                         <div>
                             <label for="nrp"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NRP</label>
                             <input type="text" id="nrp" name="nrp"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                            <script>
-                                function keepOnlyNumbers(input) {
-                                    return input.replace(/\D/g, "");
-                                }
-                                var inputField1 = document.getElementById("nrp");
-                                inputField1.addEventListener("input", function() {
-                                    inputField1.value = keepOnlyNumbers(inputField1.value);
-                                });
-                            </script>
                         </div>
                         <div>
                             <label for="agama"
@@ -191,3 +173,18 @@
         </div>
     </div>
 </div>
+<script>
+    function keepOnlyNumbers(input) {
+        return input.replace(/\D/g, "");
+    }
+
+    var inputField = document.getElementById("nip");
+    var inputField2 = document.getElementById("nrp");
+
+    inputField.addEventListener("input", function() {
+        inputField.value = keepOnlyNumbers(inputField.value);
+    });
+    inputField2.addEventListener("input", function() {
+        inputField2.value = keepOnlyNumbers(inputField2.value);
+    });
+</script>

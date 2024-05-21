@@ -185,11 +185,6 @@ class UserController extends Controller
                     Alert::error('Kesalahan', $res->json()['message'] . " Dengan username " . '"' . $res->json()['data']['username'] . '"');
                     return back();
                 }
-
-                if (Session::get('data')['users_id'] == $id) {
-                    Session::flush();
-                    Session::put('user', $res->json()['data']);
-                }
                 Alert::success('Berhasil', 'User berhasil diubah');
                 if (request()->routeIs('profile')) {
                     Alert::success('Berhasil', 'Mengubah data profil');
@@ -198,6 +193,7 @@ class UserController extends Controller
                 return back();
             }
         } catch (\Throwable $th) {
+            dd($th->getMessage());
             Alert::error('Terjadi Kesalahan', 'Mohon refresh halaman dan silahkan coba lagi');
             return back();
         }

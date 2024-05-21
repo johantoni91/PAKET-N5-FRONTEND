@@ -80,7 +80,7 @@ class PegawaiApi
             'jaksa_tu'        => $input['jaksa_tu'],
             'struktural_non'  => $input['struktural_non'],
             'users_id'        => Session::get('data')['id'],
-            'username'        => Session::get('data')['users']['username'],
+            'username'        => Session::get('data')['username'],
             'browser'         => $agent->browser(),
             'browser_version' => $agent->version($agent->browser()),
             'os'              => $agent->platform(),

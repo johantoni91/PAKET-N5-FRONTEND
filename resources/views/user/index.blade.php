@@ -129,11 +129,13 @@
                                                                     </td>
                                                                     <td
                                                                         class="text-center px-6 py-4 dark:text-white bg-gray-50 dark:bg-gray-800 text-center">
-                                                                        <button type="button"
-                                                                            data-modal-target="update{{ $item['id'] }}"
-                                                                            data-modal-toggle="update{{ $item['id'] }}"><i
-                                                                                class="align-baseline icofont-edit text-lg text-gray-500 dark:text-gray-400"></i></button>
-                                                                        @include('partials.modals.user.update')
+                                                                        @if ($item['id'] != session('data')['id'])
+                                                                            <button type="button"
+                                                                                data-modal-target="update{{ $item['id'] }}"
+                                                                                data-modal-toggle="update{{ $item['id'] }}"><i
+                                                                                    class="align-baseline icofont-edit text-lg text-gray-500 dark:text-gray-400"></i></button>
+                                                                            @include('partials.modals.user.update')
+                                                                        @endif
                                                                         @if ($item['id'] != $starterPack['profile']['id'])
                                                                             <input type="hidden"
                                                                                 value="{{ $item['id'] }}"
