@@ -226,7 +226,7 @@
                             background-repeat: no-repeat;
                             background-size: cover;">
                                 <img class="ttdver"
-                                    src="{{ $starterPack['tanda_tangan'] == '' ? asset('assets/images/signature.jpg') : $starterPack['tanda_tangan'] }}"
+                                    src="{{ $starterPack['tanda_tangan'] == '' ? asset('assets/images/signature.jpg') : $starterPack['tanda_tangan']['signature'] }}"
                                     alt="">
                                 <img class="imglogoverback" src="{{ asset('assets/images/qrcode.png') }}">
                             </div>
@@ -312,7 +312,7 @@
                     background-repeat: no-repeat;
                     background-size: cover;">
                         <img class="ttdhor"
-                            src="{{ $starterPack['tanda_tangan'] == '' ? asset('assets/images/signature.jpg') : $starterPack['tanda_tangan'] }}"
+                            src="{{ $starterPack['tanda_tangan'] == '' ? asset('assets/images/signature.jpg') : $starterPack['tanda_tangan']['signature'] }}"
                             alt="">
                         <img class="imglogohorback" src="{{ asset('assets/images/qrcode.png') }}" alt="">
                     </div>
