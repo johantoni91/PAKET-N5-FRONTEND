@@ -73,7 +73,7 @@
                                                             <label for="nip"
                                                                 class="my-auto w-24 dark:text-white">NIP</label>
                                                             <input type="text" id="nip" name="nip"
-                                                                value="{{ session('nip') ?? old('nip') }}"
+                                                                value="{{ old('nip') }}"
                                                                 class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                             <script>
                                                                 function keepOnlyNumbers(input) {
@@ -89,7 +89,7 @@
                                                             <label for="nrp"
                                                                 class="my-auto w-24 dark:text-white">NRP</label>
                                                             <input type="text" id="nrp" name="nrp"
-                                                                value="{{ session('nrp') ?? old('nrp') }}"
+                                                                value="{{ old('nrp') }}"
                                                                 class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                             <script>
                                                                 function keepOnlyNumbers(input) {
@@ -106,29 +106,27 @@
                                                                 <label for="username"
                                                                     class="my-auto w-24 dark:text-white">Username</label>
                                                                 <input type="text" maxlength="20" id="username"
-                                                                    name="username"
-                                                                    value="{{ session('username') ?? old('username') }}"
+                                                                    name="username" value="{{ old('username') }}"
                                                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                                                             </div>
                                                             <div class="flex flex-row gap-5">
                                                                 <label class="my-auto w-24 dark:text-white">Name</label>
                                                                 <input type="text" id="name" name="name"
-                                                                    value="{{ session('name') ?? old('name') }}"
+                                                                    value="{{ old('name') }}"
                                                                     class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                             </div>
                                                         @endif
                                                         <div class="flex flex-row gap-5">
                                                             <label class="my-auto w-24 dark:text-white">Email</label>
                                                             <input type="email" id="email" name="email"
-                                                                value="{{ session('email') ?? old('email') }}"
+                                                                value="{{ old('email') }}"
                                                                 class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                         </div>
                                                         <div class="flex flex-row gap-5">
                                                             <label class="my-auto w-24 dark:text-white">Telepon</label>
                                                             <input type="text" id="phone" maxlength="14"
-                                                                name="phone"
-                                                                value="{{ session('phone') ?? old('phone') }}"
+                                                                name="phone" value="{{ old('phone') }}"
                                                                 class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                             <script>
                                                                 function keepOnlyNumbers(input) {

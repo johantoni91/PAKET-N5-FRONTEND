@@ -56,6 +56,14 @@ class IntegrasiController extends Controller
         return back();
     }
 
+    function importAuthView()
+    {
+        return view('integrasi.import', [
+            'title'       => 'Link Integrasi',
+            'starterPack' => helper::starterPack()
+        ]);
+    }
+
     function import(Request $req)
     {
         try {

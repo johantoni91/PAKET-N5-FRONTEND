@@ -63,7 +63,7 @@
                                                                 d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                                                         </svg> Cari Pengguna
                                                     </button>
-                                                    @include('partials.modals.user.search')
+                                                    @include('user.modals.search')
                                                 </div>
                                             </div>
                                             <div class="flex flex-col gap-5">
@@ -134,7 +134,7 @@
                                                                                 data-modal-target="update{{ $item['id'] }}"
                                                                                 data-modal-toggle="update{{ $item['id'] }}"><i
                                                                                     class="align-baseline icofont-edit text-lg text-gray-500 dark:text-gray-400"></i></button>
-                                                                            @include('partials.modals.user.update')
+                                                                            @include('user.modals.update')
                                                                         @endif
                                                                         @if ($item['id'] != $starterPack['profile']['id'])
                                                                             <input type="hidden"

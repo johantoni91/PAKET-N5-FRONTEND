@@ -20,6 +20,7 @@ use App\Http\Controllers\KiosController;
 use App\Http\Controllers\LayoutKartuController;
 use App\Http\Controllers\MonitorKartuController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\TandaTanganController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/user/{id}/status/{status}', [UserController::class, 'status'])->name('user.status');
         Route::get('/user/{id}/updateView', [UserController::class, 'updateView'])->name('user.update.view');
     });
+
+    // TANDA TANGAN
+    Route::post('/signature/store', [TandaTanganController::class, 'store'])->name('signature.store');
+    Route::post('/signature/update', [TandaTanganController::class, 'update'])->name('signature.update');
+    Route::get('/signature/destroy', [TandaTanganController::class, 'destroy'])->name('signature.destroy');
 
     // LOG ACTIVITY
     Route::middleware(['role_log'])->group(function () {
@@ -155,6 +161,7 @@ Route::middleware(['auth'])->group(function () {
 
     // INTEGRASI
     Route::get('/integrasi', [IntegrasiController::class, 'index'])->name('integrasi');
+    Route::get('/integrasi/import', [IntegrasiController::class, 'importAuthView'])->name('integrasi.import');
     Route::post('/integrasi/store', [IntegrasiController::class, 'store'])->name('integrasi.store');
     Route::post('/integrasi/{id}/update', [IntegrasiController::class, 'update'])->name('integrasi.update');
     Route::get('/integrasi/{id}/destroy', [IntegrasiController::class, 'destroy'])->name('integrasi.destroy');

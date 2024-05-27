@@ -63,7 +63,7 @@ class UserController extends Controller
                 'name'      => request('name'),
                 'email'     => request('email'),
                 'phone'     => request('phone'),
-                'role'      => request('role'),
+                'role'      => request('role') ?? session('data')['roles'],
                 'status'    => request('status'),
             ];
             if (
@@ -99,6 +99,10 @@ class UserController extends Controller
 
     public function store(Request $request, $role)
     {
+        if (!($request->nip && $request->nrp && $request->username && $request->name && $request->email && $request->phone && $request->password)) {
+            Alert::error('Peringatan!', 'Harap isi semua form yang tersedia!');
+            return back();
+        }
         $pegawai = PegawaiApi::find($request->nip)['data'];
         if (!$pegawai) {
             Alert::warning('Peringatan', 'Pegawai tidak ditemukan, mohon masukkan NIP & NRP dengan benar');

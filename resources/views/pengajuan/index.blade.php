@@ -37,7 +37,7 @@
                                                         d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                                                 </svg>
                                             </button>
-                                            @include('partials.modals.pengajuan.search')
+                                            @include('pengajuan.modals.search')
                                         @endif
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@
                                             <button type="button" data-modal-target="create" data-modal-toggle="create"
                                                 class="focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-b dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-1 px-3 rounded hover:from-red-500 hover:to-violet-800">
                                                 Pengajuan</button>
-                                            @include('partials.modals.pengajuan.create')
+                                            @include('pengajuan.modals.create')
                                             <div class="flex flex-col gap-5 p-5">
                                                 <div class="datatable_1">
                                                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">

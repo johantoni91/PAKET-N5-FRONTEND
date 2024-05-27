@@ -3,16 +3,9 @@
     <div class="relative flex flex-col justify-center min-h-screen overflow-hidden" style="width: 100dvw; height:100dvh;">
         <div class="area bg-gradient-to-br from-green-800 via-orange-600 to-yellow-400">
             <ul class="circles">
-                <li class="bg-slate-300/50 shadow-lg shadow-blue-300 rounded-lg"></li>
-                <li class="bg-slate-300/50 shadow-lg shadow-blue-300 rounded-lg"></li>
-                <li class="bg-slate-300/50 shadow-lg shadow-blue-300 rounded-lg"></li>
-                <li class="bg-slate-300/50 shadow-lg shadow-blue-300 rounded-lg"></li>
-                <li class="bg-slate-300/50 shadow-lg shadow-blue-300 rounded-lg"></li>
-                <li class="bg-slate-300/50 shadow-lg shadow-blue-300 rounded-lg"></li>
-                <li class="bg-slate-300/50 shadow-lg shadow-blue-300 rounded-lg"></li>
-                <li class="bg-slate-300/50 shadow-lg shadow-blue-300 rounded-lg"></li>
-                <li class="bg-slate-300/50 shadow-lg shadow-blue-300 rounded-lg"></li>
-                <li class="bg-slate-300/50 shadow-lg shadow-blue-300 rounded-lg"></li>
+                @for ($i = 0; $i < 20; $i++)
+                    <li class="bg-slate-300/50 shadow-lg shadow-blue-300 rounded-lg"></li>
+                @endfor
             </ul>
         </div>
         <div class="w-[80%] m-auto bg-white dark:bg-slate-800/60 rounded shadow-lg shadow-green-500 sm:max-w-md">

@@ -1,37 +1,12 @@
 <div
-    class="min-h-full z-40 fixed print:hidden bg-gradient-to-b from-violet-800 to-red-500 dark:from-cyan-600 dark:to-green-700 main-sidebar duration-300 group-data-[sidebar=dark]:bg-[#603dc3] group-data-[sidebar=brand]:bg-brand group-[.dark]:group-data-[sidebar=brand]:bg-[#603dc3]">
+    class="min-h-full z-40 fixed bg-gradient-to-b dark:bg-gradient-to-b {{ $starterPack['bg_light'] }} {{ $starterPack['bg_dark'] }} main-sidebar duration-300 group-data-[sidebar=dark]:bg-[#603dc3] group-data-[sidebar=brand]:bg-brand group-[.dark]:group-data-[sidebar=brand]:bg-[#603dc3]">
     <div class="area">
         <ul class="circles">
-            <li
-                class="bg-slate-300/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
-            </li>
-            <li
-                class="bg-slate-300/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
-            </li>
-            <li
-                class="bg-slate-300/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
-            </li>
-            <li
-                class="bg-slate-300/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
-            </li>
-            <li
-                class="bg-slate-300/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
-            </li>
-            <li
-                class="bg-slate-300/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
-            </li>
-            <li
-                class="bg-slate-300/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
-            </li>
-            <li
-                class="bg-slate-300/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
-            </li>
-            <li
-                class="bg-slate-300/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
-            </li>
-            <li
-                class="bg-slate-300/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
-            </li>
+            @for ($i = 0; $i < 18; $i++)
+                <li
+                    class="bg-slate-300/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
+                </li>
+            @endfor
         </ul>
     </div>
     <div class="text-center h-[64px] flex justify-center items-center">

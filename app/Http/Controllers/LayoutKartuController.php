@@ -222,7 +222,7 @@ class LayoutKartuController extends Controller
     public function pdf($id)
     {
         $kartu = KartuApi::find($id)['data'];
-        return view('layout_kartu.pdf', ['kartu' => $kartu]);
+        return view('layout_kartu.pdf', ['kartu' => $kartu, 'starterPack' => helper::starterPack()]);
     }
 
     public function storeCard(Request $req)

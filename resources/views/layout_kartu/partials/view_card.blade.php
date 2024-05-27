@@ -34,6 +34,15 @@
         top: 115px;
     }
 
+    .ttdver {
+        width: 80px;
+        height: 80px;
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+
     .imgver {
         width: 75.6px;
         height: 113.39px;
@@ -105,6 +114,15 @@
         top: 50px;
     }
 
+    .ttdhor {
+        width: 80px;
+        height: 80px;
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+
     .imghor {
         width: 75.6px;
         height: 113.39px;
@@ -137,7 +155,7 @@
             <!-- Modal header -->
             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                    Tambah Pegawai
+                    Tampilan Kartu
                 </h3>
                 <button type="button"
                     class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -207,6 +225,9 @@
                             background-position: center;
                             background-repeat: no-repeat;
                             background-size: cover;">
+                                <img class="ttdver"
+                                    src="{{ $starterPack['tanda_tangan'] == '' ? asset('assets/images/signature.jpg') : $starterPack['tanda_tangan'] }}"
+                                    alt="">
                                 <img class="imglogoverback" src="{{ asset('assets/images/qrcode.png') }}">
                             </div>
                         </div>
@@ -290,6 +311,9 @@
                     background-position: center;
                     background-repeat: no-repeat;
                     background-size: cover;">
+                        <img class="ttdhor"
+                            src="{{ $starterPack['tanda_tangan'] == '' ? asset('assets/images/signature.jpg') : $starterPack['tanda_tangan'] }}"
+                            alt="">
                         <img class="imglogohorback" src="{{ asset('assets/images/qrcode.png') }}" alt="">
                     </div>
                     @endif

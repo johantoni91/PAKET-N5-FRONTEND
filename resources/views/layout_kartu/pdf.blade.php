@@ -46,6 +46,15 @@
             top: 115px;
         }
 
+        .ttdver {
+            width: 80px;
+            height: 80px;
+            display: block;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+
         .imgver {
             width: 75.6px;
             height: 113.39px;
@@ -125,6 +134,15 @@
             top: 50px;
         }
 
+        .ttdhor {
+            width: 80px;
+            height: 80px;
+            display: block;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+
         .imghor {
             width: 75.6px;
             height: 113.39px;
@@ -196,6 +214,7 @@
             </div>
 
             <div id="kartuback" class="kartuverback">
+                <img class="ttdver" src="{{ $starterPack['tanda_tangan']['signature'] }}" alt="">
                 <img class="imglogoverback" src="{{ asset('assets/images/qrcode.png') }}">
             </div>
         </div>
@@ -265,6 +284,7 @@
     </table>
 
     <div id="kartuback" class="kartuhorback">
+        <img class="ttdhor" src="{{ $starterPack['tanda_tangan']['signature'] }}" alt="">
         <img class="imglogohorback" src="{{ asset('assets/images/qrcode.png') }}" alt="">
     </div>
     @endif

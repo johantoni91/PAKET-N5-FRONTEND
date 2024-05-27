@@ -36,7 +36,7 @@
                                                         class="flex flex-row focus:outline-none text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-primary-500 dark:bg-blue-500 dark:text-white dark:border-0 dark:hover:shadow-md dark:hover:shadow-blue-500 text-sm font-medium rounded justify-between gap-2 py-1 px-2 align-bottom items-center">
                                                         Cari <i data-lucide="search"></i>
                                                     </button>
-                                                    @include('partials.modals.log_activity.search')
+                                                    @include('log_activity.search')
                                                 </div>
                                                 @if (!request()->routeIs('log'))
                                                     <div class="flex flex-row justify-end">

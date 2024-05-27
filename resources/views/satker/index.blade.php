@@ -52,7 +52,7 @@
                                                             data-modal-toggle="create"
                                                             class="focus:outline-none bg-primary-500 text-white border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium py-1 px-3 rounded w-24">+
                                                             Satker</button>
-                                                        @include('partials.modals.satker.create') --}}
+                                                        @include('satker.modals.create') --}}
                                                         @if (session('data')['satker'] == '00')
                                                             <div class="justify-end">
                                                                 <button type="button" data-modal-target="search"
@@ -65,7 +65,7 @@
                                                                             d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                                                                     </svg> Cari Satker
                                                                 </button>
-                                                                @include('partials.modals.satker.search')
+                                                                @include('satker.modals.search')
                                                             </div>
                                                         @endif
                                                     </div>
@@ -132,7 +132,7 @@
                                                                                             data-modal-target="update{{ $item['satker_id'] }}"
                                                                                             data-modal-toggle="update{{ $item['satker_id'] }}"><i
                                                                                                 class="align-baseline text-center icofont-edit text-lg hover:text-black dark:text-gray-400 text-blue-500"></i></button>
-                                                                                        @include('partials.modals.satker.update')
+                                                                                        @include('satker.modals.update')
                                                                                         <input type="hidden"
                                                                                             value="{{ $item['satker_id'] }}"
                                                                                             id="del{{ $item['satker_id'] }}">
