@@ -18,7 +18,9 @@ class Auth
     public function handle(Request $request, Closure $next)
     {
         if (!(Session::has('data'))) {
-            return redirect()->route('logout');
+            Session::forget('data');
+            Session::forget('pegawai');
+            return redirect()->route('login');
         }
         return $next($request);
     }

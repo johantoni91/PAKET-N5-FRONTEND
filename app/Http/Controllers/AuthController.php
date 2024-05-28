@@ -103,8 +103,12 @@ class AuthController extends Controller
 
     public function logout()
     {
-        Session::forget('data');
-        Session::forget('pegawai');
-        return redirect('/login');
+        try {
+            Session::forget('data');
+            Session::forget('pegawai');
+            return redirect('/login');
+        } catch (\Throwable $th) {
+            return redirect('/login');
+        }
     }
 }
