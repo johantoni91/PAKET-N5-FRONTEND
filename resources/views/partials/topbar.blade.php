@@ -10,6 +10,13 @@
             </button>
         </div>
         <div class="order-1 ltr:ms-auto rtl:ms-0 rtl:me-auto flex items-center md:order-2">
+            @if (session('data')['roles'] == 'admin')
+                <div class="ltr:me-2 ltr:md:me-4 rtl:me-0 rtl:ms-2 rtl:lg:me-0 rtl:md:ms-4">
+                    <a href="{{ route('signature') }}" class="flex rounded-full md:me-0 relative">
+                        <span data-lucide="pen-line" class="top-icon w-5 h-5 dark:text-white"></span>
+                    </a>
+                </div>
+            @endif
             <div class="ltr:me-2 ltr:md:me-4 rtl:me-0 rtl:ms-2 rtl:lg:me-0 rtl:md:ms-4">
                 <a href="{{ route('inbox') }}" class="flex rounded-full md:me-0 relative">
                     <span data-lucide="mail" class="top-icon w-5 h-5 dark:text-white"></span>
@@ -88,15 +95,6 @@
                                 Profil</a>
                         </li>
                         <li>
-                            <button data-modal-target="signature" data-modal-toggle="signature"
-                                class="flex items-center py-2 px-3 text-sm text-gray-700 hover:bg-gray-50
-                  dark:text-gray-200 dark:hover:bg-gray-900/20
-                  dark:hover:text-white">
-                                <span data-lucide="pen-line "
-                                    class="w-4 h-4 inline-block text-slate-800 dark:text-slate-400 me-2"></span>
-                                Tanda tangan</button>
-                        </li>
-                        <li>
                             <a href="{{ route('logout') }}"
                                 class="flex items-center py-2 px-3 text-sm text-red-500 hover:bg-gray-50 hover:text-red-600
                             dark:text-red-500 dark:hover:bg-gray-900/20
@@ -111,5 +109,3 @@
         </div>
     </div>
 </nav>
-
-@include('signature.index')

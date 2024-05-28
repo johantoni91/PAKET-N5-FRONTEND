@@ -65,9 +65,12 @@ Route::middleware(['auth'])->group(function () {
     });
 
     // TANDA TANGAN
-    Route::post('/signature/store', [TandaTanganController::class, 'store'])->name('signature.store');
-    Route::post('/signature/update', [TandaTanganController::class, 'update'])->name('signature.update');
-    Route::get('/signature/destroy', [TandaTanganController::class, 'destroy'])->name('signature.destroy');
+    Route::middleware(['signature'])->group(function () {
+        Route::get('/signature', [TandaTanganController::class, 'index'])->name('signature');
+        Route::post('/signature/store', [TandaTanganController::class, 'store'])->name('signature.store');
+        Route::post('/signature/update', [TandaTanganController::class, 'update'])->name('signature.update');
+        Route::get('/signature/destroy', [TandaTanganController::class, 'destroy'])->name('signature.destroy');
+    });
 
     // LOG ACTIVITY
     Route::middleware(['role_log'])->group(function () {

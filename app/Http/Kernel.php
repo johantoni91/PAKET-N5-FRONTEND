@@ -54,6 +54,7 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Auth::class,
+        'signature' => \App\Http\Middleware\Signature::class,
         'kios' => \App\Http\Middleware\Kios::class,
         'role_user' => \App\Http\Middleware\User::class,
         'role_satker' => \App\Http\Middleware\Satker::class,

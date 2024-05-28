@@ -18,8 +18,7 @@ class Auth
     public function handle(Request $request, Closure $next)
     {
         if (!(Session::has('data'))) {
-            Session::flush();
-            return redirect()->route('login');
+            return redirect()->route('logout');
         }
         return $next($request);
     }

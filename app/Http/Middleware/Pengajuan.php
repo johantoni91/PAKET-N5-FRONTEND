@@ -28,9 +28,7 @@ class Pengajuan
             }
             return $next($request);
         } catch (\Throwable $th) {
-            Auth::logout();
-            Session::flush();
-            return redirect()->route('login');
+            return redirect()->route('logout');
         }
     }
 }

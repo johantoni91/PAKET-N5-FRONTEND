@@ -2,13 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\API\RoleApi;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
-class Satker
+class Signature
 {
     /**
      * Handle an incoming request.
@@ -20,11 +17,11 @@ class Satker
     public function handle(Request $request, Closure $next)
     {
         try {
-            $access = json_decode(RoleApi::find(Session::get('data')['roles'])['route'], true);
-            if (!in_array('satker', $access)) {
+            if (session('data')['roles'] != 'admin') {
                 return redirect()->route('error.404');
+            } else {
+                return $next($request);
             }
-            return $next($request);
         } catch (\Throwable $th) {
             return redirect()->route('logout');
         }

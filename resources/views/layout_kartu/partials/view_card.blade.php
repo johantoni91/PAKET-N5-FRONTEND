@@ -9,11 +9,18 @@
 
     .kartuverback {
         position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1rem 1rem;
+        align-items: center;
         height: 321.26px;
         width: 203.72px;
         border: 0.5px solid #4CAF50;
         border-radius: 8px;
         text-wrap: pretty;
+        font-size: .5em;
+        line-height: 1;
     }
 
     .imglogover {
@@ -35,12 +42,12 @@
     }
 
     .ttdver {
-        width: 80px;
-        height: 80px;
+        width: 20px;
+        height: 20px;
         display: block;
         position: absolute;
-        right: 10px;
-        top: 10px;
+        right: 20px;
+        bottom: 20px;
     }
 
     .imgver {
@@ -76,11 +83,18 @@
 
     .kartuhorback {
         position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 2rem;
+        align-items: center;
         width: 321.26px;
         height: 203.72px;
         border: 0.5px solid #4CAF50;
         border-radius: 8px;
         text-wrap: pretty;
+        font-size: .5em;
+        line-height: 1;
     }
 
     .divhead {
@@ -106,21 +120,17 @@
     }
 
     .imglogohorback {
-        width: 100px;
-        height: 100px;
-        display: block;
-        position: absolute;
-        left: 110px;
-        top: 50px;
+        width: 50px;
+        height: 50px;
     }
 
     .ttdhor {
-        width: 80px;
-        height: 80px;
+        width: 20px;
+        height: 20px;
         display: block;
         position: absolute;
-        right: 10px;
-        top: 10px;
+        right: 20px;
+        bottom: 20px;
     }
 
     .imghor {
@@ -225,10 +235,14 @@
                             background-position: center;
                             background-repeat: no-repeat;
                             background-size: cover;">
-                                <img class="ttdver"
-                                    src="{{ $starterPack['tanda_tangan'] == '' ? asset('assets/images/signature.jpg') : $starterPack['tanda_tangan']['signature'] }}"
-                                    alt="">
-                                <img class="imglogoverback" src="{{ asset('assets/images/qrcode.png') }}">
+                                <img class="w-24 h-24" src="{{ asset('assets/images/qrcode.png') }}" alt="">
+                                <div class="flex flex-col justify-center items-center gap-1">
+                                    <small>{{ $starterPack['tanda_tangan'] == '' ? 'ABCDE' : $starterPack['tanda_tangan']['jabatan'] }}</small>
+                                    <img class="w-24 h-24"
+                                        src="{{ $starterPack['tanda_tangan'] == '' ? asset('assets/images/signature.jpg') : $starterPack['tanda_tangan']['signature'] }}"
+                                        alt="">
+                                    <small>{{ $starterPack['tanda_tangan'] == '' ? 'FULAN BIN FULAN' : $starterPack['tanda_tangan']['nama'] }}</small>
+                                </div>
                             </div>
                         </div>
 
@@ -306,21 +320,33 @@
                             </table>
                         </div>
                     @endif
-                    <div id="kartuback{{ $item['id'] }}" class="kartuhorback {{ $item['warna_teks'] }}"
+                    <div id="kartuback{{ $item['id'] }}" class="kartuhorback {{ $item['warna_teks'] }} "
                         style="background-image: url({{ env('APP_IMG', '') . $item['back'] }});
                     background-position: center;
                     background-repeat: no-repeat;
                     background-size: cover;">
-                        <img class="ttdhor"
-                            src="{{ $starterPack['tanda_tangan'] == '' ? asset('assets/images/signature.jpg') : $starterPack['tanda_tangan']['signature'] }}"
-                            alt="">
-                        <img class="imglogohorback" src="{{ asset('assets/images/qrcode.png') }}" alt="">
+                        <img class="w-24 h-24" src="{{ asset('assets/images/qrcode.png') }}" alt="">
+                        <div class="flex flex-col justify-center items-center gap-1">
+                            <small>{{ $starterPack['tanda_tangan'] == '' ? 'ABCDE' : $starterPack['tanda_tangan']['jabatan'] }}</small>
+                            <img class="w-24 h-24"
+                                src="{{ $starterPack['tanda_tangan'] == '' ? asset('assets/images/signature.jpg') : $starterPack['tanda_tangan']['signature'] }}"
+                                alt="">
+                            <small>{{ $starterPack['tanda_tangan'] == '' ? 'FULAN BIN FULAN' : $starterPack['tanda_tangan']['nama'] }}</small>
+                        </div>
                     </div>
                     @endif
                 </div>
-                <button id="unduh{{ $item['id'] }}"
-                    class="bg-slate-200 p-2 rounded-lg mb-3 dark:bg-black dark:text-white">Siap untuk
-                    pengajuan</button>
+                @if ($starterPack['tanda_tangan'] != '')
+                    <button id="unduh{{ $item['id'] }}"
+                        class="bg-slate-200 p-2 rounded-lg mb-3 dark:bg-black dark:text-white">Siap untuk
+                        pengajuan</button>
+                @else
+                    <small class="block text-red-500 font-semibold">Mohon tambahkan tanda tangan (klik pada ikon profil
+                        pojok
+                        kanan atas) agar kartu siap untuk
+                        pengajuan.</small>
+                    <small class="text-red-500 font-light">*Setiap satker hanya menampung 1 tanda tangan</small>
+                @endif
             </div>
         </div>
         <script>

@@ -27,9 +27,7 @@ class Perangkat
             }
             return $next($request);
         } catch (\Throwable $th) {
-            Session::flush();
-            Cookie::forget('token');
-            return redirect()->route('login');
+            return redirect()->route('logout');
         }
     }
 }
