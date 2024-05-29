@@ -1,4 +1,4 @@
-@if ($item['status'] == 1 || $item['status'] == 2)
+@if ($item['status'] == 1)
     <div class="flex flex-row gap-3 justify-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" data-tooltip-target="tooltip-setuju" stroke-linecap="round"
@@ -119,7 +119,7 @@
             })
         </script>
     </div>
-@elseif($item['status'] == 3)
+@elseif($item['status'] == 2)
     <div class="flex flex-row justify-center gap-2 items-center">
         <button
             class="font-bold flex flex-row items-center gap-2 text-yellow-500 hover:text-orange-400 hover:animate-pulse"

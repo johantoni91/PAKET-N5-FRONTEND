@@ -36,7 +36,6 @@ class AuthController extends Controller
                 'starterPack'       => helper::starterPack()
             ]);
         } catch (\Throwable $th) {
-            dd($th->getMessage());
             return redirect()->route('logout');
         }
     }

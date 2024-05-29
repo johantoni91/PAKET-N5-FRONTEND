@@ -4,6 +4,11 @@
     @include('partials.topbar')
     <div class="ltr:flex flex-1 rtl:flex-row-reverse">
         <div class="page-wrapper relative ltr:ml-auto rtl:mr-auto rtl:ml-0 w-[calc(100%-260px)] px-4 pt-[64px] duration-300">
+            @error('nip')
+                <div class="absolute p-2 z-[99] rounded-lg bg-red-900 shadow shadow-red-900 text-white top-20 right-3">
+                    {{ $message }}
+                </div>
+            @enderror
             <div class="xl:w-full">
                 <div class="flex flex-wrap">
                     <div class="flex items-center py-4 w-full">
@@ -66,6 +71,9 @@
                                                                         Pengajuan
                                                                     </th>
                                                                     <th class="px-6 py-3">
+                                                                        Alasan
+                                                                    </th>
+                                                                    <th class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
                                                                         @if (preg_match('/^\d{6}$/', $starterPack['profile']['satker']))
                                                                             Progress
                                                                         @else
@@ -77,7 +85,7 @@
                                                             <tbody>
                                                                 @if (!$data)
                                                                     <tr>
-                                                                        <th colspan="3">
+                                                                        <th colspan="5">
                                                                             <p
                                                                                 class="text-red-500 mt-3 text-center text-xs italic">
                                                                                 Tidak ada pengajuan</p>
@@ -91,7 +99,7 @@
                                                                                 class="px-4 py-2 text-black bg-gray-50 dark:text-white dark:bg-gray-800">
                                                                                 <div
                                                                                     class="flex flex-col justify-center text-wrap">
-                                                                                    {{ $item['nama'] }}
+                                                                                    {{ Illuminate\Support\Facades\Http::withToken($starterPack['profile']['token'])->get(env('API_URL', '') . '/pegawai' . '/' . $item['nip'] . '/find')->json()['data']['nama'] }}
                                                                                     <div class="text-start text-nowrap">
                                                                                         NIP :
                                                                                         {{ $item['nip'] }}
@@ -107,8 +115,20 @@
                                                                                 {{ Illuminate\Support\Facades\Http::withToken($starterPack['profile']['token'])->get(env('API_URL', '') . '/kartu' . '/' . $item['kartu'])->json()['data']['title'] }}
                                                                             </td>
                                                                             <td
-                                                                                class="px-10 py-4 text-center dark:text-white">
-                                                                                @if (preg_match('/^\d{6}$/', $starterPack['profile']['satker']))
+                                                                                class="px-6 py-4 dark:text-white text-center font-bold">
+                                                                                @if ($item['alasan'] == '0')
+                                                                                    Rusak
+                                                                                @elseif($item['alasan'] == '1')
+                                                                                    Baru
+                                                                                @elseif($item['alasan'] == '2')
+                                                                                    Ganti satker
+                                                                                @elseif($item['alasan'] == '3')
+                                                                                    Hilang
+                                                                                @endif
+                                                                            </td>
+                                                                            <td
+                                                                                class="px-10 py-4 text-center dark:text-white bg-gray-50 dark:bg-gray-800">
+                                                                                @if (preg_match('/^\d{6}$/', $starterPack['profile']['satker']) || $starterPack['profile']['nip'] == $item['nip'])
                                                                                     @include('pengajuan.partials.progress')
                                                                                 @else
                                                                                     @include('pengajuan.partials.aksi')
@@ -149,4 +169,13 @@
             </div>
         </div>
     </div>
+    <script>
+        function keepOnlyNumbers(input) {
+            return input.replace(/\D/g, "");
+        }
+        var inputField = document.getElementById("nip");
+        inputField.addEventListener("input", function() {
+            inputField.value = keepOnlyNumbers(inputField.value);
+        });
+    </script>
 @endsection

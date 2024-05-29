@@ -7,7 +7,6 @@ use helper;
 use App\API\PengajuanApi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PengajuanController extends Controller
@@ -35,11 +34,24 @@ class PengajuanController extends Controller
     {
         $img = '';
         $nama_gambar = '';
+        $req->validate([
+            'nip'    => 'required|numeric',
+            'kartu'  => 'required',
+            'reason' => 'required',
+        ], [
+            'nip.required'    => 'NIP tidak boleh kosong!',
+            'nip.numeric'     => 'NIP harus berupa angka!',
+            'nama.alpha'      => 'Nama !',
+            'kartu.required'  => 'Kartu tidak boleh kosong!',
+            'reason.required' => 'Berikan alasan yang konkrit!',
+        ]);
+
         $input = [
             'nip'         => $req->nip,
             'nama'        => $req->nama,
-            'satker_code' => Session::get('data')['satker'],
-            'kartu'       => $req->kartu
+            'satker_code' => session('data')['satker'],
+            'kartu'       => $req->kartu,
+            'alasan'      => $req->reason
         ];
 
         if ($req->hasFile('photo')) {
@@ -54,8 +66,7 @@ class PengajuanController extends Controller
             Alert::success('Berhasil', 'Pengajuan berhasil dikirim');
             return back();
         } else {
-            dd($pengajuan);
-            Alert::error('Gagal', 'Pengajuan gagal dikirim');
+            Alert::error('Gagal', $pengajuan['message']);
             return back();
         }
     }
@@ -91,20 +102,10 @@ class PengajuanController extends Controller
     function approve(Request $req)
     {
         $res = PengajuanApi::approve($req->id);
-        if (
-            preg_match('/^\d{4}$/', Session::get('data')['satker']) ||
-            preg_match('/^\d{2}$/', Session::get('data')['satker']) ||
-            (preg_match('/^\d{2}$/', Session::get('data')['satker']) && Session::get('data')['satker'] != "00")
-        ) {
-            $output = [
-                'message' => 'Berhasil menyetujui pengajuan'
-            ];
-        } else {
-            $output = [
-                'message' => 'Berhasil menyetujui pengajuan',
-                'token'   => $res['data']['token']
-            ];
-        }
+        $output = [
+            'message' => 'Berhasil menyetujui pengajuan',
+            'token'   => $res['data']['token']
+        ];
         if ($res['status'] == true) {
             return response()->json($output, 200);
         }

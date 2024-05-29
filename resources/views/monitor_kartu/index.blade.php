@@ -79,7 +79,7 @@
                                                                             class="px-4 py-2 text-black whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
                                                                             <div
                                                                                 class="flex flex-col justify-center text-wrap">
-                                                                                {{ $item['nama'] }}
+                                                                                {{-- {{ $item['nama'] }} --}}
                                                                                 <div class="text-start text-nowrap">
                                                                                     NIP :
                                                                                     {{ $item['nip'] }}
@@ -95,7 +95,8 @@
                                                                             @include('pengajuan.partials.status')
                                                                         </td>
                                                                         <td class="px-10 py-4 text-center dark:text-white">
-                                                                            @if ($item['status'] == '0')
+                                                                            -
+                                                                            {{-- @if ($item['status'] == '0')
                                                                                 -
                                                                             @else
                                                                                 @if ($item['status'] == '1' && $item['approve_satker'] == '3')
@@ -107,7 +108,7 @@
                                                                                 @elseif ($item['status'] == '3')
                                                                                     -
                                                                                 @endif
-                                                                            @endif
+                                                                            @endif --}}
                                                                         </td>
                                                                         <td
                                                                             class="px-6 py-4 dark:text-white text-center bg-gray-50 dark:bg-gray-800">

@@ -20,8 +20,20 @@ class helper
             $bg_light = 'from-green-400 to-yellow-500';
             $bg_dark = 'dark:from-orange-600 dark:to-orange-900';
         }
+
+        if (session('data')['satker'] == "00") {
+            $kode = '0';
+        } elseif (preg_match('/^\d{2}$/', session('data')['satker']) && session('data')['satker'] != "00") {
+            $kode = '1';
+        } elseif (preg_match('/^\d{4}$/', session('data')['satker'])) {
+            $kode = '2';
+        } elseif (preg_match('/^\d{6}$/', session('data')['satker'])) {
+            $kode = '3';
+        }
+
         return [
             'profile'       => Session::get('data'),
+            'kode'          => $kode,
             'routes'        => json_decode(RoleApi::find(Session::get('data')['roles'])['route'], true),
             'icons'         => json_decode(RoleApi::find(Session::get('data')['roles'])['icon'], true),
             'titles'        => json_decode(RoleApi::find(Session::get('data')['roles'])['title'], true),

@@ -27,26 +27,17 @@
                             <div class="flex flex-row gap-5">
                                 <label for="nip" class="my-auto w-24">NIP</label>
                                 <input type="text" id="nip" name="nip" value="{{ request('nip') ?? '' }}"
-                                    class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <script>
-                                    function keepOnlyNumbers(input) {
-                                        return input.replace(/\D/g, "");
-                                    }
-                                    var inputField1 = document.getElementById("nip");
-                                    inputField1.addEventListener("input", function() {
-                                        inputField1.value = keepOnlyNumbers(inputField1.value);
-                                    });
-                                </script>
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             </div>
                             <div class="flex flex-row gap-5">
                                 <label for="nama" class="my-auto w-24">Nama</label>
                                 <input type="text" id="nama" name="nama" value="{{ request('nama') ?? '' }}"
-                                    class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             </div>
                             <div class="flex flex-row gap-5">
                                 <label for="status" class="my-auto w-24">Status</label>
                                 <select id="status" name="status"
-                                    class="bg-gray-200 border border-gray-300 shadow shadow-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                     @if (!request()->routeIs('pengajuan'))
                                         <option
                                             {{ request('status') == '' || request('status') == null ? 'selected' : '' }}

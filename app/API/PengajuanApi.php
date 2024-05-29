@@ -12,45 +12,45 @@ class PengajuanApi
 
     public static function get()
     {
-        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/pengajuan' . '/' . Session::get('data')['satker'] . '/index')->json();
+        return Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/pengajuan' . '/' . session('data')['satker'] . '/index')->json();
     }
 
     public static function store($input, $file, $file_name)
     {
         if ($file != '') {
-            return Http::withToken(Session::get('data')['token'])->attach('photo', file_get_contents($file), $file_name)->post(env('API_URL', '') . '/pengajuan/store', $input)->json();
+            return Http::withToken(session('data')['token'])->attach('photo', file_get_contents($file), $file_name)->post(env('API_URL', '') . '/pengajuan/store', $input)->json();
         } else {
-            return Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . '/pengajuan/store', $input)->json();
+            return Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/pengajuan/store', $input)->json();
         }
     }
 
     public static function find($id)
     {
-        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . self::$path . '/' . $id)->json();
+        return Http::withToken(session('data')['token'])->get(env('API_URL', '') . self::$path . '/' . $id)->json();
     }
 
     public static function search($input)
     {
-        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . self::$path . '/search', $input)->json();
+        return Http::withToken(session('data')['token'])->get(env('API_URL', '') . self::$path . '/search', $input)->json();
     }
 
     public static function approve($id)
     {
-        $token = session('data')['token'] ? mt_rand() : '';
+        $token = mt_rand();
         $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
-        return Http::withToken(Session::get('data')['token'])->post(
-            env('API_URL', '') . self::$path . '/' . $id . '/approve' . '/' . Session::get('data')['satker'],
+        return Http::withToken(session('data')['token'])->post(
+            env('API_URL', '') . self::$path . '/' . $id . '/approve' . '/' . session('data')['satker'],
             [
                 'token'   => $token,
-                'barcode' => session('data')['satker'] == '00' ? 'data:image/png;base64,' . base64_encode($generator->getBarcode($token, $generator::TYPE_CODE_128)) : null,
-                'qrCode'  => session('data')['satker'] == '00' ? 'data:image/png;base64,' . base64_encode(QrCode::format('png')->size(300)->merge(public_path('assets/images/favicon.ico'), 0.5, true)->generate($token)) : null
+                'barcode' => 'data:image/png;base64,' . base64_encode($generator->getBarcode($token, $generator::TYPE_CODE_128)),
+                'qrCode'  => 'data:image/png;base64,' . base64_encode(QrCode::format('png')->size(300)->merge(public_path('assets/images/favicon.ico'), 0.5, true)->generate($token))
             ]
         )->json();
     }
 
     public static function reject($id)
     {
-        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . self::$path . '/reject' . '/' . $id)->json();
+        return Http::withToken(session('data')['token'])->get(env('API_URL', '') . self::$path . '/reject' . '/' . $id)->json();
     }
 
     public static function status()
