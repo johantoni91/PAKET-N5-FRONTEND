@@ -19,7 +19,7 @@ class LayoutKartuController extends Controller
     public function index()
     {
         try {
-            $kartu = KartuApi::get()['data'];
+            $kartu = KartuApi::getWithPagination()['data'];
             return view($this->view, [
                 'view'        => $this->view,
                 'title'       => $this->title,
