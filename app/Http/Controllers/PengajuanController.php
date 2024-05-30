@@ -12,20 +12,28 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PengajuanController extends Controller
 {
-    private $view = 'pengajuan.index';
+    private $view = 'pengajuan.admin';
     private $title = 'Manajemen Pengajuan';
 
     function index()
     {
         try {
-            $data = PengajuanApi::get()['data'];
-            return view($this->view, [
-                'view'        => $this->view,
-                'title'       => $this->title,
-                'data'        => $data,
-                'kartu'       => KartuApi::getTitle(),
-                'starterPack' => helper::starterPack()
-            ]);
+            if (session('data')['roles'] != 'superadmin' && preg_match('/^\d{6}$/', session('data')['satker'])) {
+                return view('pengajuan.index', [
+                    'title'         => 'Form Pengajuan',
+                    'kartu'         => KartuApi::get(),
+                    'starterPack'   => helper::starterPack()
+                ]);
+            } else {
+                $data = PengajuanApi::get()['data'];
+                return view($this->view, [
+                    'view'        => $this->view,
+                    'title'       => $this->title,
+                    'data'        => $data,
+                    'kartu'       => KartuApi::getTitle(),
+                    'starterPack' => helper::starterPack()
+                ]);
+            }
         } catch (\Throwable $th) {
             return redirect()->route('logout');
         }
@@ -42,7 +50,6 @@ class PengajuanController extends Controller
         ], [
             'nip.required'    => 'NIP tidak boleh kosong!',
             'nip.numeric'     => 'NIP harus berupa angka!',
-            'nama.alpha'      => 'Nama !',
             'kartu.required'  => 'Kartu tidak boleh kosong!',
             'reason.required' => 'Berikan alasan yang konkrit!',
         ]);
@@ -50,7 +57,6 @@ class PengajuanController extends Controller
         $input = [
             'log'         => log::insert(),
             'nip'         => $req->nip,
-            'nama'        => $req->nama,
             'satker_code' => session('data')['satker'],
             'kartu'       => $req->kartu,
             'alasan'      => $req->reason
@@ -66,7 +72,7 @@ class PengajuanController extends Controller
         $pengajuan = PengajuanApi::store($input, $img, $nama_gambar);
         if ($pengajuan['status'] == true) {
             Alert::success('Berhasil', 'Pengajuan berhasil dikirim');
-            return back();
+            return redirect()->route('monitor.kartu');
         } else {
             Alert::error('Gagal', $pengajuan['message']);
             return back();
