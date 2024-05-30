@@ -128,11 +128,11 @@
                                                                             </td>
                                                                             <td
                                                                                 class="px-10 py-4 text-center dark:text-white bg-gray-50 dark:bg-gray-800">
-                                                                                @if (preg_match('/^\d{6}$/', $starterPack['profile']['satker']) || $starterPack['profile']['nip'] == $item['nip'])
+                                                                                {{-- @if (preg_match('/^\d{6}$/', $starterPack['profile']['satker']) || $starterPack['profile']['nip'] == $item['nip'])
                                                                                     @include('pengajuan.partials.progress')
-                                                                                @else
-                                                                                    @include('pengajuan.partials.aksi')
-                                                                                @endif
+                                                                                @else --}}
+                                                                                @include('pengajuan.partials.aksi')
+                                                                                {{-- @endif --}}
                                                                             </td>
                                                                         </tr>
                                                                     @endforeach

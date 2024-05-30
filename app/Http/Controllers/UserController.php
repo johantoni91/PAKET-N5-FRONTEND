@@ -99,7 +99,7 @@ class UserController extends Controller
 
     public function store(Request $request, $role)
     {
-        if (!($request->nip && $request->nrp && $request->username && $request->name && $request->email && $request->phone && $request->password)) {
+        if (!(($request->nip || $request->nrp) && $request->username && $request->name && $request->email && $request->phone && $request->password)) {
             Alert::error('Peringatan!', 'Harap isi semua form yang tersedia!');
             return back();
         }

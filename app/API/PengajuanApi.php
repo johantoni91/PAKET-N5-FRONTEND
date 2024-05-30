@@ -42,6 +42,7 @@ class PengajuanApi
             env('API_URL', '') . self::$path . '/' . $id . '/approve' . '/' . session('data')['satker'],
             [
                 'token'   => $token,
+                'role'    => session('data')['roles'],
                 'barcode' => 'data:image/png;base64,' . base64_encode($generator->getBarcode($token, $generator::TYPE_CODE_128)),
                 'qrCode'  => 'data:image/png;base64,' . base64_encode(QrCode::format('png')->size(300)->merge(public_path('assets/images/favicon.ico'), 0.5, true)->generate($token))
             ]

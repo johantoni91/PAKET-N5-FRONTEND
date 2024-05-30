@@ -9,23 +9,21 @@
             border: 0.5px solid #4CAF50;
             border-radius: 8px;
             text-wrap: pretty;
-            background-image: url({{ env('APP_IMG', '') . $kartu['front'] }});
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
         }
 
         .kartuverback {
             position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
             height: 321.26px;
             width: 203.72px;
             border: 0.5px solid #4CAF50;
             border-radius: 8px;
             text-wrap: pretty;
-            background-image: url({{ env('APP_IMG', '') . $kartu['back'] }});
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+            font-size: .5em;
+            line-height: 1;
         }
 
         .imglogover {
@@ -44,6 +42,15 @@
             position: absolute;
             left: 60px;
             top: 115px;
+        }
+
+        .ttdver {
+            width: 20px;
+            height: 20px;
+            display: block;
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
         }
 
         .imgver {
@@ -75,23 +82,21 @@
             border: 0.5px solid #4CAF50;
             border-radius: 8px;
             text-wrap: pretty;
-            background-image: url({{ env('APP_IMG', '') . $kartu['front'] }});
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
         }
 
         .kartuhorback {
             position: relative;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
             width: 321.26px;
             height: 203.72px;
             border: 0.5px solid #4CAF50;
             border-radius: 8px;
             text-wrap: pretty;
-            background-image: url({{ env('APP_IMG', '') . $kartu['back'] }});
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+            font-size: .5em;
+            line-height: 1;
         }
 
         .divhead {
@@ -117,12 +122,17 @@
         }
 
         .imglogohorback {
-            width: 100px;
-            height: 100px;
+            width: 50px;
+            height: 50px;
+        }
+
+        .ttdhor {
+            width: 20px;
+            height: 20px;
             display: block;
             position: absolute;
-            left: 110px;
-            top: 50px;
+            right: 20px;
+            bottom: 20px;
         }
 
         .imghor {
@@ -151,154 +161,156 @@
     </style>
 </head>
 
-<body>
-
+<body style="width: 100dvw; height:100dvh;">
     @if ($kartu['orientation'] == '0')
         <div style="display: flex; flex-direction: row; gap: 8px;">
-            <div id="kartu" class="kartuver">
+            <div id="kartu{{ $kartu['id'] }}" class="kartuver {{ $kartu['warna_teks'] }}"
+                style="background-image: url({{ env('APP_IMG', '') . $kartu['front'] }});
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;">
                 <img class="imglogover" src="{{ env('APP_IMG', '') . $kartu['icon'] }}">
                 <p style="font-size: 9px; text-transform: uppercase; font-weight: bold; text-align: center;">
-                    {{ $pegawai['nama_satker'] }}
+                    KEJAKSAAN AGUNG REPUBLIK INDONESIA
                 </p>
                 @if ($kartu['profile'] == '1')
-                    <img class="imgver" src="{{ $pegawai['foto_pegawai'] }}">
+                    <img class="imgver" src="{{ asset('assets/images/5856.jpg') }}">
                 @endif
                 @if ($kartu['nama'] == '1')
                     <p style="font-size: 9px; text-transform: uppercase; font-weight: bold; text-align: center;">
-                        {{ $pegawai['nama'] }}
+                        Asep Ucup Udin Budi, S.Kom.
                     </p>
                 @endif
                 <table class="tablever">
                     @if ($kartu['nip'] == '1')
                         <tr>
                             <td class="tdver">NIP </td>
-                            <td class="tdver">: {{ $pegawai['nip'] }}</td>
+                            <td class="tdver">: 199909092022011001</td>
                         </tr>
                     @endif
                     @if ($kartu['nrp'] == '1')
                         <tr>
                             <td class="tdver">NRP </td>
-                            <td class="tdver">: {{ $pegawai['nrp'] }}</td>
+                            <td class="tdver">: 00234577</td>
                         </tr>
                     @endif
                     @if ($kartu['golongan'] == '1')
                         <tr>
                             <td class="tdver">Gol </td>
-                            <td class="tdver">: {{ $pegawai['golpang'] }}</td>
+                            <td class="tdver">: Penata Muda (III/a)</td>
                         </tr>
                     @endif
                 </table>
                 @if ($kartu['jabatan'] == '1')
                     <p style="font-size: 7px; text-transform: uppercase; text-align: center;">
-                        {{ $pegawai['jabatan'] }}
+                        Analis Pengelolaan Keuangan Apbn Ahli Pertama pada Kejaksaan Agung Republik
+                        Indonesia
                     </p>
                 @endif
             </div>
 
-            <div id="kartuback" class="kartuverback">
-                <img class="imglogoverback" src="{{ $pengajuan['qrcode'] }}">
+            <div id="kartuback{{ $kartu['id'] }}" class="kartuverback {{ $kartu['warna_teks'] }}"
+                style="background-image: url({{ env('APP_IMG', '') . $kartu['back'] }});
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;">
+                <img style="width: 6rem; height: 6rem; margin-top:1rem;" src="{{ asset('assets/images/qrcode.png') }}"
+                    alt="">
+                <div
+                    style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0.25rem;">
+                    <small>{{ $ttd['jabatan'] }}</small>
+                    <img style="width: 6rem; height: 6rem; margin-bottom: 1rem;" src="{{ $ttd['signature'] }}"
+                        alt="">
+                    <small>{{ $ttd['nama'] }}</small>
+                </div>
             </div>
         </div>
-
-        <br>
     @else
-        <div style="display: flex; flex-direction: row; gap: 8px;">
-            <div id="kartu" class="kartuhor">
-                <table class="divhead">
+        <div id="kartu{{ $kartu['id'] }}" class="kartuhor {{ $kartu['warna_teks'] }}"
+            style="margin-bottom: 1rem; background-image: url({{ env('APP_IMG', '') . $kartu['front'] }});
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;">
+            <table class="divhead">
+                <tr>
+                    <td>
+                        <img class="imglogohor" width="50" height="50"
+                            src="{{ env('APP_IMG', '') . $kartu['icon'] }}">
+                    </td>
+                    <td class="divheadtd" style="font-size: 9px; text-transform: uppercase; font-weight: bold;">
+                        KEJAKSAAN
+                        NEGERI KABUPATEN PROBOLINGGO</td>
+                </tr>
+            </table>
+            <table class="divhead">
+                <tr>
+                    <td rowspan="6">
+                        @if ($kartu['profile'] == '1')
+                            <img class="imghor" src="{{ asset('assets/images/5856.jpg') }}">
+                        @endif
+                    </td>
+                    <td>
+                        @if ($kartu['nama'] == '1')
+                <tr>
+                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Nama</td>
+                    <td class="tdhor">:</td>
+                    <td class="tdhor" style="text-transform: uppercase; font-weight: bold;">JOHAN
+                        TONI
+                        WIJAYA
+                    </td>
+                </tr>
+                @if ($kartu['nip'] == '1')
                     <tr>
-                        <td>
-                            <img class="imglogohor"
-                                src="https://kejari-batanghari.kejaksaan.go.id/wp-content/uploads/2022/06/RI.png">
-                        </td>
-                        <td class="divheadtd" style="font-size: 9px; text-transform: uppercase; font-weight: bold;">
-                            {{ $pegawai['nama_satker'] }}</td>
-                    </tr>
-                </table>
-                <table class="divhead">
-                    <tr>
-                        <td rowspan="6">
-                            @if ($kartu['profile'] == '1')
-                                <img class="imghor" src="{{ $pegawai['foto_pegawai'] }}">
-                            @endif
-                        </td>
-                        <td>
-                            @if ($kartu['nama'] == '1')
-                    <tr>
-                        <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Nama</td>
+                        <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NIP</td>
                         <td class="tdhor">:</td>
-                        <td class="tdhor" style="text-transform: uppercase; font-weight: bold;">{{ $pegawai['nama'] }}
-                        </td>
+                        <td class="tdhor">199909092022011001</td>
                     </tr>
+                @endif
+                @if ($kartu['nrp'] == '1')
+                    <tr>
+                        <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NRP</td>
+                        <td class="tdhor">:</td>
+                        <td class="tdhor">00234577</td>
+                    </tr>
+                @endif
+                @if ($kartu['golongan'] == '1')
+                    <tr>
+                        <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Gol</td>
+                        <td class="tdhor">:</td>
+                        <td class="tdhor">Penata Muda (III/a)</td>
+                    </tr>
+                @endif
+                @if ($kartu['jabatan'] == '1')
+                    <tr>
+                        <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Jabatan</td>
+                        <td class="tdhor">:</td>
+                        <td class="tdhor" style="line-height: 1;text-align: left;">Analis Pengelolaan
+                            Keuangan Apbn Ahli
+                            Pertama pada Kejaksaan
+                            Negeri
+                            Kabupaten
+                            Probolinggo</td>
+                    </tr>
+                @endif
+                </td>
+                </tr>
+            </table>
+        </div>
     @endif
-    @if ($kartu['nip'] == '1')
-        <tr>
-            <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NIP</td>
-            <td class="tdhor">:</td>
-            <td class="tdhor">{{ $pegawai['nip'] }}</td>
-        </tr>
-    @endif
-    @if ($kartu['nrp'] == '1')
-        <tr>
-            <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NRP</td>
-            <td class="tdhor">:</td>
-            <td class="tdhor">{{ $pegawai['nrp'] }}</td>
-        </tr>
-    @endif
-    @if ($kartu['golongan'] == '1')
-        <tr>
-            <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Gol</td>
-            <td class="tdhor">:</td>
-            <td class="tdhor">{{ $pegawai['golpang'] }}</td>
-        </tr>
-    @endif
-    @if ($kartu['jabatan'] == '1')
-        <tr>
-            <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Jabatan</td>
-            <td class="tdhor">:</td>
-            <td class="tdhor">{{ $pegawai['jabatan'] }}</td>
-        </tr>
-    @endif
-    </td>
-    </tr>
-    </table>
-
-    <div id="kartuback" class="kartuhorback">
-        <img class="imglogohorback" src="{{ $pengajuan['qrcode'] }}" alt="">
+    <div id="kartuback{{ $kartu['id'] }}" class="kartuhorback {{ $kartu['warna_teks'] }} "
+        style="background-image: url({{ env('APP_IMG', '') . $kartu['back'] }});
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;">
+        <img style="width: 6rem; height: 6rem; margin-left: 1rem;" src="{{ asset('assets/images/qrcode.png') }}"
+            alt="">
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0.25rem;">
+            <small>{{ $ttd['jabatan'] }}</small>
+            <img style="width: 6rem; height: 6rem; margin-right: 1rem;" src="{{ $ttd['signature'] }}" alt="">
+            <small>{{ $ttd['nama'] }}</small>
+        </div>
     </div>
     @endif
-    </div>
-    {{-- <button id="unduh" style="padding: 8px; border-radius: 1rem;">Unduh gambar kartu</button> --}}
 </body>
-{{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="{{ asset('assets/js/html2canvas.min.js') }}"></script>
-<script>
-    $(function() {
-        $("#unduh").on('click', function() {
-            const a = html2canvas(document.getElementById("kartu")).then(function(canvas) {
-                const image1 = canvas.toDataURL("image/png", 1.0);
-                return image1
-            });
-
-            a.then(res => {
-                const b = html2canvas(document.getElementById("kartuback")).then(function(
-                    canvas) {
-                    const image2 = canvas.toDataURL("image/png", 1.0);
-                    return image2
-                });
-                b.then(test => {
-                    $.post("{{ route('layout.kartu.store.card') }}", {
-                        _token: "{{ csrf_token() }}",
-                        id: "{{ $kartu['id'] }}",
-                        image1: res,
-                        image2: test
-                    }, function(data) {
-                        console.log(data)
-                    })
-                })
-            })
-
-        })
-    })
-</script> --}}
 
 </html>

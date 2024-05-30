@@ -53,9 +53,6 @@
                                                                     class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
                                                                     Status
                                                                 </th>
-                                                                <th scope="col" class="px-6 py-3">
-                                                                    Approval
-                                                                </th>
                                                                 <th scope="col"
                                                                     class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
                                                                     Aksi
@@ -79,7 +76,7 @@
                                                                             class="px-4 py-2 text-black whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
                                                                             <div
                                                                                 class="flex flex-col justify-center text-wrap">
-                                                                                {{-- {{ $item['nama'] }} --}}
+                                                                                {{ Illuminate\Support\Facades\Http::withToken($starterPack['profile']['token'])->get(env('API_URL', '') . '/pegawai' . '/' . $item['nip'] . '/find')->json()['data']['nama'] }}
                                                                                 <div class="text-start text-nowrap">
                                                                                     NIP :
                                                                                     {{ $item['nip'] }}
@@ -93,22 +90,6 @@
                                                                         <td
                                                                             class="px-6 py-4 dark:text-white text-center align-baseline bg-gray-50 dark:bg-gray-800">
                                                                             @include('pengajuan.partials.status')
-                                                                        </td>
-                                                                        <td class="px-10 py-4 text-center dark:text-white">
-                                                                            -
-                                                                            {{-- @if ($item['status'] == '0')
-                                                                                -
-                                                                            @else
-                                                                                @if ($item['status'] == '1' && $item['approve_satker'] == '3')
-                                                                                    {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 4) . '/code')->json()['data']['satker_name'] }}
-                                                                                @elseif ($item['status'] == '1' && $item['approve_satker'] == '2')
-                                                                                    {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . substr($item['kode_satker'], 0, 2) . '/code')->json()['data']['satker_name'] }}
-                                                                                @elseif ($item['status'] == '2')
-                                                                                    {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker/00/code')->json()['data']['satker_name'] }}
-                                                                                @elseif ($item['status'] == '3')
-                                                                                    -
-                                                                                @endif
-                                                                            @endif --}}
                                                                         </td>
                                                                         <td
                                                                             class="px-6 py-4 dark:text-white text-center bg-gray-50 dark:bg-gray-800">

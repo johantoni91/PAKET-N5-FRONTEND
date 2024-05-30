@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\API\KartuApi;
 use helper;
 use App\API\PengajuanApi;
+use App\Helpers\log;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -47,6 +48,7 @@ class PengajuanController extends Controller
         ]);
 
         $input = [
+            'log'         => log::insert(),
             'nip'         => $req->nip,
             'nama'        => $req->nama,
             'satker_code' => session('data')['satker'],
@@ -102,14 +104,14 @@ class PengajuanController extends Controller
     function approve(Request $req)
     {
         $res = PengajuanApi::approve($req->id);
-        $output = [
-            'message' => 'Berhasil menyetujui pengajuan',
-            'token'   => $res['data']['token']
-        ];
-        if ($res['status'] == true) {
-            return response()->json($output, 200);
+        if ($res['status'] == false) {
+            return response($res['message'], 400);
+        } else {
+            return response()->json([
+                'message' => 'Berhasil menyetujui pengajuan',
+                'token'   => $res['data']['token']
+            ], 200);
         }
-        return response('Gagal menyetujui pengajuan', 400);
     }
 
     function reject(Request $req)

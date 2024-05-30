@@ -59,7 +59,11 @@
                                     });
                                 },
                                 error: function(xhr) {
-
+                                    Swal.fire({
+                                        title: "Pengajuan gagal",
+                                        text: xhr.responseText,
+                                        icon: "error",
+                                    });
                                 }
                             })
                         }

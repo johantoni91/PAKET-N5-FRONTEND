@@ -35,9 +35,12 @@ class MonitorKartuController extends Controller
     function pdf($id, $nip, $title)
     {
         try {
+            $pegawai = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/pegawai' . '/' . $nip . '/find')->json()['data'];
+            $satker = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/satker/find/name', ['satker' => $pegawai['nama_satker']])->json()['data'];
             return view('monitor_kartu.pdf', [
-                'pegawai'   => Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/pegawai' . '/' . $nip . '/find')->json()['data'],
+                'pegawai'   => $pegawai,
                 'kartu'     => KartuApi::findByTitle($title)['data'],
+                'ttd'       => Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/signature' . '/' . $satker['satker_code'])->json()['data'],
                 'pengajuan' => PengajuanApi::find($id)['data']
             ]);
         } catch (\Throwable $th) {
