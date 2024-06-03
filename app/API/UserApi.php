@@ -3,7 +3,6 @@
 namespace App\API;
 
 use App\Helpers\log;
-use App\Helpers\profile;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
@@ -14,6 +13,11 @@ class UserApi
     public static function get()
     {
         return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/users' . '/' . Session::get('data')['satker']);
+    }
+
+    public static function all()
+    {
+        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/users');
     }
 
     public static function search($input)

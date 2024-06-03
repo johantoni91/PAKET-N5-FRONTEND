@@ -173,6 +173,8 @@
                 labels: ['ditolak', 'Proses', 'Verifikasi', 'disetujui'],
                 datasets: [{
                     label: "Total Pengajuan",
+                    backgroundColor: 'purple',
+                    lineTension: 0.4,
                     data: [{{ $status_pengajuan['ditolak'] }}, {{ $status_pengajuan['proses'] }},
                         {{ $status_pengajuan['verifikasi'] }}, {{ $status_pengajuan['setuju'] }}
                     ],
@@ -181,6 +183,16 @@
                 }]
             },
             options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                    title: {
+                        display: false,
+                    },
+                },
                 animations: {
                     tension: {
                         duration: 4000,

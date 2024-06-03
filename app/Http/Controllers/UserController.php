@@ -197,8 +197,7 @@ class UserController extends Controller
                 return back();
             }
         } catch (\Throwable $th) {
-            dd($th->getMessage());
-            Alert::error('Terjadi Kesalahan', 'Mohon refresh halaman dan silahkan coba lagi');
+            Alert::error('Terjadi Kesalahan', $th->getMessage());
             return back();
         }
     }

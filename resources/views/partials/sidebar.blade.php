@@ -4,7 +4,7 @@
         <ul class="circles">
             @for ($i = 0; $i < 18; $i++)
                 <li
-                    class="bg-zinc-500/50 dark:bg-gradient-to-br dark:from-violet-800 dark:via-pink-600 dark:to-red-500 shadow-lg shadow-green-400 rounded-lg">
+                    class="bg-lime-400/50 dark:bg-gradient-to-br dark:from-white dark:to-blue-300/50 shadow-lg shadow-green-400 rounded-lg">
                 </li>
             @endfor
         </ul>

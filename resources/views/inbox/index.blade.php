@@ -40,7 +40,7 @@
                                                     </div>
                                                     <div class="w-full md:w-2/6">
                                                         <ul class="divide-y divide-gray-200 dark:divide-gray-700">
-                                                            @foreach ($users['data'] as $user)
+                                                            @foreach ($users as $user)
                                                                 @if ($user['id'] != session('data')['id'])
                                                                     <li
                                                                         class="py-2 ps-1 hover:bg-slate-400/50 dark:hover:bg-slate-200/50">
@@ -51,7 +51,7 @@
                                                                                     src="{{ $user['photo'] == '' ? asset('assets/images/5856.jpg') : $user['photo'] }}"
                                                                                     alt="5856">
                                                                                 <p
-                                                                                    class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                                                                    class="text-sm font-medium text-gray-900 truncate dark:text-white truncate overflow-hidden">
                                                                                     {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/pegawai' . '/' . $user['nip'] . '/find')->json()['data']['nama'] ?? '' }}
                                                                                 </p>
                                                                             </div>
@@ -70,7 +70,6 @@
                                                                                         type: "POST",
                                                                                         data: {
                                                                                             _token: "{{ csrf_token() }}",
-                                                                                            user1: "{{ session('data')['id'] }}",
                                                                                             user2: "{{ $user['id'] }}"
                                                                                         },
                                                                                         success: function(data) {

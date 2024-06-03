@@ -15,7 +15,7 @@ class DashboardController extends Controller
         try {
             return view('inbox.index', [
                 'title'             => 'Inbox',
-                'users'             => UserApi::get()->json()['data'],
+                'users'             => UserApi::all()->json()['data'],
                 'starterPack'       => helper::starterPack()
             ]);
         } catch (\Throwable $th) {
@@ -25,10 +25,10 @@ class DashboardController extends Controller
 
     function getRoom(Request $req)
     {
-        $room = Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/inbox' . '/' . $req->user1 . '/room' . '/' . $req->user2)->json()['data'];
+        $room = Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/inbox' . '/' . session('data')['id'] . '/room' . '/' . $req->user2)->json();
         return response()->json([
             'view'          => view('inbox.message', [
-                'data'      => $room,
+                'data'      => $room['data'],
                 'profile'   => session('data'),
                 'pegawai'   => session('pegawai'),
             ])->render()
@@ -38,8 +38,8 @@ class DashboardController extends Controller
     function send(Request $req)
     {
         $chat = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/inbox' . '/' . $req->room . '/chat', [
-            'message'       => $req->message,
-            'message_from'  => session('data')['id'],
+            'message' => $req->message,
+            'from'    => session('data')['id']
         ])->json();
         if ($chat['status'] == false) {
             Alert::error('Gagal', $chat['message']);

@@ -31,7 +31,8 @@ class PaginationController extends Controller
                 'title'       => $title,
                 'kolom'       => $kolom,
                 'satker'      => SatkerApi::getSatkerName()['data'],
-                'roles'       => RoleApi::get(),
+                'roles'       => RoleApi::get()['data'],
+                'input'       => null,
                 'additional'  => Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/rate/additional')->json()['data'],
                 'starterPack' => helper::starterPack()
             ]);
