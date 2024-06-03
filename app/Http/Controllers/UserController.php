@@ -169,9 +169,7 @@ class UserController extends Controller
                 'mobile'            => $agent->device(),
             ];
 
-            $this->validate($request, [
-                'nip'               => 'required',
-                'nrp'               => 'required',
+            $request->validate([
                 'username'          => 'required',
                 'name'              => 'required',
                 'email'             => 'required|email:rfc,dns',
