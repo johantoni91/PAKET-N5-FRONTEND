@@ -222,6 +222,17 @@
                                                                                     <label class="text-xs font-normal"
                                                                                         for="ulasan{{ $item['id'] }}">Ulasan</label>
                                                                                 </div>
+                                                                                <div
+                                                                                    class="flex flex-row gap-1 items-center">
+                                                                                    <input type="checkbox" name="roles[]"
+                                                                                        id="assessment{{ $item['id'] }}"
+                                                                                        value="assessment"
+                                                                                        {{ $route == null ? '' : (in_array('assessment', $route) ? 'checked' : '') }}
+                                                                                        class="bg-slate-500 rounded border-0">
+                                                                                    <label class="text-xs font-normal"
+                                                                                        for="assessment{{ $item['id'] }}">Assessment
+                                                                                        Security</label>
+                                                                                </div>
                                                                             </div>
                                                                         </th>
                                                                         <td>

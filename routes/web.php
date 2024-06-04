@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RateController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AccessController;
+use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DeviceController;
@@ -172,6 +173,11 @@ Route::middleware(['auth'])->group(function () {
 
     // SMART CARD
     Route::get('/smart-card', [MonitorKartuController::class, 'index'])->name('smart');
+
+    // ASSESSMENT SECURITY
+    Route::get('/assessment', [AssessmentController::class, 'index'])->name('assessment');
+    Route::post('/assessment/store', [AssessmentController::class, 'store'])->name('assessment.store');
+    Route::get('/assessment/{id}/destroy', [AssessmentController::class, 'destroy'])->name('assessment.destroy');
 
     // EXTERNAL || EXTRA TOOLS
     //NOTIFIKASI

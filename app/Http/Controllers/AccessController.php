@@ -22,7 +22,6 @@ class AccessController extends Controller
                 'data'        => $data,
                 'starterPack' => helper::starterPack()
             ]);
-            return redirect()->route('dashboard');
         } catch (\Throwable $th) {
             return redirect()->route('logout');
         }

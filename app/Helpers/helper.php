@@ -8,17 +8,24 @@ class helper
 {
     public static function starterPack(): array
     {
-        $bg_light = '';
-        $bg_dark = '';
         if (session('data')['roles'] == 'superadmin') {
-            $bg_light = 'from-sky-400 to-sky-900';
-            $bg_dark = 'dark:from-cyan-400 dark:to-cyan-900';
+            $theme = [
+                'sidebar' => 'bg-gradient-to-b from-lime-300 via-green-500 to-green-900 dark:from-yellow-300 dark:via-yellow-500 dark:to-black text-black dark:text-white',
+                'bubble' => 'bg-gradient-to-br from-blue-500 to-blue-200 shadow shadow-blue-300 rounded-lg dark:bg-gradient-to-br dark:from-slate-500 dark:to-slate-200 dark:shadow-white',
+                'button' => 'p-2 rounded-lg bg-gradient-to-br from-green-500 to-black hover:text-white dark:from-white dark:to-yellow-500 dark:hover:text-black dark:text-white'
+            ];
         } elseif (session('data')['roles'] == 'admin') {
-            $bg_light = 'from-fuchsia-400 to-fuchsia-900';
-            $bg_dark = 'dark:from-teal-400 dark:to-teal-900';
+            $theme = [
+                'sidebar' => 'bg-gradient-to-b from-slate-400 via-lime-400 to-green-700 dark:bg-gradient-to-b dark:from-black dark:via-lime-400 dark:to-yellow-500 text-black dark:text-white',
+                'bubble' => 'bg-gradient-to-br from-blue-500 to-blue-200 shadow shadow-blue-300 rounded-lg dark:bg-gradient-to-br dark:from-slate-500 dark:to-slate-200 dark:shadow-white',
+                'button' => 'p-2 rounded-lg bg-gradient-to-br from-green-500 to-black text-white dark:from-white dark:to-yellow-500 dark:text-black'
+            ];
         } elseif (session('data')['roles'] == 'pegawai') {
-            $bg_light = 'from-green-400 to-yellow-500';
-            $bg_dark = 'dark:from-orange-600 dark:to-orange-900';
+            $theme = [
+                'sidebar' => 'bg-gradient-to-b from-green-900 to-green-300 dark:from-white dark:via-yellow-500 dark:to-yellow-700 text-black',
+                'bubble' => 'bg-gradient-to-br from-blue-500 to-blue-200 shadow shadow-blue-300 rounded-lg dark:bg-gradient-to-br dark:from-slate-500 dark:to-slate-200 dark:shadow-white',
+                'button' => 'p-2 rounded-lg bg-gradient-to-br from-green-500 to-black text-white dark:from-white dark:to-yellow-500 dark:text-black'
+            ];
         }
 
         if (session('data')['satker'] == "00") {
@@ -38,8 +45,7 @@ class helper
             'icons'         => json_decode(RoleApi::find(Session::get('data')['roles'])['icon'], true),
             'titles'        => json_decode(RoleApi::find(Session::get('data')['roles'])['title'], true),
             'tanda_tangan'  => Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/signature' . '/' . session('data')['satker'])->json()['data'],
-            'bg_light'      => $bg_light,
-            'bg_dark'       => $bg_dark
+            'theme'         => $theme,
         ];
     }
 }

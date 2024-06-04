@@ -46,6 +46,7 @@ class RoleApi
             in_array('log', $input) ? 'history' : null,
             in_array('faq', $input) ? 'help-circle' : null,
             in_array('rating', $input) ? 'star' : null,
+            in_array('assessment', $input) ? 'lock' : null,
         ];
         $title = [
             in_array('user', $input) ? 'Pengguna' : null,
@@ -61,6 +62,7 @@ class RoleApi
             in_array('log', $input) ? 'Log Aktivitas' : null,
             in_array('faq', $input) ? 'FAQ' : null,
             in_array('rating', $input) ? 'Ulasan' : null,
+            in_array('assessment', $input) ? 'Assessment Security' : null,
         ];
         $icons = array_filter($icon);
         $titles = array_filter($title);
