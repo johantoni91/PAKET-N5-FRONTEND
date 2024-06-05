@@ -38,26 +38,28 @@
 
                 <div class="left-auto right-0 z-50 my-1 hidden w-64
             list-none divide-y h-52 divide-gray-100 rounded border border-slate-700/10
-           text-base shadow dark:divide-gray-600 bg-white
+            text-base shadow dark:divide-gray-600 bg-white
             dark:bg-slate-800"
                     id="navNotifications" data-simplebar>
                     <ul class="py-1" id="notif" aria-labelledby="navNotifications">
-                        <script>
-                            $(function() {
-                                setInterval(() => {
-                                    $.get("{{ route('notif') }}", function(data) {
-                                        if (data.count != 0) {
-                                            $("#notif_count").html(data.count)
-                                            $("#notif").html(data.view)
-                                        }
-                                    })
-                                }, 8000);
-                            })
-                        </script>
+                        @if (session('data')['roles'] == 'admin')
+                            <script>
+                                $(function() {
+                                    setInterval(() => {
+                                        $.get("{{ route('notif') }}", function(data) {
+                                            if (data.count != 0) {
+                                                $("#notif_count").html(data.count)
+                                                $("#notif").html(data.view)
+                                            }
+                                        })
+                                    }, 5000);
+                                })
+                            </script>
+                        @endif
                     </ul>
                 </div>
             </div>
-            <div class="me-2  dropdown relative">
+            <div class="me-2 dropdown relative">
                 <button type="button"
                     class="dropdown-toggle flex items-center rounded-full text-sm
             focus:bg-none focus:ring-0 dark:focus:ring-0 md:me-0"

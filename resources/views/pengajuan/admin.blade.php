@@ -74,11 +74,7 @@
                                                                         Alasan
                                                                     </th>
                                                                     <th class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                                                                        @if (preg_match('/^\d{6}$/', $starterPack['profile']['satker']))
-                                                                            Progress
-                                                                        @else
-                                                                            Persetujuan
-                                                                        @endif
+                                                                        Persetujuan
                                                                     </th>
                                                                 </tr>
                                                             </thead>
@@ -128,11 +124,7 @@
                                                                             </td>
                                                                             <td
                                                                                 class="px-10 py-4 text-center dark:text-white bg-gray-50 dark:bg-gray-800">
-                                                                                {{-- @if (preg_match('/^\d{6}$/', $starterPack['profile']['satker']) || $starterPack['profile']['nip'] == $item['nip'])
-                                                                                    @include('pengajuan.partials.progress')
-                                                                                @else --}}
                                                                                 @include('pengajuan.partials.aksi')
-                                                                                {{-- @endif --}}
                                                                             </td>
                                                                         </tr>
                                                                     @endforeach

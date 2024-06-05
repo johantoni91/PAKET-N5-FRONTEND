@@ -182,6 +182,7 @@ Route::middleware(['auth'])->group(function () {
     // EXTERNAL || EXTRA TOOLS
     //NOTIFIKASI
     Route::get('/notif', [NotificationController::class, 'index'])->name('notif');
+    Route::get('/notif-check', [NotificationController::class, 'check'])->name('notif.check');
     Route::get('/notif/{id}', [NotificationController::class, 'direct'])->name('notif.direct');
     Route::get('/notif/{id}/destroy', [NotificationController::class, 'destroy'])->name('notif.destroy');
 

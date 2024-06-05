@@ -26,7 +26,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-    <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/analytics-index.init.js') }}"></script>
     <script src="{{ asset('assets/libs/lucide/umd/lucide.min.js') }}"></script>
     <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>

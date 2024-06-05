@@ -15,19 +15,18 @@ class NotificationController extends Controller
         ]);
     }
 
+    function check()
+    {
+        $notif = Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/notif' . '/' . session('data')['nip'] . '/find')->json()['data'];
+        return response()->json([
+            'notif' => count($notif),
+            'view'  => view('partials.notification', compact('notif'))->render()
+        ]);
+    }
+
     function direct($id)
     {
         Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/notif' . '/' . $id . '/destroy')->json();
         return redirect()->route('pengajuan');
-    }
-
-    function destroy($id)
-    {
-        Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/notif' . '/' . $id . '/destroy')->json();
-        $notif = Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/notif')->json()['data'];
-        return response()->json([
-            'count'  => count($notif),
-            'view'  => view('partials.notification', compact('notif'))->render()
-        ]);
     }
 }
