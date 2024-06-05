@@ -24,7 +24,7 @@
                 <div class="grid grid-cols-12 sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4">
                     <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                         <div
-                            class="bg-white shadow-sm shadow-violet-800 dark:shadow-cyan-300 dark:bg-white rounded-md w-full relative mb-4">
+                            class="bg-white shadow-sm shadow-orange-800 dark:shadow-cyan-300 dark:bg-white rounded-md w-full relative mb-4">
                             <div class="flex-auto p-4">
                                 <div class="flex justify-between xl:gap-x-2 items-cente">
                                     <div class="self-center">
@@ -38,20 +38,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex-auto p-0 overflow-hidden">
-                                <div class="flex mb-0 h-full">
-                                    <div class="w-full">
-                                        <div class="apexchart-wrapper">
-                                            <div id="dash_spark_1" class="chart-gutters"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                         <div
-                            class="bg-white shadow-sm shadow-violet-800 dark:shadow-cyan-300 dark:bg-white rounded-md w-full relative mb-4">
+                            class="bg-white shadow-sm shadow-orange-800 dark:shadow-cyan-300 dark:bg-white rounded-md w-full relative mb-4">
                             <div class="flex-auto p-4">
                                 <div class="flex justify-between xl:gap-x-2 items-cente">
                                     <div class="self-center">
@@ -64,23 +55,12 @@
                                         <i data-lucide="building-2" class=" h-16 w-16 stroke-green/30"></i>
                                     </div>
                                 </div>
-                                {{-- <p class="truncate text-black"><span class="text-red-500"><i
-                                            class="mdi mdi-trending-down"></i>0.6%</span> Bounce Rate Weekly</p> --}}
-                            </div>
-                            <div class="flex-auto p-0 overflow-hidden">
-                                <div class="flex mb-0 h-full">
-                                    <div class="w-full">
-                                        <div class="apexchart-wrapper">
-                                            <div id="dash_spark_1" class="chart-gutters"></div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                         <div
-                            class="bg-white shadow-sm shadow-violet-800 dark:shadow-cyan-300 dark:bg-white rounded-md w-full relative mb-4">
+                            class="bg-white shadow-sm shadow-orange-800 dark:shadow-cyan-300 dark:bg-white rounded-md w-full relative mb-4">
                             <div class="flex-auto p-4">
                                 <div class="flex justify-between xl:gap-x-2 items-cente">
                                     <div class="self-center">
@@ -93,23 +73,12 @@
                                         <i data-lucide="users" class=" h-16 w-16 stroke-green/30"></i>
                                     </div>
                                 </div>
-                                {{-- <p class="truncate text-black"><span class="text-red-500"><i
-                                            class="mdi mdi-trending-down"></i>0.6%</span> Bounce Rate Weekly</p> --}}
-                            </div>
-                            <div class="flex-auto p-0 overflow-hidden">
-                                <div class="flex mb-0 h-full">
-                                    <div class="w-full">
-                                        <div class="apexchart-wrapper">
-                                            <div id="dash_spark_1" class="chart-gutters"></div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                         <div
-                            class="bg-white shadow-sm shadow-violet-800 dark:shadow-cyan-300 dark:bg-white rounded-md w-full relative mb-4">
+                            class="bg-white shadow-sm shadow-orange-800 dark:shadow-cyan-300 dark:bg-white rounded-md w-full relative mb-4">
                             <div class="flex-auto p-4">
                                 <div class="flex justify-between xl:gap-x-2 items-cente">
                                     <div class="self-center">
@@ -128,7 +97,7 @@
                     </div>
                     <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                         <div
-                            class="bg-white shadow-sm shadow-violet-800 dark:shadow-cyan-300 dark:bg-white rounded-md w-full relative mb-4">
+                            class="bg-white shadow-sm shadow-orange-800 dark:shadow-cyan-300 dark:bg-white rounded-md w-full relative mb-4">
                             <div class="flex-auto p-4">
                                 <div class="flex justify-between xl:gap-x-2 items-cente">
                                     <div class="self-center">
@@ -146,145 +115,125 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-2">
-                    <div class="p-4 col-span-1">
-                        <canvas id="approval"></canvas>
+                <div class="flex flex-row flex-wrap justify-between gap-3 items-center my-5">
+                    <div
+                        class="p-4 w-full lg:w-[30%] h-90 rounded-lg shadow shadow-orange-800 dark:shadow-cyan-700 dark:text-white">
+                        <h3 class="text-center font-semibold mb-1 dark:text-white">Persetujuan</h3>
+                        <div class="w-full h-full" id="approval"></div>
                     </div>
-                    <div class="col-span-1">
-                        <canvas id="perangkat"></canvas>
+                    <div
+                        class="p-4 w-full lg:w-[30%] h-90 rounded-lg shadow shadow-orange-800 dark:shadow-cyan-700 dark:text-white">
+                        <h3 class="text-center font-semibold mb-1 dark:text-white">Status Perangkat</h3>
+                        <div class="w-full h-full" id="perangkat"></div>
                     </div>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-2">
-                    <div class="col-span-1">
-                        <canvas id="top5"></canvas>
+                    <div
+                        class="p-4 w-full lg:w-[30%] h-90 rounded-lg shadow shadow-orange-800 dark:shadow-cyan-700 dark:text-white">
+                        <h3 class="text-center font-semibold mb-1 dark:text-white">Pengajuan Terbanyak</h3>
+                        <div class="w-full h-full" id="top5"></div>
                     </div>
                 </div>
                 @include('partials.footer')
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
-        const approval = document.getElementById('approval').getContext('2d');
-        const perangkat = document.getElementById('perangkat').getContext('2d');
-        const top5 = document.getElementById('top5').getContext('2d');
-        new Chart(approval, {
-            type: 'line',
-            data: {
-                labels: ['ditolak', 'Proses', 'Verifikasi', 'disetujui'],
-                datasets: [{
-                    label: "Total Pengajuan",
-                    backgroundColor: 'purple',
-                    lineTension: 0.4,
-                    data: [{{ $status_pengajuan['ditolak'] }}, {{ $status_pengajuan['proses'] }},
-                        {{ $status_pengajuan['verifikasi'] }}, {{ $status_pengajuan['setuju'] }}
-                    ],
-                    borderWidth: 1.5,
-                    borderColor: '#0077B6'
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: false,
-                    },
-                    title: {
-                        display: false,
-                    },
-                },
-                animations: {
-                    tension: {
-                        duration: 4000,
-                        easing: 'easeInOut',
-                        from: 1,
-                        to: 0,
-                        loop: true
+        var approval = {
+            series: [{
+                name: "Persetujuan",
+                data: [{{ $status_pengajuan['ditolak'] }}, {{ $status_pengajuan['proses'] }},
+                    {{ $status_pengajuan['verifikasi'] }}, {{ $status_pengajuan['setuju'] }}
+                ]
+            }],
+            grid: {
+                show: false,
+                xaxis: {
+                    lines: {
+                        show: false
                     }
                 },
-                scales: {
-                    x: {
-                        grid: {
-                            display: false
-                        }
-                    },
-                    y: {
-                        grid: {
-                            display: false
-                        }
-                    }
-                }
-            }
-        });
-        new Chart(perangkat, {
-            type: 'bar',
-            data: {
-                labels: ['Aktif', 'Nonaktif'],
-                datasets: [{
-                    label: "Total Perangkat",
-                    data: [{{ $status_perangkat['aktif'] }}, {{ $status_perangkat['nonaktif'] }}],
-                    borderWidth: 1.5,
-                    borderColor: '#0077B6'
-                }]
-            },
-            options: {
-                animations: {
-                    tension: {
-                        duration: 4000,
-                        easing: 'easeInOut',
-                        from: 1,
-                        to: 0,
-                        loop: true
+                yaxis: {
+                    lines: {
+                        show: false
                     }
                 },
-                scales: {
-                    x: {
-                        grid: {
-                            display: false
-                        }
-                    },
-                    y: {
-                        grid: {
-                            display: false
-                        }
-                    }
-                }
-            }
-        });
-        new Chart(top5, {
-            type: 'polarArea',
-            data: {
-                labels: ["{{ $top1 }}", "{{ $top2 }}", "{{ $top3 }}",
-                    "{{ $top4 }}", "{{ $top5 }}"
-                ],
-                datasets: [{
-                    label: "Satker dengan pengajuan terbanyak",
-                    data: [{{ $top_value1 }}, {{ $top_value2 }}, {{ $top_value3 }},
-                        {{ $top_value4 }}, {{ $top_value5 }},
-                    ],
-                    borderWidth: 1.5,
-                    borderColor: '#0077B6',
-                    backgroundColor: ['#98FF98', '#abc123', '#c5cbe1', '#cc6666', '#fff'],
-                }]
             },
-            options: {
-                scales: {
-                    x: {
-                        grid: {
-                            display: false
-                        }
-                    },
-                    y: {
-                        grid: {
-                            display: false
-                        }
-                    }
+            chart: {
+                type: 'area',
+                height: 300,
+                zoom: {
+                    enabled: false
                 }
-            }
-        });
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'straight'
+            },
+
+            labels: ['ditolak', 'Proses', 'Verifikasi', 'disetujui'],
+        };
+        var chart = new ApexCharts(document.querySelector("#approval"), approval);
+        chart.render();
+
+        var perangkat = {
+            series: [{
+                name: "Status",
+                data: [{{ $status_perangkat['aktif'] }}, {{ $status_perangkat['nonaktif'] }}]
+            }],
+            grid: {
+                show: false
+            },
+            chart: {
+                type: 'area',
+                height: 300,
+                zoom: {
+                    enabled: false
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'straight'
+            },
+
+            labels: ['Aktif', 'Nonaktif']
+        };
+        var chart = new ApexCharts(document.querySelector("#perangkat"), perangkat);
+        chart.render();
+
+
+        var options = {
+            series: [{
+                name: "Top",
+                data: [{{ $top_value1 }}, {{ $top_value2 }}, {{ $top_value3 }}, {{ $top_value4 }},
+                    {{ $top_value5 }}
+                ]
+            }],
+            grid: {
+                show: false
+            },
+            chart: {
+                type: 'area',
+                height: 300,
+                zoom: {
+                    enabled: true
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'straight'
+            },
+
+            labels: ["{{ $top1 }}", "{{ $top2 }}", "{{ $top3 }}",
+                "{{ $top4 }}", "{{ $top5 }}"
+            ]
+        };
+        var chart = new ApexCharts(document.querySelector("#top5"), options);
+        chart.render();
     </script>
-    {{-- @push('scripts')
-        <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
-        <script src="{{ asset('assets/js/pages/analytics-index.init.js') }}"></script>
-    @endpush --}}
 @endsection

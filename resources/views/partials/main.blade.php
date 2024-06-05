@@ -26,6 +26,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/analytics-index.init.js') }}"></script>
     <script src="{{ asset('assets/libs/lucide/umd/lucide.min.js') }}"></script>
     <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('assets/libs/flatpickr/flatpickr.min.js') }}"></script>
@@ -33,6 +35,15 @@
     <script src="{{ asset('assets/libs/prismjs/prism.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
     <script src="{{ asset('assets/js/html2canvas.min.js') }}"></script>
+    <script>
+        $(function() {
+            if (window.innerWidth < 1025) {
+                $("body").attr("data-sidebar-size", "collapsed")
+            } else {
+                $("body").attr("data-sidebar-size", "default")
+            }
+        })
+    </script>
 </body>
 
 </html>

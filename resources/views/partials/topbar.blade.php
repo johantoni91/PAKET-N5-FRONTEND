@@ -63,8 +63,8 @@
             focus:bg-none focus:ring-0 dark:focus:ring-0 md:me-0"
                     id="user-profile" aria-expanded="false" data-fc-autoclose="both" data-fc-type="dropdown">
                     @if ($starterPack['profile']['photo'])
-                        <img src="{{ env('API_IMG', '') . $starterPack['profile']['photo'] }}" alt=""
-                            class="h-8 w-8 rounded-full">
+                        <img src="{{ Illuminate\Support\Facades\Http::get(env('API_IMG', '') . $starterPack['profile']['photo'])->failed() ? asset('assets/images/5856.jpg') : env('API_IMG', '') . $starterPack['profile']['photo'] }}"
+                            alt="" class="h-8 w-8 rounded-full">
                     @else
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="h-8 w-8 rounded-full dark:text-white">
