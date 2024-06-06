@@ -43,9 +43,10 @@
                                     <div class="sm:-mx-6 lg:-mx-8">
                                         <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-10">
                                             <div class="flex justify-start items-center mb-3">
-                                                <a href="{{ route('integrasi.import') }}"
+                                                <button data-modal-target="create" data-modal-toggle="create"
                                                     class="focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-r dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-1 px-3 rounded hover:from-red-500 hover:to-violet-800 dark:hover:from-cyan-300 dark:hover:to-zinc-500">Tambah
-                                                </a>
+                                                </button>
+                                                @include('integrasi.modals.create')
                                             </div>
                                             <div class="flex flex-col gap-5 p-5">
                                                 <div class="datatable_1">
@@ -64,6 +65,9 @@
                                                                     </th>
                                                                     <th scope="col"
                                                                         class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                                                        Autentikasi
+                                                                    </th>
+                                                                    <th scope="col" class="px-6 py-3">
                                                                         Aksi
                                                                     </th>
                                                                 </tr>
@@ -93,6 +97,22 @@
                                                                             </td>
                                                                             <td
                                                                                 class="px-6 py-4 dark:text-white bg-gray-50 dark:bg-gray-800 text-center">
+                                                                                <button
+                                                                                    data-modal-target="type{{ $item['id'] }}"
+                                                                                    data-modal-toggle="type{{ $item['id'] }}"
+                                                                                    class="border rounded-lg p-2 hover:shadow hover:shadow-violet-500 dark:hover:shadow dark:hover:shadow-teal-500">
+                                                                                    @if ($item['type'] == 'auth')
+                                                                                        Dasar (Basic Auth)
+                                                                                    @elseif($item['type'] == 'token')
+                                                                                        Token
+                                                                                    @else
+                                                                                        Tanpa Autentikasi
+                                                                                    @endif
+                                                                                </button>
+                                                                                @include('integrasi.modals.type')
+                                                                            </td>
+                                                                            <td
+                                                                                class="px-6 py-4 dark:text-white text-center">
                                                                                 <button
                                                                                     data-modal-target="update{{ $item['id'] }}"
                                                                                     data-modal-toggle="update{{ $item['id'] }}"
@@ -191,13 +211,13 @@
                                                                                         xhr{{ $item['id'] }}.setRequestHeader("Content-Type", "application/json");
                                                                                         xhr{{ $item['id'] }}.setRequestHeader("X-CSRF-TOKEN", "{{ csrf_token() }}");
                                                                                         xhr{{ $item['id'] }}.send(JSON.stringify({
-                                                                                            link: url
+                                                                                            id: url
                                                                                         }));
                                                                                         return xhr{{ $item['id'] }};
                                                                                     }
 
                                                                                     function importPegawai{{ $item['id'] }}() {
-                                                                                        runXHR("{{ $item['url'] }}")
+                                                                                        runXHR("{{ $item['id'] }}")
                                                                                     }
                                                                                 </script>
                                                                             </td>

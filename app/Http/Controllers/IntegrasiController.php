@@ -23,20 +23,72 @@ class IntegrasiController extends Controller
         }
     }
 
-    function store(Request $req)
+    function store(Request $req, $param)
     {
-        $insert = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/integrasi/store', ['link' => $req->link])->json();
-        if ($insert['status'] == false) {
-            Alert::warning('Pemberitahuan', $insert['message']);
+        try {
+            $req->validate([
+                'link'  => 'required'
+            ], [
+                'link.required' => 'Tautan tidak boleh kosong!'
+            ]);
+
+            $input = [
+                'link'  => $req->link,
+                'type'  => $param
+            ];
+            if ($param == 'auth') {
+                $req->validate([
+                    'username'  => 'required',
+                    'password'  => 'required',
+                ], [
+                    'username.required' => 'Username tidak boleh kosong !',
+                    'password.required' => 'Password tidak boleh kosong !',
+                ]);
+                $input['username'] = $req->username;
+                $input['password'] = $req->password;
+            } elseif ($param == 'token') {
+                $req->validate([
+                    'token'  => 'required'
+                ], [
+                    'token.required' => 'Username tidak boleh kosong !',
+                ]);
+                $input['token'] = $req->token;
+            }
+            $data = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/integrasi/store', $input)->json();
+            if ($data['status'] == false) {
+                return response()->json([
+                    'message'   => $data['message']
+                ], 400);
+            }
+            Alert::success($data['message']);
+            return redirect()->route('integrasi');
+        } catch (\Throwable $th) {
+            Alert::error($th->getMessage());
             return back();
         }
-        Alert::success('Pemberitahuan', $insert['message']);
+    }
+
+    function updateType(Request $req, $id)
+    {
+        $updateType = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/integrasi' . '/' . $id . '/update/type', [
+            'type'  => $req->type
+        ])->json();
+        if ($updateType['status'] == false) {
+            Alert::error($updateType['message']);
+            return back();
+        }
+        Alert::success($updateType['message']);
         return back();
     }
 
     function update(Request $req, $id)
     {
-        $insert = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/integrasi' . '/' . $id . '/update', ['link' => $req->link])->json();
+        $insert = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/integrasi' . '/' . $id . '/update', [
+            'link'     => $req->link,
+            'username' => $req->username ?? '',
+            'password' => $req->password ?? '',
+            'token'    => $req->token ?? '',
+        ])->json();
         if ($insert['status'] == false) {
             Alert::warning('Pemberitahuan', $insert['message']);
             return back();
@@ -56,10 +108,19 @@ class IntegrasiController extends Controller
         return back();
     }
 
-    function importAuthView()
+    function importView($params)
     {
+        if (decrypt($params) == 'auth') {
+            $subtitle = 'Tautan Integrasi dengan autentikasi dasar';
+        } elseif (decrypt($params) == 'token') {
+            $subtitle = 'Tautan Integrasi dengan autentikasi berbasis token';
+        } else {
+            $subtitle = 'Tautan Integrasi tanpa autentikasi';
+        }
         return view('integrasi.import', [
             'title'       => 'Link Integrasi',
+            'type'        => decrypt($params),
+            'subtitle'    => $subtitle,
             'starterPack' => helper::starterPack()
         ]);
     }
@@ -67,7 +128,7 @@ class IntegrasiController extends Controller
     function import(Request $req)
     {
         try {
-            $data = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/integration', ['link' => $req->link]);
+            $data = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/integration', ['id' => $req->id]);
             if ($data->successful()) {
                 return response()->json([
                     'message'   => $data['message']

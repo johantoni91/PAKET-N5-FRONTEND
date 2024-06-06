@@ -165,9 +165,10 @@ Route::middleware(['auth'])->group(function () {
 
     // INTEGRASI
     Route::get('/integrasi', [IntegrasiController::class, 'index'])->name('integrasi');
-    Route::get('/integrasi/import', [IntegrasiController::class, 'importAuthView'])->name('integrasi.import');
-    Route::post('/integrasi/store', [IntegrasiController::class, 'store'])->name('integrasi.store');
+    Route::get('/integrasi/{params}/import', [IntegrasiController::class, 'importView'])->name('integrasi.import');
+    Route::post('/integrasi/{param}/store', [IntegrasiController::class, 'store'])->name('integrasi.store');
     Route::post('/integrasi/{id}/update', [IntegrasiController::class, 'update'])->name('integrasi.update');
+    Route::post('/integrasi/{id}/update/type', [IntegrasiController::class, 'updateType'])->name('integrasi.update.type');
     Route::get('/integrasi/{id}/destroy', [IntegrasiController::class, 'destroy'])->name('integrasi.destroy');
     Route::post('/integration', [IntegrasiController::class, 'import'])->name('integrate');
 

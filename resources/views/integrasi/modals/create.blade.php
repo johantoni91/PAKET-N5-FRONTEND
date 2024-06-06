@@ -21,9 +21,13 @@
             </div>
             <!-- Modal body -->
             <div class="p-4 md:p-5">
-                <div class="flex flex-row justify-center items-center gap-5">
-                    <a href="#" class="bg-blue p-2 rounded-lg text-white">Autentikasi</a>
-                    <a href="#" class="bg-blue p-2 rounded-lg text-white">Non Autentikasi</a>
+                <div class="flex flex-row justify-center items-center gap-5 text-center">
+                    <a href="{{ route('integrasi.import', encrypt('auth')) }}"
+                        class="{{ $starterPack['theme']['button'] }}">Autentikasi dasar (Basic Auth)</a>
+                    <a href="{{ route('integrasi.import', encrypt('token')) }}"
+                        class="{{ $starterPack['theme']['button'] }}">Autentikasi Token</a>
+                    <a href="{{ route('integrasi.import', encrypt('default')) }}"
+                        class="{{ $starterPack['theme']['button'] }}">Non Autentikasi</a>
                 </div>
             </div>
         </div>
