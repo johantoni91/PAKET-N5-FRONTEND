@@ -21,6 +21,7 @@ use App\Http\Controllers\KiosController;
 use App\Http\Controllers\LayoutKartuController;
 use App\Http\Controllers\MonitorKartuController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\SmartCardController;
 use App\Http\Controllers\TandaTanganController;
 
 /*
@@ -173,7 +174,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/integration', [IntegrasiController::class, 'import'])->name('integrate');
 
     // SMART CARD
-    Route::get('/smart-card', [MonitorKartuController::class, 'index'])->name('smart');
+    Route::get('/smart-card', [SmartCardController::class, 'index'])->name('smart');
 
     // ASSESSMENT SECURITY
     Route::get('/assessment', [AssessmentController::class, 'index'])->name('assessment');

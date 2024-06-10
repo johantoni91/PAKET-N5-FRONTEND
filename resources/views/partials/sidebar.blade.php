@@ -1,5 +1,5 @@
 <div
-    class="min-h-full z-40 fixed bg-gradient-to-b dark:bg-gradient-to-b dark:from-cyan-400 dark:to-cyan-900 {{ $starterPack['theme']['sidebar'] }} main-sidebar duration-300 group-data-[sidebar=dark]:bg-[#603dc3] group-data-[sidebar=brand]:bg-brand group-[.dark]:group-data-[sidebar=brand]:bg-[#603dc3]">
+    class="min-h-full z-40 fixed dark:bg-gradient-to-b dark:from-cyan-300 dark:to-sky-700 bg-gradient-to-b from-green-900 via-green-500 to-lime-300 main-sidebar duration-300 group-data-[sidebar=dark]:bg-[#603dc3] group-data-[sidebar=brand]:bg-brand group-[.dark]:group-data-[sidebar=brand]:bg-[#603dc3]">
     <div class="area">
         <ul class="circles">
             @for ($i = 0; $i < 18; $i++)
@@ -34,12 +34,56 @@
                             <span>Beranda</span>
                         </a>
                         @foreach ($starterPack['routes'] as $item)
-                            <a href="{{ $item == 'smart' ? '#' : route($item) }}"
-                                class="{{ request()->routeIs($item) ? 'text-black bg-white dark:text-black font-semibold' : '' }} {{ $item == 'smart' ? 'bg-red-500/50 text-black hover:bg-red-500/50 hover:text-black' : '' }} nav-link dark:text-black hover:text-black hover:bg-slate-100/50 my-1 rounded-md dark:hover:text-slate-200 flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200">
-                                <span data-lucide="{{ $starterPack['icons'][$loop->iteration - 1] }}"
-                                    class="w-5 h-5 text-center me-2"></span>
-                                <span>{{ $starterPack['titles'][$loop->iteration - 1] }}</span>
-                            </a>
+                            @if (!$loop->count >= 9)
+                                <a href="{{ route($item) }}"
+                                    class="{{ request()->routeIs($item) ? 'text-black bg-white dark:text-black font-semibold' : '' }} nav-link dark:text-black hover:text-black hover:bg-slate-100/50 my-1 rounded-md dark:hover:text-slate-200 flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200">
+                                    <span data-lucide="{{ $starterPack['icons'][$loop->iteration - 1] }}"
+                                        class="w-5 h-5 text-center me-2"></span>
+                                    <span>{{ $starterPack['titles'][$loop->iteration - 1] }}</span>
+                                </a>
+                            @else
+                                @if ($loop->index <= 9)
+                                    <a href="{{ route($item) }}"
+                                        class="{{ request()->routeIs($item) ? 'text-black bg-white dark:text-black font-semibold' : '' }} nav-link dark:text-black hover:text-black hover:bg-slate-100/50 my-1 rounded-md dark:hover:text-slate-200 flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200">
+                                        <span data-lucide="{{ $starterPack['icons'][$loop->iteration - 1] }}"
+                                            class="w-5 h-5 text-center me-2"></span>
+                                        <span>{{ $starterPack['titles'][$loop->iteration - 1] }}</span>
+                                    </a>
+                                @elseif($loop->index > 10 && $loop->last == false)
+
+                                @elseif($loop->last)
+                                    <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                                        class="w-full nav-link dark:text-black hover:text-black hover:bg-slate-100/50 rounded-md dark:hover:text-black flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200"
+                                        type="button"><span data-lucide="wrench"
+                                            class="w-5 h-5 text-center me-2"></span> Tambahan
+                                        <svg class="w-2.5 h-2.5 ms-auto" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m1 1 4 4 4-4" />
+                                        </svg>
+                                    </button>
+                                @endif
+
+                                <!-- Dropdown menu -->
+                                <div id="dropdown"
+                                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-full dark:bg-black">
+                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                        aria-labelledby="dropdownDefaultButton">
+                                        @foreach ($starterPack['routes'] as $i)
+                                            @if ($loop->index > 9)
+                                                <li>
+                                                    <a href="{{ route($i) }}"
+                                                        class="{{ request()->routeIs($item) ? 'text-black bg-white dark:text-black font-semibold' : '' }} nav-link text-black dark:text-white hover:text-black hover:bg-slate-100/50 my-1 rounded-md dark:hover:text-slate-200 flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200">
+                                                        <span
+                                                            data-lucide="{{ $starterPack['icons'][$loop->iteration - 1] }}"
+                                                            class="w-5 h-5 text-center me-2"></span>
+                                                        <span>{{ $starterPack['titles'][$loop->iteration - 1] }}</span></a>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                         @endforeach
                     </div>
                 </li>

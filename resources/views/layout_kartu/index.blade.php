@@ -27,12 +27,6 @@
                                     <div class="flex flex-row justify-between">
                                         <h4 class="font-medium py-3 px-4 text-lg flex-1 self-center mb-2 md:mb-0">Layout
                                             Kartu</h4>
-                                        <div class="p-5">
-                                            <button type="button" id="batal"
-                                                class="focus:outline-none bg-red-700 text-white border border-red-700 hover:bg-transparent hover:text-red-700 dark:bg-transparent dark:text-red-700 dark:hover:text-white dark:border-gray-700 dark:hover:bg-red-700 text-sm font-medium py-1 px-3 rounded w-24 hidden">
-                                                Batalkan
-                                            </button>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-1 p-4 overflow-scroll">
