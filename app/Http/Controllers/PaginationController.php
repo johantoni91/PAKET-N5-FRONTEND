@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\API\KartuApi;
 use App\API\LogApi;
 use App\API\RoleApi;
 use App\API\SatkerApi;
-use App\Helpers\profile;
 use helper;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
@@ -33,6 +33,7 @@ class PaginationController extends Controller
                 'satker'      => SatkerApi::getSatkerName()['data'],
                 'roles'       => RoleApi::get()['data'],
                 'input'       => null,
+                'kartu'       => KartuApi::getTitle(),
                 'additional'  => Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/rate/additional')->json()['data'],
                 'starterPack' => helper::starterPack()
             ]);

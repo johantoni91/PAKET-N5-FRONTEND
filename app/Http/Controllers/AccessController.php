@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\API\RoleApi;
 use helper;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Http;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AccessController extends Controller
@@ -30,8 +30,11 @@ class AccessController extends Controller
     function update(Request $req, $id)
     {
         try {
+            $getRole = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/roles/find/id', ['id' => $id])->json()['data'];
+            $arr = $req->roles;
+            $getRole['role'] == 'superadmin' ? array_push($arr, 'akses') : '';
             if ($req->roles) {
-                RoleApi::update($id, $req->roles);
+                RoleApi::update($id, $arr);
                 Alert::success('Berhasil', 'Akses role telah diubah!');
                 return back();
             } else {

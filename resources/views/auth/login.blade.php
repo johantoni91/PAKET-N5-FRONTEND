@@ -1,7 +1,7 @@
 @extends('partials.main')
 @section('content')
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <div class="relative flex flex-col justify-center min-h-screen overflow-hidden">
+    <div class="relative flex flex-col justify-center min-h-screen overflow-hidden z-[99]">
         <div class="stars" style="z-index: -1">
             @for ($i = 0; $i < 50; $i++)
                 <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>

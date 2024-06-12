@@ -35,6 +35,10 @@ use App\Http\Controllers\TandaTanganController;
 |
  */
 
+Route::get('/test', function () {
+    return view('welcome');
+});
+
 Route::get('/login', [AuthController::class, 'loginPage'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.form');
 
@@ -107,7 +111,7 @@ Route::middleware(['auth'])->group(function () {
 
     // PENGAJUAN
     Route::middleware(['role_pengajuan'])->group(function () {
-        Route::get('/pengajuan', [PengajuanController::class, 'index'])->name('pengajuan');
+        Route::get('/pengajuan/index', [PengajuanController::class, 'index'])->name('pengajuan');
         Route::post('/pengajuan/store', [PengajuanController::class, 'store'])->name('pengajuan.store');
         Route::get('/pengajuan/search', [PengajuanController::class, 'search'])->name('pengajuan.search');
         Route::post('/pengajuan/reject', [PengajuanController::class, 'reject'])->name('pengajuan.reject');

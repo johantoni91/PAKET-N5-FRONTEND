@@ -181,18 +181,6 @@
                                                                                 <div
                                                                                     class="flex flex-row gap-1 items-center">
                                                                                     <input type="checkbox" name="roles[]"
-                                                                                        id="hak_akses{{ $item['id'] }}"
-                                                                                        value="akses"
-                                                                                        {{ $route == null ? '' : (in_array('akses', $route) ? 'checked' : '') }}
-                                                                                        class="bg-slate-500 rounded border-0">
-                                                                                    <label
-                                                                                        class="text-xs font-normal text-wrap"
-                                                                                        for="hak_akses{{ $item['id'] }}">Hak
-                                                                                        Akses Aplikasi</label>
-                                                                                </div>
-                                                                                <div
-                                                                                    class="flex flex-row gap-1 items-center">
-                                                                                    <input type="checkbox" name="roles[]"
                                                                                         id="log_aktivitas{{ $item['id'] }}"
                                                                                         value="log"
                                                                                         {{ $route == null ? '' : (in_array('log', $route) ? 'checked' : '') }}
@@ -232,6 +220,19 @@
                                                                                     <label class="text-xs font-normal"
                                                                                         for="assessment{{ $item['id'] }}">Assessment
                                                                                         Security</label>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="flex flex-row gap-1 items-center">
+                                                                                    <input type="checkbox" name="roles[]"
+                                                                                        {{ $item['role'] == 'superadmin' ? 'disabled' : '' }}
+                                                                                        id="hak_akses{{ $item['id'] }}"
+                                                                                        value="akses"
+                                                                                        {{ $route == null ? '' : (in_array('akses', $route) ? 'checked' : '') }}
+                                                                                        class="bg-slate-500 rounded border-0">
+                                                                                    <label
+                                                                                        class="text-xs font-normal text-wrap"
+                                                                                        for="hak_akses{{ $item['id'] }}">Hak
+                                                                                        Akses Aplikasi</label>
                                                                                 </div>
                                                                             </div>
                                                                         </th>

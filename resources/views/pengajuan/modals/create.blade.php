@@ -24,33 +24,6 @@
                 enctype="multipart/form-data">
                 @csrf
                 <div class="grid gap-4 mb-4 grid-cols-2">
-                    {{-- <div class="col-span-2">
-                        <div class="flex flex-col">
-                            <img src="" id="new_photo" alt="new-photo"
-                                class="mx-auto h-40 w-40 rounded-full inline-block justify-center my-3 hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor"
-                                class="mx-auto h-40 w-40 rounded-full inline-block justify-center my-3" id="avatar1">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                            </svg>
-                            <input type="file" name="photo" id="photo" accept="image/*"
-                                class="bg-gray-50 mx-auto text-sm block w-auto border border-gray-300 rounded-lg dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                onchange="update(event)">
-                            <script>
-                                var update = function(event) {
-                                    var new_photo = document.getElementById("new_photo");
-                                    var avatar1 = document.getElementById("avatar1");
-                                    new_photo.src = URL.createObjectURL(event.target.files[0]);
-                                    new_photo.onload = function() {
-                                        URL.revokeObjectURL(new_photo.src)
-                                        avatar1.classList.add("hidden");
-                                        new_photo.classList.remove("hidden");
-                                    }
-                                };
-                            </script>
-                        </div>
-                    </div> --}}
                     <div class="col-span-2">
                         <label for="nip"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
@@ -79,6 +52,24 @@
                             <option value="2">Ganti Satker</option>
                             <option value="3">Hilang</option>
                         </select>
+                    </div>
+                    <script>
+                        $(function() {
+                            $("#alasan").on('change', function() {
+                                if ($(this).val() != 1) {
+                                    $("#input_photo").removeClass('hidden');
+                                } else {
+                                    $("#input_photo").addClass('hidden');
+                                    $("#input_photo").attr('value', '');
+                                }
+                            })
+                        })
+                    </script>
+                    <div id="input_photo" class="col-span-2">
+                        <label for="photo"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bukti</label>
+                        <input type="file" name="lampiran" onchange="update(event)"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                     </div>
                 </div>
                 <div class="flex flex-row justify-end">

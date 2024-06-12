@@ -31,7 +31,6 @@ class RoleApi
 
     public static function update($id, $input)
     {
-        $arr = [];
         $icon = [
             in_array('user', $input) ? 'user' : null,
             in_array('satker', $input) ? 'book-open' : null,
@@ -42,11 +41,11 @@ class RoleApi
             in_array('layout.kartu', $input) ? 'credit-card' : null,
             in_array('smart', $input) ? 'fingerprint' : null,
             in_array('perangkat', $input) ? 'radio-receiver' : null,
-            in_array('akses', $input) ? 'key-square' : null,
             in_array('log', $input) ? 'history' : null,
             in_array('faq', $input) ? 'help-circle' : null,
             in_array('rating', $input) ? 'star' : null,
             in_array('assessment', $input) ? 'lock' : null,
+            in_array('akses', $input) ? 'key-square' : null,
         ];
         $title = [
             in_array('user', $input) ? 'Pengguna' : null,
@@ -58,11 +57,11 @@ class RoleApi
             in_array('layout.kartu', $input) ? 'Pengaturan Layout Kartu' : null,
             in_array('smart', $input) ? 'Smart Card Unique Personal Identity' : null,
             in_array('perangkat', $input) ? 'Management Perangkat' : null,
-            in_array('akses', $input) ? 'Hak Akses Aplikasi' : null,
             in_array('log', $input) ? 'Log Aktivitas' : null,
             in_array('faq', $input) ? 'FAQ' : null,
             in_array('rating', $input) ? 'Ulasan' : null,
             in_array('assessment', $input) ? 'Assessment Security' : null,
+            in_array('akses', $input) ? 'Hak Akses Aplikasi' : null,
         ];
         $icons = array_filter($icon);
         $titles = array_filter($title);

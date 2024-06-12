@@ -8,6 +8,7 @@ use App\API\PengajuanApi;
 use App\Helpers\log;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PengajuanController extends Controller
@@ -41,7 +42,6 @@ class PengajuanController extends Controller
 
     function store(Request $req)
     {
-        $img = '';
         $nama_gambar = '';
         $req->validate([
             'nip'    => 'required|numeric',
@@ -54,22 +54,24 @@ class PengajuanController extends Controller
             'reason.required' => 'Berikan alasan yang konkrit!',
         ]);
 
+        if ($req->reason != 1) {
+            if (!$req->hasFile('lampiran')) {
+                Alert::warning('Wajib tambahkan bukti!');
+                return back();
+            }
+            $nama_gambar = $req->nip . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('lampiran')->getClientOriginalExtension();
+            $req->file('lampiran')->move('pengajuan', $nama_gambar);
+        }
+
         $input = [
             'log'         => log::insert(),
             'nip'         => $req->nip,
             'satker_code' => session('data')['satker'],
             'kartu'       => $req->kartu,
-            'alasan'      => $req->reason
+            'alasan'      => $req->reason,
+            'photo'       => $req->reason == 1 ? '' : $nama_gambar
         ];
-
-        if ($req->hasFile('photo')) {
-            $img = $req->file('photo');
-            $nama_gambar = $req->nip . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('photo')->getClientOriginalExtension();
-        } else {
-            $input['photo'] = null;
-        }
-
-        $pengajuan = PengajuanApi::store($input, $img, $nama_gambar);
+        $pengajuan = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/pengajuan/store', $input)->json();
         if ($pengajuan['status'] == true) {
             Alert::success('Berhasil', 'Pengajuan berhasil dikirim');
             return redirect()->route('monitor.kartu');
@@ -98,10 +100,11 @@ class PengajuanController extends Controller
         return view(
             $this->view,
             [
-                'view'    => $this->view,
-                'title'   => $this->title,
-                'data'    => $data,
-                'input'   => $input,
+                'view'        => $this->view,
+                'title'       => $this->title,
+                'data'        => $data,
+                'kartu'       => KartuApi::getTitle(),
+                'input'       => $input,
                 'starterPack' => helper::starterPack()
             ]
         );

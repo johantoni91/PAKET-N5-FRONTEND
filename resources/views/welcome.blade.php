@@ -1,272 +1,309 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <style>
-        .kartuver {
-            height: 321.26px;
-            width: 203.72px;
-            border: 0.5px solid #4CAF50;
-            border-radius: 8px;
-            text-wrap: pretty;
-            background-image: url('../assets/images/bg-d.png');
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
         }
 
-        .imglogover {
-            width: 45px;
-            height: 45px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 10px;
-        }
-
-        .imgver {
-            width: 75.6px;
-            height: 113.39px;
-            display: block;
-            border-radius: 6px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .tablever {
-            width: 150px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .tdver {
-            width: 150px;
-            font-size: 9px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .kartuhor {
-            width: 321.26px;
-            height: 203.72px;
-            border: 0.5px solid #4CAF50;
-            border-radius: 8px;
-            text-wrap: pretty;
-            background-image: url('../assets/images/bg-d.png');
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        .divhead {
-            padding: 5px;
-            width: 300px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .divheadtd {
-            width: 300px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .imglogohor {
-            width: 45px;
-            height: 45px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .imghor {
-            width: 75.6px;
-            height: 113.39px;
-            display: block;
-            border-radius: 6px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .tablehor {
-            width: 150px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .tdhor {
-            vertical-align: text-top;
-            text-align: justify;
-            font-size: 9px;
-            margin-left: auto;
-            margin-right: auto;
+        .container {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
         }
     </style>
 </head>
 
 <body>
-    <div style="display: flex; flex-direction: row; gap: 8px;">
-        <div class="kartuver">
-            <img class="imglogover" src="https://kejari-batanghari.kejaksaan.go.id/wp-content/uploads/2022/06/RI.png">
-            <p style="font-size: 9px; text-transform: uppercase; font-weight: bold; text-align: center;">
-                KEJAKSAAN NEGERI KABUPATEN PROBOLINGGO
-            </p>
-            <img class="imgver" src="https://spmb.stis.ac.id/images/pasfoto-2-color.jpg">
-            <p style="font-size: 9px; text-transform: uppercase; font-weight: bold; text-align: center;">
-                Asep Ucup Udin Budi, S.Kom.
-            </p>
-            <table class="tablever">
-                <tr>
-                    <td class="tdver">NIP </td>
-                    <td class="tdver">: 199909092022011001</td>
-                </tr>
-                <tr>
-                    <td class="tdver">NRP </td>
-                    <td class="tdver">: 00234577</td>
-                </tr>
-                <tr>
-                    <td class="tdver">Gol </td>
-                    <td class="tdver">: Penata Muda (III/a)</td>
-                </tr>
-            </table>
-            <p style="font-size: 7px; text-transform: uppercase; text-align: center;">
-                Analis Pengelolaan Keuangan Apbn Ahli Pertama pada Kejaksaan Negeri Kabupaten Probolinggo
-            </p>
-        </div>
-
-        <div class="kartuver">
-            <img class="imglogover" src="https://kejari-batanghari.kejaksaan.go.id/wp-content/uploads/2022/06/RI.png">
-            <p style="font-size: 9px; text-transform: uppercase; font-weight: bold; text-align: center;">
-                KEJAKSAAN NEGERI KABUPATEN PROBOLINGGO
-            </p>
-            <img class="imgver" src="https://spmb.stis.ac.id/images/pasfoto-2-color.jpg">
-            <p style="font-size: 9px; text-transform: uppercase; font-weight: bold; text-align: center;">
-                Asep Ucup Udin Budi, S.Kom.
-            </p>
-            <table class="tablever">
-                <tr>
-                    <td class="tdver">NIP </td>
-                    <td class="tdver">: 199909092022011001</td>
-                </tr>
-                <tr>
-                    <td class="tdver">NRP </td>
-                    <td class="tdver">: 00234577</td>
-                </tr>
-                <tr>
-                    <td class="tdver">Gol </td>
-                    <td class="tdver">: Penata Muda (III/a)</td>
-                </tr>
-            </table>
-            <p style="font-size: 7px; text-transform: uppercase; text-align: center;">
-                Analis Pengelolaan Keuangan Apbn Ahli Pertama pada Kejaksaan Negeri Kabupaten Probolinggo
-            </p>
-        </div>
-    </div>
-
-    <br>
-
-    <div style="display: flex; flex-direction: row; gap: 8px;">
-        <div class="kartuhor">
-            <table class="divhead">
-                <tr>
-                    <td>
-                        <img class="imglogohor"
-                            src="https://kejari-batanghari.kejaksaan.go.id/wp-content/uploads/2022/06/RI.png">
-                    </td>
-                    <td class="divheadtd" style="font-size: 9px; text-transform: uppercase; font-weight: bold;">
-                        KEJAKSAAN
-                        NEGERI KABUPATEN PROBOLINGGO</td>
-                </tr>
-            </table>
-            <table class="divhead">
-                <tr>
-                    <td rowspan="6">
-                        <img class="imghor" src="https://spmb.stis.ac.id/images/pasfoto-2-color.jpg">
-                    </td>
-                    <td>
-                <tr>
-                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Nama</td>
-                    <td class="tdhor">:</td>
-                    <td class="tdhor" style="text-transform: uppercase; font-weight: bold;">JOHAN TONI WIJAYA</td>
-                </tr>
-                <tr>
-                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NIP</td>
-                    <td class="tdhor">:</td>
-                    <td class="tdhor">199909092022011001</td>
-                </tr>
-                <tr>
-                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NRP</td>
-                    <td class="tdhor">:</td>
-                    <td class="tdhor">00234577</td>
-                </tr>
-                <tr>
-                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Gol</td>
-                    <td class="tdhor">:</td>
-                    <td class="tdhor">Penata Muda (III/a)</td>
-                </tr>
-                <tr>
-                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Jabatan</td>
-                    <td class="tdhor">:</td>
-                    <td class="tdhor">Analis Pengelolaan Keuangan Apbn Ahli Pertama pada Kejaksaan Negeri Kabupaten
-                        Probolinggo</td>
-                </tr>
-                </td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="kartuhor">
-            <table class="divhead">
-                <tr>
-                    <td>
-                        <img class="imglogohor"
-                            src="https://kejari-batanghari.kejaksaan.go.id/wp-content/uploads/2022/06/RI.png">
-                    </td>
-                    <td class="divheadtd" style="font-size: 9px; text-transform: uppercase; font-weight: bold;">
-                        KEJAKSAAN
-                        NEGERI KABUPATEN PROBOLINGGO</td>
-                </tr>
-            </table>
-            <table class="divhead">
-                <tr>
-                    <td rowspan="6">
-                        <img class="imghor" src="https://spmb.stis.ac.id/images/pasfoto-2-color.jpg">
-                    </td>
-                    <td>
-                <tr>
-                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Nama</td>
-                    <td class="tdhor">:</td>
-                    <td class="tdhor" style="text-transform: uppercase; font-weight: bold;">JOHAN TONI WIJAYA</td>
-                </tr>
-                <tr>
-                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NIP</td>
-                    <td class="tdhor">:</td>
-                    <td class="tdhor">199909092022011001</td>
-                </tr>
-                <tr>
-                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NRP</td>
-                    <td class="tdhor">:</td>
-                    <td class="tdhor">00234577</td>
-                </tr>
-                <tr>
-                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Gol</td>
-                    <td class="tdhor">:</td>
-                    <td class="tdhor">Penata Muda (III/a)</td>
-                </tr>
-                <tr>
-                    <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Jabatan</td>
-                    <td class="tdhor">:</td>
-                    <td class="tdhor">Analis Pengelolaan Keuangan Apbn Ahli Pertama pada Kejaksaan Negeri Kabupaten
-                        Probolinggo</td>
-                </tr>
-                </td>
-                </tr>
-            </table>
-        </div>
-    </div>
+    <div id="jsi-rain-container" class="container"></div>
 </body>
+<script>
+    var RENDERER = {
+        INIT_RAIN_DROP_COUNT: 1500,
+        RAIN_DROP_COUNT: 8,
+        HUMAN_COUNT: 30,
+        COLOR: 'hsl(%hue, 20%, %luminance%)',
+        HUE_OFFSET: Math.PI / 1000,
+        LUMINANCE_OFFSET: Math.PI / 1500,
+
+        init: function() {
+            this.setParameters();
+            this.reconstructMethod();
+            this.createRainDrops(this.INIT_RAIN_DROP_COUNT, true);
+            this.createHumans();
+            this.render();
+        },
+        setParameters: function() {
+            this.$container = $('#jsi-rain-container');
+            this.width = this.$container.width();
+            this.height = this.$container.height();
+            this.context = $('<canvas />').attr({
+                width: this.width,
+                height: this.height
+            }).appendTo(this.$container).get(0).getContext('2d');
+
+            this.rainDrops = [];
+            this.humans = [];
+            this.theta = 0;
+            this.phi = 0;
+        },
+        reconstructMethod: function() {
+            this.render = this.render.bind(this);
+        },
+        getRandomValue: function(range) {
+            return range.min + (range.max - range.min) * Math.random();
+        },
+        createRainDrops: function(count, toInit) {
+            for (var i = 0; i < count; i++) {
+                this.rainDrops.push(new RAIN_DROP(this.width, this.height, toInit, this));
+            }
+        },
+        createHumans: function() {
+            for (var i = 0, length = this.HUMAN_COUNT; i < length; i++) {
+                this.humans.push(new HUMAN(this.width, this.height, this));
+            }
+        },
+        render: function() {
+            requestAnimationFrame(this.render);
+
+            this.color = this.COLOR.replace('%hue', 205 + 5 * Math.sin(this.phi));
+            this.context.fillStyle = this.color.replace('%luminance', 35 + 5 * Math.sin(this.theta));
+            this.context.fillRect(0, 0, this.width, this.height);
+
+            for (var i = this.rainDrops.length - 1; i >= 0; i--) {
+                if (!this.rainDrops[i].render(this.context, false)) {
+                    this.rainDrops.splice(i, 1);
+                }
+            }
+            this.humans.sort(function(human1, human2) {
+                return human1 - human2;
+            });
+            for (var i = 0, length = this.humans.length; i < length; i++) {
+                this.humans[i].renderShadow(this.context);
+            }
+            for (var i = 0, length = this.humans.length; i < length; i++) {
+                this.humans[i].renderSubstance(this.context);
+            }
+            for (var i = this.rainDrops.length - 1; i >= 0; i--) {
+                if (!this.rainDrops[i].render(this.context, true)) {
+                    this.rainDrops.splice(i, 1);
+                }
+            }
+            this.createRainDrops(this.RAIN_DROP_COUNT, false);
+            this.theta += this.LUMINANCE_OFFSET;
+            this.theta %= Math.PI * 2;
+            this.phi += this.HUE_OFFSET;
+            this.phi %= Math.PI * 2;
+        }
+    };
+    var RAIN_DROP = function(width, height, toInit, renderer) {
+        this.width = width;
+        this.height = height;
+        this.toInit = toInit;
+        this.renderer = renderer;
+
+        this.init();
+    };
+    RAIN_DROP.prototype = {
+        SCALE_RANGE: {
+            min: 0.2,
+            max: 1
+        },
+        VELOCITY_RANGE: {
+            min: -1.5,
+            max: -1
+        },
+        VELOCITY_RATE: 3,
+        LENGTH_RATE: 20,
+        ACCELARATION_RATE: 0.01,
+        VERTICAL_OFFSET_RATE: 0.04,
+        FRONT_THRESHOLD: 0.8,
+        REFLECTION_RADIUS_RATE: 0.02,
+        COLOR: 'rgba(255, 255, 255, 0.5)',
+        RADIUS_RATE: 0.2,
+        THRESHOLD_RATE: 0.6,
+
+        init: function() {
+            this.scale = this.renderer.getRandomValue(this.SCALE_RANGE);
+            this.length = this.LENGTH_RATE * this.scale;
+            this.vx = this.renderer.getRandomValue(this.VELOCITY_RANGE) * this.scale;
+            this.vy = this.VELOCITY_RATE * this.scale;
+            this.ay = this.ACCELARATION_RATE * this.scale;
+
+            this.theta = Math.atan2(this.vy, this.vx);
+
+            this.offset = this.height * this.VERTICAL_OFFSET_RATE;
+            this.x = this.renderer.getRandomValue({
+                min: 0,
+                max: this.width - this.height * Math.cos(this.theta)
+            });
+            this.y = (this.toInit ? this.renderer.getRandomValue({
+                min: 0,
+                max: this.height
+            }) : 0) - this.offset;
+
+            this.radius = this.length * this.REFLECTION_RADIUS_RATE;
+        },
+        render: function(context, toFront) {
+            if (toFront && this.scale < this.FRONT_THRESHOLD || !toFront && this.scale >= this
+                .FRONT_THRESHOLD) {
+                return true;
+            }
+            context.save();
+            context.strokeStyle = this.COLOR;
+
+            if (this.y >= this.height * (1 - (1 - this.scale) * this.THRESHOLD_RATE) - this.offset) {
+                context.lineWidth = 3;
+                context.globalAlpha = (1 - this.radius / this.length / this.RADIUS_RATE) * 0.5;
+                context.beginPath();
+                context.arc(this.x, this.y, this.radius, Math.PI, Math.PI * 2, false);
+                context.stroke();
+                context.restore();
+
+                this.radius *= 1.05;
+
+                if (this.radius > this.length * this.RADIUS_RATE) {
+                    return false;
+                }
+            } else {
+                context.lineWidth = 1;
+                context.beginPath();
+                context.moveTo(this.x, this.y);
+                context.lineTo(this.x + this.length * Math.cos(this.theta), this.y + this.length * Math.sin(this
+                    .theta));
+                context.stroke();
+                context.restore();
+
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vy += this.ay;
+            }
+            return true;
+        }
+    };
+    var HUMAN = function(width, height, renderer) {
+        this.width = width;
+        this.height = height;
+        this.renderer = renderer;
+
+        this.init();
+    };
+    HUMAN.prototype = {
+        HORIZONTAL_OFFSET: 30,
+        VERTICAL_OFFSET_RATE_RANGE: {
+            min: 0.05,
+            max: 0.45
+        },
+        VELOCITY_OFFSET: {
+            min: 0.3,
+            max: 0.6
+        },
+        SHADOW_SCALE: -0.6,
+
+        init: function() {
+            this.setParameters(true);
+        },
+        setParameters: function(toInit) {
+            this.direction = (Math.random() < 0.5) ? 1 : -1;
+
+            if (toInit) {
+                this.x = this.renderer.getRandomValue({
+                    min: 0,
+                    max: this.width
+                });
+            } else {
+                this.x = (this.direction > 0) ? -this.HORIZONTAL_OFFSET : (this.width + this.HORIZONTAL_OFFSET);
+            }
+            var position = this.renderer.getRandomValue(this.VERTICAL_OFFSET_RATE_RANGE) * this.height,
+                verticalPosition = this.height * this.VERTICAL_OFFSET_RATE_RANGE.max;
+
+            this.rate = 10 * (verticalPosition - position) / verticalPosition | 0;
+            this.y = this.height - position;
+            this.vx = this.renderer.getRandomValue(this.VELOCITY_OFFSET) * this.direction;
+            this.vxRate = (0.5 + 0.5 * (verticalPosition - position) / verticalPosition);
+            this.theta = 0;
+        },
+        renderSubstance: function(context) {
+            context.save();
+            context.translate(this.x, this.y);
+            context.scale(this.direction * this.vxRate, 1 * this.vxRate);
+            this.renderHuman(context, 30);
+            context.restore();
+
+            this.theta += this.vx / 5;
+            this.theta %= Math.PI * 2;
+            this.x += this.vx * this.vxRate;
+
+            if (this.x < -this.HORIZONTAL_OFFSET && this.direction < 0 || this.x > this.width + this
+                .HORIZONTAL_OFFSET && this.direction > 0) {
+                this.setParameters(false);
+            }
+        },
+        renderShadow: function(context) {
+            context.save();
+            context.translate(this.x, this.y);
+            context.scale(this.direction * this.vxRate, this.SHADOW_SCALE * this.vxRate);
+            this.renderHuman(context, 35);
+            context.restore();
+        },
+        renderHuman: function(context, baseColor) {
+            var color = this.renderer.color.replace('%luminance', baseColor - this.rate);
+
+            context.fillStyle = color;
+            context.strokeStyle = color;
+            context.lineWidth = 2;
+
+            context.beginPath();
+            context.moveTo(-30, -60);
+            context.quadraticCurveTo(-20, -75, 0, -75);
+            context.quadraticCurveTo(20, -75, 30, -60);
+            context.closePath();
+            context.fill();
+
+            context.beginPath();
+            context.moveTo(0, -80);
+            context.lineTo(0, -35);
+            context.stroke();
+
+            context.beginPath();
+            context.arc(-10, -55, 5, 0, Math.PI * 2, false);
+            context.fill();
+
+            context.beginPath();
+            context.moveTo(-15, -50);
+            context.quadraticCurveTo(-20, -40, -15, -30);
+            context.lineTo(-5, -30);
+            context.quadraticCurveTo(0, -40, -5, -50);
+            context.closePath();
+            context.fill();
+
+            for (var i = -1; i <= 1; i += 2) {
+                context.beginPath();
+                context.moveTo(-13, -30);
+                context.lineTo(-13 + 7 * Math.sin(this.theta) * i, -5);
+                context.lineTo(-3 + 7 * Math.sin(this.theta) * i, -5);
+                context.lineTo(-7 + 7 * Math.sin(this.theta) * i, -10);
+                context.lineTo(-7, -30);
+                context.closePath();
+                context.fill();
+            }
+        }
+    };
+    $(function() {
+        RENDERER.init();
+    });
+</script>
 
 </html>

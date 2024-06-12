@@ -84,31 +84,47 @@
                                                                 <option value="3">Hilang</option>
                                                             </select>
                                                         </div>
-                                                        @error('reason')
-                                                            <div class="flex flex-row gap-2 ms-28 text-red-500">
-                                                                {{ $message }}
-                                                            </div>
-                                                        @enderror
+                                                        <script>
+                                                            $(function() {
+                                                                $("#alasan").on('change', function() {
+                                                                    if ($(this).val() != 1) {
+                                                                        $("#input_photo").removeClass('hidden');
+                                                                    } else {
+                                                                        $("#input_photo").addClass('hidden');
+                                                                    }
+                                                                })
+                                                            })
+                                                        </script>
+                                                        <div id="input_photo" class="flex flex-row gap-5">
+                                                            <p class="my-auto w-24 dark:text-white">Bukti</p>
+                                                            <input type="file" accept="image/*" name="photo"
+                                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="flex justify-end items-center pe-10">
-                                                    <button type="submit"
-                                                        class="inline-block bg-gray-100 rounded-lg focus:outline-none hover:bg-blue-200 hover:text-gray-900 dark:border-gray-700 dark:hover:bg-blue-300 text-sm font-medium py-1 px-3 w-24 my-3">Ajukan</button>
+                                                    @error('reason')
+                                                        <div class="flex flex-row gap-2 ms-28 text-red-500">
+                                                            {{ $message }}
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                        </form>
-                                        <script>
-                                            function keepOnlyNumbers(input) {
-                                                return input.replace(/\D/g, "");
-                                            }
-
-                                            var inputField = document.getElementById("nip");
-
-                                            inputField.addEventListener("input", function() {
-                                                inputField.value = keepOnlyNumbers(inputField.value);
-                                            });
-                                        </script>
+                                            <div class="flex justify-end items-center pe-10">
+                                                <button type="submit"
+                                                    class="inline-block bg-gray-100 rounded-lg focus:outline-none hover:bg-blue-200 hover:text-gray-900 dark:border-gray-700 dark:hover:bg-blue-300 text-sm font-medium py-1 px-3 w-24 my-3">Ajukan</button>
+                                            </div>
                                     </div>
+                                    </form>
+                                    <script>
+                                        function keepOnlyNumbers(input) {
+                                            return input.replace(/\D/g, "");
+                                        }
+
+                                        var inputField = document.getElementById("nip");
+
+                                        inputField.addEventListener("input", function() {
+                                            inputField.value = keepOnlyNumbers(inputField.value);
+                                        });
+                                    </script>
                                 </div>
                             </div>
                         </div>
@@ -116,5 +132,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection
