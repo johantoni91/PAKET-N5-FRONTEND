@@ -34,8 +34,12 @@ class AccessController extends Controller
             $arr = $req->roles;
             $getRole['role'] == 'superadmin' ? array_push($arr, 'akses') : '';
             if ($req->roles) {
-                RoleApi::update($id, $arr);
-                Alert::success('Berhasil', 'Akses role telah diubah!');
+                $change = RoleApi::update($id, $arr);
+                if ($change['status'] == false) {
+                    Alert::error($change['message']);
+                    return back();
+                }
+                Alert::success($change['message']);
                 return back();
             } else {
                 Alert::error('Error', 'Gagal mengubah akses role / Mohon isi minimal 1 akses.');
@@ -43,6 +47,22 @@ class AccessController extends Controller
             }
         } catch (\Throwable $th) {
             Alert::error('Error', 'Gagal mengubah akses role / Mohon isi minimal 1 akses.');
+            return back();
+        }
+    }
+
+    function store(Request $req)
+    {
+        try {
+            $res = RoleApi::store($req->all());
+            if ($res['status'] == false) {
+                Alert::error($res['message']);
+                return back();
+            }
+            Alert::success($res['message']);
+            return back();
+        } catch (\Throwable $th) {
+            Alert::error($th->getMessage());
             return back();
         }
     }

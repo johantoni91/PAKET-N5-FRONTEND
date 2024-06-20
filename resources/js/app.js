@@ -1,74 +1,78 @@
-import Quagga from "quagga";
-Quagga.init(
-    {
-        inputStream: {
-            name: "Live",
-            type: "LiveStream",
-            target: document.querySelector("#barcode"), // Or '#yourElement' (optional)
-        },
-        decoder: {
-            readers: ["code_128_reader"],
-        },
-    },
-    function (err) {
-        if (err) {
-            console.log(err);
+import { pcsclite } from "@pokusew/pcsclite";
+const pcsc = pcsclite();
+
+pcsc.on("reader", (reader) => {
+    console.log("New reader detected", reader.name);
+
+    reader.on("error", (err) => {
+        console.log("Error(", reader.name, "):", err.message);
+    });
+
+    reader.on("status", (status) => {
+        console.log("Status(", reader.name, "):", status);
+
+        // check what has changed
+        const changes = reader.state ^ status.state;
+
+        if (!changes) {
             return;
         }
-        console.log("Initialization finished. Ready to start");
-        Quagga.start();
-    }
-);
 
-(function ($) {
-    "use strict";
-    //Menu
-    $(".navbar-toggle").on("click", function (event) {
-        $(this).toggleClass("open");
-        $("#navigation").slideToggle(400);
-    });
+        if (
+            changes & reader.SCARD_STATE_EMPTY &&
+            status.state & reader.SCARD_STATE_EMPTY
+        ) {
+            console.log("card removed");
 
-    $(".navigation-menu>li").slice(-2).addClass("last-elements");
+            reader.disconnect(reader.SCARD_LEAVE_CARD, (err) => {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
 
-    $(".menu-arrow,.submenu-arrow").on("click", function (e) {
-        if ($(window).width() < 992) {
-            e.preventDefault();
-            $(this)
-                .parent("li")
-                .toggleClass("open")
-                .find(".submenu:first")
-                .toggleClass("open");
-        }
-    });
+                console.log("Disconnected");
+            });
+        } else if (
+            changes & reader.SCARD_STATE_PRESENT &&
+            status.state & reader.SCARD_STATE_PRESENT
+        ) {
+            console.log("card inserted");
 
-    // Smooth scroll
-    $(".navbar-nav a, .scrollbtn").on("click", function (event) {
-        var $anchor = $(this);
-        $("html, body")
-            .stop()
-            .animate(
-                {
-                    scrollTop: $($anchor.attr("href")).offset().top - 0,
-                },
-                3000,
-                "easeInOutExpo"
+            reader.connect(
+                { share_mode: reader.SCARD_SHARE_SHARED },
+                (err, protocol) => {
+                    if (err) {
+                        console.log(err);
+                        return;
+                    }
+
+                    console.log("Protocol(", reader.name, "):", protocol);
+
+                    reader.transmit(
+                        Buffer.from([0x00, 0xb0, 0x00, 0x00, 0x20]),
+                        40,
+                        protocol,
+                        (err, data) => {
+                            if (err) {
+                                console.log(err);
+                                return;
+                            }
+
+                            console.log("Data received", data);
+                            reader.close();
+                            pcsc.close();
+                        }
+                    );
+                }
             );
-        event.preventDefault();
-    });
-
-    // Add scroll class
-    $(window).scroll(function () {
-        var scroll = $(window).scrollTop();
-
-        if (scroll >= 50) {
-            $(".sticky").addClass("nav-sticky");
-        } else {
-            $(".sticky").removeClass("nav-sticky");
         }
     });
 
-    //Scrollspy
-    $(".navbar-nav").scrollspy({
-        offset: 20,
+    reader.on("end", () => {
+        console.log("Reader", reader.name, "removed");
     });
-})(jQuery);
+});
+
+pcsc.on("error", (err) => {
+    console.log("PCSC error", err.message);
+});

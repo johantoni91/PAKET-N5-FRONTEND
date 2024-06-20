@@ -48,10 +48,13 @@
                                     <div class="sm:-mx-6 lg:-mx-8">
                                         <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-8">
                                             <div class="flex flex-row justify-between px-5 mb-5">
-                                                <button type="button" data-modal-target="create" data-modal-toggle="create"
-                                                    class="focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-r dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-1 px-3 rounded hover:from-red-500 hover:to-violet-800 dark:hover:from-cyan-300 dark:hover:to-zinc-500">+
-                                                    Pengguna</button>
-                                                @include('user.partials.choose_role')
+                                                @if (session('data')['roles'] == 'superadmin')
+                                                    <button type="button" data-modal-target="create"
+                                                        data-modal-toggle="create"
+                                                        class="focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-r dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-1 px-3 rounded hover:from-red-500 hover:to-violet-800 dark:hover:from-cyan-300 dark:hover:to-zinc-500">+
+                                                        Pengguna</button>
+                                                    @include('user.partials.choose_role')
+                                                @endif
                                                 <div class="justify-center gap-2">
                                                     <button type="button" data-modal-target="search"
                                                         data-modal-toggle="search"

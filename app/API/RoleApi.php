@@ -2,8 +2,6 @@
 
 namespace App\API;
 
-use App\Helpers\profile;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 
@@ -29,7 +27,22 @@ class RoleApi
         }
     }
 
+    public static function store($input)
+    {
+        $arr = self::help($input['roles']);
+        return Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/roles/store', [
+            'role'  => $input['role'],
+            'menus' => $arr
+        ])->json();
+    }
+
     public static function update($id, $input)
+    {
+        $arr = self::help($input);
+        return Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . self::$path . '/' . $id . '/update', $arr)->json();
+    }
+
+    private static function help($input): array
     {
         $icon = [
             in_array('user', $input) ? 'user' : null,
@@ -87,6 +100,6 @@ class RoleApi
                 'title' => null
             ];
         }
-        return Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . self::$path . '/' . $id . '/update', $arr)->json();
+        return $arr;
     }
 }

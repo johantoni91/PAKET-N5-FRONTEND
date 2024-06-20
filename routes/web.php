@@ -23,6 +23,7 @@ use App\Http\Controllers\MonitorKartuController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SmartCardController;
 use App\Http\Controllers\TandaTanganController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,9 +36,7 @@ use App\Http\Controllers\TandaTanganController;
 |
  */
 
-Route::get('/test', function () {
-    return view('welcome');
-});
+Route::get('/nfc', [DashboardController::class, 'nfc'])->name('nfc');
 
 Route::get('/login', [AuthController::class, 'loginPage'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.form');
@@ -106,6 +105,7 @@ Route::middleware(['auth'])->group(function () {
     // HAK AKSES
     Route::middleware(['role_akses'])->group(function () {
         Route::get('/akses', [AccessController::class, 'index'])->name('akses');
+        Route::post('/akses/store', [AccessController::class, 'store'])->name('akses.store');
         Route::post('/akses/{id}/update', [AccessController::class, 'update'])->name('akses.update');
     });
 

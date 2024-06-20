@@ -73,7 +73,7 @@
                                             @if ($loop->index > 9)
                                                 <li>
                                                     <a href="{{ route($i) }}"
-                                                        class="{{ request()->routeIs($item) ? 'text-black bg-white dark:text-black font-semibold' : '' }} nav-link text-black dark:text-white hover:text-black hover:bg-slate-100/50 my-1 rounded-md dark:hover:text-slate-200 flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200">
+                                                        class="{{ request()->routeIs($item) ? 'text-black dark:text-black font-semibold' : '' }} nav-link text-black dark:text-white hover:text-black hover:bg-slate-100/50 my-1 rounded-md dark:hover:text-slate-200 flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200">
                                                         <span
                                                             data-lucide="{{ $starterPack['icons'][$loop->iteration - 1] }}"
                                                             class="w-5 h-5 text-center me-2"></span>

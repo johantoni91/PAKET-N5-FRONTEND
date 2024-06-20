@@ -60,7 +60,7 @@ class KiosController extends Controller
                 Alert::warning('Peringatan', 'Token yang anda masukkan salah!');
                 return back();
             }
-            Alert::success('Pemberitahuan', 'Kartu atas nama ' . $check['data']['nama'] . ' sedang dicetak.');
+            Alert::success('Pemberitahuan', 'Kartu telah diverifikasi, kartu sedang dicetak.');
             return back();
         } catch (\Throwable $th) {
             Alert::error('Peringatan', $th->getMessage());

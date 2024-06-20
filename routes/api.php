@@ -19,3 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/nfc', function (Request $request) {
+    $uid = $request->input('uid');
+    // Process the UID, e.g., store it in the database
+    return response()->json(['success' => true, 'uid' => $uid]);
+});

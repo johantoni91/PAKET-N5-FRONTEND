@@ -121,13 +121,7 @@
                                                                             </td>
                                                                             <td
                                                                                 class="px-10 py-4 text-center dark:text-white bg-gray-50 dark:bg-gray-800">
-                                                                                @if (session('data')['roles'] == 'admin')
-                                                                                    @include('pengajuan.partials.aksi')
-                                                                                @else
-                                                                                    <a href="{{ route('monitor.kartu') }}"
-                                                                                        class="text-blue-500 hover:drop-shadow-green">Lihat
-                                                                                        Monitor</a>
-                                                                                @endif
+                                                                                @include('pengajuan.partials.aksi')
                                                                             </td>
                                                                         </tr>
                                                                     @endforeach

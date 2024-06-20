@@ -19,7 +19,7 @@ class PengajuanController extends Controller
     function index()
     {
         try {
-            if (session('data')['roles'] != 'superadmin' && preg_match('/^\d{6}$/', session('data')['satker'])) {
+            if ((session('data')['roles'] == 'superadmin' || session('data')['roles'] == 'pegawai') || preg_match('/^\d{6}$/', session('data')['satker'])) {
                 return view('pengajuan.index', [
                     'title'         => 'Form Pengajuan',
                     'kartu'         => KartuApi::get(),

@@ -6,7 +6,8 @@
     },
     "devDependencies": {
         "autoprefixer": "^10.4.17",
-        "axios": "^1.1.2",
+        "axios": "^1.7.2",
+        "laravel-mix": "^6.0.49",
         "laravel-vite-plugin": "^0.7.2",
         "lodash": "^4.17.19",
         "postcss": "^8.4.34",
@@ -14,23 +15,12 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "datatables.net-bs5": "^2.0.0",
-        "datatables.net-buttons-bs5": "^3.0.0",
-        "datatables.net-colreorder-bs5": "^2.0.0",
-        "datatables.net-dt": "^2.0.0",
-        "datatables.net-fixedcolumns-bs5": "^5.0.0",
-        "datatables.net-fixedheader-bs5": "^4.0.0",
-        "datatables.net-searchbuilder-bs5": "^1.7.0",
-        "datatables.net-searchpanes-bs5": "^2.3.0",
-        "downloadjs": "^1.4.7",
-        "express": "^4.19.2",
+        "@pokusew/pcsclite": "^0.6.0",
+        "esbuild-plugin-polyfill-node": "^0.3.0",
         "flowbite": "^2.2.1",
-        "grapesjs": "^0.21.9",
         "html-to-image": "^1.11.11",
-        "jspdf": "^2.5.1",
-        "puppeteer": "^22.8.0",
-        "quagga": "^0.12.1",
-        "socket.io": "^4.7.5",
-        "sweetalert2": "^11.10.5"
+        "pcsclite": "^1.0.1",
+        "sweetalert2": "^11.10.5",
+        "vite-plugin-node-polyfills": "^0.22.0"
     }
 }

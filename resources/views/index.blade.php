@@ -117,17 +117,17 @@
                 </div>
                 <div class="flex flex-row flex-wrap justify-between gap-3 items-center my-5">
                     <div
-                        class="p-4 w-full lg:w-[30%] h-90 rounded-lg shadow shadow-orange-800 dark:shadow-cyan-700 dark:text-white">
+                        class="p-4 w-full lg:w-[30%] h-90 rounded-lg shadow shadow-orange-800 dark:shadow-cyan-700 dark:text-black">
                         <h3 class="text-center font-semibold mb-1 dark:text-white">Persetujuan</h3>
                         <div class="w-full h-full" id="approval"></div>
                     </div>
                     <div
-                        class="p-4 w-full lg:w-[30%] h-90 rounded-lg shadow shadow-orange-800 dark:shadow-cyan-700 dark:text-white">
+                        class="p-4 w-full lg:w-[30%] h-90 rounded-lg shadow shadow-orange-800 dark:shadow-cyan-700 dark:text-black">
                         <h3 class="text-center font-semibold mb-1 dark:text-white">Status Perangkat</h3>
                         <div class="w-full h-full" id="perangkat"></div>
                     </div>
                     <div
-                        class="p-4 w-full lg:w-[30%] h-90 rounded-lg shadow shadow-orange-800 dark:shadow-cyan-700 dark:text-white">
+                        class="p-4 w-full lg:w-[30%] h-90 rounded-lg shadow shadow-orange-800 dark:shadow-cyan-700 dark:text-black">
                         <h3 class="text-center font-semibold mb-1 dark:text-white">Pengajuan Terbanyak</h3>
                         <div class="w-full h-full" id="top5"></div>
                     </div>

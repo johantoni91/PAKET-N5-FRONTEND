@@ -26,6 +26,7 @@ class DashboardController extends Controller
     function getRoom(Request $req)
     {
         $room = Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/inbox' . '/' . session('data')['id'] . '/room' . '/' . $req->user2)->json();
+        dd($room);
         return response()->json([
             'view'          => view('inbox.message', [
                 'data'      => $room['data'],
@@ -47,5 +48,10 @@ class DashboardController extends Controller
         } else {
             return back();
         }
+    }
+    public function store(Request $request)
+    {
+        $nfcData = $request->input('data');
+        return response()->json(['message' => 'NFC data received', 'data' => $nfcData]);
     }
 }

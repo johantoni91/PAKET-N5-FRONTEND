@@ -19,8 +19,7 @@
                 <div class="xl:w-full  min-h-[calc(100vh-138px)] relative pb-14">
                     <div class="xl:w-full  min-h-[calc(100vh-138px)] relative pb-14">
                         <div class="grid md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4 mb-4">
-
-                            <div class="sm:col-span-12  md:col-span-12 lg:col-span-12 xl:col-span-12 xl:col-start-0 ">
+                            <div class="sm:col-span-12  md:col-span-12 lg:col-span-12 xl:col-span-12 xl:col-start-0">
                                 <div
                                     class="bg-white dark:bg-gray-900 border border-slate-200 dark:border-slate-700/40  rounded-md w-full relative mb-4">
                                     <div
@@ -49,7 +48,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="grid grid-cols-1 p-4">
+                                    <div class="grid grid-cols-1 p-4 overflow-scroll">
                                         <div class="sm:-mx-6 lg:-mx-8">
                                             <div class="relative block w-full sm:px-6 lg:px-8">
                                                 <div class="relative sm:rounded-lg">

@@ -2911,6 +2911,49 @@
             "install-path": "../livewire/livewire"
         },
         {
+            "name": "m3m0r7/nfc-for-php",
+            "version": "0.0.2",
+            "version_normalized": "0.0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/m3m0r7/nfc-for-php.git",
+                "reference": "fb6fddac067cf6561e42187038fa33c0b3176f2d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/m3m0r7/nfc-for-php/zipball/fb6fddac067cf6561e42187038fa33c0b3176f2d",
+                "reference": "fb6fddac067cf6561e42187038fa33c0b3176f2d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ffi": "*",
+                "php": ">=7.4|>=8"
+            },
+            "time": "2021-10-09T09:10:01+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "NFC\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "memory"
+                }
+            ],
+            "description": "NFC Reader with the libnfc written in PHP",
+            "support": {
+                "issues": "https://github.com/m3m0r7/nfc-for-php/issues",
+                "source": "https://github.com/m3m0r7/nfc-for-php/tree/0.0.2"
+            },
+            "install-path": "../m3m0r7/nfc-for-php"
+        },
+        {
             "name": "maatwebsite/excel",
             "version": "3.1.55",
             "version_normalized": "3.1.55.0",

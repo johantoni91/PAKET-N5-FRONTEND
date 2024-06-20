@@ -3,7 +3,6 @@
 namespace App\API;
 
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Session;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class PengajuanApi

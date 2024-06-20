@@ -127,6 +127,7 @@ class ComposerStaticInit87f6642612b6e3243de29df3456295fd
         'N' => 
         array (
             'NunoMaduro\\Collision\\' => 21,
+            'NFC\\' => 4,
         ),
         'M' => 
         array (
@@ -456,6 +457,10 @@ class ComposerStaticInit87f6642612b6e3243de29df3456295fd
         array (
             0 => __DIR__ . '/..' . '/nunomaduro/collision/src',
         ),
+        'NFC\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src',
+        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
@@ -687,6 +692,7 @@ class ComposerStaticInit87f6642612b6e3243de29df3456295fd
         'App\\Helpers\\log' => __DIR__ . '/../..' . '/app/Helpers/log.php',
         'App\\Http\\Controllers\\API\\PageController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/PageController.php',
         'App\\Http\\Controllers\\AccessController' => __DIR__ . '/../..' . '/app/Http/Controllers/AccessController.php',
+        'App\\Http\\Controllers\\AssessmentController' => __DIR__ . '/../..' . '/app/Http/Controllers/AssessmentController.php',
         'App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/DashboardController.php',
@@ -705,6 +711,7 @@ class ComposerStaticInit87f6642612b6e3243de29df3456295fd
         'App\\Http\\Controllers\\RateController' => __DIR__ . '/../..' . '/app/Http/Controllers/RateController.php',
         'App\\Http\\Controllers\\SatkerController' => __DIR__ . '/../..' . '/app/Http/Controllers/SatkerController.php',
         'App\\Http\\Controllers\\SmartCardController' => __DIR__ . '/../..' . '/app/Http/Controllers/SmartCardController.php',
+        'App\\Http\\Controllers\\TandaTanganController' => __DIR__ . '/../..' . '/app/Http/Controllers/TandaTanganController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Auth' => __DIR__ . '/../..' . '/app/Http/Middleware/Auth.php',
@@ -723,6 +730,7 @@ class ComposerStaticInit87f6642612b6e3243de29df3456295fd
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\Role' => __DIR__ . '/../..' . '/app/Http/Middleware/Role.php',
         'App\\Http\\Middleware\\Satker' => __DIR__ . '/../..' . '/app/Http/Middleware/Satker.php',
+        'App\\Http\\Middleware\\Signature' => __DIR__ . '/../..' . '/app/Http/Middleware/Signature.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
@@ -4254,6 +4262,33 @@ class ComposerStaticInit87f6642612b6e3243de29df3456295fd
         'Monolog\\SignalHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/SignalHandler.php',
         'Monolog\\Test\\TestCase' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Test/TestCase.php',
         'Monolog\\Utils' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Utils.php',
+        'NFC\\Attributes\\AbstractNFCTargetAttribute' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/Attributes/AbstractNFCTargetAttribute.php',
+        'NFC\\Attributes\\Barcode' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/Attributes/Barcode.php',
+        'NFC\\Attributes\\Dep' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/Attributes/Dep.php',
+        'NFC\\Attributes\\Felica' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/Attributes/Felica.php',
+        'NFC\\Attributes\\ISO14443A' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/Attributes/ISO14443A.php',
+        'NFC\\Attributes\\ISO14443B' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/Attributes/ISO14443B.php',
+        'NFC\\Attributes\\ISO14443B2CT' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/Attributes/ISO14443B2CT.php',
+        'NFC\\Attributes\\ISO14443B2SR' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/Attributes/ISO14443B2SR.php',
+        'NFC\\Attributes\\ISO14443BI' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/Attributes/ISO14443BI.php',
+        'NFC\\Attributes\\ISO14443BICLASS' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/Attributes/ISO14443BICLASS.php',
+        'NFC\\Attributes\\Jewel' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/Attributes/Jewel.php',
+        'NFC\\Attributes\\NFCTargetAttributeInterface' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/Attributes/NFCTargetAttributeInterface.php',
+        'NFC\\Enum' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/Enum.php',
+        'NFC\\NFC' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/NFC.php',
+        'NFC\\NFCAttributeException' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/NFCAttributeException.php',
+        'NFC\\NFCBaudRates' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/NFCBaudRates.php',
+        'NFC\\NFCContext' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/NFCContext.php',
+        'NFC\\NFCDevice' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/NFCDevice.php',
+        'NFC\\NFCDeviceException' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/NFCDeviceException.php',
+        'NFC\\NFCDeviceInfo' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/NFCDeviceInfo.php',
+        'NFC\\NFCEventManager' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/NFCEventManager.php',
+        'NFC\\NFCException' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/NFCException.php',
+        'NFC\\NFCModulation' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/NFCModulation.php',
+        'NFC\\NFCModulationTypes' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/NFCModulationTypes.php',
+        'NFC\\NFCOutput' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/NFCOutput.php',
+        'NFC\\NFCTarget' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/NFCTarget.php',
+        'NFC\\NFCTargetException' => __DIR__ . '/..' . '/m3m0r7/nfc-for-php/src/NFCTargetException.php',
         'Nette\\ArgumentOutOfRangeException' => __DIR__ . '/..' . '/nette/utils/src/exceptions.php',
         'Nette\\DeprecatedException' => __DIR__ . '/..' . '/nette/utils/src/exceptions.php',
         'Nette\\DirectoryNotFoundException' => __DIR__ . '/..' . '/nette/utils/src/exceptions.php',

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth group" data-sidebar="brand" dir="ltr">
+<html lang="id" class="scroll-smooth group" data-sidebar="brand" dir="ltr">
 <meta charset="utf-8" />
 <title>OTENTIK | {{ $title ?? '' }}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta content="Tailwind Multipurpose Admin & Dashboard Template" name="description" />
-<meta content="" name="Mannatthemes" />
+<meta content="Johan Toni Wijaya" name="description" />
+<meta content="" name="Johan" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}" />
 
@@ -43,6 +43,7 @@
             }
         })
     </script>
+    {{-- @vite('resources/js/app.js') --}}
 </body>
 
 </html>
