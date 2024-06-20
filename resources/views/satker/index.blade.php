@@ -75,24 +75,21 @@
                                                                 <table
                                                                     class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                                     <thead
-                                                                        class="text-xs border-b-2 border-slate-500 text-center text-gray-700 uppercase dark:text-gray-400">
+                                                                        class="bg-slate-200 dark:bg-slate-700 border-b-2 border-slate-500 text-xs text-center text-gray-700 uppercase dark:text-white">
                                                                         <tr>
-                                                                            <th scope="col"
-                                                                                class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                                                            <th scope="col" class="px-6 py-3">
                                                                                 Satker
                                                                             </th>
                                                                             <th scope="col" class="px-6 py-3">
                                                                                 Telepon
                                                                             </th>
-                                                                            <th scope="col"
-                                                                                class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                                                            <th scope="col" class="px-6 py-3">
                                                                                 Email
                                                                             </th>
                                                                             <th scope="col" class="px-6 py-3">
                                                                                 Alamat
                                                                             </th>
-                                                                            <th scope="col"
-                                                                                class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                                                            <th scope="col" class="px-6 py-3">
                                                                                 URL
                                                                             </th>
                                                                             {{-- <th scope="col" class="px-6 py-3">
@@ -103,9 +100,9 @@
                                                                     <tbody>
                                                                         @foreach ($data['data'] as $item)
                                                                             <tr
-                                                                                class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                                                                class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                                                                                 <th scope="row"
-                                                                                    class="px-4 py-2 text-black bg-gray-50 dark:text-white dark:bg-gray-800"
+                                                                                    class="px-4 py-2 text-black dark:text-white"
                                                                                     style="text-wrap: wrap">
                                                                                     {{ $item['satker_name'] }}
                                                                                 </th>
@@ -114,14 +111,14 @@
                                                                                     {{ $item['satker_phone'] }}
                                                                                 </td>
                                                                                 <td
-                                                                                    class="text-center px-6 py-4 dark:text-white bg-gray-50 dark:bg-gray-800">
+                                                                                    class="text-center px-6 py-4 dark:text-white">
                                                                                     {{ $item['satker_email'] }}
                                                                                 </td>
                                                                                 <td
                                                                                     class="text-center px-6 py-4 dark:text-white text-justify">
                                                                                     {{ $item['satker_address'] }}
                                                                                 </td>
-                                                                                <td class="text-center px-6 py-4 dark:text-white bg-gray-50 dark:bg-gray-800"
+                                                                                <td class="text-center px-6 py-4 dark:text-white"
                                                                                     style="text-wrap: wrap">
                                                                                     {{ $item['satker_url'] }}
                                                                                 </td>

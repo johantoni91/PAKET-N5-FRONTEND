@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth group" data-sidebar="brand" dir="ltr">
+<html lang="IN" class="scroll-smooth group" data-sidebar="brand" dir="ltr">
 <meta charset="utf-8" />
 <title>OTENTIK | {{ $title ?? '' }}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />

@@ -27,14 +27,16 @@
                         <label for="roles" class="my-auto w-24 dark:text-white">Pilih roles</label>
                         <select id="roles" name="roles" required
                             class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:text-black">
-                            @if (session('data')['roles'] == 'superadmin')
-                                <option value="superadmin">superadmin</option>
-                                <option value="admin">admin</option>
-                                <option value="pegawai">pegawai</option>
-                            @else
-                                <option value="admin">admin</option>
-                                <option value="pegawai">pegawai</option>
-                            @endif
+                            @foreach ($roles as $item)
+                                @if (session('data')['roles'] != 'superadmin')
+                                    @if ($item['role'] == 'superadmin')
+                                    @else
+                                        <option value="{{ $item['role'] }}">{{ $item['role'] }}</option>
+                                    @endif
+                                @else
+                                    <option value="{{ $item['role'] }}">{{ $item['role'] }}</option>
+                                @endif
+                            @endforeach
                         </select>
                     </div>
                     <div class="flex flex-row justify-end">

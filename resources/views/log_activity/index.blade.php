@@ -55,60 +55,55 @@
                                                     <table
                                                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                         <thead
-                                                            class="border-b-2 border-slate-500 text-xs text-center text-gray-700 uppercase dark:text-gray-400">
+                                                            class="bg-slate-200 dark:bg-slate-700 border-b-2 border-slate-500 text-xs text-center text-gray-700 uppercase dark:text-white">
                                                             <tr>
-                                                                <th scope="col"
-                                                                    class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                                                                    USERNAME
+                                                                <th scope="col" class="px-6 py-3">
+                                                                    Username
                                                                 </th>
                                                                 <th scope="col" class="px-6 py-3">
-                                                                    IP ADDRESS
-                                                                </th>
-                                                                <th scope="col"
-                                                                    class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                                                                    BROWSER
+                                                                    Alamat IP
                                                                 </th>
                                                                 <th scope="col" class="px-6 py-3">
-                                                                    BROWSER VERSION
-                                                                </th>
-                                                                <th scope="col"
-                                                                    class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                                                                    OS
+                                                                    Browser
                                                                 </th>
                                                                 <th scope="col" class="px-6 py-3">
-                                                                    ACTIVITY
+                                                                    Versi Browser
                                                                 </th>
-                                                                <th scope="col"
-                                                                    class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                                                                    TIME
+                                                                <th scope="col" class="px-6 py-3">
+                                                                    Sistem Operasi
+                                                                </th>
+                                                                <th scope="col" class="px-6 py-3">
+                                                                    Aktivitas
+                                                                </th>
+                                                                <th scope="col" class="px-6 py-3">
+                                                                    Waktu
                                                                 </th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             @foreach ($data['data'] as $item)
                                                                 <tr
-                                                                    class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                                                    class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                                                                     <th scope="row"
-                                                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white bg-gray-50 dark:bg-gray-800">
+                                                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                                         {{ $item['username'] }}
                                                                     </th>
                                                                     <td class="px-6 py-4">
                                                                         {{ $item['ip_address'] }}
                                                                     </td>
-                                                                    <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                                                                    <td class="px-6 py-4">
                                                                         {{ $item['browser'] }}
                                                                     </td>
                                                                     <td class="px-6 py-4">
                                                                         {{ $item['browser_version'] }}
                                                                     </td>
-                                                                    <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                                                                    <td class="px-6 py-4">
                                                                         {{ $item['os'] }}
                                                                     </td>
                                                                     <td class="px-6 py-4">
                                                                         {{ $item['log_detail'] }}
                                                                     </td>
-                                                                    <td
-                                                                        class="px-6 py-4 bg-gray-50 dark:bg-gray-800 text-center">
+                                                                    <td class="px-6 py-4 text-center">
                                                                         {{ date('d M Y h:i:s', strtotime($item['created_at'])) }}
                                                                     </td>
                                                                 </tr>

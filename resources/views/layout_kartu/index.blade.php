@@ -40,24 +40,21 @@
                                                     <table
                                                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                         <thead
-                                                            class="text-xs text-gray-700 uppercase dark:text-gray-400 border-b-2 border-slate-500">
+                                                            class="bg-slate-200 dark:bg-slate-700 border-b-2 border-slate-500 text-xs text-center text-gray-700 uppercase dark:text-white">
                                                             <tr class="text-center">
-                                                                <th scope="col"
-                                                                    class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                                                <th scope="col" class="px-6 py-3">
                                                                     Kartu
                                                                 </th>
                                                                 <th scope="col" class="px-6 py-3">
                                                                     Permintaan Cetak
                                                                 </th>
-                                                                <th scope="col"
-                                                                    class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                                                <th scope="col" class="px-6 py-3">
                                                                     Jenis Kartu
                                                                 </th>
                                                                 <th scope="col" class="px-6 py-3">
                                                                     Tampilan
                                                                 </th>
-                                                                <th scope="col"
-                                                                    class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                                                <th scope="col" class="px-6 py-3">
                                                                     Aksi
                                                                 </th>
                                                             </tr>
@@ -65,16 +62,15 @@
                                                         <tbody>
                                                             @foreach ($data['data'] as $item)
                                                                 <tr
-                                                                    class="text-center border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                                                    class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                                                                     <th scope="row"
-                                                                        class="px-4 py-2 text-black whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                                        class="px-4 py-2 text-black whitespace-nowrap dark:text-white">
                                                                         {{ $item['title'] }}
                                                                     </th>
                                                                     <td class="px-6 py-4 dark:text-white text-center">
                                                                         {{ $item['total'] }}
                                                                     </td>
-                                                                    <td
-                                                                        class="px-6 py-4 dark:text-white text-center bg-gray-50 dark:bg-gray-800">
+                                                                    <td class="px-6 py-4 dark:text-white text-center">
                                                                         @if ($item['categories'] == 0)
                                                                             Kartu Acara
                                                                         @elseif($item['categories'] == 1)
@@ -103,7 +99,7 @@
                                                                             @include('partials.modals.layout_kartu.back_bg')
                                                                         </div>
                                                                     </td>
-                                                                    <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                                                                    <td class="px-6 py-4">
                                                                         <div
                                                                             class="flex flex-row gap-3 justify-center items-center">
                                                                             <button

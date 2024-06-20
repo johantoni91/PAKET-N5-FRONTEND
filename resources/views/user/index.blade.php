@@ -74,24 +74,21 @@
                                                     <table
                                                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                         <thead
-                                                            class="text-xs border-b-2 border-slate-500 text-center text-gray-700 uppercase dark:text-gray-400">
+                                                            class="bg-slate-200 dark:bg-slate-700 border-b-2 border-slate-500 text-xs text-center text-gray-700 uppercase dark:text-white">
                                                             <tr>
-                                                                <th scope="col"
-                                                                    class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                                                <th scope="col" class="px-6 py-3">
                                                                     Nama
                                                                 </th>
                                                                 <th scope="col" class="px-6 py-3">
                                                                     Email
                                                                 </th>
-                                                                <th scope="col"
-                                                                    class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                                                                    Phone
+                                                                <th scope="col" class="px-6 py-3">
+                                                                    Telepon
                                                                 </th>
                                                                 <th scope="col" class="px-6 py-3">
                                                                     Role
                                                                 </th>
-                                                                <th scope="col"
-                                                                    class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                                                                <th scope="col" class="px-6 py-3">
                                                                     Aksi
                                                                 </th>
                                                                 <th scope="col" class="px-6 py-3">
@@ -102,9 +99,9 @@
                                                         <tbody>
                                                             @foreach ($data['data'] as $item)
                                                                 <tr
-                                                                    class="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                                                    class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                                                                     <th
-                                                                        class="px-4 py-2 text-black whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                                                        class="px-4 py-2 text-black whitespace-nowrap dark:text-white">
                                                                         @if ($item['photo'])
                                                                             <img src="{{ env('API_IMG', '') . $item['photo'] }}"
                                                                                 alt=""
@@ -124,14 +121,14 @@
                                                                         {{ $item['email'] }}
                                                                     </td>
                                                                     <td
-                                                                        class="text-center px-6 py-4 dark:text-white bg-gray-50 dark:bg-gray-800 text-center">
+                                                                        class="text-center px-6 py-4 dark:text-white text-center">
                                                                         {{ $item['phone'] }}
                                                                     </td>
                                                                     <td class="text-center px-6 py-4 dark:text-white">
                                                                         {{ $item['roles'] }}
                                                                     </td>
                                                                     <td
-                                                                        class="text-center px-6 py-4 dark:text-white bg-gray-50 dark:bg-gray-800 text-center">
+                                                                        class="text-center px-6 py-4 dark:text-white text-center">
                                                                         @if ($item['id'] != session('data')['id'])
                                                                             <button type="button"
                                                                                 data-modal-target="update{{ $item['id'] }}"

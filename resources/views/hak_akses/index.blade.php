@@ -10,7 +10,7 @@
                         <div class="w-full">
                             <div class="flex flex-wrap justify-between">
                                 <div class="items-center ">
-                                    <h1 class="font-medium text-3xl block dark:text-slate-100">Manajemen Peran Pengguna</h1>
+                                    <h1 class="font-medium text-3xl block dark:text-slate-100">Manajemen Role Users</h1>
                                 </div>
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                                 <div
                                     class="border-b border-slate-200 dark:border-slate-700/40 py-3 px-4 dark:text-slate-300/70">
                                     <div class="flex-row justify-between md:flex">
-                                        <h4 class="font-medium text-lg flex-1 self-center mb-2 md:mb-0">Peran Pengguna</h4>
+                                        <h4 class="font-medium text-lg flex-1 self-center mb-2 md:mb-0">Role Users</h4>
                                         <button type="button" data-modal-target="create" data-modal-toggle="create"
                                             class="focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-r dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-1 px-3 rounded hover:from-red-500 hover:to-violet-800 dark:hover:from-cyan-300 dark:hover:to-zinc-500">+
                                             Role</button>
@@ -42,13 +42,14 @@
                                                     <table
                                                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                         <thead
-                                                            class="text-xs text-gray-700 uppercase dark:text-gray-400 border-b-2 border-slate-500 bg-gray-100 dark:bg-gray-500">
+                                                            class="text-xs text-gray-700 uppercase dark:text-gray-400 border-b-2 border-gray-100 dark:border-gray-500 bg-gray-100 dark:bg-gray-500">
                                                             <tr class="text-center">
                                                                 <th scope="col" class="px-6 py-3">
-                                                                    Peran
+                                                                    Role
                                                                 </th>
-                                                                <th scope="col" class="px-6 py-3">
-                                                                    Menu / Akses
+                                                                <th scope="col"
+                                                                    class="px-6 py-3 border-x-2 border-gray-100 dark:border-gray-500">
+                                                                    Hak Akses
                                                                 </th>
                                                                 <th scope="col" class="px-6 py-3">
                                                                     Aksi
@@ -78,7 +79,7 @@
                                                                             {{ $item['role'] }}
                                                                         </td>
                                                                         <th scope="row"
-                                                                            class="px-4 py-2 whitespace-nowrap">
+                                                                            class="px-4 py-2 whitespace-nowrap border-x-2 border-gray-100 dark:border-gray-500">
                                                                             <div
                                                                                 class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 overflow-x-scroll">
                                                                                 @include('hak_akses.menus')
@@ -86,7 +87,7 @@
                                                                         </th>
                                                                         <td>
                                                                             <div class="flex flex-row justify-center gap-2">
-                                                                                <button type="submit" title="Simpan Peran">
+                                                                                <button type="submit" title="Simpan Role">
                                                                                     <i class="text-center text-blue-500"
                                                                                         data-lucide="save"></i>
                                                                                 </button>
