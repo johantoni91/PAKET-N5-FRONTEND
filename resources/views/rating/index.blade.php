@@ -57,7 +57,7 @@
                                                                     {{ $additional['stars']['5'] }}
                                                                 ],
                                                                 borderWidth: 1.5,
-                                                                borderColor: '#A020F0'
+                                                                borderColor: '#087fea'
                                                             }]
                                                         },
                                                         options: {

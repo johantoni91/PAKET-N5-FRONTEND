@@ -27,11 +27,11 @@ class UserExport implements FromCollection, WithHeadings, WithMapping
     public function map($loguser): array
     {
         return [
-            $loguser['users']['id'],
-            $loguser['users']['username'],
-            $loguser['users']['name'],
-            $loguser['users']['email'],
-            $loguser['users']['phone']
+            $loguser['id'],
+            $loguser['username'],
+            $loguser['name'],
+            $loguser['email'],
+            $loguser['phone']
         ];
     }
 }
