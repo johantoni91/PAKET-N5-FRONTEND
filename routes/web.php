@@ -36,8 +36,6 @@ use Illuminate\Http\Request;
 |
  */
 
-Route::get('/nfc', [DashboardController::class, 'nfc'])->name('nfc');
-
 Route::get('/login', [AuthController::class, 'loginPage'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.form');
 
@@ -188,6 +186,8 @@ Route::middleware(['auth'])->group(function () {
     // EXTERNAL || EXTRA TOOLS
     //NOTIFIKASI
     Route::get('/notif', [NotificationController::class, 'index'])->name('notif');
+    Route::get('/notif/messages', [NotificationController::class, 'message'])->name('notif.message');
+    Route::get('/notif/messages/{id}/read', [NotificationController::class, 'directMessage'])->name('notif.message.read');
     Route::get('/notif-check', [NotificationController::class, 'check'])->name('notif.check');
     Route::get('/notif/{id}', [NotificationController::class, 'direct'])->name('notif.direct');
     Route::get('/notif/{id}/destroy', [NotificationController::class, 'destroy'])->name('notif.destroy');

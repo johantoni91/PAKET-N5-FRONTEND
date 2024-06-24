@@ -34,16 +34,10 @@ class SatkerController extends Controller
     {
         try {
             $input = [
-                'satker_name'    => request('satker'),
-                'satker_type'    => request('type'),
+                'satker_name' => request('satker'),
+                'satker_type' => request('type'),
+                'pagination'  => request('pagination') ?? 5,
             ];
-            if (
-                $input['satker_name'] == null &&
-                $input['satker_type'] == null
-            ) {
-                Alert::warning('Peringatan', 'Mohon isi salah satu!');
-                return back();
-            }
             $data = SatkerApi::search($input);
             return view(
                 $this->view,

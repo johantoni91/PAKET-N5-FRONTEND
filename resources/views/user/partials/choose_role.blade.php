@@ -24,7 +24,7 @@
                 <form action="{{ route('user.role') }}" method="post">
                     @csrf
                     <div class="flex flex-row gap-1 mb-2">
-                        <label for="roles" class="my-auto w-24 dark:text-white">Pilih roles</label>
+                        <label for="roles" class="my-auto w-24 dark:text-white">Pilih role</label>
                         <select id="roles" name="roles" required
                             class="bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white dark:text-black">
                             @foreach ($roles as $item)

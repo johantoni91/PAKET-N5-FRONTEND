@@ -20,7 +20,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
-    private $title = 'Manajemen Pengguna';
+    private $title = 'Manajemen Users';
     private $view  = 'user.index';
 
     public function index()

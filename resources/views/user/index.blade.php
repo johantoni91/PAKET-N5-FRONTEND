@@ -52,7 +52,7 @@
                                                     <button type="button" data-modal-target="create"
                                                         data-modal-toggle="create"
                                                         class="focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-r dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-1 px-3 rounded hover:from-red-500 hover:to-violet-800 dark:hover:from-cyan-300 dark:hover:to-zinc-500">+
-                                                        Pengguna</button>
+                                                        Users</button>
                                                     @include('user.partials.choose_role')
                                                 @endif
                                                 <div class="justify-center gap-2">
@@ -64,7 +64,7 @@
                                                             class="w-4 h-4">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                 d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                                                        </svg> Cari Pengguna
+                                                        </svg> Cari Users
                                                     </button>
                                                     @include('user.modals.search')
                                                 </div>

@@ -29,4 +29,19 @@ class NotificationController extends Controller
         Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/notif' . '/' . $id . '/destroy')->json();
         return redirect()->route('pengajuan');
     }
+
+    function message()
+    {
+        $notif = Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/notif' . '/' . session('data')['id'] . '/message')->json()['data'];
+        return response()->json([
+            'count' => count($notif),
+            'view'  => view('partials.message_notif', compact('notif'))->render()
+        ]);
+    }
+
+    function directMessage($id)
+    {
+        Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/inbox' . '/' . $id . '/read')->json();
+        return redirect()->route('inbox');
+    }
 }

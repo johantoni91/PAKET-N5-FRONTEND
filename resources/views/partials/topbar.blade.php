@@ -56,6 +56,18 @@
                                 })
                             </script>
                         @endif
+                        <script>
+                            $(function() {
+                                setInterval(() => {
+                                    $.get("{{ route('notif.message') }}", function(data) {
+                                        if (data.count != 0) {
+                                            $("#notif_count").html(data.count)
+                                            $("#notif").html(data.view)
+                                        }
+                                    })
+                                }, 5000);
+                            })
+                        </script>
                     </ul>
                 </div>
             </div>
