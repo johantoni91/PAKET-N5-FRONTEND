@@ -1,5 +1,5 @@
 <div
-    class="min-h-full z-40 fixed dark:bg-gradient-to-b dark:from-cyan-300 dark:to-sky-700 bg-gradient-to-b from-green-900 via-green-500 to-lime-300 main-sidebar duration-300 group-data-[sidebar=dark]:bg-[#603dc3] group-data-[sidebar=brand]:bg-brand group-[.dark]:group-data-[sidebar=brand]:bg-[#603dc3]">
+    class="min-h-full z-40 fixed dark:bg-gradient-to-b dark:from-[#1B262C] dark:via-[#0F4C75] dark:to-[#3282B8] bg-gradient-to-b from-[#F4CE14] to-[#379777] main-sidebar duration-300 group-data-[sidebar=dark]:bg-[#603dc3] group-data-[sidebar=brand]:bg-brand group-[.dark]:group-data-[sidebar=brand]:bg-[#603dc3]">
     <div class="area">
         <ul class="circles">
             @for ($i = 0; $i < 18; $i++)
@@ -29,14 +29,14 @@
                 <li>
                     <div id="parent-accordion" data-fc-type="accordion">
                         <a href="{{ route('dashboard') }}"
-                            class="{{ request()->routeIs('dashboard') ? 'text-black bg-white dark:text-black font-semibold' : '' }} nav-link dark:text-black hover:text-black hover:bg-slate-100/50 rounded-md dark:hover:text-black flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200">
+                            class="{{ request()->routeIs('dashboard') ? 'text-black bg-white dark:text-black font-semibold' : '' }} nav-link hover:text-black hover:bg-slate-100/50 rounded-md dark:hover:text-black flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200">
                             <span data-lucide="home" class="w-5 h-5 text-center me-2"></span>
                             <span>Beranda</span>
                         </a>
                         @foreach ($starterPack['routes'] as $item)
                             @if (!$loop->count >= 9)
                                 <a href="{{ route($item) }}"
-                                    class="{{ request()->routeIs($item) ? 'text-black bg-white dark:text-black font-semibold' : '' }} nav-link dark:text-black hover:text-black hover:bg-slate-100/50 my-1 rounded-md dark:hover:text-slate-200 flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200">
+                                    class="{{ request()->routeIs($item) ? 'text-black bg-white dark:text-black font-semibold' : '' }} nav-link hover:text-black hover:bg-slate-100/50 my-1 rounded-md dark:hover:text-black flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200">
                                     <span data-lucide="{{ $starterPack['icons'][$loop->iteration - 1] }}"
                                         class="w-5 h-5 text-center me-2"></span>
                                     <span>{{ $starterPack['titles'][$loop->iteration - 1] }}</span>
@@ -44,7 +44,7 @@
                             @else
                                 @if ($loop->index <= 9)
                                     <a href="{{ route($item) }}"
-                                        class="{{ request()->routeIs($item) ? 'text-black bg-white dark:text-black font-semibold' : '' }} nav-link dark:text-black hover:text-black hover:bg-slate-100/50 my-1 rounded-md dark:hover:text-slate-200 flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200">
+                                        class="{{ request()->routeIs($item) ? 'text-black bg-white dark:text-black font-semibold' : '' }} nav-link hover:text-black hover:bg-slate-100/50 my-1 rounded-md dark:hover:text-black flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200">
                                         <span data-lucide="{{ $starterPack['icons'][$loop->iteration - 1] }}"
                                             class="w-5 h-5 text-center me-2"></span>
                                         <span>{{ $starterPack['titles'][$loop->iteration - 1] }}</span>
@@ -53,7 +53,7 @@
 
                                 @elseif($loop->last)
                                     <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
-                                        class="w-full nav-link dark:text-black hover:text-black hover:bg-slate-100/50 rounded-md dark:hover:text-black flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200"
+                                        class="w-full nav-link dark:text-white hover:text-black hover:bg-slate-100/50 rounded-md dark:hover:text-black flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200"
                                         type="button"><span data-lucide="wrench"
                                             class="w-5 h-5 text-center me-2"></span> Tambahan
                                         <svg class="w-2.5 h-2.5 ms-auto" aria-hidden="true"
@@ -66,7 +66,7 @@
 
                                 <!-- Dropdown menu -->
                                 <div id="dropdown"
-                                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-full dark:bg-black">
+                                    class="z-10 hidden shadow-lg shadow-[#0F4C75] divide-y divide-gray-100 rounded-lg shadow w-full dark:bg-black">
                                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
                                         aria-labelledby="dropdownDefaultButton">
                                         @foreach ($starterPack['routes'] as $i)

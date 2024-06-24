@@ -4,7 +4,7 @@
     <div class="relative flex flex-col justify-center min-h-screen overflow-hidden z-[99]">
         <div class="stars" style="z-index: -1">
             @for ($i = 0; $i < 50; $i++)
-                <div class="star bg-orange-800 text-orange dark:bg-white dark:text-white"></div>
+                <div class="star bg-yellow-400 text-yellow dark:bg-white dark:text-white"></div>
             @endfor
         </div>
         <div class="absolute top-5 right-5 text-cyan-700 dark:text-yellow">
@@ -13,8 +13,7 @@
                 <span data-lucide="sun" class="top-icon w-8 h-8 light hidden"></span>
             </button>
         </div>
-        <div
-            class="w-[80%] m-auto bg-slate-100/60 dark:bg-slate-800/60 rounded shadow-lg ring-2 ring-slate-300/50 dark:ring-slate-700/50 sm:max-w-md">
+        <div class="w-[80%] m-auto bg-[#B6C4B6]/60 dark:bg-slate-800/60 rounded shadow-lg sm:max-w-md">
             <div class="text-center p-6 bg-slate-900 rounded-t">
                 <a href="{{ route('login') }}"><img src="assets/images/kejaksaan-logo.png" alt=""
                         class="w-20 h-20 mx-auto mb-2"></a>

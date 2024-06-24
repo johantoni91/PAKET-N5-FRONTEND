@@ -19,7 +19,8 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
 @vite('resources/css/app.css')
 
-<body data-sidebar-size="default" data-theme-layout="vertical" class="bg-slate-100 dark:bg-gray-900">
+<body data-sidebar-size="default" data-theme-layout="vertical"
+    class="{{ request()->routeIs('login') ? 'bg-gradient-to-b from-[#1A4D2E] via-[#4F6F52] to-[#E8DFCA] dark:bg-gradient-to-b dark:from-[#1B262C] dark:via-[#0F4C75] dark:to-[#3282B8]' : 'bg-slate-100 dark:bg-slate-900' }}">
     @include('sweetalert::alert')
     @yield('content')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
