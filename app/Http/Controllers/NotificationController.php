@@ -34,8 +34,7 @@ class NotificationController extends Controller
     {
         $notif = Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/notif' . '/' . session('data')['id'] . '/message')->json()['data'];
         return response()->json([
-            'count' => count($notif),
-            'view'  => view('partials.message_notif', compact('notif'))->render()
+            'count' => count($notif)
         ]);
     }
 
@@ -43,5 +42,14 @@ class NotificationController extends Controller
     {
         Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/inbox' . '/' . $id . '/read')->json();
         return redirect()->route('inbox');
+    }
+
+    function truncate()
+    {
+        $res = Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/notif/truncate')->json();
+        if ($res['status'] == false) {
+            return response()->json(['success' => false]);
+        }
+        return response()->json(['success' => true]);
     }
 }

@@ -1,5 +1,5 @@
 <div id="refresh">
-    <ul>
+    <ul id="refreshData">
         @foreach ($data as $i)
             <input type="hidden" id="room_id" name="room_id" value="{{ $i['room_id'] }}">
             <li class="p-2">

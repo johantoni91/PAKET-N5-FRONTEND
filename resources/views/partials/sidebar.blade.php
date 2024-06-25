@@ -66,7 +66,7 @@
 
                                 <!-- Dropdown menu -->
                                 <div id="dropdown"
-                                    class="z-10 hidden shadow-lg shadow-[#0F4C75] divide-y divide-gray-100 rounded-lg shadow w-full dark:bg-black">
+                                    class="z-10 bg-slate-100 hidden shadow-lg shadow-[#0F4C75] divide-y divide-gray-100 rounded-lg shadow w-full dark:bg-slate-900">
                                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
                                         aria-labelledby="dropdownDefaultButton">
                                         @foreach ($starterPack['routes'] as $i)

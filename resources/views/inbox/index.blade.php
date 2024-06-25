@@ -35,7 +35,8 @@
                                             <div class="relative overflow-x-auto p-5">
                                                 <div class="flex flex-row-reverse md:flex-nowrap flex-wrap gap-2">
                                                     <div id="room"
-                                                        class="md:w-4/6 w-full flex flex-col justify-between gap-1 bg-slate-200 rounded shadow overflow-y-scroll mb-3 rounded-lg dark:bg-slate-800">
+                                                        class="md:w-4/6 w-full flex flex-col justify-between gap-1 bg-slate-200 rounded shadow overflow-y-scroll mb-3 rounded-lg dark:bg-slate-800"
+                                                        style="max-height: 60dvh;">
                                                     </div>
                                                     <div class="w-full md:w-2/6">
                                                         <ul class="divide-y divide-gray-200 dark:divide-gray-700">

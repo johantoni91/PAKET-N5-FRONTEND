@@ -1,30 +1,39 @@
 import { defineConfig } from "vite";
 import laravel from "laravel-vite-plugin";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
+import vitePluginSocketIO from "vite-plugin-socket-io";
+
+const socketEvents = (io, socket) => {
+    console.log('socket.io - connection');
+    socket.on('disconnect', () => {
+        console.log(`socket.io - socket.id \`${socket.id}\` disconnected`)
+    })
+    socket.on('signin', () => {
+        console.log('socket.io - signin')
+    })
+}
 
 export default defineConfig({
     plugins: [
+        vitePluginSocketIO({ socketEvents }),
         nodePolyfills({
-            // To exclude specific polyfills, add them to this list. Note: if include is provided, this has no effect
-            exclude: [
-                "http", // Excludes the polyfill for `http` and `node:http`.
-            ],
-            // Whether to polyfill specific globals.
             globals: {
                 Buffer: true, // can also be 'build', 'dev', or false
                 global: true,
                 process: true,
             },
-            // Override the default polyfills for specific modules.
             overrides: {
-                // Since `fs` is not supported in browsers, we can use the `memfs` package to polyfill it.
-                fs: "memfs",
+                fs: "memfs", // Since `fs` is not supported in browsers, we can use the `memfs` package to polyfill it.
             },
-            // Whether to polyfill `node:` protocol imports.
             protocolImports: true,
         }),
         laravel({
-            input: ["resources/css/app.css", "resources/js/app.js"],
+            input: [
+                "resources/css/app.css",
+                "resources/js/listenerEvent.js",
+                "resources/js/serverEvent.js",
+                "resources/js/socketEvent.js",
+            ],
             refresh: true,
         }),
     ],

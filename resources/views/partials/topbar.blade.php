@@ -20,7 +20,20 @@
             <div class="ltr:me-2 ltr:md:me-4 rtl:me-0 rtl:ms-2 rtl:lg:me-0 rtl:md:ms-4">
                 <a href="{{ route('inbox') }}" class="flex rounded-full md:me-0 relative">
                     <span data-lucide="mail" class="top-icon w-5 h-5 dark:text-white"></span>
+                    <small class="bg-blue-500 rounded-full px-1.5 font-bold text-white"
+                        style="position: absolute; top: -10px; right: -5px;" id="msg"></small>
                 </a>
+                <script>
+                    $(function() {
+                        setInterval(() => {
+                            $.get("{{ route('notif.message') }}", function(data) {
+                                if (data.count != 0) {
+                                    $("#msg").html(data.count)
+                                }
+                            })
+                        }, 5000);
+                    })
+                </script>
             </div>
             <div class="ltr:me-2 ltr:md:me-4 rtl:me-0 rtl:ms-2 rtl:lg:me-0 rtl:md:ms-4">
                 <button id="toggle-theme" class="flex rounded-full md:me-0 relative">
@@ -56,18 +69,6 @@
                                 })
                             </script>
                         @endif
-                        <script>
-                            $(function() {
-                                setInterval(() => {
-                                    $.get("{{ route('notif.message') }}", function(data) {
-                                        if (data.count != 0) {
-                                            $("#notif_count").html(data.count)
-                                            $("#notif").html(data.view)
-                                        }
-                                    })
-                                }, 5000);
-                            })
-                        </script>
                     </ul>
                 </div>
             </div>

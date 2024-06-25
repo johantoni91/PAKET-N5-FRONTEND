@@ -45,6 +45,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('/profile/{id}/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/test', function () {
+        return view('test', ['starterPack' => helper::starterPack()]);
+    });
 
     // INBOX
     Route::get('/inbox', [DashboardController::class, 'inbox'])->name('inbox');
