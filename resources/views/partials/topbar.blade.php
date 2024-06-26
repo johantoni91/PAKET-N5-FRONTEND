@@ -23,17 +23,6 @@
                     <small class="bg-blue-500 rounded-full px-1.5 font-bold text-white"
                         style="position: absolute; top: -10px; right: -5px;" id="msg"></small>
                 </a>
-                <script>
-                    $(function() {
-                        setInterval(() => {
-                            $.get("{{ route('notif.message') }}", function(data) {
-                                if (data.count != 0) {
-                                    $("#msg").html(data.count)
-                                }
-                            })
-                        }, 5000);
-                    })
-                </script>
             </div>
             <div class="ltr:me-2 ltr:md:me-4 rtl:me-0 rtl:ms-2 rtl:lg:me-0 rtl:md:ms-4">
                 <button id="toggle-theme" class="flex rounded-full md:me-0 relative">
@@ -55,9 +44,18 @@
             dark:bg-slate-800"
                     id="navNotifications" data-simplebar>
                     <ul class="py-1" id="notif" aria-labelledby="navNotifications">
-                        @if (session('data')['roles'] == 'admin')
-                            <script>
-                                $(function() {
+                        <script>
+                            $(function() {
+                                setInterval(() => {
+                                    $.get("{{ route('notif.message') }}", function(data) {
+                                        if (data.count != 0) {
+                                            $("#msg").html(data.count)
+                                        } else if (data.count == 0) {
+                                            $("#msg").html('')
+                                        }
+                                    })
+                                }, 3000);
+                                if ("{{ session('data')['roles'] }}" == 'admin') {
                                     setInterval(() => {
                                         $.get("{{ route('notif') }}", function(data) {
                                             if (data.count != 0) {
@@ -66,9 +64,9 @@
                                             }
                                         })
                                     }, 5000);
-                                })
-                            </script>
-                        @endif
+                                }
+                            })
+                        </script>
                     </ul>
                 </div>
             </div>

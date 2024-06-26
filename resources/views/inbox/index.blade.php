@@ -34,10 +34,6 @@
                                         <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-10">
                                             <div class="relative overflow-x-auto p-5">
                                                 <div class="flex flex-row-reverse md:flex-nowrap flex-wrap gap-2">
-                                                    <div id="room"
-                                                        class="md:w-4/6 w-full flex flex-col justify-between gap-1 bg-slate-200 rounded shadow overflow-y-scroll mb-3 rounded-lg dark:bg-slate-800"
-                                                        style="max-height: 60dvh;">
-                                                    </div>
                                                     <div class="w-full md:w-2/6">
                                                         <ul class="divide-y divide-gray-200 dark:divide-gray-700">
                                                             @foreach ($users as $user)
@@ -51,7 +47,7 @@
                                                                                     src="{{ $user['photo'] ?? asset('assets/images/5856.jpg') }}">
                                                                                 <p
                                                                                     class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                                                    {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/pegawai' . '/' . $user['nip'] . '/find')->json()['data']['nama'] ?? '' }}
+                                                                                    {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/pegawai' . '/' . $user['nip'] . '/find')->json()['data']['nama'] ?? '(Pegawai tidak terdaftar)' }}
                                                                                 </p>
                                                                             </div>
                                                                         </button>
@@ -76,6 +72,10 @@
                                                                 @endif
                                                             @endforeach
                                                         </ul>
+                                                    </div>
+                                                    <div id="room"
+                                                        class="md:w-4/6 w-full flex flex-col justify-between gap-1 bg-slate-200 rounded shadow overflow-y-scroll mb-3 rounded-lg dark:bg-slate-800"
+                                                        style="min-height:60dvh; max-height: 60dvh;">
                                                     </div>
                                                 </div>
                                             </div>

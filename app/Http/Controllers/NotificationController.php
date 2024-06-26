@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Http;
 
 class NotificationController extends Controller
 {
-    function index()
+    function index() // Notif Pengajuan
     {
         $notif = Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/notif' . '/' . session('data')['satker'])->json()['data'];
         return response()->json([
@@ -30,7 +30,7 @@ class NotificationController extends Controller
         return redirect()->route('pengajuan');
     }
 
-    function message()
+    function message() // Notif Chat
     {
         $notif = Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/notif' . '/' . session('data')['id'] . '/message')->json()['data'];
         return response()->json([
@@ -38,7 +38,7 @@ class NotificationController extends Controller
         ]);
     }
 
-    function directMessage($id)
+    function directMessage($id) // Redirect to chat page
     {
         Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/inbox' . '/' . $id . '/read')->json();
         return redirect()->route('inbox');

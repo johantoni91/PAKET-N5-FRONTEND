@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\API\LogApi;
-use App\Helpers\profile;
-use Carbon\Carbon;
 use helper;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -66,6 +63,7 @@ class LogController extends Controller
             return view($this->view, [
                 'view'        => $this->view,
                 'title'       => $this->title,
+                'input'       => $input,
                 'data'        => $data,
                 'kolom'       => $kolom,
                 'starterPack' => helper::starterPack()

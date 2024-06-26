@@ -167,7 +167,7 @@ Route::middleware(['auth'])->group(function () {
 
     // RATING
     Route::get('/rating', [RateController::class, 'index'])->name('rating')->middleware(['role_rating']);
-
+    Route::get('/rating/search', [RateController::class, 'search'])->name('rating.search')->middleware(['role_rating']);
 
     // INTEGRASI
     Route::get('/integrasi', [IntegrasiController::class, 'index'])->name('integrasi');

@@ -37,12 +37,13 @@ class MonitorKartuController extends Controller
         try {
             $pegawai = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/pegawai' . '/' . $nip . '/find')->json()['data'];
             $satker = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/satker/find/name', ['satker' => $pegawai['nama_satker']])->json()['data'];
-            return view('monitor_kartu.pdf', [
-                'pegawai'   => $pegawai,
-                'kartu'     => KartuApi::findByTitle($title)['data'],
-                'ttd'       => Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/signature' . '/' . $satker['satker_code'])->json()['data'],
-                'pengajuan' => PengajuanApi::find($id)['data']
-            ]);
+            $arr = [
+                'pegawai' => $pegawai,
+                'kartu' => KartuApi::findByTitle($title)['data'],
+                'ttd' => Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/signature' . '/' . $satker['satker_code'])->json()['data'],
+                'pengajuan' => PengajuanApi::find($id)['data'],
+            ];
+            return view('monitor_kartu.pdf', $arr);
         } catch (\Throwable $th) {
             Alert::error('Error', 'Terjadi kesalahan');
             return back();

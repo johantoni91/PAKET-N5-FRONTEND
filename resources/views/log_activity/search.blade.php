@@ -24,13 +24,14 @@
             <div class="p-4 md:p-5">
                 <form class="max-w-md mx-auto" action="{{ route('log.search') }}">
                     <div class="relative z-0 w-full mb-5 group">
-                        <input type="text" name="username" id="floating_email"
+                        <input value="{{ $input['username'] ?? '' }}" type="text" name="username" id="floating_email"
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
                         <label for="floating_email"
                             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Username</label>
                     </div>
                     <div class="relative z-0 w-full mb-5 group">
-                        <input type="text" name="ip_address" id="floating_ip_address"
+                        <input type="text" value="{{ $input['ip_address'] ?? '' }}" name="ip_address"
+                            id="floating_ip_address"
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
                         <label for="floating_ip_address"
                             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">IP
@@ -40,9 +41,12 @@
                         <div class="relative z-0 w-full mb-5 group">
                             <select name="browser" id="floating_browser"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-                                <option selected disabled> Jenis browser </option>
+                                <option @if (!isset($input['browser'])) selected @endif disabled> Jenis browser
+                                </option>
                                 @foreach ($kolom['browser'] as $item)
-                                    <option value="{{ $item['browser'] }}">{{ $item['browser'] }}</option>
+                                    <option
+                                        @if (isset($input['browser'])) {{ $input['browser'] == $item['browser'] ? 'selected' : '' }} @endif
+                                        value="{{ $item['browser'] }}">{{ $item['browser'] }}</option>
                                 @endforeach
                             </select>
                             <label for="floating_browser"
@@ -51,10 +55,13 @@
                         <div class="relative z-0 w-full mb-5 group">
                             <select name="browser_version" id="floating_browser_version"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-                                <option selected disabled> Versi browser </option>
+                                <option @if (!isset($input['browser_version'])) selected @endif disabled> Versi browser
+                                </option>
                                 @foreach ($kolom['browser_version'] as $item)
-                                    <option value="{{ $item['browser_version'] }}">{{ $item['browser_version'] }}
-                                    </option>
+                                    <option
+                                        @if (isset($input['browser_version'])) {{ $input['browser_version'] == $item['browser_version'] ? 'selected' : '' }}
+                                        value="{{ $item['browser_version'] }}">{{ $item['browser_version'] }} @endif
+                                        </option>
                                 @endforeach
                             </select>
                             <label for="floating_browser_version"
@@ -66,9 +73,12 @@
                         <div class="relative z-0 w-full mb-5 group">
                             <select name="os" id="floating_os"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-                                <option selected disabled> Jenis Sistem Operasi </option>
+                                <option @if (!isset($input['os'])) selected @endif disabled> Jenis Sistem Operasi
+                                </option>
                                 @foreach ($kolom['os'] as $item)
-                                    <option value="{{ $item['os'] }}">{{ $item['os'] }}</option>
+                                    <option
+                                        @if (isset($input['os'])) {{ $input['os'] == $item['os'] ? 'selected' : '' }} @endif
+                                        value="{{ $item['os'] }}">{{ $item['os'] }}</option>
                                 @endforeach
                             </select>
                             <label for="floating_os"
@@ -78,9 +88,12 @@
                         <div class="relative z-0 w-full mb-5 group">
                             <select name="mobile" id="floating_mobile"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-                                <option selected disabled> Jenis Perangkat </option>
+                                <option @if (!isset($input['mobile'])) selected @endif disabled> Jenis Perangkat
+                                </option>
                                 @foreach ($kolom['mobile'] as $item)
-                                    <option value="{{ $item['mobile'] }}">{{ $item['mobile'] }}
+                                    <option
+                                        @if (isset($input['mobile'])) {{ $input['mobile'] == $item['mobile'] ? 'selected' : '' }} @endif
+                                        value="{{ $item['mobile'] }}">{{ $item['mobile'] }}
                                     </option>
                                 @endforeach
                             </select>
@@ -89,7 +102,8 @@
                         </div>
                     </div>
                     <div class="relative z-0 w-full mb-5 group">
-                        <input type="text" name="log_detail" id="floating_log_detail"
+                        <input value="{{ $input['log_detail'] ?? '' }}" type="text" name="log_detail"
+                            id="floating_log_detail"
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
                         <label for="floating_log_detail"
                             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Log
@@ -97,15 +111,16 @@
                     </div>
                     <div class="grid md:grid-cols-2 md:gap-6">
                         <div class="relative z-0 w-full mb-5 group">
-                            <input type="datetime-local" name="start" id="floating_start"
+                            <input value="{{ $input['start'] ?? '' }}" type="datetime-local" name="start"
+                                id="floating_start"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                             <label for="floating_start"
                                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Tanggal
                                 Awal</label>
                         </div>
                         <div class="relative z-0 w-full mb-5 group">
-                            <input type="datetime-local" name="end" id="floating_end"
-                                value="{{ now()->format('Y-m-d H:i:s') }}"
+                            <input value="{{ $input['end'] ?? '' }}" type="datetime-local" name="end"
+                                id="floating_end" value="{{ now()->format('Y-m-d H:i:s') }}"
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                             <label for="floating_end"
                                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Tanggal

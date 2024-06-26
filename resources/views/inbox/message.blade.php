@@ -1,4 +1,4 @@
-<div id="refresh">
+<div id="refresh" class="relative" style="min-height:60dvh; height: 60dvh; max-height: 60dvh;">
     <ul id="refreshData">
         @foreach ($data as $i)
             <input type="hidden" id="room_id" name="room_id" value="{{ $i['room_id'] }}">
@@ -6,7 +6,8 @@
                 @if ($i['from'] == $profile['id'])
                     <div class="flex gap-3 items-center">
                         <div class="flex-shrink-0">
-                            <img class="w-8 h-8 rounded-full" src="{{ asset('assets/images/5856.jpg') }}" alt="5856">
+                            <img class="w-8 h-8 rounded-full" src="{{ asset('assets/images/5856.jpg') }}"
+                                alt="5856">
                         </div>
                         <div class="flex-1 min-w-0">
                             <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
@@ -39,7 +40,7 @@
             </li>
         @endforeach
     </ul>
-    <form class="sticky bottom-0 flex flex-row items-center rounded-lg">
+    <form class="absolute sticky bottom-0 flex flex-row items-center rounded-lg w-full">
         <input type="text" name="message" class="w-full py-2 ps-2 border-0 dark:bg-slate-400" />
         <input type="hidden" id="room_id_value" name="room">
         <button type="submit" class="absolute right-2 hover:cursor-pointer text-blue"><svg
@@ -53,6 +54,7 @@
 </div>
 <script>
     $(function() {
+        // $("#refreshData").load(document.URL + " #refreshData");
         $('form').on('submit', function(e) {
             e.preventDefault();
             $.ajax({
