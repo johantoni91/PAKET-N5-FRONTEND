@@ -92,7 +92,7 @@ class UserController extends Controller
                 ]
             );
         } catch (\Throwable $th) {
-            Alert::warning('Kesalahan', $th->getMessage());
+            Alert::warning('Terjadi kesalahan');
             return back();
         }
     }
@@ -195,7 +195,7 @@ class UserController extends Controller
                 return back();
             }
         } catch (\Throwable $th) {
-            Alert::error('Terjadi Kesalahan', $th->getMessage());
+            Alert::error('Terjadi Kesalahan');
             return back();
         }
     }
@@ -237,7 +237,7 @@ class UserController extends Controller
             }
         } catch (\Throwable $th) {
             Alert::error('Terjadi kesalahan');
-            return response($th->getMessage(), 400);
+            return response('Terjadi kesalahan', 400);
         }
     }
 

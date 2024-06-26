@@ -61,7 +61,7 @@ class KepegawaianController extends Controller
                 ]);
             }
         } catch (\Throwable $th) {
-            Alert::error('error', $th->getMessage());
+            Alert::error('error');
             return back();
         }
     }
@@ -155,7 +155,7 @@ class KepegawaianController extends Controller
             Alert::success('Berhasil', 'Berhasil mengubah pegawai');
             return back();
         } catch (\Throwable $th) {
-            Alert::error('Terjadi Kesalahan', $th->getMessage());
+            Alert::error('Terjadi Kesalahan');
             return back();
         }
     }

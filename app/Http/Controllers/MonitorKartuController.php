@@ -68,7 +68,7 @@ class MonitorKartuController extends Controller
                 return back();
             }
         } catch (\Throwable $th) {
-            Alert::error('Gagal', 'Kartu gagal dicetak', $th->getMessage());
+            Alert::error('Gagal', 'Kartu gagal dicetak');
             return back();
         }
     }

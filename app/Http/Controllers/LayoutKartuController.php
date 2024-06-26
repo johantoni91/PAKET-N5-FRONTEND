@@ -91,7 +91,7 @@ class LayoutKartuController extends Controller
             Alert::success('Berhasil', 'Kartu telah ditambahkan');
             return redirect()->route('layout.kartu');
         } catch (\Throwable $th) {
-            Alert::error('Gagal', $th->getMessage());
+            Alert::error('Gagal');
             return back();
         }
     }
@@ -148,7 +148,7 @@ class LayoutKartuController extends Controller
             Alert::success('Berhasil', 'Latar depan telah diubah');
             return back();
         } catch (\Throwable $th) {
-            Alert::error('Gagal', $th->getMessage());
+            Alert::error('Gagal');
             return back();
         }
     }
@@ -170,7 +170,7 @@ class LayoutKartuController extends Controller
             Alert::success('Berhasil', 'Latar belakang telah diubah');
             return back();
         } catch (\Throwable $th) {
-            Alert::error('Gagal', $th->getMessage());
+            Alert::error('Gagal');
             return back();
         }
     }
@@ -213,7 +213,7 @@ class LayoutKartuController extends Controller
                 'kartu' => Http::get(env('API_URL', '') . '/kartu/' . $id . '/load-kartu')->json()['data']
             ]);
         } catch (\Throwable $th) {
-            Alert::error('Terjadi kesalahan', $th->getMessage());
+            Alert::error('Terjadi kesalahan');
             return back();
         }
     }
@@ -244,8 +244,8 @@ class LayoutKartuController extends Controller
                 ], 400);
             }
         } catch (\Throwable $th) {
-            return response()->json([
-                'message' => $th->getMessage()
+            return response('Terjadi kesalahan')->json([
+                'message' => 'Terjadi kesalahan'
             ], 400);
         }
     }

@@ -38,6 +38,13 @@
     <script src="{{ asset('assets/js/app.js') }}"></script>
     <script src="{{ asset('assets/js/html2canvas.min.js') }}"></script>
     <script>
+        // var currentTime = new Date();
+        // var month = currentTime.getMonth() + 1;
+        // var total = month;
+
+        // console.log('currentTime: ', currentTime);
+        // console.log('month: ', month);
+        // console.log('total: ', total);
         $(function() {
             if (window.innerWidth < 1025) {
                 $("body").attr("data-sidebar-size", "collapsed")

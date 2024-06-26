@@ -34,7 +34,7 @@ class DashboardController extends Controller
                 ])->render()
             ]);
         } catch (\Throwable $th) {
-            return response($th->getMessage(), 400);
+            return response('Gagal', 400);
         }
     }
 

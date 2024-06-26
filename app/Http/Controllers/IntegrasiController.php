@@ -63,7 +63,7 @@ class IntegrasiController extends Controller
             Alert::success($data['message']);
             return redirect()->route('integrasi');
         } catch (\Throwable $th) {
-            Alert::error($th->getMessage());
+            Alert::error('Gagal');
             return back();
         }
     }
@@ -139,9 +139,7 @@ class IntegrasiController extends Controller
                 ], 400);
             }
         } catch (\Throwable $th) {
-            return response()->json([
-                'error' => $th->getMessage()
-            ], 400);
+            return response('Gagal', 400);
         }
     }
 }

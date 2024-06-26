@@ -62,7 +62,7 @@ class AccessController extends Controller
             Alert::success($res['message']);
             return back();
         } catch (\Throwable $th) {
-            Alert::error($th->getMessage());
+            Alert::error('Gagal');
             return back();
         }
     }

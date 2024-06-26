@@ -132,7 +132,7 @@ class DeviceController extends Controller
                 return redirect()->route('perangkat');
             }
         } catch (\Throwable $th) {
-            Alert::error('Error', $th->getMessage());
+            Alert::error('Error');
             return back();
         }
     }
@@ -183,7 +183,7 @@ class DeviceController extends Controller
                 return redirect()->route('perangkat');
             }
         } catch (\Throwable $th) {
-            Alert::error('Error', $th->getMessage());
+            Alert::error('Error');
             return back();
         }
     }

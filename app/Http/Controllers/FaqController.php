@@ -40,7 +40,7 @@ class FaqController extends Controller
                 return redirect()->route('faq');
             }
         } catch (\Throwable $th) {
-            Alert::error('Error', $th->getMessage());
+            Alert::error('Error');
             return back();
         }
     }
@@ -58,7 +58,7 @@ class FaqController extends Controller
                 return redirect()->route('faq');
             }
         } catch (\Throwable $th) {
-            Alert::error('Error', $th->getMessage());
+            Alert::error('Error');
             return back();
         }
     }

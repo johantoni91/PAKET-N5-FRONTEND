@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\API\SatkerApi;
-use App\Helpers\profile;
-use Hamcrest\Core\Every;
 use helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -111,7 +109,7 @@ class SatkerController extends Controller
             Alert::success('Berhasil', 'Berhasil menambahkan satker');
             return redirect()->route('satker');
         } catch (\Throwable $th) {
-            Alert::error('Kesalahan', $th->getMessage());
+            Alert::error('Kesalahan');
             Session::forget('user');
             return redirect()->route('logout');
         }
@@ -129,7 +127,7 @@ class SatkerController extends Controller
                 return response($del->json()['message'], 200);
             }
         } catch (\Throwable $th) {
-            Alert::error('Terjadi kesalahan', $th->getMessage());
+            Alert::error('Terjadi kesalahan');
             return response($th->getMessage(), 400);
         }
     }
