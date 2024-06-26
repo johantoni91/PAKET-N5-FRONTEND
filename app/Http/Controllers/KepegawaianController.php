@@ -38,11 +38,12 @@ class KepegawaianController extends Controller
     {
         try {
             $input = [
-                'nama'              => request('nama'),
-                'nip'               => request('nip'),
-                'nrp'               => request('nrp'),
+                'nama'       => request('nama'),
+                'nip'        => request('nip'),
+                'nrp'        => request('nrp'),
+                'pagination' => request('pagination')
             ];
-            if (request('nama') == null && request('nip') == null && request('nrp') == null) {
+            if (!request()->all()) {
                 Alert::warning('Peringatan', 'Mohon isi salah satu!');
                 return back();
             } else {

@@ -25,13 +25,14 @@
                 <form class="max-w-md mx-auto" action="{{ route('log.search') }}">
                     <div class="relative z-0 w-full mb-5 group">
                         <input value="{{ $input['username'] ?? '' }}" type="text" name="username" id="floating_email"
+                            placeholder=" "
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
                         <label for="floating_email"
                             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Username</label>
                     </div>
                     <div class="relative z-0 w-full mb-5 group">
                         <input type="text" value="{{ $input['ip_address'] ?? '' }}" name="ip_address"
-                            id="floating_ip_address"
+                            id="floating_ip_address" placeholder=" "
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
                         <label for="floating_ip_address"
                             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">IP
@@ -39,7 +40,7 @@
                     </div>
                     <div class="grid md:grid-cols-2 md:gap-6">
                         <div class="relative z-0 w-full mb-5 group">
-                            <select name="browser" id="floating_browser"
+                            <select name="browser" id="floating_browser" placeholder=" "
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                                 <option @if (!isset($input['browser'])) selected @endif disabled> Jenis browser
                                 </option>
@@ -53,7 +54,7 @@
                                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Browser</label>
                         </div>
                         <div class="relative z-0 w-full mb-5 group">
-                            <select name="browser_version" id="floating_browser_version"
+                            <select name="browser_version" id="floating_browser_version" placeholder=" "
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                                 <option @if (!isset($input['browser_version'])) selected @endif disabled> Versi browser
                                 </option>
@@ -71,7 +72,7 @@
                     </div>
                     <div class="grid md:grid-cols-2 md:gap-6">
                         <div class="relative z-0 w-full mb-5 group">
-                            <select name="os" id="floating_os"
+                            <select name="os" id="floating_os" placeholder=" "
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                                 <option @if (!isset($input['os'])) selected @endif disabled> Jenis Sistem Operasi
                                 </option>
@@ -86,7 +87,7 @@
                                 Operasi</label>
                         </div>
                         <div class="relative z-0 w-full mb-5 group">
-                            <select name="mobile" id="floating_mobile"
+                            <select name="mobile" id="floating_mobile" placeholder=" "
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                                 <option @if (!isset($input['mobile'])) selected @endif disabled> Jenis Perangkat
                                 </option>
@@ -103,7 +104,7 @@
                     </div>
                     <div class="relative z-0 w-full mb-5 group">
                         <input value="{{ $input['log_detail'] ?? '' }}" type="text" name="log_detail"
-                            id="floating_log_detail"
+                            id="floating_log_detail" placeholder=" "
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
                         <label for="floating_log_detail"
                             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Log
@@ -112,7 +113,7 @@
                     <div class="grid md:grid-cols-2 md:gap-6">
                         <div class="relative z-0 w-full mb-5 group">
                             <input value="{{ $input['start'] ?? '' }}" type="datetime-local" name="start"
-                                id="floating_start"
+                                id="floating_start" placeholder=" "
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                             <label for="floating_start"
                                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Tanggal
@@ -120,7 +121,7 @@
                         </div>
                         <div class="relative z-0 w-full mb-5 group">
                             <input value="{{ $input['end'] ?? '' }}" type="datetime-local" name="end"
-                                id="floating_end" value="{{ now()->format('Y-m-d H:i:s') }}"
+                                id="floating_end" value="{{ now()->format('Y-m-d H:i:s') }}" placeholder=" "
                                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                             <label for="floating_end"
                                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Tanggal
