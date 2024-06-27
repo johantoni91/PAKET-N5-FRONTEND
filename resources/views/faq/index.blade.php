@@ -79,7 +79,7 @@
                                                                 class="py-2 flex flex-col justify-between border-b border-gray-200 dark:border-gray-700">
                                                                 <div class="mb-3">
                                                                     <p class="text-gray-500 dark:text-gray-400">
-                                                                        {{ $item['answer'] }}</p>
+                                                                        {!! nl2br(e($item['answer'])) !!}</p>
                                                                 </div>
                                                                 <div class="flex-row gap-x-3 self-end">
                                                                     <button data-modal-target="update{{ $item['id'] }}"

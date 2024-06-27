@@ -32,8 +32,13 @@
                                                 <div class="flex flex-row justify-between px-5">
                                                     <button type="button" data-modal-target="search"
                                                         data-modal-toggle="search"
-                                                        class="flex flex-row focus:outline-none text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-primary-500 dark:bg-blue-500 dark:text-white dark:border-0 dark:hover:shadow-md dark:hover:shadow-blue-500 text-sm font-medium rounded justify-between gap-2 py-1 px-2 align-bottom items-center">
-                                                        Cari <i data-lucide="search"></i>
+                                                        class="flex items-center gap-1 focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                            class="w-4 h-4">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                                        </svg> Cari Log
                                                     </button>
                                                     @include('log_activity.search')
                                                 </div>

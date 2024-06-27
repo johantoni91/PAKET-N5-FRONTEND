@@ -3,37 +3,39 @@
         @foreach ($data as $i)
             <input type="hidden" id="room_id" name="room_id" value="{{ $i['room_id'] }}">
             <li class="p-2">
-                @if ($i['from'] == $profile['id'])
+                @if ($i['from'] != $profile['id'])
                     <div class="flex gap-3 items-center">
                         <div class="flex-shrink-0">
-                            <img class="w-8 h-8 rounded-full" src="{{ asset('assets/images/5856.jpg') }}"
+                            <img class="w-8 h-8 rounded-full"
+                                src="{{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/user' . '/' . $i['from'] . '/find')->json()['data']['photo'] ?? asset('assets/images/5856.jpg') }}"
                                 alt="5856">
                         </div>
-                        <div class="flex-1 min-w-0">
-                            <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                {{ $profile['name'] }} &nbsp;&nbsp;&nbsp;<small
-                                    class="text-gray-500 dark:text-gray-300">({{ Carbon\Carbon::parse($i['created_at'])->diffForHumans() }})</small>
+                        <div class="bg-green-500 dark:bg-green-700 max-w-full md:max-w-xs lg:max-w-lg rounded-lg p-3">
+                            <p class="text-sm font-medium text-gray-900 text-wrap dark:text-black">
+                                {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/user' . '/' . $i['from'] . '/find')->json()['data']['name'] }}
+                                &nbsp;&nbsp;&nbsp;<small
+                                    class="text-white dark:text-white">({{ Carbon\Carbon::parse($i['created_at'])->diffForHumans() }})</small>
                             </p>
-                            <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                {{ $i['from'] == $profile['id'] ? $i['message'] : '' }}
+                            <p class="text-sm text-white text-wrap dark:text-white">
+                                {!! nl2br(e($i['message'])) !!}
                             </p>
                         </div>
                     </div>
                 @else
                     <div class="flex flex-row items-center justify-end gap-3">
-                        <div class="">
-                            <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                        <div class="max-w-full md:max-w-xs lg:max-w-lg bg-yellow-500 dark:bg-yellow-700 rounded-lg p-3">
+                            <p class="text-sm font-medium text-gray-900 text-wrap text-right dark:text-black">
                                 <small
-                                    class="text-gray-500 dark:text-gray-300">({{ Carbon\Carbon::parse($i['created_at'])->diffForHumans() }})</small>&nbsp;&nbsp;&nbsp;
-                                {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/user' . '/' . $i['from'] . '/find')->json()['data']['name'] }}
+                                    class="text-white dark:text-white">({{ Carbon\Carbon::parse($i['created_at'])->diffForHumans() }})</small>&nbsp;&nbsp;&nbsp;
+                                {{ $profile['name'] }}
                             </p>
-                            <p class="text-sm text-end text-gray-500 truncate dark:text-gray-400">
-                                {{ $i['message'] }}
+                            <p class="text-sm text-end text-white text-wrap text-justify dark:text-white">
+                                {!! $i['from'] == $profile['id'] ? nl2br(e($i['message'])) : '' !!}
                             </p>
                         </div>
                         <div class="flex-shrink-0">
-                            <img class="w-8 h-8 rounded-full" src="{{ asset('assets/images/5856.jpg') }}"
-                                alt="5856">
+                            <img class="w-8 h-8 rounded-full"
+                                src="{{ $profile['photo'] ?? asset('assets/images/5856.jpg') }}" alt="5856">
                         </div>
                     </div>
                 @endif
@@ -41,7 +43,7 @@
         @endforeach
     </ul>
     <form class="absolute sticky bottom-0 flex flex-row items-center rounded-lg w-full">
-        <input type="text" name="message" class="w-full py-2 ps-2 border-0 dark:bg-slate-400" />
+        <input type="text" name="message" class="w-full py-2 ps-2 border-0 dark:bg-slate-400 text-wrap" />
         <input type="hidden" id="room_id_value" name="room">
         <button type="submit" class="absolute right-2 hover:cursor-pointer text-blue"><svg
                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"

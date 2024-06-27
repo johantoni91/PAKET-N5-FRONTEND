@@ -32,7 +32,7 @@
                                         @if (session('data')['satker'] == '00')
                                             <div class="flex flex-row justify-evenly gap-2">
                                                 <a href="{{ route('perangkat.perangkat') }}"
-                                                    class="pt-2 px-3 border align-bottom border-b-0 dark:border-slate-700/40 rounded-t-md -mb-3 hover:bg-gradient-to-b hover:from-violet-800 hover:to-red-500 hover:text-white dark:hover:bg-gradient-to-b dark:hover:from-cyan-300 dark:hover:to-zinc-500">Peralatan
+                                                    class="pt-2 px-3 border align-bottom border-b-0 dark:border-slate-700/40 rounded-t-md -mb-3 hover:bg-slate-100 dark:hover:bg-slate-700/40 dark:text-white">Peralatan
                                                 </a>
                                             </div>
                                         @endif
@@ -47,8 +47,13 @@
                                                         <div class="self-start">
                                                             <button type="button" data-modal-target="search"
                                                                 data-modal-toggle="search"
-                                                                class="focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-r dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium mt-3 py-1 px-3 rounded hover:from-red-500 hover:to-violet-800 dark:hover:from-cyan-300 dark:hover:to-zinc-500">Cari
-                                                                Perangkat
+                                                                class="flex items-center gap-1 focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                    viewBox="0 0 24 24" stroke-width="2"
+                                                                    stroke="currentColor" class="w-4 h-4">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                                                </svg> Cari Perangkat
                                                             </button>
                                                             @include('perangkat.modals.search')
                                                         </div>
@@ -58,14 +63,14 @@
                                                     @if (session('data')['satker'] == '00')
                                                         <button type="button" data-modal-target="reset"
                                                             data-modal-toggle="reset"
-                                                            class="focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-r dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium mt-3 py-1 px-3 rounded hover:from-red-500 hover:to-violet-800 dark:hover:from-cyan-300 dark:hover:to-zinc-500">Reset
+                                                            class="focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">Reset
                                                             Perangkat
                                                         </button>
                                                         @include('perangkat.modals.reset')
                                                     @endif
                                                     @if (!request()->routeIs('perangkat'))
                                                         <a href="{{ route('perangkat') }}"
-                                                            class="bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-r dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium mt-3 py-1 px-3 rounded hover:from-red-500 hover:to-violet-800 dark:hover:from-cyan-300 dark:hover:to-zinc-500">Kembali
+                                                            class="focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">Kembali
                                                         </a>
                                                     @endif
                                                 </div>

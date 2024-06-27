@@ -236,7 +236,7 @@
                                                     <div
                                                         class="flex justify-end gap-5 items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
                                                         <button type="submit"
-                                                            class="focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-r dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-2 px-3 rounded hover:from-red-500 hover:to-violet-800 dark:hover:from-cyan-300 dark:hover:to-zinc-500">
+                                                            class="focus:outline-none bg-gray-100 rounded-lg focus:outline-none hover:bg-blue-200 hover:text-gray-900 dark:border-gray-700 dark:hover:bg-blue-300 text-sm font-medium py-2 px-3 rounded">
                                                             Buat</button>
                                                     </div>
                                                 </form>

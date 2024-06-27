@@ -23,11 +23,14 @@
             <div class="p-4 md:p-5">
                 <div class="flex flex-row justify-center items-center gap-5 text-center">
                     <a href="{{ route('integrasi.import', encrypt('auth')) }}"
-                        class="{{ $starterPack['theme']['button'] }}">Autentikasi dasar (Basic Auth)</a>
+                        class="focus:outline-none bg-[#379777] hover:bg-green-400 dark:bg-[#0F4C75] dark:hover:bg-[#3282B8] text-white dark:text-white text-sm font-medium py-1 px-3 rounded">Autentikasi
+                        dasar</a>
                     <a href="{{ route('integrasi.import', encrypt('token')) }}"
-                        class="{{ $starterPack['theme']['button'] }}">Autentikasi Token</a>
+                        class="focus:outline-none bg-[#379777] hover:bg-green-400 dark:bg-[#0F4C75] dark:hover:bg-[#3282B8] text-white dark:text-white text-sm font-medium py-1 px-3 rounded">Autentikasi
+                        Token</a>
                     <a href="{{ route('integrasi.import', encrypt('default')) }}"
-                        class="{{ $starterPack['theme']['button'] }}">Non Autentikasi</a>
+                        class="focus:outline-none bg-[#379777] hover:bg-green-400 dark:bg-[#0F4C75] dark:hover:bg-[#3282B8] text-white dark:text-white text-sm font-medium py-1 px-3 rounded">Non
+                        Autentikasi</a>
                 </div>
             </div>
         </div>

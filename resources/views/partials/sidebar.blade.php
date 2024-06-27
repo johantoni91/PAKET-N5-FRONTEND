@@ -29,14 +29,14 @@
                 <li>
                     <div id="parent-accordion" data-fc-type="accordion">
                         <a href="{{ route('dashboard') }}"
-                            class="{{ request()->routeIs('dashboard') ? 'text-black bg-white dark:text-black font-semibold' : '' }} nav-link hover:text-black hover:bg-slate-100/50 rounded-md dark:hover:text-black flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200">
+                            class="{{ request()->routeIs('dashboard') ? 'text-black bg-white dark:text-black font-bold' : '' }} nav-link text-black dark:text-white hover:font-semibold hover:bg-slate-100/50 rounded-md dark:hover:text-black flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200">
                             <span data-lucide="home" class="w-5 h-5 text-center me-2"></span>
                             <span>Beranda</span>
                         </a>
                         @foreach ($starterPack['routes'] as $item)
                             @if (!$loop->count >= 9)
                                 <a href="{{ route($item) }}"
-                                    class="{{ request()->routeIs($item) ? 'text-black bg-white dark:text-black font-semibold' : '' }} nav-link hover:text-black hover:bg-slate-100/50 my-1 rounded-md dark:hover:text-black flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200">
+                                    class="{{ request()->routeIs($item) ? 'text-black bg-white dark:text-black font-bold' : '' }} nav-link text-black dark:text-white hover:font-semibold hover:bg-slate-100/50 my-1 rounded-md dark:hover:text-black flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200">
                                     <span data-lucide="{{ $starterPack['icons'][$loop->iteration - 1] }}"
                                         class="w-5 h-5 text-center me-2"></span>
                                     <span>{{ $starterPack['titles'][$loop->iteration - 1] }}</span>
@@ -44,7 +44,7 @@
                             @else
                                 @if ($loop->index <= 9)
                                     <a href="{{ route($item) }}"
-                                        class="{{ request()->routeIs($item) ? 'text-black bg-white dark:text-black font-semibold' : '' }} nav-link hover:text-black hover:bg-slate-100/50 my-1 rounded-md dark:hover:text-black flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200">
+                                        class="{{ request()->routeIs($item) ? 'text-black bg-white dark:text-black font-bold' : '' }} nav-link text-black dark:text-white hover:font-semibold hover:bg-slate-100/50 my-1 rounded-md dark:hover:text-black flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200">
                                         <span data-lucide="{{ $starterPack['icons'][$loop->iteration - 1] }}"
                                             class="w-5 h-5 text-center me-2"></span>
                                         <span>{{ $starterPack['titles'][$loop->iteration - 1] }}</span>
@@ -53,7 +53,7 @@
 
                                 @elseif($loop->last)
                                     <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
-                                        class="w-full nav-link dark:text-white hover:text-black hover:bg-slate-100/50 rounded-md dark:hover:text-black flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200"
+                                        class="w-full nav-link dark:text-white text-black hover:bg-slate-100/50 rounded-md dark:hover:text-black flex items-center decoration-0 px-3 py-3 cursor-pointer group-data-[sidebar=dark]:hover:text-slate-200"
                                         type="button"><span data-lucide="wrench"
                                             class="w-5 h-5 text-center me-2"></span> Tambahan
                                         <svg class="w-2.5 h-2.5 ms-auto" aria-hidden="true"

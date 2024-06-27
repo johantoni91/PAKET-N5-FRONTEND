@@ -10,10 +10,10 @@
                         <div class="w-full">
                             <div class="flex flex-row flex-wrap justify-between">
                                 <div class="items-center ">
-                                    <h1 class="font-medium text-3xl block dark:text-slate-100">Assessment Security</h1>
+                                    <h1 class="font-medium text-3xl block dark:text-slate-100">Sekuritas Asesmen</h1>
                                 </div>
                                 <button data-modal-target="create" data-modal-toggle="create"
-                                    class="me-3 {{ $starterPack['theme']['button'] }}"><svg
+                                    class="me-3 focus:outline-none bg-[#379777] hover:bg-green-400 dark:bg-[#0F4C75] dark:hover:bg-[#3282B8] text-white dark:text-white text-sm font-medium py-1 px-3 rounded"><svg
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round" class="lucide lucide-upload">

@@ -29,7 +29,7 @@
                                     <div class="flex-row justify-between md:flex">
                                         <h4 class="font-medium text-lg flex-1 self-center mb-2 md:mb-0">Role Users</h4>
                                         <button type="button" data-modal-target="create" data-modal-toggle="create"
-                                            class="focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-r dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-1 px-3 rounded hover:from-red-500 hover:to-violet-800 dark:hover:from-cyan-300 dark:hover:to-zinc-500">+
+                                            class="focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">+
                                             Role</button>
                                         @include('hak_akses.create')
                                     </div>

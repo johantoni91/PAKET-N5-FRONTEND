@@ -33,21 +33,27 @@
                                     <div class="flex-none md:flex">
                                         <h4 class="font-medium text-lg flex-1 self-center mb-2 md:mb-0">Data Pengajuan</h4>
                                         <button type="button" data-modal-target="search" data-modal-toggle="search"
-                                            class="flex flex-row gap-1 items-center focus:outline-none bg-gradient-to-l from-violet-800 to-red-500 text-white dark:bg-gradient-to-b dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-1 px-3 rounded hover:from-red-500 hover:to-violet-800">
-                                            Cari Pengajuan <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                                            class="flex items-center gap-1 focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="2" stroke="currentColor" class="w-4 h-4">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                     d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                                            </svg>
+                                            </svg> Cari Pengajuan
                                         </button>
                                         @include('pengajuan.modals.search')
+                                        @if (!request()->routeIs('pengajuan'))
+                                            <a href="{{ route('pengajuan') }}"
+                                                class="ms-3 flex items-center gap-1 focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">
+                                                Kembali
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-1 p-4 overflow-scroll">
                                     <div class="sm:-mx-6 lg:-mx-8">
                                         <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-10">
                                             <button type="button" data-modal-target="create" data-modal-toggle="create"
-                                                class="focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-b dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-1 px-3 rounded hover:from-red-500 hover:to-violet-800">
+                                                class="focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">
                                                 Pengajuan</button>
                                             @include('pengajuan.modals.create')
                                             <div class="flex flex-col gap-5 p-5">
@@ -133,19 +139,6 @@
                                                         @endif
                                                     </div>
                                                 </div>
-                                                @if (!request()->routeIs('pengajuan'))
-                                                    <div class="flex flex-row justify-end">
-                                                        <a href="{{ route('pengajuan') }}"
-                                                            class="p-2 rounded-lg flex flex-row justify-between text-blue-500 dark:text-blue-500 dark:text-blue-500 dark:hover:text-white dark:border-blue-500 dark:hover:bg-blue-500 dark:hover:shadow dark:hover:shadow-white hover:bg-blue-500 hover:text-white border border-blue-500"><svg
-                                                                xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                                class="w-6 h-6">
-                                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                                    d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
-                                                            </svg> Kembali
-                                                        </a>
-                                                    </div>
-                                                @endif
                                             </div>
                                         </div>
                                     </div>

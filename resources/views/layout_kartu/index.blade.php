@@ -34,7 +34,7 @@
                                         <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-10">
                                             <div class="p-4 md:p-5 space-y-4">
                                                 <a href="{{ route('layout.kartu.create') }}"
-                                                    class="focus:outline-none bg-gradient-to-r from-violet-800 to-red-500 text-white dark:bg-gradient-to-b dark:from-zinc-500 dark:to-cyan-300 dark:text-white text-sm font-medium py-1 px-3 rounded hover:from-red-500 hover:to-violet-800">+
+                                                    class="focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">+
                                                     Kartu</a>
                                                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                                                     <table

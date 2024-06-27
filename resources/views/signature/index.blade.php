@@ -97,7 +97,7 @@
                                                 </div>
                                                 <div class="flex justify-end items-center pe-10">
                                                     <button type="submit"
-                                                        class="inline-block rounded-lg focus:outline-none text-primary-500 hover:bg-blue-200 hover:text-gray-900 bg-transparent border border-blue-300 shadow shadow-blue-200 dark:bg-transparent dark:text-white dark:hover:text-white dark:border-gray-700 dark:hover:bg-blue-300 text-sm font-medium py-1 px-3 w-24 my-3">Simpan</button>
+                                                        class="inline-block bg-gray-100 rounded-lg focus:outline-none hover:bg-blue-200 hover:text-gray-900 dark:border-gray-700 dark:hover:bg-blue-300 text-sm font-medium py-1 px-3 w-auto my-3">Simpan</button>
                                                 </div>
                                             </div>
                                         </form>
