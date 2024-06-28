@@ -20,7 +20,8 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form class="p-4 md:p-5" action="{{ route('faq.update', $item['id']) }}" method="post">
+            <form class="p-4 md:p-5" action="{{ route('faq.update', $item['id']) }}" method="post"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2">
@@ -34,6 +35,26 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jawaban</label>
                         <textarea id="jawaban" rows="4" name="answer" required
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{ $item['answer'] }}</textarea>
+                    </div>
+                    <div class="col-span-2">
+                        <label for="lampiran{{ $item['id'] }}"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Lampiran</label>
+                        <input type="file" accept="image/*" id="lampiran{{ $item['id'] }}" name="lampiran"
+                            class="bg-gray-50 mx-auto text-sm block w-auto border border-gray-300 rounded-lg dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            onchange="newPhoto{{ $item['id'] }}(event)">
+                        <div class="flex bg-slate-300 mt-3 p-2 rounded-lg">
+                            <img src="{{ asset('assets/images/pattern.png') }}" id="photo{{ $item['id'] }}"
+                                alt="new-photo" class="mx-auto h-40 w-40 inline-block rounded-lg justify-center my-3">
+                        </div>
+                        <script>
+                            var newPhoto{{ $item['id'] }} = function(event) {
+                                var photo = document.getElementById("photo{{ $item['id'] }}");
+                                photo.src = URL.createObjectURL(event.target.files[0]);
+                                photo.onload = function() {
+                                    URL.revokeObjectURL(photo.src)
+                                }
+                            };
+                        </script>
                     </div>
                 </div>
                 <div class="flex justify-end">

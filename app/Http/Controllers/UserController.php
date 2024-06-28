@@ -65,20 +65,8 @@ class UserController extends Controller
                 'phone'     => request('phone'),
                 'role'      => request('role') ?? session('data')['roles'],
                 'status'    => request('status'),
+                'page'      => request('page')
             ];
-            if (
-                $input['nip'] == null &&
-                $input['nrp'] == null &&
-                $input['username'] == null &&
-                $input['name'] == null &&
-                $input['email'] == null &&
-                $input['phone'] == null &&
-                $input['role'] == null &&
-                $input['status'] == null
-            ) {
-                Alert::warning('Peringatan', 'Mohon isi salah satu!');
-                return back();
-            }
             $data = UserApi::search($input)['data'];
             return view(
                 $this->view,

@@ -32,9 +32,9 @@
 
                                         <!-- Modal toggle -->
                                         <button data-modal-target="faq" data-modal-toggle="faq"
-                                            class="focus:outline-none ms-2.5 text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-primary-500 dark:bg-transparent dark:text-primary-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-primary-500 text-sm font-medium py-1 px-3 rounded mb-1 w-24"
+                                            class="focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded"
                                             type="button">
-                                            Buat FAQ
+                                            Tambah FAQ
                                         </button>
                                         @include('faq.modals.create')
                                     </div>
@@ -78,6 +78,13 @@
                                                             <div
                                                                 class="py-2 flex flex-col justify-between border-b border-gray-200 dark:border-gray-700">
                                                                 <div class="mb-3">
+                                                                    @if ($item['image'] != '')
+                                                                        <div class="flex justify-center py-2">
+                                                                            <img src="{{ $item['image'] }}"
+                                                                                class="w-full lg:w-[90%] h-40 lg:h-44 rounded-lg"
+                                                                                alt="">
+                                                                        </div>
+                                                                    @endif
                                                                     <p class="text-gray-500 dark:text-gray-400">
                                                                         {!! nl2br(e($item['answer'])) !!}</p>
                                                                 </div>

@@ -20,7 +20,7 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form class="p-4 md:p-5" action="{{ route('faq.store') }}" method="post">
+            <form class="p-4 md:p-5" action="{{ route('faq.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2">
@@ -35,16 +35,31 @@
                         <textarea id="jawaban" rows="4" name="answer"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                     </div>
+                    <div class="col-span-2">
+                        <label for="lampiran"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Lampiran</label>
+                        <input type="file" accept="image/*" id="lampiran" name="lampiran"
+                            class="bg-gray-50 mx-auto text-sm block w-auto border border-gray-300 rounded-lg dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                            onchange="newPhoto(event)">
+                        <div class="flex bg-slate-300 mt-3 p-2 rounded-lg">
+                            <img src="{{ asset('assets/images/pattern.png') }}" id="photo" alt="new-photo"
+                                class="mx-auto h-40 w-40 inline-block rounded-lg justify-center my-3">
+                        </div>
+                        <script>
+                            var newPhoto = function(event) {
+                                var photo = document.getElementById("photo");
+                                photo.src = URL.createObjectURL(event.target.files[0]);
+                                photo.onload = function() {
+                                    URL.revokeObjectURL(photo.src)
+                                }
+                            };
+                        </script>
+                    </div>
                 </div>
                 <div class="flex justify-end">
                     <button type="submit"
-                        class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                clip-rule="evenodd"></path>
-                        </svg> FAQ
+                        class="focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">
+                        Tambah
                     </button>
                 </div>
             </form>

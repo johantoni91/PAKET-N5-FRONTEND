@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\API\FaqApi;
+use Carbon\Carbon;
 use helper;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -31,10 +32,14 @@ class FaqController extends Controller
     {
         try {
             $input = [
-                'question'  => $req->question,
-                'answer'    => $req->answer
+                'question'   => $req->question,
+                'answer'     => $req->answer,
             ];
-            $res = FaqApi::store($input);
+            if ($req->hasFile('lampiran')) {
+                $image = $req->file('lampiran');
+                $image_name = Carbon::now()->format('d_m_y_h_i_s') . '.' . $req->file('lampiran')->getClientOriginalExtension();
+            }
+            $res = FaqApi::store($input, $image, $image_name);
             if ($res['status'] == true) {
                 Alert::success('Berhasil', 'FAQ telah ditambahkan');
                 return redirect()->route('faq');
@@ -49,10 +54,14 @@ class FaqController extends Controller
     {
         try {
             $input = [
-                'question'  => $req->question,
-                'answer'    => $req->answer
+                'question'   => $req->question,
+                'answer'     => $req->answer,
             ];
-            $res = FaqApi::update($id, $input);
+            if ($req->hasFile('lampiran')) {
+                $image = $req->file('lampiran');
+                $image_name = Carbon::now()->format('d_m_y_h_i_s') . '.' . $req->file('lampiran')->getClientOriginalExtension();
+            }
+            $res = FaqApi::update($id, $input, $image, $image_name);
             if ($res['status'] == true) {
                 Alert::success('Berhasil', 'FAQ telah diubah');
                 return redirect()->route('faq');
