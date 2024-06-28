@@ -1,8 +1,14 @@
 <div id="refresh" class="relative" style="min-height:60dvh; height: 60dvh; max-height: 60dvh;">
-    <ul id="refreshData">
+    <ul id="refreshData" class="h-full relative">
+        <div
+            class="sticky absolute top-0 w-full text-center bg-slate-500/50 dark:text-green-500 p-5 shadow-md shadow-[#379777] dark:shadow-[#3282B8]">
+            <h1 class="font-bold text-black dark:text-white">
+                {{ $receiver }}
+            </h1>
+        </div>
         @foreach ($data as $i)
             <input type="hidden" id="room_id" name="room_id" value="{{ $i['room_id'] }}">
-            <li class="p-2">
+            <li class="p-5">
                 @if ($i['from'] != $profile['id'])
                     <div class="flex gap-3 items-center">
                         <div class="flex-shrink-0">
@@ -11,7 +17,7 @@
                                 alt="5856">
                         </div>
                         <div class="bg-green-500 dark:bg-green-700 max-w-full md:max-w-xs lg:max-w-lg rounded-lg p-3">
-                            <p class="text-sm font-medium text-gray-900 text-wrap dark:text-black">
+                            <p class="text-sm font-semibold text-gray-900 text-wrap dark:text-black">
                                 {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/user' . '/' . $i['from'] . '/find')->json()['data']['name'] }}
                                 &nbsp;&nbsp;&nbsp;<small
                                     class="text-white dark:text-white">({{ Carbon\Carbon::parse($i['created_at'])->diffForHumans() }})</small>
@@ -24,7 +30,7 @@
                 @else
                     <div class="flex flex-row items-center justify-end gap-3">
                         <div class="max-w-full md:max-w-xs lg:max-w-lg bg-yellow-500 dark:bg-yellow-700 rounded-lg p-3">
-                            <p class="text-sm font-medium text-gray-900 text-wrap text-right dark:text-black">
+                            <p class="text-sm font-semibold text-gray-900 text-wrap text-right dark:text-black">
                                 <small
                                     class="text-white dark:text-white">({{ Carbon\Carbon::parse($i['created_at'])->diffForHumans() }})</small>&nbsp;&nbsp;&nbsp;
                                 {{ $profile['name'] }}

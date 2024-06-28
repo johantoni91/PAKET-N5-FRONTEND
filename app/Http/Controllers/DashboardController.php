@@ -26,15 +26,17 @@ class DashboardController extends Controller
     {
         try {
             $room = Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/inbox' . '/' . session('data')['id'] . '/room' . '/' . $req->user2)->json();
+            $var = $this->helper($room['data']);
             return response()->json([
-                'view'          => view('inbox.message', [
-                    'data'      => $room['data'],
-                    'profile'   => session('data'),
-                    'pegawai'   => session('pegawai'),
+                'view'         => view('inbox.message', [
+                    'data'     => $room['data'],
+                    'receiver' => ucfirst($var),
+                    'profile'  => session('data'),
+                    'pegawai'  => session('pegawai'),
                 ])->render()
             ]);
         } catch (\Throwable $th) {
-            return response('Gagal', 400);
+            return response($th->getMessage(), 400);
         }
     }
 
@@ -44,12 +46,23 @@ class DashboardController extends Controller
             'message' => $req->message,
             'from'    => session('data')['id']
         ])->json();
+        $var = $this->helper($chat['data']);
         return response()->json([
-            'view'          => view('inbox.message', [
-                'data'      => $chat['data'],
-                'profile'   => session('data'),
-                'pegawai'   => session('pegawai'),
+            'view'         => view('inbox.message', [
+                'data'     => $chat['data'],
+                'receiver' => ucfirst($var),
+                'profile'  => session('data'),
+                'pegawai'  => session('pegawai'),
             ])->render()
         ], $chat['status'] ? 200 : 400);
+    }
+
+    function helper($var)
+    {
+        foreach ($var as $i) {
+            if ($i['from'] != session('data')['id']) {
+                return Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/user' . '/' . $i['from'] . '/find')->json()['data']['name'];
+            }
+        }
     }
 }
