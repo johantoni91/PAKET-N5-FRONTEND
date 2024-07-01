@@ -23,6 +23,26 @@ class IntegrasiController extends Controller
         }
     }
 
+    function search()
+    {
+        try {
+            $input = [
+                'url'       => request('url'),
+                'type'      => request('type'),
+                'pagination' => request('pagination') ?? 5
+            ];
+            $res = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/integrasi/search', $input)->json();
+            return view('integrasi.index', [
+                'title'       => 'Integrasi Data Pegawai',
+                'input'       => $input,
+                'data'        => $res['data'],
+                'starterPack' => helper::starterPack()
+            ]);
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+        }
+    }
+
     function store(Request $req, $param)
     {
         try {

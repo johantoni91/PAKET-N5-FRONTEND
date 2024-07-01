@@ -74,11 +74,7 @@ class SatkerApi
 
     public static function search($input)
     {
-        try {
-            return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/satker/search', $input)->json()['data'];
-        } catch (\Throwable $th) {
-            return  ['error' => $th];
-        }
+        return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/satker/search', $input)->json()['data'];
     }
 
     public static function store($data)

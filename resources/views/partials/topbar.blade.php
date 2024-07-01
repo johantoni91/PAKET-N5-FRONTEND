@@ -54,6 +54,12 @@
                                             $("#msg").html('')
                                         }
                                     })
+                                    $.get("{{ route('notif.find') }}", function(data) {
+                                        if (data.count != 0) {
+                                            $("#notif_count").html(data.count)
+                                            $("#notif").html(data.view)
+                                        }
+                                    })
                                 }, 3000);
                                 if ("{{ session('data')['roles'] }}" == 'admin') {
                                     setInterval(() => {

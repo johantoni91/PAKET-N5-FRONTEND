@@ -34,12 +34,6 @@
                                             <a href="{{ route('pdf.users') }}"
                                                 class="inline-block focus:outline-none text-red-400 hover:bg-red-500 hover:text-white bg-transparent border border-red-400 dark:bg-transparent dark:text-red-500 dark:hover:text-white dark:border-gray-700 dark:hover:bg-red-500 text-sm font-medium py-1 px-3 rounded mb-1 lg:mb-0 sql">Export
                                                 PDF</a>
-                                            @if (!request()->routeIs('user'))
-                                                <a href="{{ route('user') }}"
-                                                    class="flex items-center gap-1 focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">
-                                                    Kembali
-                                                </a>
-                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -54,7 +48,7 @@
                                                         Users</button>
                                                     @include('user.partials.choose_role')
                                                 @endif
-                                                <div class="justify-center gap-2">
+                                                <div class="flex flex-row justify-center gap-2">
                                                     <button type="button" data-modal-target="search"
                                                         data-modal-toggle="search"
                                                         class="flex items-center gap-1 focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">
@@ -66,6 +60,12 @@
                                                         </svg> Cari Users
                                                     </button>
                                                     @include('user.modals.search')
+                                                    @if (!request()->routeIs('user'))
+                                                        <a href="{{ route('user') }}"
+                                                            class="flex items-center gap-1 focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">
+                                                            Kembali
+                                                        </a>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="flex flex-col gap-5">

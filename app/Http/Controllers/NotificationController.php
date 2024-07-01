@@ -10,7 +10,16 @@ class NotificationController extends Controller
     {
         $notif = Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/notif' . '/' . session('data')['satker'])->json()['data'];
         return response()->json([
-            'count'  => count($notif),
+            'count' => count($notif),
+            'view'  => view('partials.notification', compact('notif'))->render()
+        ]);
+    }
+
+    function find()
+    {
+        $notif = Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/notif' . '/' . session('data')['nip'] . '/find')->json()['data'];
+        return response()->json([
+            'count' => count($notif),
             'view'  => view('partials.notification', compact('notif'))->render()
         ]);
     }

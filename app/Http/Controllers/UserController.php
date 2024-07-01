@@ -57,15 +57,16 @@ class UserController extends Controller
     {
         try {
             $input = [
-                'nip'       => request('nip'),
-                'nrp'       => request('nrp'),
-                'username'  => request('username'),
-                'name'      => request('name'),
-                'email'     => request('email'),
-                'phone'     => request('phone'),
-                'role'      => request('role') ?? session('data')['roles'],
-                'status'    => request('status'),
-                'page'      => request('page')
+                'nip'        => request('nip'),
+                'nrp'        => request('nrp'),
+                'username'   => request('username'),
+                'name'       => request('name'),
+                'email'      => request('email'),
+                'phone'      => request('phone'),
+                'roles'      => request('roles'),
+                'status'     => request('status'),
+                'satker'     => session('data')['satker'],
+                'pagination' => request('pagination') ?? 5
             ];
             $data = UserApi::search($input)['data'];
             return view(

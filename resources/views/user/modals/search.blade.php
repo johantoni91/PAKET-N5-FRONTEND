@@ -90,10 +90,10 @@
                     @if (session('data')['roles'] == 'superadmin')
                         <div class="col-span-2 sm:col-span-1">
                             <label for="role"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Peran</label>
-                            <select id="role" name="role"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
+                            <select id="roles" name="roles"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                <option selected disabled>-- Pilih peran --</option>
+                                <option selected disabled>-- Pilih Role --</option>
                                 <option value="superadmin">Superadmin</option>
                                 <option value="admin">Admin</option>
                                 <option value="pegawai">Pegawai</option>
@@ -111,9 +111,10 @@
                         </select>
                     </div>
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="page" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data
+                        <label for="pagination"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data
                             per halaman</label>
-                        <input type="text" name="page" id="page" value="{{ $input['page'] ?? '' }}"
+                        <input type="text" name="pagination" id="pagination" value="{{ $input['pagination'] ?? '' }}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                             placeholder="5">
                     </div>

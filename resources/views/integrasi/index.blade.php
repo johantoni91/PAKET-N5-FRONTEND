@@ -37,16 +37,33 @@
                                     class="border-b border-slate-200 dark:border-slate-700/40 py-3 px-4 dark:text-slate-300/70">
                                     <div class="flex-none md:flex">
                                         <h4 class="font-medium text-lg flex-1 self-center mb-2 md:mb-0">Data Integrasi</h4>
+                                        @if (!request()->routeIs('integrasi'))
+                                            <div class="flex flex-row justify-end">
+                                                <a href="{{ route('integrasi') }}"
+                                                    class="focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">Kembali
+                                                </a>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-1 p-4 overflow-scroll">
                                     <div class="sm:-mx-6 lg:-mx-8">
                                         <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-10">
-                                            <div class="flex justify-start items-center mb-3">
+                                            <div class="flex justify-between items-center mb-3">
                                                 <button data-modal-target="create" data-modal-toggle="create"
                                                     class="focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">Tambah
                                                 </button>
                                                 @include('integrasi.modals.create')
+                                                <button type="button" data-modal-target="search" data-modal-toggle="search"
+                                                    class="flex items-center gap-1 focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                        class="w-4 h-4">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                                    </svg> Cari Data Integrasi
+                                                </button>
+                                                @include('integrasi.modals.search')
                                             </div>
                                             <div class="flex flex-col gap-5 p-5">
                                                 <div class="datatable_1">

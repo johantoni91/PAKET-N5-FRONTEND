@@ -171,6 +171,7 @@ Route::middleware(['auth'])->group(function () {
 
     // INTEGRASI
     Route::get('/integrasi', [IntegrasiController::class, 'index'])->name('integrasi');
+    Route::get('/integrasi/search', [IntegrasiController::class, 'search'])->name('integrasi.search');
     Route::get('/integrasi/{params}/import', [IntegrasiController::class, 'importView'])->name('integrasi.import');
     Route::post('/integrasi/{param}/store', [IntegrasiController::class, 'store'])->name('integrasi.store');
     Route::post('/integrasi/{id}/update', [IntegrasiController::class, 'update'])->name('integrasi.update');
@@ -189,6 +190,7 @@ Route::middleware(['auth'])->group(function () {
     // EXTERNAL || EXTRA TOOLS
     //NOTIFIKASI
     Route::get('/notif', [NotificationController::class, 'index'])->name('notif');
+    Route::get('/notif/find', [NotificationController::class, 'find'])->name('notif.find');
     Route::get('/notif/messages', [NotificationController::class, 'message'])->name('notif.message');
     Route::get('/notif/messages/{id}/read', [NotificationController::class, 'directMessage'])->name('notif.message.read');
     Route::get('/notif-check', [NotificationController::class, 'check'])->name('notif.check');

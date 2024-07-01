@@ -11,7 +11,7 @@
                 </div>
                 <div class="flex-grow flex-1 ms-0.5 items-center align-middle">
                     <small class="text-gray-500 text-xs text-pretty truncate dark:text-gray-400">
-                        {{ $item['notifikasi'] }}
+                        {!! nl2br(e($item['notifikasi'])) !!}
                     </small>
                 </div>
             </a>
