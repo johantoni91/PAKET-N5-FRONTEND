@@ -15,6 +15,7 @@ class IntegrasiController extends Controller
         try {
             return view('integrasi.index', [
                 'title'       => 'Integrasi Data Pegawai',
+                'input'       => null,
                 'data'        => Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/integrasi')->json()['data'],
                 'starterPack' => helper::starterPack()
             ]);
@@ -27,8 +28,8 @@ class IntegrasiController extends Controller
     {
         try {
             $input = [
-                'url'       => request('url'),
-                'type'      => request('type'),
+                'url'        => request('url'),
+                'type'       => request('type'),
                 'pagination' => request('pagination') ?? 5
             ];
             $res = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/integrasi/search', $input)->json();

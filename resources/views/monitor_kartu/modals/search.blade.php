@@ -20,31 +20,56 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form class="p-4 md:p-5" action="{{ route('integrasi.search') }}" method="get">
+            <form class="p-4 md:p-5" action="{{ route('monitor.kartu.search') }}" method="get">
                 @csrf
                 <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2">
-                        <label for="url"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tautan</label>
-                        <input type="text" name="url" id="url" value="{{ $input['url'] ?? '' }}"
+                        <label for="nip"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
+                        <input type="text" name="nip" id="nip" value="{{ $input['nip'] ?? '' }}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                     </div>
                     <div class="col-span-2">
-                        <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipe
-                            Autentikasi</label>
-                        <select id="type" name="type"
+                        <label for="nama"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
+                        <input type="text" name="nama" id="nama" value="{{ $input['nama'] ?? '' }}"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                    </div>
+                    <div class="col-span-2">
+                        <label for="status"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
+                        <select id="status" name="status"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            @if (request()->routeIs('integrasi'))
+                            @if (!$input)
                                 <option value="">Semua</option>
-                                <option value="auth">Autentikasi Dasar (Username & Password)</option>
-                                <option value="token">Token</option>
-                                <option value="default">Tanpa autentikasi</option>
+                                <option value="0">ditolak</option>
+                                <option value="1">Proses</option>
+                                <option value="2">diterima</option>
                             @else
-                                <option {{ $input['type'] == 'auth' ? 'selected' : '' }} value="auth">Autentikasi
+                                <option {{ $input['status'] ? 'selected' : '' }} value="">Semua</option>
+                                <option {{ $input['status'] == '0' ? 'selected' : '' }} value="0">ditolak</option>
+                                <option {{ $input['status'] == '1' ? 'selected' : '' }} value="1">Proses</option>
+                                <option {{ $input['status'] == '2' ? 'selected' : '' }} value="2">diterima</option>
+                            @endif
+                        </select>
+                    </div>
+                    <div class="col-span-2">
+                        <label for="alasan"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alasan</label>
+                        <select id="alasan" name="alasan"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            @if (!$input)
+                                <option value="">Semua</option>
+                                <option value="1">Baru</option>
+                                <option value="2">Ganti Satker</option>
+                                <option value="3">Hilang</option>
+                            @else
+                                <option {{ $input['alasan'] ? 'selected' : '' }} value="">Semua</option>
+                                <option {{ $input['alasan'] == '0' ? 'selected' : '' }} value="0">Rusak</option>
+                                <option {{ $input['alasan'] == '1' ? 'selected' : '' }} value="1">Baru</option>
+                                <option {{ $input['alasan'] == '2' ? 'selected' : '' }} value="2">Ganti Satker
                                 </option>
-                                <option {{ $input['type'] == 'token' ? 'selected' : '' }} value="token">Token</option>
-                                <option {{ $input['type'] == 'default' ? 'selected' : '' }} value="default">Tanpa
-                                    autentikasi</option>
+                                <option {{ $input['alasan'] == '3' ? 'selected' : '' }} value="3">Hilang</option>
                             @endif
                         </select>
                     </div>
@@ -52,8 +77,8 @@
                         <label for="pagination"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data per
                             halaman</label>
-                        <input type="text" name="pagination" id="pagination" value="{{ $input['pagination'] ?? '' }}"
-                            placeholder="5"
+                        <input type="text" name="pagination" id="pagination"
+                            value="{{ $input['pagination'] ?? '' }}" placeholder="5"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                     </div>
                 </div>

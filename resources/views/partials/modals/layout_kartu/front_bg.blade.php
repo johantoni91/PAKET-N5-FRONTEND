@@ -23,10 +23,13 @@
             <form action="{{ route('layout.kartu.front', $item['id']) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="p-4 space-y-4">
-                    <label for="front" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Latar
+                    <label for="front"
+                        class="block text-center mb-2 text-sm font-medium text-gray-900 dark:text-white">Latar
                         Depan Kartu</label>
-                    <img src="{{ env('APP_IMG', '') . $item['front'] }}" id="front{{ $item['id'] }}" alt="front"
-                        class="mx-auto h-24 w-24 rounded-full inline-block justify-center my-3">
+                    <div class="flex flex-row justify-center">
+                        <img src="{{ env('APP_IMG', '') . $item['front'] }}" id="front{{ $item['id'] }}"
+                            alt="front" class="mx-auto h-24 w-24 rounded-full inline-block justify-center my-3">
+                    </div>
                     <input type="file" name="depan" accept="image/*" id="depan{{ $item['id'] }}"
                         class="bg-gray-50 mx-auto text-sm block w-auto border border-gray-300 rounded-lg dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                         onchange="frontBg(event)">

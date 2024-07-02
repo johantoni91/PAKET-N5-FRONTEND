@@ -110,7 +110,7 @@
                             <option value="0">Tidak Aktif</option>
                         </select>
                     </div>
-                    <div class="col-span-2 sm:col-span-1">
+                    <div class="col-span-2">
                         <label for="pagination"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data
                             per halaman</label>

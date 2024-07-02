@@ -9,9 +9,14 @@
                     <div class="flex items-center py-4 w-full">
                         <div class="w-full">
                             <div class="flex flex-wrap justify-between">
-                                <div class="items-center ">
+                                <div class="items-center">
                                     <h1 class="font-medium text-3xl block dark:text-slate-100">{{ $title }}</h1>
                                 </div>
+                                @if (!request()->routeIs('smart'))
+                                    <a href="{{ route('smart') }}"
+                                        class="focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-slate-100 via-slate-100 to-[#F4CE14] hover:from-[#F4CE14] hover:via-slate-100 hover:to-slate-100 dark:text-white text-sm font-medium py-1 px-3 rounded">Kembali
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -45,33 +50,33 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @for ($i = 0; $i < 3; $i++)
+                                        @foreach ($data['data'] as $i)
                                             <tr
                                                 class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                                                 <th scope="row"
                                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    ABC
+                                                    {{ Illuminate\Support\Facades\Http::withToken($starterPack['profile']['token'])->get(env('API_URL', '') . '/pegawai' . '/' . $i['nip'] . '/find')->json()['data']['nama'] }}
                                                 </th>
                                                 <td class="px-6 py-4 text-center">
-                                                    Test
+                                                    {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/satker' . '/' . $i['kode_satker'] . '/code')->json()['data']['satker_name'] }}
                                                 </td>
                                                 <td class="px-6 py-4 text-center">
-                                                    UNO Card
+                                                    {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/kartu' . '/' . $i['kartu'])->json()['data']['title'] }}
                                                 </td>
                                                 <td class="px-6 py-4 text-center">
-                                                    {{ mt_rand() }}
+                                                    {{ $i['uid_kartu'] }}
                                                 </td>
                                                 <td class="px-6 py-4 text-center drop-shadow-green text-green-500">
                                                     Aktif
                                                 </td>
                                             </tr>
-                                        @endfor
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
-                            {{-- @include('partials.pagination') --}}
                         </div>
                     </div>
+                    @include('partials.pagination')
                 </div>
                 @include('partials.footer')
             </div>

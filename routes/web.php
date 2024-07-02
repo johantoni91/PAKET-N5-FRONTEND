@@ -137,6 +137,7 @@ Route::middleware(['auth'])->group(function () {
     //MONITORING KARTU
     Route::middleware(['role_monitor'])->group(function () {
         Route::get('/monitor/kartu', [MonitorKartuController::class, 'index'])->name('monitor.kartu');
+        Route::get('/monitor/kartu/search', [MonitorKartuController::class, 'search'])->name('monitor.kartu.search');
         Route::get('/monitor/{id}/kartu/{nip}/pdf/{title}', [MonitorKartuController::class, 'pdf'])->name('monitor.kartu.pdf');
         Route::post('/monitor/kartu/{id}/pdf/{title}', [MonitorKartuController::class, 'print'])->name('monitor.kartu.print');
     });

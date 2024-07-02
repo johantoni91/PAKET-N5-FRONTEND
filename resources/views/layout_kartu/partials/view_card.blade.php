@@ -337,9 +337,11 @@
                     @endif
                 </div>
                 @if ($starterPack['tanda_tangan'] != '')
-                    <button id="unduh{{ $item['id'] }}"
-                        class="bg-slate-200 p-2 rounded-lg mb-3 dark:bg-black dark:text-white">Siap untuk
-                        pengajuan</button>
+                    <div class="flex flex-row justify-center">
+                        <button id="unduh{{ $item['id'] }}"
+                            class="bg-slate-200 p-2 rounded-lg mb-3 dark:bg-black dark:text-white">Siap untuk
+                            pengajuan</button>
+                    </div>
                 @else
                     <small class="block text-red-500 font-semibold">Mohon tambahkan tanda tangan (klik pada ikon profil
                         pojok
