@@ -15,7 +15,7 @@ class AccessController extends Controller
     function index()
     {
         try {
-            $data = RoleApi::get()['data'];
+            $data = RoleApi::getWithPagination()['data'];
             return view($this->view, [
                 'view'        => $this->view,
                 'title'       => $this->title,

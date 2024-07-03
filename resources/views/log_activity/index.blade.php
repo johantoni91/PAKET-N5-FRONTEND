@@ -45,8 +45,8 @@
                                                 @if (!request()->routeIs('log'))
                                                     <div class="flex flex-row justify-end">
                                                         <a href="{{ route('log') }}"
-                                                            class="flex flex-row focus:outline-none text-primary-500 hover:bg-primary-500 hover:text-white bg-transparent border border-primary-500 dark:bg-blue-500 dark:text-white dark:border-0 dark:hover:shadow-md dark:hover:shadow-blue-500 text-sm font-medium rounded justify-center gap-2 py-1 px-2 items-center">
-                                                            Filter <i data-lucide="search-x"></i>
+                                                            class="flex items-center gap-1 focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">
+                                                            Kembali
                                                         </a>
                                                     </div>
                                                 @endif

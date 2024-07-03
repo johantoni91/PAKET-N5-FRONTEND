@@ -52,22 +52,18 @@ class LogController extends Controller
             'mobile'          => request('mobile'),
             'log_detail'      => request('log_detail'),
             'start'           => request('start'),
-            'end'             => request('end')
+            'end'             => request('end'),
+            'pagination'      => request('pagination') ?? 10
         ];
-        if (request('username') == null && request('ip_address') == null && request('browser') == null && request('browser_version') == null && request('os') == null && request('mobile') == null && request('log_detail') == null && request('start') == null && request('end') == null) {
-            Alert::warning('Peringatan', 'Mohon isi salah satu!');
-            return back();
-        } elseif (request('username') == null || request('ip_address') == null || request('browser') == null || request('browser_version') == null || request('os') == null || request('mobile') == null || request('log_detail') == null || request('start') == null || request('end')) {
-            $res = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/log/search', $input)->json();
-            $data = $res['data'];
-            return view($this->view, [
-                'view'        => $this->view,
-                'title'       => $this->title,
-                'input'       => $input,
-                'data'        => $data,
-                'kolom'       => $kolom,
-                'starterPack' => helper::starterPack()
-            ]);
-        }
+        $res = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/log/search', $input)->json();
+        $data = $res['data'];
+        return view($this->view, [
+            'view'        => $this->view,
+            'title'       => $this->title,
+            'input'       => $input,
+            'data'        => $data,
+            'kolom'       => $kolom,
+            'starterPack' => helper::starterPack()
+        ]);
     }
 }

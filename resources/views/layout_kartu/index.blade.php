@@ -27,13 +27,13 @@
                                         <div class="p-4 md:p-5 space-y-4">
                                             <div class="flex flex-row justify-between">
                                                 <a href="{{ route('layout.kartu.create') }}"
-                                                    class="focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">+
+                                                    class="focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-slate-100 via-slate-100 to-[#F4CE14] hover:from-[#F4CE14] hover:via-slate-100 hover:to-slate-100 dark:text-white text-sm font-medium py-1 px-3 rounded">+
                                                     Kartu</a>
                                                 <div class="justify-center">
                                                     {{-- <div class="flex flex-row justify-between px-5">
                                                         <button type="button" data-modal-target="search"
                                                             data-modal-toggle="search"
-                                                            class="flex items-center gap-1 focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">
+                                                            class="flex items-center gap-1 focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-slate-100 via-slate-100 to-[#F4CE14] hover:from-[#F4CE14] hover:via-slate-100 hover:to-slate-100 dark:text-white text-sm font-medium py-1 px-3 rounded">
                                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                                                 class="w-4 h-4">
@@ -67,6 +67,9 @@
                                                             </th>
                                                             <th scope="col" class="px-6 py-3">
                                                                 Tampilan
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3">
+                                                                Status
                                                             </th>
                                                             <th scope="col" class="px-6 py-3">
                                                                 Aksi
@@ -108,6 +111,35 @@
                                                                                 class="w-12 h-12 rounded-lg" alt="">
                                                                         </button>
                                                                         @include('partials.modals.layout_kartu.back_bg')
+                                                                    </div>
+                                                                </td>
+                                                                <td class="px-6 py-4">
+                                                                    <div
+                                                                        class="justify-start items-center gap-2 flex flex-row {{ $item['card'] ? 'drop-shadow-green' : 'drop-shadow-red' }}">
+                                                                        @if ($item['card'])
+                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                fill="none" viewBox="0 0 24 24"
+                                                                                stroke-width="1.5" stroke="currentColor"
+                                                                                class="w-6 h-6 text-green-500">
+                                                                                <path stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                                                            </svg>
+                                                                            <span
+                                                                                class="text-sm text-green-500 ms-2 mt-0.5">
+                                                                                Siap pengajuan</span>
+                                                                        @else
+                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                fill="none" viewBox="0 0 24 24"
+                                                                                stroke-width="1.5" stroke="currentColor"
+                                                                                class="w-6 h-6 text-red-500">
+                                                                                <path stroke-linecap="round"
+                                                                                    stroke-linejoin="round"
+                                                                                    d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                                                            </svg>
+                                                                            <span class="text-sm text-red-500 ms-2 mt-0.5">
+                                                                                Belum siap pengajuan </span>
+                                                                        @endif
                                                                     </div>
                                                                 </td>
                                                                 <td class="px-6 py-4">

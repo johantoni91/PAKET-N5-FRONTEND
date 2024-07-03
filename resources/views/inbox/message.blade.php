@@ -62,7 +62,6 @@
 </div>
 <script>
     $(function() {
-        // $("#refreshData").load(document.URL + " #refreshData");
         $('form').on('submit', function(e) {
             e.preventDefault();
             $.ajax({

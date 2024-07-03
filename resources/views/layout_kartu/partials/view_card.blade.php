@@ -339,8 +339,7 @@
                 @if ($starterPack['tanda_tangan'] != '')
                     <div class="flex flex-row justify-center">
                         <button id="unduh{{ $item['id'] }}"
-                            class="bg-slate-200 p-2 rounded-lg mb-3 dark:bg-black dark:text-white">Siap untuk
-                            pengajuan</button>
+                            class="bg-slate-200 p-2 rounded-lg mb-3 dark:bg-black dark:text-white">{{ $item['card'] ? 'Ubah kartu untuk pengajuan' : 'Siap untuk pengajuan' }}</button>
                     </div>
                 @else
                     <small class="block text-red-500 font-semibold">Mohon tambahkan tanda tangan (klik pada ikon profil

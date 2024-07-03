@@ -27,9 +27,11 @@
                             <div
                                 class="bg-white dark:bg-gray-900 border border-slate-200 dark:border-slate-700/40  rounded-md w-full relative mb-4">
                                 <div class="border-b border-slate-200 dark:border-slate-700/40 dark:text-slate-300/70">
-                                    <div class="flex flex-row justify-between">
-                                        <h4 class="font-medium py-3 px-4 text-lg flex-1 self-center mb-2 md:mb-0">Membuat
+                                    <div class="flex flex-row justify-between py-3 px-4">
+                                        <h4 class="font-medium text-lg flex-1 self-center mb-2 md:mb-0">Membuat
                                             Kartu Baru</h4>
+                                        <a href="{{ route('layout.kartu') }}"
+                                            class="focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">Kembali</a>
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-1 p-4 overflow-scroll">

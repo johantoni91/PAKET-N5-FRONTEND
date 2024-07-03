@@ -18,6 +18,15 @@ class RoleApi
         }
     }
 
+    public static function getWithPagination()
+    {
+        try {
+            return Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . self::$path . '/pagination')->json();
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    }
+
     public static function find($role)
     {
         try {

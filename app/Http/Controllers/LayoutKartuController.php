@@ -31,6 +31,17 @@ class LayoutKartuController extends Controller
         }
     }
 
+    public function search()
+    {
+        $input = [
+            'categories' => request('categories'),
+            'card'       => request('card'),
+            'title'      => request('title'),
+            'created_at' => request('created_at'),
+            'pagination' => request('pagination')
+        ];
+    }
+
     public function create()
     {
         return view('layout_kartu.create', [
@@ -232,8 +243,15 @@ class LayoutKartuController extends Controller
                 'belakang'  => $req->image2
             ]);
             $kartu = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/kartu' . '/' . $req->id . '/card', ['card' => $var])->json();
+            $kartu_all = KartuApi::getWithPagination()['data'];
             if ($kartu['status'] == true) {
                 return response()->json([
+                    'view'    => view($this->view, [
+                        'view'        => $this->view,
+                        'title'       => $this->title,
+                        'data'        => $kartu_all,
+                        'starterPack' => helper::starterPack()
+                    ]),
                     'message' => 'Kartu berhasil disimpan',
                     'kartu'   => $kartu['data']
                 ], 200);

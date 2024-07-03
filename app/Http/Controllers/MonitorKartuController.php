@@ -36,14 +36,14 @@ class MonitorKartuController extends Controller
     function search()
     {
         $input = [
-            'nip'        => request('nip'),
             'nama'       => request('nama'),
             'status'     => request('status'),
             'alasan'     => request('alasan'),
             'pagination' => request('pagination') ?? 5
         ];
 
-        $data = Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . '/monitor/search', $input)->json()['data'];
+        $data = Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . '/monitor/search', $input)->json();
+        dd($data);
         return view($this->monitor_view, [
             'view'        => $this->monitor_view,
             'title'       => $this->monitor_title,
