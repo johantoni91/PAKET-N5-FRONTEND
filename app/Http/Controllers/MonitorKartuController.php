@@ -42,8 +42,7 @@ class MonitorKartuController extends Controller
             'pagination' => request('pagination') ?? 5
         ];
 
-        $data = Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . '/monitor/search', $input)->json();
-        dd($data);
+        $data = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/monitor/search', $input)->json()['data'];
         return view($this->monitor_view, [
             'view'        => $this->monitor_view,
             'title'       => $this->monitor_title,

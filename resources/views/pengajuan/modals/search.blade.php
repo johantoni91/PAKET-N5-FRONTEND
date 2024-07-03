@@ -42,18 +42,21 @@
                                         <option
                                             {{ request('status') == '' || request('status') == null ? 'selected' : '' }}
                                             disabled>-- Status --</option>
-                                        <option {{ request('status') == 0 ? 'selected' : '' }} value=0>Ditolak</option>
-                                        <option {{ request('status') == 1 ? 'selected' : '' }} value=1>Mengajukan
+                                        <option {{ request('status') == 0 ? 'selected' : '' }} value="0">Ditolak
                                         </option>
-                                        <option {{ request('status') == 2 ? 'selected' : '' }} value=2>Proses pencetakan
+                                        <option {{ request('status') == 1 ? 'selected' : '' }} value="1">Mengajukan
                                         </option>
-                                        <option {{ request('status') == 3 ? 'selected' : '' }} value=3>Selesai</option>
+                                        <option {{ request('status') == 2 ? 'selected' : '' }} value="2">Proses
+                                            pencetakan
+                                        </option>
+                                        <option {{ request('status') == 3 ? 'selected' : '' }} value="3">Selesai
+                                        </option>
                                     @else
                                         <option selected disabled>-- Status --</option>
-                                        <option value=0>Ditolak</option>
-                                        <option value=1>Mengajukan</option>
-                                        <option value=2>Proses pencetakan</option>
-                                        <option value=3>Selesai</option>
+                                        <option value="0">Ditolak</option>
+                                        <option value="1">Mengajukan</option>
+                                        <option value="2">Proses pencetakan</option>
+                                        <option value="3">Selesai</option>
                                     @endif
                                 </select>
                             </div>

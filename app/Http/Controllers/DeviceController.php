@@ -22,8 +22,7 @@ class DeviceController extends Controller
                 'view'        => $this->view,
                 'title'       => $this->title,
                 'data'        => Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/perangkat' . '/' . Session::get('data')['satker'])->json()['data'],
-                'starterPack' => helper::starterPack(),
-                'input'       => null
+                'starterPack' => helper::starterPack()
             ]);
         } catch (\Throwable $th) {
             return redirect()->route('logout');
@@ -32,15 +31,13 @@ class DeviceController extends Controller
 
     function search()
     {
-        $result = Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/perangkat/search', ['satker_name' => request('satker'), 'satker_type' => request('type'), 'profile' => session('data')['satker']])->json()['data'];
+        $input = ['satker_name' => request('satker'), 'satker_type' => request('type'), 'profile' => session('data')['satker'], 'pagination' => request('pagination') ?? 5];
+        $result = Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/perangkat/search', $input)->json()['data'];
         return view($this->view, [
             'view'        => $this->view,
             'title'       => $this->title,
             'data'        => $result,
-            'input'       => [
-                'satker_name'    => request('satker'),
-                'satker_type'    => request('type'),
-            ],
+            'input'       => $input,
             'starterPack' => helper::starterPack()
         ]);
     }

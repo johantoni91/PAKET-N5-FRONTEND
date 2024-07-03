@@ -116,7 +116,7 @@
                                                                                 </td>
                                                                                 <td
                                                                                     class="text-center px-6 py-4 dark:text-white text-justify">
-                                                                                    {{ $item['satker_address'] }}
+                                                                                    {!! $item['satker_address'] !!}
                                                                                 </td>
                                                                                 <td class="text-start px-6 py-4 dark:text-white"
                                                                                     style="text-wrap: wrap">
