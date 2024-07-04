@@ -72,6 +72,9 @@
                                                                 Status
                                                             </th>
                                                             <th scope="col" class="px-6 py-3">
+                                                                Waktu Pembaharuan
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3">
                                                                 Aksi
                                                             </th>
                                                         </tr>
@@ -141,6 +144,9 @@
                                                                                 Belum siap pengajuan </span>
                                                                         @endif
                                                                     </div>
+                                                                </td>
+                                                                <td class="px-6 py-4">
+                                                                    {{ date('d M Y H:i:s', strtotime($item['updated_at'])) }}
                                                                 </td>
                                                                 <td class="px-6 py-4">
                                                                     <div

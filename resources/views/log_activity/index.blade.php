@@ -93,23 +93,23 @@
                                                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                                         {{ $item['username'] }}
                                                                     </th>
-                                                                    <td class="px-6 py-4">
+                                                                    <td class="px-6 py-4 text-center">
                                                                         {{ $item['ip_address'] }}
                                                                     </td>
-                                                                    <td class="px-6 py-4">
+                                                                    <td class="px-6 py-4 text-center">
                                                                         {{ $item['browser'] }}
                                                                     </td>
-                                                                    <td class="px-6 py-4">
+                                                                    <td class="px-6 py-4 text-center">
                                                                         {{ $item['browser_version'] }}
                                                                     </td>
-                                                                    <td class="px-6 py-4">
+                                                                    <td class="px-6 py-4 text-center">
                                                                         {{ $item['os'] }}
                                                                     </td>
                                                                     <td class="px-6 py-4">
                                                                         {{ $item['log_detail'] }}
                                                                     </td>
                                                                     <td class="px-6 py-4 text-center">
-                                                                        {{ date('d M Y h:i:s', strtotime($item['created_at'])) }}
+                                                                        {{ date('d M Y H:i:s', strtotime($item['created_at'])) }}
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
