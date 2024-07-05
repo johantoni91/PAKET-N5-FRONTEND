@@ -69,44 +69,48 @@ class KepegawaianController extends Controller
 
     function store(Request $req)
     {
-        if ($req->nip == null && $req->nrp == null) {
-            Alert::warning('Perhatian', 'Harap isi NRP / NIP !');
-            return back();
-        }
+        try {
+            if ($req->nip == null && $req->nrp == null) {
+                Alert::warning('Perhatian', 'Harap isi NRP / NIP !');
+                return back();
+            }
 
-        $input = [
-            'nama'           =>  $req->nama,
-            'jabatan'        =>  $req->jabatan,
-            'nip'            =>  $req->nip,
-            'nrp'            =>  $req->nrp,
-            'tgl_lahir'      =>  $req->tgl_lahir,
-            'eselon'         =>  $req->eselon,
-            'GOL_KD'         =>  $req->GOL_KD,
-            'golpang'        =>  $req->golongan,
-            'jaksa_tu'       =>  $req->jaksa_tu,
-            'struktural_non' =>  $req->struktural_non,
-            'jenis_kelamin'  =>  $req->jenis_kelamin,
-            'nama_satker'    =>  $req->nama_satker,
-            'agama'          =>  $req->agama,
-            'status_pegawai' =>  $req->status_pegawai,
-        ];
+            $input = [
+                'nama'           =>  $req->nama,
+                'jabatan'        =>  $req->jabatan,
+                'nip'            =>  $req->nip,
+                'nrp'            =>  $req->nrp,
+                'tgl_lahir'      =>  $req->tgl_lahir,
+                'eselon'         =>  $req->eselon,
+                'GOL_KD'         =>  $req->GOL_KD,
+                'golpang'        =>  $req->golongan,
+                'jaksa_tu'       =>  $req->jaksa_tu,
+                'struktural_non' =>  $req->struktural_non,
+                'jenis_kelamin'  =>  $req->jenis_kelamin,
+                'nama_satker'    =>  $req->nama_satker,
+                'agama'          =>  $req->agama,
+                'status_pegawai' =>  $req->status_pegawai,
+            ];
 
-        $img = $req->file('foto_pegawai');
-        $gambar = '';
-        if ($req->nip && !$req->nrp) {
-            $gambar = $req->nip . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
-        } elseif (!$req->nip && $req->nrp) {
-            $gambar = $req->nrp . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
-        } elseif ($req->nip && $req->nrp) {
-            $gambar = $req->nip . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
-        }
-        $pegawai = PegawaiApi::insert($img, $gambar, $input)->json();
-        if ($pegawai['status'] == true) {
-            Alert::success('Berhasil', 'Berhasil menambahkan pegawai');
+            $img = $req->file('foto_pegawai');
+            $gambar = '';
+            if ($req->nip && !$req->nrp) {
+                $gambar = $req->nip . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
+            } elseif (!$req->nip && $req->nrp) {
+                $gambar = $req->nrp . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
+            } elseif ($req->nip && $req->nrp) {
+                $gambar = $req->nip . '_' . Carbon::now()->format('dmYhis') . '.' . $req->file('foto_pegawai')->getClientOriginalExtension();
+            }
+            $pegawai = PegawaiApi::insert($img, $gambar, $input)->json();
+            if ($pegawai['status'] == true) {
+                Alert::success('Berhasil', 'Berhasil menambahkan pegawai');
+                return back();
+            }
+            Alert::warning('Gagal menambahkan pegawai', $pegawai['error']);
             return back();
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
         }
-        Alert::warning('Gagal menambahkan pegawai', $pegawai['error']);
-        return back();
     }
 
     function update(Request $req, $id)

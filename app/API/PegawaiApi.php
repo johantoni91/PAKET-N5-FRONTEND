@@ -64,7 +64,7 @@ class PegawaiApi
     private static function arr($input): array
     {
         $agent = new Agent();
-        $arr   = [
+        return [
             'nip'             => $input['nip'],
             'nrp'             => $input['nrp'],
             'nama'            => $input['nama'],
@@ -87,6 +87,5 @@ class PegawaiApi
             'ip_address'      => Request::ip(),
             'mobile'          => $agent->device(),
         ];
-        return $arr;
     }
 }

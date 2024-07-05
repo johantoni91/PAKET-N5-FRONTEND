@@ -70,7 +70,7 @@
                                                         <div class="flex flex-row gap-5">
                                                             <p class="my-auto w-24 dark:text-white">NIP</p>
                                                             <span
-                                                                class="text-green-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{ $starterPack['profile']['nip'] }}</span>
+                                                                class="text-green-500 drop-shadow-green text-sm block w-full p-2.5">{{ $starterPack['profile']['nip'] }}</span>
 
                                                         </div>
                                                         <div class="flex flex-row gap-5">
