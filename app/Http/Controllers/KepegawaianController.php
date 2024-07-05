@@ -109,7 +109,8 @@ class KepegawaianController extends Controller
             Alert::warning('Gagal menambahkan pegawai', $pegawai['error']);
             return back();
         } catch (\Throwable $th) {
-            dd($th->getMessage());
+            Alert::error('Gagal menambahkan pegawai', $th->getMessage());
+            return back();
         }
     }
 

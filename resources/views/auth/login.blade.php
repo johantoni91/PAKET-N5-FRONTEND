@@ -14,7 +14,7 @@
             </button>
         </div>
         <div
-            class="w-[80%] m-auto bg-[#B6C4B6]/60 dark:bg-slate-800/60 rounded-lg shadow-lg shadow-slate-800 dark:shadow-white sm:max-w-md">
+            class="w-[80%] m-auto bg-[#B6C4B6]/60 dark:bg-slate-800/60 rounded-lg shadow-md shadow-yellow-500 dark:shadow-white sm:max-w-md">
             <div
                 class="text-center p-6 bg-[#E8DFCA]/60 dark:bg-slate-900/60 border-b border-[#E8DFCA]/60 dark:border-slate-900/60 rounded-t">
                 <a href="{{ route('login') }}"><img src="assets/images/kejaksaan-logo.png" alt=""
@@ -39,7 +39,7 @@
                 </div>
                 <div class="mt-4">
                     <button
-                        class="w-full px-2 py-2 tracking-wide text-white transition-colors duration-200 transform bg-[#4F6F52]/60 dark:bg-slate-900/60 dark:hover:bg-slate-900/40 hover:bg-[#4F6F52] rounded focus:outline-none">
+                        class="w-full px-2 py-2 font-semibold tracking-wide dark:text-white transition-colors duration-200 transform bg-[#4F6F52]/60 dark:bg-slate-900/60 dark:hover:bg-slate-900/40 hover:bg-[#4F6F52]/40 rounded focus:outline-none">
                         Login
                     </button>
                 </div>
