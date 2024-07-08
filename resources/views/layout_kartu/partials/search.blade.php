@@ -24,11 +24,10 @@
 
             <!-- Modal body -->
             <div class="p-4 md:p-5">
-                <form class="max-w-md mx-auto" action="{{ route('rating.search') }}">
+                <form class="max-w-md mx-auto" action="{{ route('layout.kartu.search') }}">
                     <div class="relative z-0 w-full mb-5 group">
                         <select name="categories" id="floating_categories"
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-                            <option @if (!isset($input['categories'])) selected @endif>Semua</option>
                             <option value="0">Kartu Acara</option>
                             <option value="1">Kartu Identitas</option>
                             <option value="2">Kartu Intel</option>
@@ -37,16 +36,15 @@
                             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Kategori
                             Kartu</label>
                     </div>
-                    <div class="relative z-0 w-full mb-5 group">
+                    {{-- <div class="relative z-0 w-full mb-5 group">
                         <select name="card" id="floating_card"
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-                            <option @if (!isset($input['card'])) selected @endif>Semua</option>
                             <option value="0">Belum siap pengajuan</option>
                             <option value="1">Siap pengajuan</option>
                         </select>
                         <label for="floating_browser"
                             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Status</label>
-                    </div>
+                    </div> --}}
                     <div class="relative z-0 w-full mb-5 group">
                         <input type="text" id="title" name="title" placeholder=" "
                             value="{{ $input['title'] ?? '' }}"
@@ -55,12 +53,12 @@
                             class="absolute text-sm text-gray-500 dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Kartu</label>
                     </div>
                     <div class="relative z-0 w-full mb-5 group">
-                        <input value="{{ $input['created_at'] ?? date('Y-m-d H:i:s') }}" type="datetime-local"
-                            name="created_at" placeholder=" " id="created_at"
+                        <input value="{{ $input['updated_at'] ?? '' }}" type="datetime-local" name="updated_at"
+                            placeholder=" " id="updated_at"
                             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
-                        <label for="created_at"
-                            class="absolute text-sm text-gray-500 dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Tanggal
-                            pembuatan</label>
+                        <label for="updated_at"
+                            class="absolute text-sm text-gray-500 dark:text-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Waktu
+                            Pembaharuan</label>
                     </div>
                     <div class="relative z-0 w-full mb-5 group">
                         <input type="number" id="pagination" name="pagination" placeholder=" "

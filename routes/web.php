@@ -122,6 +122,7 @@ Route::middleware(['auth'])->group(function () {
     // LAYOUT KARTU
     Route::middleware(['role_layout'])->group(function () {
         Route::get('/layout/kartu', [LayoutKartuController::class, 'index'])->name('layout.kartu');
+        Route::get('/layout/kartu/search', [LayoutKartuController::class, 'search'])->name('layout.kartu.search');
         Route::post('/layout/result/kartu', [LayoutKartuController::class, 'resultCard'])->name('layout.kartu.result');
         Route::get('/layout/create/kartu', [LayoutKartuController::class, 'create'])->name('layout.kartu.create');
         Route::get('/layout/{id}/kartu', [LayoutKartuController::class, 'find'])->name('layout.find.kartu');

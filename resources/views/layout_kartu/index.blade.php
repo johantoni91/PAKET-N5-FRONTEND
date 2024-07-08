@@ -30,7 +30,7 @@
                                                     class="focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-slate-100 via-slate-100 to-[#F4CE14] hover:from-[#F4CE14] hover:via-slate-100 hover:to-slate-100 dark:text-white text-sm font-medium py-1 px-3 rounded">+
                                                     Kartu</a>
                                                 <div class="justify-center">
-                                                    {{-- <div class="flex flex-row justify-between px-5">
+                                                    <div class="flex flex-row justify-between px-5">
                                                         <button type="button" data-modal-target="search"
                                                             data-modal-toggle="search"
                                                             class="flex items-center gap-1 focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-slate-100 via-slate-100 to-[#F4CE14] hover:from-[#F4CE14] hover:via-slate-100 hover:to-slate-100 dark:text-white text-sm font-medium py-1 px-3 rounded">
@@ -42,12 +42,12 @@
                                                             </svg> Cari
                                                         </button>
                                                         @include('layout_kartu.partials.search')
-                                                    </div> --}}
-                                                    @if (!request()->routeIs('layout.kartu'))
-                                                        <a href="{{ route('layout.kartu') }}"
-                                                            class="ms-1 focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">Kembali
-                                                        </a>
-                                                    @endif
+                                                        @if (!request()->routeIs('layout.kartu'))
+                                                            <a href="{{ route('layout.kartu') }}"
+                                                                class="ms-1 focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">Kembali
+                                                            </a>
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -146,7 +146,9 @@
                                                                     </div>
                                                                 </td>
                                                                 <td class="px-6 py-4">
-                                                                    {{ date('d M Y H:i:s', strtotime($item['updated_at'])) }}
+                                                                    {{ Carbon\Carbon::parse(strtotime($item['updated_at']))->translatedFormat('l, d F Y') }}
+                                                                    <br>
+                                                                    {{ Carbon\Carbon::parse(strtotime($item['updated_at']))->translatedFormat('H:i:s') }}
                                                                 </td>
                                                                 <td class="px-6 py-4">
                                                                     <div
@@ -218,8 +220,8 @@
                             </div>
                         </div>
                     </div>
-                    @include('partials.footer')
                 </div>
+                @include('partials.footer')
             </div>
         </div>
     </div>

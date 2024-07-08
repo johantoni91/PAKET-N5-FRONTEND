@@ -30,10 +30,10 @@ class FaqApi
         }
     }
 
-    public static function update($id, $input, $image, $image_name = null)
+    public static function update($id, $input, $image, $image_name)
     {
         try {
-            if ($image_name == null) {
+            if ($image_name == null || $image == null) {
                 return Http::withToken(Session::get('data')['token'])->post(env('API_URL', '') . self::$url . '/' . $id . '/update', $input)->json();
             }
             return Http::withToken(Session::get('data')['token'])->attach('image', file_get_contents($image), $image_name)->post(env('API_URL', '') . self::$url . '/' . $id . '/update', $input)->json();

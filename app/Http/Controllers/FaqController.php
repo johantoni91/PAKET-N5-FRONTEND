@@ -53,6 +53,8 @@ class FaqController extends Controller
     function update(Request $req, $id)
     {
         try {
+            $image = null;
+            $image_name = null;
             $input = [
                 'question'   => $req->question,
                 'answer'     => $req->answer,
@@ -67,6 +69,7 @@ class FaqController extends Controller
                 return redirect()->route('faq');
             }
         } catch (\Throwable $th) {
+            dd($th->getMessage());
             Alert::error('Error');
             return back();
         }

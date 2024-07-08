@@ -109,7 +109,9 @@
                                                                         {{ $item['log_detail'] }}
                                                                     </td>
                                                                     <td class="px-6 py-4 text-center">
-                                                                        {{ date('d M Y H:i:s', strtotime($item['created_at'])) }}
+                                                                        {{ Carbon\Carbon::parse(strtotime($item['created_at']))->translatedFormat('l, d F Y') }}
+                                                                        <br>
+                                                                        {{ Carbon\Carbon::parse(strtotime($item['created_at']))->translatedFormat('H:i:s') }}
                                                                     </td>
                                                                 </tr>
                                                             @endforeach

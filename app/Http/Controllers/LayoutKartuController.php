@@ -35,11 +35,18 @@ class LayoutKartuController extends Controller
     {
         $input = [
             'categories' => request('categories'),
-            'card'       => request('card'),
             'title'      => request('title'),
-            'created_at' => request('created_at'),
-            'pagination' => request('pagination')
+            'updated_at' => request('updated_at'),
+            'pagination' => request('pagination') ?? 5
         ];
+        $res = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/kartu/search', $input)->json()['data'];
+        return view($this->view, [
+            'view'        => $this->view,
+            'title'       => $this->title,
+            'data'        => $res,
+            'input'       => $input,
+            'starterPack' => helper::starterPack()
+        ]);
     }
 
     public function create()

@@ -96,8 +96,9 @@
                                                     Aktif
                                                 </td>
                                                 <td class="px-6 py-4 text-center dark:text-white text-black">
-                                                    {{ date('d M Y', strtotime($i['created_at'])) }} <br>
-                                                    {{ date('H:i:s', strtotime($i['created_at'])) }}
+                                                    {{ Carbon\Carbon::parse(strtotime($i['created_at']))->translatedFormat('l, d F Y') }}
+                                                    <br>
+                                                    {{ Carbon\Carbon::parse(strtotime($i['created_at']))->translatedFormat('H:i:s') }}
                                                 </td>
                                             </tr>
                                         @endforeach
