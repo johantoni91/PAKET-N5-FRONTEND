@@ -111,7 +111,7 @@
                                                                                     {{ $item['satker_phone'] }}
                                                                                 </td>
                                                                                 <td
-                                                                                    class="text-center px-6 py-4 dark:text-white">
+                                                                                    class="text-justify px-6 py-4 dark:text-white">
                                                                                     {{ $item['satker_email'] }}
                                                                                 </td>
                                                                                 <td

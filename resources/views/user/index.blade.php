@@ -116,14 +116,14 @@
                                                                             </svg> {{ $item['name'] }}
                                                                         @endif
                                                                     </th>
-                                                                    <td class="text-center px-6 py-4 dark:text-white">
+                                                                    <td class="text-justify px-6 py-4 dark:text-white">
                                                                         {{ $item['email'] }}
                                                                     </td>
                                                                     <td
                                                                         class="text-center px-6 py-4 dark:text-white text-center">
                                                                         {{ $item['phone'] }}
                                                                     </td>
-                                                                    <td class="text-center px-6 py-4 dark:text-white">
+                                                                    <td class="text-justify px-6 py-4 dark:text-white">
                                                                         {{ $item['roles'] }}
                                                                     </td>
                                                                     <td
