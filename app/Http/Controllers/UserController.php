@@ -237,7 +237,7 @@ class UserController extends Controller
 
     function pdf()
     {
-        $data['list'] = UserApi::get()['data']['data'];
+        $data['list'] = Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/users')->json()['data'];
         $pdf = Pdf::loadView('exports.pdf.users', $data);
         return $pdf->download('Users' . Carbon::now()->format('dmY') . '.pdf');
     }

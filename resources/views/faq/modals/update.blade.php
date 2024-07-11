@@ -43,8 +43,9 @@
                             class="bg-gray-50 mx-auto text-sm block w-auto border border-gray-300 rounded-lg dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                             onchange="newPhoto{{ $item['id'] }}(event)">
                         <div class="flex bg-slate-300 mt-3 p-2 rounded-lg">
-                            <img src="{{ asset('assets/images/pattern.png') }}" id="photo{{ $item['id'] }}"
-                                alt="new-photo" class="mx-auto h-40 w-40 inline-block rounded-lg justify-center my-3">
+                            <img src="{{ $item['image'] ?? asset('assets/images/pattern.png') }}"
+                                id="photo{{ $item['id'] }}" alt="new-photo"
+                                class="mx-auto h-40 w-40 inline-block rounded-lg justify-center my-3">
                         </div>
                         <script>
                             var newPhoto{{ $item['id'] }} = function(event) {

@@ -24,17 +24,17 @@
                 <div class="grid grid-cols-12 sm:grid-cols-12 md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4">
                     <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                         <div
-                            class="bg-white shadow-sm shadow-orange-800 dark:shadow-cyan-300 dark:bg-white rounded-md w-full relative mb-4">
+                            class="bg-white shadow-sm shadow-orange-800 dark:shadow-cyan-300 dark:bg-white/30 rounded-md w-full relative mb-4">
                             <div class="flex-auto p-4">
-                                <div class="flex justify-between xl:gap-x-2 items-cente">
+                                <div class="flex justify-between xl:gap-x-2 items-center">
                                     <div class="self-center">
-                                        <p class="text-gray-800 font-semibold dark:text-black uppercase">Total Pengguna
+                                        <p class="text-gray-800 font-semibold dark:text-white uppercase">Total Pengguna
                                         </p>
-                                        <h3 class="text-center my-4 font-semibold text-[30px] dark:text-black">
+                                        <h3 class="text-center my-4 font-semibold text-[30px] dark:text-white">
                                             {{ $data['user'] }}</h3>
                                     </div>
                                     <div class="self-center">
-                                        <i data-lucide="user" class=" h-16 w-16 stroke-green/30 font-bold"></i>
+                                        <i data-lucide="user" class=" h-16 w-16 stroke-green font-bold"></i>
                                     </div>
                                 </div>
                             </div>
@@ -42,17 +42,17 @@
                     </div>
                     <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                         <div
-                            class="bg-white shadow-sm shadow-orange-800 dark:shadow-cyan-300 dark:bg-white rounded-md w-full relative mb-4">
+                            class="bg-white shadow-sm shadow-orange-800 dark:shadow-cyan-300 dark:bg-white/30 rounded-md w-full relative mb-4">
                             <div class="flex-auto p-4">
-                                <div class="flex justify-between xl:gap-x-2 items-cente">
+                                <div class="flex justify-between xl:gap-x-2 items-center">
                                     <div class="self-center">
-                                        <p class="text-gray-800 font-semibold dark:text-black uppercase">Total Satker
+                                        <p class="text-gray-800 font-semibold dark:text-white uppercase">Total Satker
                                         </p>
-                                        <h3 class="text-center my-4 font-semibold text-[30px] dark:text-black">
+                                        <h3 class="text-center my-4 font-semibold text-[30px] dark:text-white">
                                             {{ $data['satker'] }}</h3>
                                     </div>
                                     <div class="self-center">
-                                        <i data-lucide="building-2" class=" h-16 w-16 stroke-green/30"></i>
+                                        <i data-lucide="building-2" class=" h-16 w-16 stroke-green"></i>
                                     </div>
                                 </div>
                             </div>
@@ -60,17 +60,17 @@
                     </div>
                     <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                         <div
-                            class="bg-white shadow-sm shadow-orange-800 dark:shadow-cyan-300 dark:bg-white rounded-md w-full relative mb-4">
+                            class="bg-white shadow-sm shadow-orange-800 dark:shadow-cyan-300 dark:bg-white/30 rounded-md w-full relative mb-4">
                             <div class="flex-auto p-4">
-                                <div class="flex justify-between xl:gap-x-2 items-cente">
+                                <div class="flex justify-between xl:gap-x-2 items-center">
                                     <div class="self-center">
-                                        <p class="text-gray-800 font-semibold dark:text-black uppercase">Total Pegawai
+                                        <p class="text-gray-800 font-semibold dark:text-white uppercase">Total Pegawai
                                         </p>
-                                        <h3 class="text-center my-4 font-semibold text-[30px] dark:text-black">
+                                        <h3 class="text-center my-4 font-semibold text-[30px] dark:text-white">
                                             {{ $data['pegawai'] }}</h3>
                                     </div>
                                     <div class="self-center">
-                                        <i data-lucide="users" class=" h-16 w-16 stroke-green/30"></i>
+                                        <i data-lucide="users" class=" h-16 w-16 stroke-green"></i>
                                     </div>
                                 </div>
                             </div>
@@ -78,18 +78,18 @@
                     </div>
                     <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                         <div
-                            class="bg-white shadow-sm shadow-orange-800 dark:shadow-cyan-300 dark:bg-white rounded-md w-full relative mb-4">
+                            class="bg-white shadow-sm shadow-orange-800 dark:shadow-cyan-300 dark:bg-white/30 rounded-md w-full relative mb-4">
                             <div class="flex-auto p-4">
-                                <div class="flex justify-between xl:gap-x-2 items-cente">
+                                <div class="flex justify-between xl:gap-x-2 items-center">
                                     <div class="self-center">
-                                        <p class="text-gray-800 font-semibold dark:text-black uppercase">Total Pengajuan
+                                        <p class="text-gray-800 font-semibold dark:text-white uppercase">Total Pengajuan
                                         </p>
-                                        <h3 class="my-4 font-semibold text-[30px] dark:text-black text-center">
+                                        <h3 class="my-4 font-semibold text-[30px] dark:text-white text-center">
                                             {{ $data['pengajuan'] }}
                                         </h3>
                                     </div>
                                     <div class="self-center">
-                                        <i data-lucide="pen" class=" h-16 w-16 stroke-yellow-500/30"></i>
+                                        <i data-lucide="pen" class=" h-16 w-16 stroke-yellow-500"></i>
                                     </div>
                                 </div>
                             </div>
@@ -97,18 +97,18 @@
                     </div>
                     <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 xl:col-span-3">
                         <div
-                            class="bg-white shadow-sm shadow-orange-800 dark:shadow-cyan-300 dark:bg-white rounded-md w-full relative mb-4">
+                            class="bg-white shadow-sm shadow-orange-800 dark:shadow-cyan-300 dark:bg-white/30 rounded-md w-full relative mb-4">
                             <div class="flex-auto p-4">
-                                <div class="flex justify-between xl:gap-x-2 items-cente">
+                                <div class="flex justify-between xl:gap-x-2 items-center">
                                     <div class="self-center">
-                                        <p class="text-gray-800 font-semibold dark:text-black uppercase">Total Penilaian
+                                        <p class="text-gray-800 font-semibold dark:text-white uppercase">Total Penilaian
                                         </p>
-                                        <h3 class="my-4 font-semibold text-[30px] dark:text-black text-center">
+                                        <h3 class="my-4 font-semibold text-[30px] dark:text-white text-center">
                                             {{ $data['rating'] }}
                                         </h3>
                                     </div>
                                     <div class="self-center">
-                                        <i data-lucide="star" class=" h-16 w-16 stroke-yellow-500/30"></i>
+                                        <i data-lucide="star" class=" h-16 w-16 stroke-yellow-500"></i>
                                     </div>
                                 </div>
                             </div>
@@ -117,17 +117,17 @@
                 </div>
                 <div class="flex flex-row flex-wrap justify-between gap-3 items-center my-5">
                     <div
-                        class="p-4 w-full lg:w-[30%] h-90 rounded-lg shadow shadow-orange-800 dark:shadow-cyan-700 dark:text-black">
+                        class="p-4 w-full lg:w-[30%] h-90 rounded-lg shadow shadow-orange-800 dark:shadow-cyan-300 dark:text-white">
                         <h3 class="text-center font-semibold mb-1 dark:text-white">Persetujuan</h3>
                         <div class="w-full h-full" id="approval"></div>
                     </div>
                     <div
-                        class="p-4 w-full lg:w-[30%] h-90 rounded-lg shadow shadow-orange-800 dark:shadow-cyan-700 dark:text-black">
+                        class="p-4 w-full lg:w-[30%] h-90 rounded-lg shadow shadow-orange-800 dark:shadow-cyan-300 dark:text-white">
                         <h3 class="text-center font-semibold mb-1 dark:text-white">Status Perangkat</h3>
                         <div class="w-full h-full" id="perangkat"></div>
                     </div>
                     <div
-                        class="p-4 w-full lg:w-[30%] h-90 rounded-lg shadow shadow-orange-800 dark:shadow-cyan-700 dark:text-black">
+                        class="p-4 w-full lg:w-[30%] h-90 rounded-lg shadow shadow-orange-800 dark:shadow-cyan-300 dark:text-white">
                         <h3 class="text-center font-semibold mb-1 dark:text-white">Pengajuan Terbanyak</h3>
                         <div class="w-full h-full" id="top5"></div>
                     </div>

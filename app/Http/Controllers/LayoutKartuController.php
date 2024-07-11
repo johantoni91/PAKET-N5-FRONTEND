@@ -36,7 +36,6 @@ class LayoutKartuController extends Controller
         $input = [
             'categories' => request('categories'),
             'title'      => request('title'),
-            'updated_at' => request('updated_at'),
             'pagination' => request('pagination') ?? 5
         ];
         $res = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/kartu/search', $input)->json()['data'];

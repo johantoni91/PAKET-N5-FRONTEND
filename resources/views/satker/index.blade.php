@@ -110,8 +110,8 @@
                                                                                     class="text-center px-6 py-4 dark:text-white">
                                                                                     {{ $item['satker_phone'] }}
                                                                                 </td>
-                                                                                <td
-                                                                                    class="text-justify px-6 py-4 dark:text-white">
+                                                                                <td class="text-justify px-6 py-4 dark:text-white"
+                                                                                    style="text-wrap: wrap">
                                                                                     {{ $item['satker_email'] }}
                                                                                 </td>
                                                                                 <td

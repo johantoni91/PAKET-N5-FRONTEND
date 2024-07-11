@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\API\UserApi;
+use Illuminate\Support\Facades\Http;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -14,7 +15,7 @@ class UserExport implements FromCollection, WithHeadings, WithMapping
      */
     public function collection()
     {
-        return collect(UserApi::get()['data']['data']);
+        return collect(Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/users')->json()['data']);
     }
 
     public function headings(): array

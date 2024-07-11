@@ -43,6 +43,11 @@ class LogController extends Controller
             'os'                => LogApi::getColumn('os'),
             'mobile'            => LogApi::getColumn('mobile')
         ];
+        if ((request('start') != null && request('end') == null) || (request('start') == null && request('end') != null)) {
+            Alert::warning('Peringatan', 'Silahkan pilih tanggal mulai dan selesai dengan benar!')->persistent('Dismiss');
+            return back();
+        }
+
         $input = [
             'username'        => request('username'),
             'ip_address'      => request('ip_address'),

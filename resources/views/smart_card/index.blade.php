@@ -50,7 +50,7 @@
                                                 Satuan Kerja
                                             </th>
                                             <th scope="col" class="px-6 py-3">
-                                                Jenis Kartu
+                                                Kartu
                                             </th>
                                             <th scope="col" class="px-6 py-3">
                                                 Kode Unik
