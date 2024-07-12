@@ -46,11 +46,13 @@ class ThrottleRequests
      *
      * @throws \Illuminate\Http\Exceptions\ThrottleRequestsException
      */
-    public function handle($request, Closure $next, $maxAttempts = 60, $decayMinutes = 1, $prefix = '')
+    public function handle($request, Closure $next, $maxAttempts = 5, $decayMinutes = 1, $prefix = '')
     {
-        if (is_string($maxAttempts)
+        if (
+            is_string($maxAttempts)
             && func_num_args() === 3
-            && ! is_null($limiter = $this->limiter->limiter($maxAttempts))) {
+            && !is_null($limiter = $this->limiter->limiter($maxAttempts))
+        ) {
             return $this->handleRequestUsingNamedLimiter($request, $next, $maxAttempts, $limiter);
         }
 
@@ -59,7 +61,7 @@ class ThrottleRequests
             $next,
             [
                 (object) [
-                    'key' => $prefix.$this->resolveRequestSignature($request),
+                    'key' => $prefix . $this->resolveRequestSignature($request),
                     'maxAttempts' => $this->resolveMaxAttempts($request, $maxAttempts),
                     'decayMinutes' => $decayMinutes,
                     'responseCallback' => null,
@@ -94,7 +96,7 @@ class ThrottleRequests
             $next,
             collect(Arr::wrap($limiterResponse))->map(function ($limit) use ($limiterName) {
                 return (object) [
-                    'key' => md5($limiterName.$limit->key),
+                    'key' => md5($limiterName . $limit->key),
                     'maxAttempts' => $limit->maxAttempts,
                     'decayMinutes' => $limit->decayMinutes,
                     'responseCallback' => $limit->responseCallback,
@@ -120,7 +122,7 @@ class ThrottleRequests
                 throw $this->buildException($request, $limit->key, $limit->maxAttempts, $limit->responseCallback);
             }
 
-            $this->limiter->hit($limit->key, $limit->decayMinutes * 60);
+            $this->limiter->hit($limit->key, $limit->decayMinutes * 5);
         }
 
         $response = $next($request);
@@ -149,7 +151,7 @@ class ThrottleRequests
             $maxAttempts = explode('|', $maxAttempts, 2)[$request->user() ? 1 : 0];
         }
 
-        if (! is_numeric($maxAttempts) && $request->user()) {
+        if (!is_numeric($maxAttempts) && $request->user()) {
             $maxAttempts = $request->user()->{$maxAttempts};
         }
 
@@ -169,7 +171,7 @@ class ThrottleRequests
         if ($user = $request->user()) {
             return sha1($user->getAuthIdentifier());
         } elseif ($route = $request->route()) {
-            return sha1($route->getDomain().'|'.$request->ip());
+            return sha1($route->getDomain() . '|' . $request->ip());
         }
 
         throw new RuntimeException('Unable to generate the request signature. Route unavailable.');
@@ -195,8 +197,8 @@ class ThrottleRequests
         );
 
         return is_callable($responseCallback)
-                    ? new HttpResponseException($responseCallback($request, $headers))
-                    : new ThrottleRequestsException('Too Many Attempts.', null, $headers);
+            ? new HttpResponseException($responseCallback($request, $headers))
+            : new ThrottleRequestsException('Too Many Attempts.', null, $headers);
     }
 
     /**
@@ -237,14 +239,17 @@ class ThrottleRequests
      * @param  \Symfony\Component\HttpFoundation\Response|null  $response
      * @return array
      */
-    protected function getHeaders($maxAttempts,
-                                  $remainingAttempts,
-                                  $retryAfter = null,
-                                  ?Response $response = null)
-    {
-        if ($response &&
-            ! is_null($response->headers->get('X-RateLimit-Remaining')) &&
-            (int) $response->headers->get('X-RateLimit-Remaining') <= (int) $remainingAttempts) {
+    protected function getHeaders(
+        $maxAttempts,
+        $remainingAttempts,
+        $retryAfter = null,
+        ?Response $response = null
+    ) {
+        if (
+            $response &&
+            !is_null($response->headers->get('X-RateLimit-Remaining')) &&
+            (int) $response->headers->get('X-RateLimit-Remaining') <= (int) $remainingAttempts
+        ) {
             return [];
         }
 
@@ -253,7 +258,7 @@ class ThrottleRequests
             'X-RateLimit-Remaining' => $remainingAttempts,
         ];
 
-        if (! is_null($retryAfter)) {
+        if (!is_null($retryAfter)) {
             $headers['Retry-After'] = $retryAfter;
             $headers['X-RateLimit-Reset'] = $this->availableAt($retryAfter);
         }

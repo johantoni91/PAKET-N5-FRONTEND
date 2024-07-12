@@ -58,7 +58,7 @@ class LogController extends Controller
             'log_detail'      => request('log_detail'),
             'start'           => request('start'),
             'end'             => request('end'),
-            'pagination'      => request('pagination') ?? 10
+            'pagination'      => request('pagination') ?? 5
         ];
         $res = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/log/search', $input)->json();
         $data = $res['data'];

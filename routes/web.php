@@ -36,8 +36,10 @@ use Illuminate\Http\Request;
 |
  */
 
-Route::get('/login', [AuthController::class, 'loginPage'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login.form');
+Route::middleware(['throttle:global'])->group(function () {
+    Route::get('/login', [AuthController::class, 'loginPage'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.form');
+});
 
 Route::middleware(['auth'])->group(function () {
 
@@ -222,3 +224,4 @@ Route::middleware(['kios'])->group(function () {
 
 //ERR
 Route::get('/404/not-found', [Controller::class, 'error404'])->name('error.404');
+Route::get('/429/too-many-requests', [Controller::class, 'error429'])->name('error.429');
