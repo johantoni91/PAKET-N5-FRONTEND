@@ -1,5 +1,5 @@
 <div id="refresh" class="relative" style="min-height:60dvh; height: 60dvh; max-height: 60dvh;">
-    <ul id="refreshData" class="h-full relative">
+    <ul id="refreshData" class="h-full relative overflow-y-scroll pb-10">
         <div
             class="sticky absolute top-0 w-full text-center bg-slate-500/50 dark:text-green-500 p-5 shadow-md shadow-[#379777] dark:shadow-[#3282B8]">
             <h1 class="font-bold text-black dark:text-white">
@@ -20,8 +20,10 @@
                             <p class="text-sm font-semibold text-gray-900 text-wrap dark:text-black">
                                 {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/user' . '/' . $i['from'] . '/find')->json()['data']['name'] }}
                                 &nbsp;&nbsp;&nbsp;<small
-                                    class="text-white dark:text-white">({{ Carbon\Carbon::parse($i['created_at'])->diffForHumans() }})</small>
+                                    class="text-white dark:text-white">({{ Carbon\Carbon::parse(strtotime($i['created_at']))->translatedFormat('l, d F Y') }})</small>
                             </p>
+                            <p class="text-xs text-justify">
+                                {{ Carbon\Carbon::parse(strtotime($i['created_at']))->translatedFormat('H:i:s') }}</p>
                             <p class="text-sm text-white text-wrap dark:text-white">
                                 {!! nl2br(e($i['message'])) !!}
                             </p>
@@ -32,9 +34,11 @@
                         <div class="max-w-full md:max-w-xs lg:max-w-lg bg-yellow-500 dark:bg-yellow-700 rounded-lg p-3">
                             <p class="text-sm font-semibold text-gray-900 text-wrap text-right dark:text-black">
                                 <small
-                                    class="text-white dark:text-white">({{ Carbon\Carbon::parse($i['created_at'])->diffForHumans() }})</small>&nbsp;&nbsp;&nbsp;
+                                    class="text-white dark:text-white">({{ Carbon\Carbon::parse(strtotime($i['created_at']))->translatedFormat('l, d F Y') }})</small>&nbsp;&nbsp;&nbsp;
                                 {{ $profile['name'] }}
                             </p>
+                            <p class="text-xs text-end text-justify">
+                                {{ Carbon\Carbon::parse(strtotime($i['created_at']))->translatedFormat('H:i:s') }}</p>
                             <p class="text-sm text-end text-white text-wrap text-justify dark:text-white">
                                 {!! $i['from'] == $profile['id'] ? nl2br(e($i['message'])) : '' !!}
                             </p>
@@ -48,7 +52,7 @@
             </li>
         @endforeach
     </ul>
-    <form class="absolute sticky bottom-0 flex flex-row items-center rounded-lg w-full">
+    <form class="absolute bottom-0 flex flex-row items-center rounded-lg w-full">
         <input type="text" name="message" class="w-full py-2 ps-2 border-0 dark:bg-slate-400 text-wrap" />
         <input type="hidden" id="room_id_value" name="room">
         <button type="submit" class="absolute right-2 hover:cursor-pointer text-blue"><svg
@@ -62,6 +66,7 @@
 </div>
 <script>
     $(function() {
+        refreshData.scrollTo(0, document.body.scrollHeight);
         $('form').on('submit', function(e) {
             e.preventDefault();
             $.ajax({

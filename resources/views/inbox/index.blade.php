@@ -41,14 +41,19 @@
                                                                     <li
                                                                         class="py-2 ps-1 hover:bg-slate-400/50 dark:hover:bg-slate-200/50 overflow-scroll">
                                                                         <button id="chat{{ $user['id'] }}"
-                                                                            class="flex flex-row gap-2 items-center">
-                                                                            <div class="flex flex-row items-center">
+                                                                            class="flex flex-row justify-between gap-2 items-center w-full px-2">
+                                                                            <div
+                                                                                class="flex flex-row justify-start items-center">
                                                                                 <img class="w-8 h-8 rounded-full me-1"
                                                                                     src="{{ $user['photo'] ?? asset('assets/images/5856.jpg') }}">
                                                                                 <p
                                                                                     class="text-sm font-medium text-gray-900 truncate dark:text-white">
                                                                                     {{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/pegawai' . '/' . $user['nip'] . '/find')->json()['data']['nama'] ?? '(Pegawai tidak terdaftar)' }}
                                                                                 </p>
+                                                                            </div>
+                                                                            <div id="msg"
+                                                                                class="items-center justify-end">
+
                                                                             </div>
                                                                         </button>
                                                                         <script>
@@ -66,6 +71,17 @@
                                                                                         }
                                                                                     })
                                                                                 })
+                                                                                //                                                                     setInterval(() => {
+                                                                                //                                                                         $.get("{{ route('notif.message') }}", function(data) {
+                                                                                //                                                                             console.log(data)
+                                                                                //                                                                             if (data.count != 0) {
+                                                                                //                                                                                 $("#msg").append(
+                                                                                //                                                                                     `<span id="notif_count"
+        // class="rounded-full px-2 py-1 dark:text-white bg-[#379777] dark:bg-[#3282B8]">${data.count}</span>`
+                                                                                //                                                                                 )
+                                                                                //                                                                             }
+                                                                                //                                                                         })
+                                                                                //                                                                     }, 5000);
                                                                             })
                                                                         </script>
                                                                     </li>
@@ -74,7 +90,7 @@
                                                         </ul>
                                                     </div>
                                                     <div id="room"
-                                                        class="md:w-4/6 w-full flex flex-col justify-between gap-1 bg-slate-200 rounded shadow overflow-y-scroll mb-3 rounded-lg dark:bg-slate-800"
+                                                        class="md:w-4/6 w-full flex flex-col justify-between gap-1 bg-slate-200 rounded shadow mb-3 rounded-lg dark:bg-slate-800"
                                                         style="min-height:60dvh; max-height: 60dvh;">
                                                     </div>
                                                 </div>

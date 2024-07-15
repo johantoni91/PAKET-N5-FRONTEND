@@ -137,9 +137,9 @@
                                                                             </div>
                                                                         </td>
                                                                         <td class="px-6 py-4 dark:text-white">
-                                                                            @if (session('data')['satker'] == '00')
-                                                                                <div
-                                                                                    class="flex flex-row justify-evenly items-center">
+                                                                            <div
+                                                                                class="flex flex-row justify-evenly items-center">
+                                                                                @if (session('data')['satker'] == '00')
                                                                                     @include('perangkat.modals.details')
                                                                                     <button type="button"
                                                                                         data-modal-target="update{{ $item['id'] }}"
@@ -180,46 +180,48 @@
                                                                                                 cy="12" r="3" />
                                                                                         </svg>
                                                                                     </a>
-                                                                                </div>
-                                                                            @else
-                                                                                <button type="button"
-                                                                                    data-modal-target="update{{ $item['id'] }}"
-                                                                                    data-modal-toggle="update{{ $item['id'] }}"
-                                                                                    class="text-black dark:text-white drop-shadow-black dark:drop-shadow-white">
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                        width="24" height="24"
-                                                                                        viewBox="0 0 24 24" fill="none"
-                                                                                        stroke="currentColor"
-                                                                                        stroke-width="2"
-                                                                                        stroke-linecap="round"
-                                                                                        stroke-linejoin="round"
-                                                                                        class="lucide lucide-user-round-search">
-                                                                                        <circle cx="10"
-                                                                                            cy="8" r="5" />
-                                                                                        <path
-                                                                                            d="M2 21a8 8 0 0 1 10.434-7.62" />
-                                                                                        <circle cx="18"
-                                                                                            cy="18" r="3" />
-                                                                                        <path d="m22 22-1.9-1.9" />
-                                                                                    </svg></button>
-                                                                                <a href="{{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/perangkat' . '/' . $item['satker'] . '/find/tools/tc_hardware')->json()['data']? route('perangkat.update.rincian', [$item['satker']]): route('perangkat.rincian', [$item['id']]) }}"
-                                                                                    class="text-center text-blue-600 hover:text-blue-400">
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                        width="24" height="24"
-                                                                                        class="text-center mx-auto"
-                                                                                        viewBox="0 0 24 24" fill="none"
-                                                                                        stroke="currentColor"
-                                                                                        stroke-width="2"
-                                                                                        stroke-linecap="round"
-                                                                                        stroke-linejoin="round"
-                                                                                        class="lucide lucide-settings">
-                                                                                        <path
-                                                                                            d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
-                                                                                        <circle cx="12"
-                                                                                            cy="12" r="3" />
-                                                                                    </svg>
-                                                                                </a>
-                                                                            @endif
+                                                                                @else
+                                                                                    <button type="button"
+                                                                                        data-modal-target="update{{ $item['id'] }}"
+                                                                                        data-modal-toggle="update{{ $item['id'] }}"
+                                                                                        class="text-black dark:text-white drop-shadow-black dark:drop-shadow-white">
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                            width="24" height="24"
+                                                                                            viewBox="0 0 24 24"
+                                                                                            fill="none"
+                                                                                            stroke="currentColor"
+                                                                                            stroke-width="2"
+                                                                                            stroke-linecap="round"
+                                                                                            stroke-linejoin="round"
+                                                                                            class="lucide lucide-user-round-search">
+                                                                                            <circle cx="10"
+                                                                                                cy="8" r="5" />
+                                                                                            <path
+                                                                                                d="M2 21a8 8 0 0 1 10.434-7.62" />
+                                                                                            <circle cx="18"
+                                                                                                cy="18" r="3" />
+                                                                                            <path d="m22 22-1.9-1.9" />
+                                                                                        </svg></button>
+                                                                                    <a href="{{ Illuminate\Support\Facades\Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/perangkat' . '/' . $item['satker'] . '/find/tools/tc_hardware')->json()['data']? route('perangkat.update.rincian', [$item['satker']]): route('perangkat.rincian', [$item['id']]) }}"
+                                                                                        class="text-center text-blue-600 hover:text-blue-400">
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                            width="24" height="24"
+                                                                                            class="text-center mx-auto"
+                                                                                            viewBox="0 0 24 24"
+                                                                                            fill="none"
+                                                                                            stroke="currentColor"
+                                                                                            stroke-width="2"
+                                                                                            stroke-linecap="round"
+                                                                                            stroke-linejoin="round"
+                                                                                            class="lucide lucide-settings">
+                                                                                            <path
+                                                                                                d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+                                                                                            <circle cx="12"
+                                                                                                cy="12" r="3" />
+                                                                                        </svg>
+                                                                                    </a>
+                                                                                @endif
+                                                                            </div>
                                                                             @include('perangkat.modals.update')
                                                                         </td>
                                                                     </tr>
