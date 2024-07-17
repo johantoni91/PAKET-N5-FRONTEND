@@ -46,9 +46,9 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="grid grid-cols-1 p-4 overflow-scroll">
+                                <div class="grid grid-cols-1 p-4">
                                     <div class="sm:-mx-6 lg:-mx-8">
-                                        <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-10">
+                                        <div class="relative block w-full sm:px-6 lg:px-10">
                                             <div class="flex justify-between items-center mb-3">
                                                 <button data-modal-target="create" data-modal-toggle="create"
                                                     class="focus:outline-none dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900 dark:to-[#3282B8] dark:hover:from-[#3282B8] dark:hover:via-slate-900 dark:hover:to-slate-900 bg-gradient-to-r from-white via-white to-[#F4CE14] hover:from-[#F4CE14] hover:via-white hover:to-white dark:text-white text-sm font-medium py-1 px-3 rounded">Tambah
@@ -243,14 +243,14 @@
                                                                 @endif
                                                             </tbody>
                                                         </table>
-                                                        @if ($data)
-                                                            @include('partials.pagination')
-                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    @if ($data)
+                                        @include('partials.pagination')
+                                    @endif
                                 </div>
                             </div>
                         </div>

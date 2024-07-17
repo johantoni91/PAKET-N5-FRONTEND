@@ -43,9 +43,9 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="grid grid-cols-1 p-4 overflow-scroll">
+                                    <div class="grid grid-cols-1 p-4">
                                         <div class="sm:-mx-6 lg:-mx-8">
-                                            <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-8">
+                                            <div class="relative block w-full sm:px-6 lg:px-8">
                                                 <div class="flex flex-col gap-3 mb-5">
                                                     <div class="flex flex-row justify-between px-5">
                                                         {{-- <button type="button" data-modal-target="create"
@@ -179,18 +179,17 @@
                                                                         @endforeach
                                                                     </tbody>
                                                                 </table>
-                                                                @if ($data['data'])
-                                                                    @include('partials.pagination')
-                                                                @else
-                                                                    <div
-                                                                        class="flex flex-row justify-center text-center py-3">
-                                                                        <small class="text-xs text-red-500 italic">Data
-                                                                            kosong /
-                                                                            tidak ditemukan</small>
-                                                                    </div>
-                                                                @endif
                                                             </div>
                                                         </div>
+                                                        @if ($data['data'])
+                                                            @include('partials.pagination')
+                                                        @else
+                                                            <div class="flex flex-row justify-center text-center py-3">
+                                                                <small class="text-xs text-red-500 italic">Data
+                                                                    kosong /
+                                                                    tidak ditemukan</small>
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>

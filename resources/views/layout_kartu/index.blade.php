@@ -21,9 +21,9 @@
                 <div class="xl:w-full  min-h-[calc(100vh-138px)] relative pb-14">
                     <div class="grid md:grid-cols-12 lg:grid-cols-12 xl:grid-cols-12 gap-4 mb-4">
                         <div class="sm:col-span-12  md:col-span-12 lg:col-span-12 xl:col-span-12 xl:col-start-0 ">
-                            <div class="grid grid-cols-1 p-4 overflow-scroll">
+                            <div class="grid grid-cols-1 p-4">
                                 <div class="sm:-mx-6 lg:-mx-8">
-                                    <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-10">
+                                    <div class="relative block w-full sm:px-6 lg:px-10">
                                         <div class="p-4 md:p-5 space-y-4">
                                             <div class="flex flex-row justify-between">
                                                 <a href="{{ route('layout.kartu.create') }}"
@@ -204,16 +204,16 @@
                                                         @endforeach
                                                     </tbody>
                                                 </table>
-                                                @if ($data['data'])
-                                                    @include('partials.pagination')
-                                                @else
-                                                    <div class="flex flex-row justify-center text-center py-3">
-                                                        <small class="text-xs text-red-500 italic">Data
-                                                            kosong /
-                                                            tidak ditemukan</small>
-                                                    </div>
-                                                @endif
                                             </div>
+                                            @if ($data['data'])
+                                                @include('partials.pagination')
+                                            @else
+                                                <div class="flex flex-row justify-center text-center py-3">
+                                                    <small class="text-xs text-red-500 italic">Data
+                                                        kosong /
+                                                        tidak ditemukan</small>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

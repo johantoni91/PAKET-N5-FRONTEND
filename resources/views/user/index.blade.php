@@ -37,9 +37,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="grid grid-cols-1 p-4 overflow-scroll">
+                                <div class="grid grid-cols-1 p-4">
                                     <div class="sm:-mx-6 lg:-mx-8">
-                                        <div class="relative overflow-x-auto block w-full sm:px-6 lg:px-8">
+                                        <div class="relative block w-full sm:px-6 lg:px-8">
                                             <div class="flex flex-row justify-between px-5 mb-5">
                                                 @if (session('data')['roles'] == 'superadmin')
                                                     <button type="button" data-modal-target="create"
@@ -235,11 +235,11 @@
                                                             @endforeach
                                                         </tbody>
                                                     </table>
-                                                    @include('partials.pagination')
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    @include('partials.pagination')
                                     <small class="text-red-400">Klik icon status untuk mengubah
                                         status</small>
                                 </div>
