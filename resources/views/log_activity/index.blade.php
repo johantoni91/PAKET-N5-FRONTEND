@@ -53,71 +53,69 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="grid grid-cols-1 p-4 overflow-scroll">
-                                        <div class="sm:-mx-6 lg:-mx-8">
-                                            <div class="relative block w-full sm:px-6 lg:px-8">
-                                                <div class="relative sm:rounded-lg">
-                                                    <table
-                                                        class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                                        <thead
-                                                            class="bg-slate-200 dark:bg-slate-700 border-b-2 border-slate-500 text-xs text-center text-gray-700 uppercase dark:text-white">
-                                                            <tr>
-                                                                <th scope="col" class="px-6 py-3">
-                                                                    Username
+                                    <div class="grid grid-cols-1 p-4">
+                                        <div class="relative overflow-auto xl:overflow-hidden block w-full sm:px-6 lg:px-8">
+                                            <div class="relative sm:rounded-lg">
+                                                <table
+                                                    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                                    <thead
+                                                        class="bg-slate-200 dark:bg-slate-700 border-b-2 border-slate-500 text-xs text-center text-gray-700 uppercase dark:text-white">
+                                                        <tr>
+                                                            <th scope="col" class="px-6 py-3">
+                                                                Username
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3">
+                                                                Alamat IP
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3">
+                                                                Browser
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3">
+                                                                Versi Browser
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3">
+                                                                Sistem Operasi
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3">
+                                                                Aktivitas
+                                                            </th>
+                                                            <th scope="col" class="px-6 py-3">
+                                                                Waktu
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach ($data['data'] as $item)
+                                                            <tr
+                                                                class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                                                <th scope="row"
+                                                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                    {{ $item['username'] }}
                                                                 </th>
-                                                                <th scope="col" class="px-6 py-3">
-                                                                    Alamat IP
-                                                                </th>
-                                                                <th scope="col" class="px-6 py-3">
-                                                                    Browser
-                                                                </th>
-                                                                <th scope="col" class="px-6 py-3">
-                                                                    Versi Browser
-                                                                </th>
-                                                                <th scope="col" class="px-6 py-3">
-                                                                    Sistem Operasi
-                                                                </th>
-                                                                <th scope="col" class="px-6 py-3">
-                                                                    Aktivitas
-                                                                </th>
-                                                                <th scope="col" class="px-6 py-3">
-                                                                    Waktu
-                                                                </th>
+                                                                <td class="px-6 py-4 text-center">
+                                                                    {{ $item['ip_address'] }}
+                                                                </td>
+                                                                <td class="px-6 py-4 text-center">
+                                                                    {{ $item['browser'] }}
+                                                                </td>
+                                                                <td class="px-6 py-4 text-center">
+                                                                    {{ $item['browser_version'] }}
+                                                                </td>
+                                                                <td class="px-6 py-4 text-center">
+                                                                    {{ $item['os'] }}
+                                                                </td>
+                                                                <td class="px-6 py-4">
+                                                                    {{ $item['log_detail'] }}
+                                                                </td>
+                                                                <td class="px-6 py-4 text-center">
+                                                                    {{ Carbon\Carbon::parse(strtotime($item['created_at']))->translatedFormat('l, d F Y') }}
+                                                                    <br>
+                                                                    {{ Carbon\Carbon::parse(strtotime($item['created_at']))->translatedFormat('H:i:s') }}
+                                                                </td>
                                                             </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @foreach ($data['data'] as $item)
-                                                                <tr
-                                                                    class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                                                                    <th scope="row"
-                                                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                                        {{ $item['username'] }}
-                                                                    </th>
-                                                                    <td class="px-6 py-4 text-center">
-                                                                        {{ $item['ip_address'] }}
-                                                                    </td>
-                                                                    <td class="px-6 py-4 text-center">
-                                                                        {{ $item['browser'] }}
-                                                                    </td>
-                                                                    <td class="px-6 py-4 text-center">
-                                                                        {{ $item['browser_version'] }}
-                                                                    </td>
-                                                                    <td class="px-6 py-4 text-center">
-                                                                        {{ $item['os'] }}
-                                                                    </td>
-                                                                    <td class="px-6 py-4">
-                                                                        {{ $item['log_detail'] }}
-                                                                    </td>
-                                                                    <td class="px-6 py-4 text-center">
-                                                                        {{ Carbon\Carbon::parse(strtotime($item['created_at']))->translatedFormat('l, d F Y') }}
-                                                                        <br>
-                                                                        {{ Carbon\Carbon::parse(strtotime($item['created_at']))->translatedFormat('H:i:s') }}
-                                                                    </td>
-                                                                </tr>
-                                                            @endforeach
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>

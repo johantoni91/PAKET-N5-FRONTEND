@@ -68,7 +68,7 @@
                                                     @endif
                                                 </div>
                                             </div>
-                                            <div class="flex flex-col gap-5">
+                                            <div class="flex overflow-auto flex-col gap-5">
                                                 <div class="datatable_1">
                                                     <table
                                                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
