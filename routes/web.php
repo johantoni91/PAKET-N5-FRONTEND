@@ -37,7 +37,9 @@ use Illuminate\Http\Request;
  */
 
 Route::get('/login', [AuthController::class, 'loginPage'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login.form')->middleware('throttle:global');
+Route::post('/login', [AuthController::class, 'login'])->name('login.form')->middleware('throttle:2,1');
+Route::get('/login/captcha', [AuthController::class, 'refreshCaptcha'])->name('login.captcha');
+
 
 Route::middleware(['auth'])->group(function () {
 

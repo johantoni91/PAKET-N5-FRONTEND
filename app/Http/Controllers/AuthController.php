@@ -62,6 +62,13 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         try {
+            $rules = ['captcha' => 'required|captcha'];
+            $validator = validator()->make($request->all(), $rules);
+            if ($validator->fails()) {
+                Alert::error('Gagal', 'Masukkan captcha dengan benar!');
+                return back();
+            }
+
             $agent = new Agent();
             $res = Http::post(env('API_URL', '') . '/login', [
                 'username' => $request->input('username'),
@@ -98,6 +105,14 @@ class AuthController extends Controller
         } catch (\Throwable $th) {
             $this->logout();
         }
+    }
+
+    public function refreshCaptcha()
+    {
+        $array = array("math", "flat", "mini", "inverse");
+        return response()->json([
+            'captcha' => captcha_img($array[rand(0, count($array) - 1)])
+        ]);
     }
 
     public function logout()
