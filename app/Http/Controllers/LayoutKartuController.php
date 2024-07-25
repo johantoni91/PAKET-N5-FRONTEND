@@ -33,10 +33,15 @@ class LayoutKartuController extends Controller
 
     public function search()
     {
+        $pagination = request('pagination') ?? 5;
+        if ($pagination > 100) {
+            Alert::warning('Peringatan', 'Data yang akan ditampilkan adalah batas maksimum (100)');
+            $pagination = 100;
+        }
         $input = [
             'categories' => request('categories'),
             'title'      => request('title'),
-            'pagination' => request('pagination') ?? 5
+            'pagination' => $pagination
         ];
         $res = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/kartu/search', $input)->json()['data'];
         return view($this->view, [

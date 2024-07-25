@@ -31,10 +31,15 @@ class SatkerController extends Controller
     function search()
     {
         try {
+            $pagination = request('pagination') ?? 5;
+            if ($pagination > 100) {
+                Alert::warning('Peringatan', 'Data yang akan ditampilkan adalah batas maksimum (100)');
+                $pagination = 100;
+            }
             $input = [
                 'satker_name' => request('satker'),
                 'satker_type' => request('type'),
-                'pagination'  => request('pagination') ?? 5,
+                'pagination'  => $pagination
             ];
             $data = SatkerApi::search($input);
             return view(

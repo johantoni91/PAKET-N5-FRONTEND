@@ -56,6 +56,11 @@ class UserController extends Controller
     public function search()
     {
         try {
+            $pagination = request('pagination') ?? 5;
+            if ($pagination > 100) {
+                Alert::warning('Peringatan', 'Data yang akan ditampilkan adalah batas maksimum (100)');
+                $pagination = 100;
+            }
             $input = [
                 'nip'        => request('nip'),
                 'nrp'        => request('nrp'),
@@ -66,7 +71,7 @@ class UserController extends Controller
                 'roles'      => request('roles'),
                 'status'     => request('status'),
                 'satker'     => session('data')['satker'],
-                'pagination' => request('pagination') ?? 5
+                'pagination' => $pagination
             ];
             $data = UserApi::search($input)['data'];
             return view(

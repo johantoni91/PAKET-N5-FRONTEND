@@ -35,11 +35,16 @@ class MonitorKartuController extends Controller
 
     function search()
     {
+        $pagination = request('pagination') ?? 5;
+        if ($pagination > 100) {
+            Alert::warning('Peringatan', 'Data yang akan ditampilkan adalah batas maksimum (100)');
+            $pagination = 100;
+        }
         $input = [
             'nama'       => request('nama'),
             'status'     => request('status'),
             'alasan'     => request('alasan'),
-            'pagination' => request('pagination') ?? 5
+            'pagination' => $pagination
         ];
 
         $data = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/monitor/search', $input)->json()['data'];

@@ -27,10 +27,15 @@ class IntegrasiController extends Controller
     function search()
     {
         try {
+            $pagination = request('pagination') ?? 5;
+            if ($pagination > 100) {
+                Alert::warning('Peringatan', 'Data yang akan ditampilkan adalah batas maksimum (100)');
+                $pagination = 100;
+            }
             $input = [
                 'url'        => request('url'),
                 'type'       => request('type'),
-                'pagination' => request('pagination') ?? 5
+                'pagination' => $pagination
             ];
             $res = Http::withToken(session('data')['token'])->post(env('API_URL', '') . '/integrasi/search', $input)->json();
             return view('integrasi.index', [

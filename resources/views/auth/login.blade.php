@@ -28,13 +28,13 @@
                 <div>
                     <label for="username" class="font-medium text-sm dark:text-white">Username</label>
                     <input type="username" id="username" name="username"
-                        class="form-input w-full rounded-md mt-1 border border-slate-900 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-600 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                        class="form-input w-full rounded-md mt-1 border border-slate-900 dark:border-slate-300/60 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-600 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-300/60"
                         placeholder="Masukkan Username" value="superadmin" required>
                 </div>
                 <div class="mt-4">
                     <label for="password" class="font-medium text-sm dark:text-white">Password</label>
                     <input type="password" id="password" name="password"
-                        class="form-input w-full rounded-md mt-1 border border-slate-900 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-600 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                        class="form-input w-full rounded-md mt-1 border border-slate-900 dark:border-slate-300/60 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-600 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-300/60"
                         placeholder="Masukkan Password" value="123" required>
                 </div>
                 <div class="mt-4">
@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <input type="text" id="captcha" name="captcha"
-                    class="form-input @error('captcha') border-red-500 @enderror w-full rounded-md mt-1 border border-slate-900 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-600 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700"
+                    class="form-input @error('captcha') border-red-500 @enderror w-full rounded-md mt-1 border border-slate-900 dark:border-slate-300/60 dark:text-slate-300 bg-transparent px-3 py-2 focus:outline-none focus:ring-0 placeholder:text-slate-600 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-300/60"
                     placeholder="Masukkan captcha" required>
                 <div class="mt-4">
                     <button

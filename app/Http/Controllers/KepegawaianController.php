@@ -37,11 +37,16 @@ class KepegawaianController extends Controller
     public function search()
     {
         try {
+            $pagination = request('pagination') ?? 5;
+            if ($pagination > 100) {
+                Alert::warning('Peringatan', 'Data yang akan ditampilkan adalah batas maksimum (100)');
+                $pagination = 100;
+            }
             $input = [
                 'nama'       => request('nama'),
                 'nip'        => request('nip'),
                 'nrp'        => request('nrp'),
-                'pagination' => request('pagination')
+                'pagination' => $pagination
             ];
             if (!request()->all()) {
                 Alert::warning('Peringatan', 'Mohon isi salah satu!');

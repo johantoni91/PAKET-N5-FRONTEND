@@ -31,7 +31,12 @@ class DeviceController extends Controller
 
     function search()
     {
-        $input = ['satker_name' => request('satker'), 'satker_type' => request('type'), 'profile' => session('data')['satker'], 'pagination' => request('pagination') ?? 5];
+        $pagination = request('pagination') ?? 5;
+        if ($pagination > 100) {
+            Alert::warning('Peringatan', 'Data yang akan ditampilkan adalah batas maksimum (100)');
+            $pagination = 100;
+        }
+        $input = ['satker_name' => request('satker'), 'satker_type' => request('type'), 'profile' => session('data')['satker'], 'pagination' => $pagination];
         $result = Http::withToken(session('data')['token'])->get(env('API_URL', '') . '/perangkat/search', $input)->json()['data'];
         return view($this->view, [
             'view'        => $this->view,

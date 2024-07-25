@@ -48,6 +48,11 @@ class LogController extends Controller
             return back();
         }
 
+        $pagination = request('pagination') ?? 5;
+        if ($pagination > 100) {
+            Alert::warning('Peringatan', 'Data yang akan ditampilkan adalah batas maksimum (100)');
+            $pagination = 100;
+        }
         $input = [
             'username'        => request('username'),
             'ip_address'      => request('ip_address'),
@@ -58,7 +63,7 @@ class LogController extends Controller
             'log_detail'      => request('log_detail'),
             'start'           => request('start'),
             'end'             => request('end'),
-            'pagination'      => request('pagination') ?? 5
+            'pagination'      => $pagination
         ];
         $res = Http::withToken(Session::get('data')['token'])->get(env('API_URL', '') . '/log/search', $input)->json();
         $data = $res['data'];
