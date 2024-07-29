@@ -213,11 +213,16 @@ Route::get('/login-kios', [KiosController::class, 'loginPage'])->name('kios');
 Route::post('/login-kios', [KiosController::class, 'login'])->name('kios.login');
 Route::middleware(['kios'])->group(function () {
     Route::get('/dashboard/kios', [KiosController::class, 'dashboard'])->name('kios.dashboard');
-    Route::get('/kios/profil', [KiosController::class, 'profil'])->name('kios.profil');
+    Route::get('/kios/{uid}/profil', [KiosController::class, 'profil'])->name('kios.profil');
     Route::get('/kios/token', [KiosController::class, 'tokenPage'])->name('kios.token');
     Route::post('/kios/token', [KiosController::class, 'token'])->name('kios.token');
+    Route::get('/kios/rfid', [KiosController::class, 'checkTokenPage'])->name('kios.token.check');
+    Route::post('/kios/rfid', [KiosController::class, 'checkToken'])->name('kios.token.check');
+    Route::get('/kios/{token}/rfid/page', [KiosController::class, 'rfidPage'])->name('kios.rfid.page');
+    Route::post('/kios/rfid/store/uid', [KiosController::class, 'rfidStore'])->name('kios.rfid.store');
     Route::get('/kios/{token}/verifikasi', [KiosController::class, 'verifikasi'])->name('kios.verifikasi');
     Route::post('/kios/{token}/verifikasi', [KiosController::class, 'storeVerifikasi'])->name('kios.verifikasi');
+    Route::get('/nfc', [KiosController::class, 'nfc'])->name('nfc');
     Route::get('/kios/{token}/kartu', [KiosController::class, 'kartu'])->name('kios.kartu');
 });
 

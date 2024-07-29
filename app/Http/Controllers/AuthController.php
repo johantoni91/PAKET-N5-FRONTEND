@@ -8,7 +8,6 @@ use App\API\SatkerApi;
 use helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Session;
 use Jenssegers\Agent\Agent;
 use RealRashid\SweetAlert\Facades\Alert;

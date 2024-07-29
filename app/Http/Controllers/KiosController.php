@@ -45,7 +45,7 @@ class KiosController extends Controller
     {
         try {
             $satker = Http::withToken(session('kios')['serial_number'])->get(env('API_URL', '') . '/satker' . '/' . session('kios')['id_satker'] . '/code-kios')->json()['data'];
-            return view('kiosK.token', compact('satker'));
+            return view('kiosK.cetak.token', compact('satker'));
         } catch (\Throwable $th) {
             Session::forget('kios');
             return redirect()->route('kios');
@@ -63,7 +63,7 @@ class KiosController extends Controller
             Alert::success('Pemberitahuan', 'Kartu telah diverifikasi, kartu sedang dicetak.');
             return back();
         } catch (\Throwable $th) {
-            Alert::error('Peringatan', $th->getMessage());
+            Alert::error('Terjadi kesalahan');
             return back();
         }
     }
@@ -75,7 +75,7 @@ class KiosController extends Controller
             if ($check['status'] == false) {
                 return redirect()->route('kios.token');
             }
-            return view('kiosK.verifikasi', [
+            return view('kiosK.cetak.verifikasi', [
                 'token' => $token
             ]);
         } catch (\Throwable $th) {
@@ -104,7 +104,7 @@ class KiosController extends Controller
     {
         try {
             $data = Http::withToken(session('kios')['serial_number'])->get(env('API_URL', '') . '/kios' . '/' . $token . '/kartu')->json()['data'];
-            return view('kiosK.kartu', [
+            return view('kiosK.dummy.kartu', [
                 'pengajuan'  => $data['pengajuan'],
                 'pegawai'    => $data['pegawai'],
                 'kartu'      => $data['kartu']
@@ -115,13 +115,94 @@ class KiosController extends Controller
         }
     }
 
-    function profil()
+    function checkTokenPage()
     {
         try {
-            return view('kiosK.profil');
+            try {
+                $satker = Http::withToken(session('kios')['serial_number'])->get(env('API_URL', '') . '/satker' . '/' . session('kios')['id_satker'] . '/code-kios')->json()['data'];
+                return view('kiosK.kartu.check_token', compact('satker'));
+            } catch (\Throwable $th) {
+                Session::forget('kios');
+                return redirect()->route('kios');
+            }
+        } catch (\Throwable $th) {
+            Alert::error('Terjadi kesalahan');
+            return back();
+        }
+    }
+
+    function checkToken(Request $req)
+    {
+        try {
+            $check = Http::withToken(session('kios')['serial_number'])->post(env('API_URL', '') . '/kios/check-token', ['token' => $req->token])->json();
+            if ($check['status'] == false) {
+                Alert::warning('Peringatan', 'Token yang anda masukkan salah!');
+                return back();
+            }
+            return redirect()->route('kios.rfid.page', $req->token);
+        } catch (\Throwable $th) {
+            Alert::error('Terjadi kesalahan');
+            return back();
+        }
+    }
+
+    function nfc()
+    {
+        try {
+            $path = base_path('public/assets/script.py');
+            $output = shell_exec("python3 $path");
+            return response()->json([
+                'data' => $output
+            ]);
+        } catch (\Throwable $th) {
+            return response('Gagal', 400);
+        }
+    }
+
+    function rfidPage($token)
+    {
+        try {
+            $check = Http::withToken(session('kios')['serial_number'])->post(env('API_URL', '') . '/kios/check-token', ['token' => $token])->json();
+            if ($check['status'] == false) {
+                return redirect()->route('kios.dashboard');
+            }
+            $satker = Http::withToken(session('kios')['serial_number'])->get(env('API_URL', '') . '/satker' . '/' . session('kios')['id_satker'] . '/code-kios')->json()['data'];
+            return view('kiosK.kartu.scan_rfid', ['satker' => $satker, 'token' => $token]);
         } catch (\Throwable $th) {
             Session::forget('kios');
             return redirect()->route('kios');
+        }
+    }
+
+    function rfidStore(Request $req)
+    {
+        try {
+            $res = Http::withToken(session('kios')['serial_number'])->post(env('API_URL', '') . '/nfc/store', ['token' => $req->token, 'uid' => $req->rfid])->json();
+            if ($res['status'] == false) {
+                Alert::warning('Peringatan', $res['message']);
+                return back();
+            }
+            return redirect()->route('kios.profil', $res['data']['uid_kartu']);
+        } catch (\Throwable $th) {
+            Alert::error('Gagal');
+            return back();
+        }
+    }
+
+    function profil($uid)
+    {
+        try {
+            $satker = Http::withToken(session('kios')['serial_number'])->get(env('API_URL', '') . '/satker' . '/' . session('kios')['id_satker'] . '/code-kios')->json()['data'];
+            $info = Http::withToken(session('kios')['serial_number'])->get(env('API_URL', '') . '/nfc' . '/' . $uid . '/pegawai')->json();
+            if ($info['status'] == false) {
+                Alert::error('Kartu tidak terdaftar, infokan admin satker anda.');
+                return redirect()->route('kios.dashboard');
+            }
+            $pegawai = $info['data'];
+            return view('kiosK.profile.index', compact('pegawai', 'satker'));
+        } catch (\Throwable $th) {
+            Alert::error('Kartu tidak terdaftar, infokan admin satker anda.');
+            return redirect()->route('kios.dashboard');
         }
     }
 }

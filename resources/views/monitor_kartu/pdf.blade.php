@@ -171,40 +171,39 @@
                 background-size: cover;">
                 <img class="imglogover" src="{{ env('APP_IMG', '') . $kartu['icon'] }}">
                 <p style="font-size: 9px; text-transform: uppercase; font-weight: bold; text-align: center;">
-                    KEJAKSAAN AGUNG REPUBLIK INDONESIA
+                    {{ $pegawai['nama_satker'] }}
                 </p>
                 @if ($kartu['profile'] == '1')
-                    <img class="imgver" src="{{ asset('assets/images/5856.jpg') }}">
+                    <img class="imgver" src="{{ $pegawai['foto_pegawai'] ?? asset('assets/images/5856.jpg') }}">
                 @endif
                 @if ($kartu['nama'] == '1')
                     <p style="font-size: 9px; text-transform: uppercase; font-weight: bold; text-align: center;">
-                        Asep Ucup Udin Budi, S.Kom.
+                        {{ $pegawai['nama'] }}
                     </p>
                 @endif
                 <table class="tablever">
                     @if ($kartu['nip'] == '1')
                         <tr>
                             <td class="tdver">NIP </td>
-                            <td class="tdver">: 199909092022011001</td>
+                            <td class="tdver">: {{ $pegawai['nip'] }}</td>
                         </tr>
                     @endif
                     @if ($kartu['nrp'] == '1')
                         <tr>
                             <td class="tdver">NRP </td>
-                            <td class="tdver">: 00234577</td>
+                            <td class="tdver">: {{ $pegawai['nrp'] }}</td>
                         </tr>
                     @endif
                     @if ($kartu['golongan'] == '1')
                         <tr>
                             <td class="tdver">Gol </td>
-                            <td class="tdver">: Penata Muda (III/a)</td>
+                            <td class="tdver">: {{ $pegawai['golpang'] }}</td>
                         </tr>
                     @endif
                 </table>
                 @if ($kartu['jabatan'] == '1')
                     <p style="font-size: 7px; text-transform: uppercase; text-align: center;">
-                        Analis Pengelolaan Keuangan Apbn Ahli Pertama pada Kejaksaan Agung Republik
-                        Indonesia
+                        {{ $pegawai['jabatan'] }}
                     </p>
                 @endif
             </div>
@@ -214,8 +213,7 @@
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;">
-                <img style="width: 6rem; height: 6rem; margin-top:1rem;" src="{{ asset('assets/images/qrcode.png') }}"
-                    alt="">
+                <img style="width: 6rem; height: 6rem; margin-top:1rem;" src="{!! $pengajuan['barcode'] !!}" alt="">
                 <div
                     style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0.25rem;">
                     <small>{{ $ttd['jabatan'] }}</small>
@@ -238,15 +236,15 @@
                             src="{{ env('APP_IMG', '') . $kartu['icon'] }}">
                     </td>
                     <td class="divheadtd" style="font-size: 9px; text-transform: uppercase; font-weight: bold;">
-                        KEJAKSAAN
-                        NEGERI KABUPATEN PROBOLINGGO</td>
+                        {{ $pegawai['nama_satker'] }}</td>
                 </tr>
             </table>
             <table class="divhead">
                 <tr>
                     <td rowspan="6">
                         @if ($kartu['profile'] == '1')
-                            <img class="imghor" src="{{ asset('assets/images/5856.jpg') }}">
+                            <img class="imghor"
+                                src="{{ $pegawai['foto_pegawai'] ?? asset('assets/images/5856.jpg') }}">
                         @endif
                     </td>
                     <td>
@@ -254,42 +252,35 @@
                 <tr>
                     <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Nama</td>
                     <td class="tdhor">:</td>
-                    <td class="tdhor" style="text-transform: uppercase; font-weight: bold;">JOHAN
-                        TONI
-                        WIJAYA
+                    <td class="tdhor" style="text-transform: uppercase; font-weight: bold;">{{ $pegawai['nama'] }}
                     </td>
                 </tr>
                 @if ($kartu['nip'] == '1')
                     <tr>
                         <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NIP</td>
                         <td class="tdhor">:</td>
-                        <td class="tdhor">199909092022011001</td>
+                        <td class="tdhor">{{ $pegawai['nip'] }}</td>
                     </tr>
                 @endif
                 @if ($kartu['nrp'] == '1')
                     <tr>
                         <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;NRP</td>
                         <td class="tdhor">:</td>
-                        <td class="tdhor">00234577</td>
+                        <td class="tdhor">{{ $pegawai['nrp'] }}</td>
                     </tr>
                 @endif
                 @if ($kartu['golongan'] == '1')
                     <tr>
                         <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Gol</td>
                         <td class="tdhor">:</td>
-                        <td class="tdhor">Penata Muda (III/a)</td>
+                        <td class="tdhor">{{ $pegawai['golpang'] }}</td>
                     </tr>
                 @endif
                 @if ($kartu['jabatan'] == '1')
                     <tr>
                         <td class="tdhor">&nbsp;&nbsp;&nbsp;&nbsp;Jabatan</td>
                         <td class="tdhor">:</td>
-                        <td class="tdhor" style="line-height: 1;text-align: left;">Analis Pengelolaan
-                            Keuangan Apbn Ahli
-                            Pertama pada Kejaksaan
-                            Negeri
-                            Kabupaten
-                            Probolinggo</td>
+                        <td class="tdhor" style="line-height: 1;text-align: left;">{{ $pegawai['jabatan'] }}</td>
                     </tr>
                 @endif
                 </td>

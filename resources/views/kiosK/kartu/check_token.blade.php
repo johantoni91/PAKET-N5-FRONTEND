@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="grid grid-cols-2">
-                <div class="cols-span-1 p-5">
+                <div class="cols-span-1 p-5 h-[65dvh]">
                     <div id="default-carousel" class="relative w-full h-[80%] shadow shadow-green-500"
                         data-carousel="slide">
                         <!-- Carousel wrapper -->
@@ -79,16 +79,23 @@
                 </div>
                 <div class="cols-span-1 p-5 flex flex-col gap-2 justify-start overflow-hidden"
                     style="padding-left: 2rem; padding-right: 2rem;">
-                    <form id="checkToken" action="{{ route('kios.token') }}" method="post">
+                    <form id="checkToken" action="{{ route('kios.token.check') }}" method="post">
                         @csrf
                         <div class="flex flex-row gap-2 items-center justify-start">
-                            <input type="text" id="token" name="token" class="w-full border rounded-lg">
+                            <input type="text" id="token" name="token" class="w-full border rounded-lg"
+                                placeholder="Mohon masukkan token anda" inputmode="numeric">
+                            <script>
+                                function keepOnlyNumbers(input) {
+                                    return input.replace(/\D/g, "");
+                                }
+                                var inputField = document.getElementById("token");
+                                inputField.addEventListener("input", function() {
+                                    inputField.value = keepOnlyNumbers(inputField.value);
+                                });
+                            </script>
                             <button type="submit" class="rounded-lg p-2 bg-lime-500">Kirim</button>
                         </div>
                     </form>
-                    <div id="scan" class="self-center overflow-hidden rounded-lg shadow shadow-green"
-                        style="width: 60%; height: 80%">
-                    </div>
                 </div>
             </div>
             <div style="width: 100dvw; height:15dvh; background-position: center; background-size: cover; background-image: url({{ asset('assets/images/bg-footer.jpg') }});"
@@ -96,28 +103,4 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('assets/js/html5-qrcode.min.js') }}"></script>
-    <script>
-        let html5QrcodeScanner = new Html5QrcodeScanner("scan", {
-            fps: 10,
-            qrbox: 300
-        });
-
-        const onScanSuccess = (decodedText, decodedResult) => {
-            $("#token").val(decodedText)
-            $("#checkToken").submit()
-        }
-
-        const onScanError = (error) => {
-            Swal.fire({
-                title: "Error",
-                text: error,
-                icon: "error"
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            html5QrcodeScanner.render(onScanSuccess);
-        });
-    </script>
 @endsection
