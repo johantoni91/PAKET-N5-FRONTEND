@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="grid grid-cols-2">
-                <div class="cols-span-1 p-5">
+                <div class="cols-span-1 p-5 h-[65dvh]">
                     <div id="default-carousel" class="relative w-full h-[80%] shadow shadow-green-500"
                         data-carousel="slide">
                         <!-- Carousel wrapper -->
@@ -84,11 +84,13 @@
                         <div class="flex flex-row gap-2 items-center justify-start">
                             <input type="text" id="token" name="token" class="w-full border rounded-lg"
                                 inputmode="numeric" placeholder="Input token manual">
+                            <script>
+                                document.getElementById("token").focus();
+                            </script>
                             <button type="submit" class="rounded-lg p-2 bg-lime-500">Kirim</button>
                         </div>
                     </form>
-                    <div id="scan" class="self-center overflow-hidden rounded-lg shadow shadow-green"
-                        style="width: 60%; height: 80%">
+                    <div id="scan" class="self-center overflow-hidden" style="width: 60%; height: 80%">
                     </div>
                 </div>
             </div>
@@ -97,7 +99,40 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('assets/js/html5-qrcode.min.js') }}"></script>
+    <script>
+        var BarcodeScanerEvents = function() {
+            this.initialize.apply(this, arguments);
+        };
+
+        BarcodeScanerEvents.prototype = {
+            initialize: function() {
+                $(document).on({
+                    keyup: $.proxy(this._keyup, this)
+                });
+            },
+            _timeoutHandler: 0,
+            _inputString: '',
+            _keyup: function(e) {
+                if (this._timeoutHandler) {
+                    clearTimeout(this._timeoutHandler);
+                    this._inputString += String.fromCharCode(e.which);
+                }
+
+                this._timeoutHandler = setTimeout($.proxy(function() {
+                    if (this._inputString.length <= 3) {
+                        this._inputString = '';
+                        return;
+                    }
+
+                    $(document).trigger('onbarcodescaned', this._inputString);
+
+                    this._inputString = '';
+
+                }, this), 20);
+            }
+        };
+    </script>
+    {{-- <script src="{{ asset('assets/js/html5-qrcode.min.js') }}"></script>
     <script>
         let html5QrcodeScanner = new Html5QrcodeScanner("scan", {
             fps: 10,
@@ -120,5 +155,5 @@
         document.addEventListener('DOMContentLoaded', () => {
             html5QrcodeScanner.render(onScanSuccess);
         });
-    </script>
+    </script> --}}
 @endsection

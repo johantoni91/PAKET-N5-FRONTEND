@@ -12,6 +12,8 @@ class KiosController extends Controller
 {
     function loginPage()
     {
+        // $output = shell_exec("pip3 install pyzbar opencv-python");
+        // dd($output);
         return view('kiosK.login');
     }
 
@@ -149,7 +151,7 @@ class KiosController extends Controller
     function nfc()
     {
         try {
-            $path = base_path('public/assets/script.py');
+            $path = base_path('public/assets/python/script.py');
             $output = shell_exec("python3 $path");
             return response()->json([
                 'data' => $output

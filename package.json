@@ -20,6 +20,7 @@
         "esbuild-plugin-polyfill-node": "^0.3.0",
         "flowbite": "^2.2.1",
         "html-to-image": "^1.11.11",
+        "onscan.js": "^1.5.2",
         "pcsclite": "^1.0.1",
         "socket.io": "^4.7.5",
         "sweetalert2": "^11.10.5",
