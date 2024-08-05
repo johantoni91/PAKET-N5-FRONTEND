@@ -6,7 +6,7 @@
             <!-- Modal header -->
             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                    Cari Pengajuan
+                    Cari Smart Card
                 </h3>
                 <button type="button"
                     class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -21,13 +21,24 @@
             </div>
             <!-- Modal body -->
             <div class="p-4 md:p-5">
-                <form class="space-y-4" action="{{ route('pengajuan.search') }}">
+                <form class="space-y-4" action="{{ route('smart.search') }}">
                     <div class="flex flex-row lg:flex-nowrap xl:flex-nowrap flex-wrap items-center justify-evenly">
                         <div class="flex flex-col w-full justify-between p-4 leading-normal gap-3">
                             <div class="flex flex-row gap-5">
                                 <label for="nip" class="my-auto w-24 dark:text-white">NIP</label>
-                                <input type="text" id="nip" name="nip" value="{{ request('nip') ?? '' }}"
+                                <input type="text" id="nip" inputmode="numeric" name="nip"
+                                    value="{{ request('nip') ?? '' }}"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                <script>
+                                    function keepOnlyNumbers(input) {
+                                        return input.replace(/\D/g, "");
+                                    }
+                                    var inputField = document.getElementById("nip");
+
+                                    inputField.addEventListener("input", function() {
+                                        inputField.value = keepOnlyNumbers(inputField.value);
+                                    });
+                                </script>
                             </div>
                             <div class="flex flex-row gap-5">
                                 <label for="nama" class="my-auto w-24 dark:text-white">Nama</label>
@@ -35,25 +46,31 @@
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             </div>
                             <div class="flex flex-row gap-5">
-                                <label for="status" class="my-auto w-24 dark:text-white">Status</label>
-                                <select id="status" name="status"
+                                <label for="kartu" class="my-auto w-24 dark:text-white">Kartu</label>
+                                <select id="kartu" name="kartu"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                    @if (!request()->routeIs('pengajuan'))
-                                        <option
-                                            {{ request('status') == '' || request('status') == null ? 'selected' : '' }}
-                                            disabled>-- Status --</option>
-                                        <option {{ request('status') == 0 ? 'selected' : '' }} value="0">Ditolak
-                                        </option>
-                                        <option {{ request('status') == 1 ? 'selected' : '' }} value="1">Mengajukan
-                                        </option>
-                                        <option {{ request('status') == 2 ? 'selected' : '' }} value="2">Selesai
-                                        </option>
-                                    @else
-                                        <option selected disabled>-- Status --</option>
-                                        <option value="0">Ditolak</option>
-                                        <option value="1">Mengajukan</option>
-                                        <option value="2">Selesai</option>
-                                    @endif
+                                    <option selected disabled>Semua</option>
+                                    @foreach ($kartu as $item)
+                                        <option value="{{ $item['title'] }}"
+                                            {{ request('kartu') == $item['title'] ? 'selected' : '' }}>
+                                            {{ $item['title'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="flex flex-row gap-5">
+                                <label for="waktu" class="my-auto w-24 dark:text-white">Waktu Terdaftar</label>
+                                <input type="datetime-local" name="waktu" id="waktu"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            </div>
+                            <div class="flex flex-row gap-5">
+                                <label for="pagination" class="my-auto w-24 dark:text-white">Data Per Halaman</label>
+                                <select id="pagination" name="pagination"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
                                 </select>
                             </div>
                         </div>

@@ -185,6 +185,7 @@ Route::middleware(['auth'])->group(function () {
 
     // SMART CARD
     Route::get('/smart-card', [SmartCardController::class, 'index'])->name('smart');
+    Route::get('/smart-card/search', [SmartCardController::class, 'search'])->name('smart.search');
 
     // ASSESSMENT SECURITY
     Route::get('/assessment', [AssessmentController::class, 'index'])->name('assessment');

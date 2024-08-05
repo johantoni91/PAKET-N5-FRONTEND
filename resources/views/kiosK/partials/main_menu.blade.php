@@ -12,6 +12,8 @@
                 </div>
             </div>
             <div class="absolute flex flex-col justify-center items-center h-full" style="width:100%; padding-left:50px;">
+
+
                 <div id="default-carousel" class="relative w-full shadow shadow-green-500" data-carousel="slide"
                     style="height: 50dvh;">
                     <!-- Carousel wrapper -->

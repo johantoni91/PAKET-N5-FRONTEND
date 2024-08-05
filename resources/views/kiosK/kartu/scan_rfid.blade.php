@@ -1,6 +1,6 @@
 @extends('kiosK.partials.main_menu')
 @section('content_kios')
-    <div class="w-full h-[50%] flex flex-col justify-center items-center rounded-lg border border-gray-300">
+    <div class="w-full h-[50%] flex flex-col justify-center items-center">
         <p id="title">Mohon Scan kartu anda dan tahan sampai proses selesai</p>
         <form class="w-[65%]" id="submit_uid" action="{{ route('kios.rfid.store') }}" method="post">
             @csrf

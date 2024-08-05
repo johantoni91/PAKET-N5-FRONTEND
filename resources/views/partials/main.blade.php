@@ -19,8 +19,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
 @vite('resources/css/app.css')
 
-{{-- @vite('resources/js/serverEvent.js') --}}
-
 <body data-sidebar-size="default" data-theme-layout="vertical"
     class="{{ request()->routeIs('login') ? 'bg-gradient-to-b from-[#1A4D2E] via-[#4F6F52] to-[#E8DFCA] dark:bg-gradient-to-b dark:from-[#1B262C] dark:via-[#0F4C75] dark:to-[#3282B8]' : 'bg-slate-100 dark:bg-slate-900' }}">
     @include('sweetalert::alert')
@@ -38,13 +36,6 @@
     <script src="{{ asset('assets/js/app.js') }}"></script>
     <script src="{{ asset('assets/js/html2canvas.min.js') }}"></script>
     <script>
-        // var currentTime = new Date();
-        // var month = currentTime.getMonth() + 1;
-        // var total = month;
-
-        // console.log('currentTime: ', currentTime);
-        // console.log('month: ', month);
-        // console.log('total: ', total);
         $(function() {
             if (window.innerWidth < 1025) {
                 $("body").attr("data-sidebar-size", "collapsed")
